@@ -343,12 +343,52 @@ class Pelt:
         "DRY CATMINT",
         "DRY NETTLES",
         "DRY LAURELS",
+        "RAT SKULL",
+        "FISH BONES",
+        "PEACOCK BUTTERFLY",
+        "DEATH HEAD HAWKMOTH",
+        "GARDEN TIGER MOTH",
+        "ATLAS MOTH",
+        "CECOROPIA MOTH",
+        "WHITE ERMINE MOTH",
+        "IO MOTH",
+        "COMET MOTH",
+        "JADE HAWKMOTH",
+        "HUMMINGBIRD HAWKMOTH",
+        "OWL BUTTERFLY",
+        "GLASSWING BUTTERFLY",
+        "QUEEN ALEXANDRA BIRDWING BUTTERFLY",
+        "GREEN DRAGONTAIL BUTTERFLY",
+        "MENELAUS BLUE MORPHO BUTTERFLY",
+        "DEAD LEAF BUTTERFLY",
+        "DVD",
+        "OLD PENCIL",
+        "OLD BRUSH",
+        "BANANA PEEL",
+        "BROKEN VHS TAPE",
+
     ]
 
     body_accessories = [
         "HERBS",
         "PETALS",
-        "DRY HERBS"
+        "DRY HERBS",
+        "SNAKE",
+        "RIBS",
+        "BAT WINGS",
+        "CANIDAE SKULL",
+        "DEER ANTLERS",
+        "RAM HORN",
+        "GOAT HORN",
+        "OX SKULL",
+        "TEETH COLLAR",
+        "BIRD SKULL1",
+        "ROE SKULL",
+        "GOLDEN KEY",
+        "SILVER KEY",
+        "OLD NEWSPAPER",
+        "SEA GLASS",
+        "MUD AND DIRT"
     ]
 
     tail_accessories = [
@@ -360,7 +400,10 @@ class Pelt:
         "CLOVER",
         "DAISYTAIL",
         "DAISY CORSAGE",
-        "CLOVERTAIL"
+        "CLOVERTAIL",
+        "OLD SILVER WATCH",
+        "OLD GOLD WATCH",
+        "BAUBLES,"
     ]
 
     tabbies = ["Tabby", "Ticked", "Mackerel", "Stermackerel", "Sillymackerel", "Dancemackerel", "Mimimackerel", 
