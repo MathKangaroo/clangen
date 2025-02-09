@@ -154,6 +154,16 @@
             "many": "clovers",
             "one": "bunch of clovers"
         },
+        "CLOVERTAIL": {
+            "zero": "clover tail",
+            "many": "clovers",
+            "one": "bunch of clovers"
+        },
+        "DAISYTAIL": {
+            "zero": "clover tail",
+            "many": "clovers",
+            "one": "bunch of clovers"
+        },
         "DAISY": {
             "zero": "daisy tail",
             "many": "daisies",
@@ -1253,9 +1263,9 @@
         "many": "cyan bandanas",
         "one": "cyan bandana"
     },
-    "YELLOWANDANA": {
+    "YELLOWBANDANA": {
         "zero": "yellow bandana",
-        "many": "yellow bandans",
+        "many": "yellow bandanas",
         "one": "yellow bandana"
     },
     "LIMEBANDANA": {
