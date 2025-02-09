@@ -430,7 +430,7 @@ class HandleShortEvents:
                     if acc in acc_list:
                         acc_list.remove(acc)
 
-        accessory_groups = [pelts.collars, pelts.butterflies_accessories, pelts.bone_accessories, pelts.stuff_accessories, pelts.harness_accessories, pelts.bows_accessories, pelts.flower_accessories, pelts.plant2_accessories, pelts.snake_accessories, pelts.smallAnimal_accessories, pelts.deadInsect_accessories, pelts.aliveInsect_accessories, pelts.fruit_accessories, pelts.crafted_accessories, pelts.tail2_accessories, pelts.head_accessories, pelts.tail_accessories, pelts.body_accessories]
+        accessory_groups = [pelts.collars, pelts.head_accessories, pelts.tail_accessories, pelts.body_accessories]
         if self.main_cat.pelt.accessory:
             for acc in self.main_cat.pelt.accessory:
                 # find which accessory group it belongs to
