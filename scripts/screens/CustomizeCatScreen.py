@@ -188,7 +188,7 @@ class CustomizeCatScreen(Screens):
         self.pose_left_button = None
 
         self.accessories = ["None"] + list(
-            dict.fromkeys(Pelt.plant_accessories + Pelt.flower_accessories + Pelt.dogteeth_collars + Pelt.bows_accessories + Pelt.harness_accessories + Pelt.plant2_accessories + Pelt.wild_accessories + Pelt.tail_accessories + Pelt.collars + Pelt.snake_accessories + Pelt.smallAnimal_accessories + Pelt.deadInsect_accessories + Pelt.aliveInsect_accessories + Pelt.fruit_accessories + Pelt.crafted_accessories + Pelt.tail2_accessories + Pelt.bone_accessories + Pelt.butterflies_accessories + Pelt.stuff_accessories))
+            dict.fromkeys(Pelt.plant_accessories + Pelt.flower_accessories + Pelt.dogteeth_collars + Pelt.bows_accessories + Pelt.bandana_collars + Pelt.harness_accessories + Pelt.plant2_accessories + Pelt.wild_accessories + Pelt.tail_accessories + Pelt.collars + Pelt.snake_accessories + Pelt.smallAnimal_accessories + Pelt.deadInsect_accessories + Pelt.aliveInsect_accessories + Pelt.fruit_accessories + Pelt.crafted_accessories + Pelt.tail2_accessories + Pelt.bone_accessories + Pelt.butterflies_accessories + Pelt.stuff_accessories))
         self.accessory_label = None
         self.accessory_dropdown = None
 
@@ -620,7 +620,7 @@ class CustomizeCatScreen(Screens):
     def handle_accessory_dropdown(self):
         selected_option = self.accessory_dropdown.selected_option
         if selected_option[0] == "None":
-            self.the_cat.pelt.accessory = None
+            self.the_cat.pelt.accessory = []
         else:
             self.the_cat.pelt.accessory = selected_option[1]
         self.make_cat_sprite()

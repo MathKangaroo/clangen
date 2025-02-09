@@ -245,11 +245,12 @@ class Pelt:
     wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY1", "CICADA WINGS", "BLACK CICADA"]
   
     tail_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "CLOVERTAIL", "DAISYTAIL"]
+    harness_accessories = ["CRIMSONH", "BLUEH", "YELLOWH", "CYANH", "REDH", "LIMEH", "GREENH", "RAINBOWH", "BLACKH", "SPIKESH", "WHITEH", "PINKH",
+                           "PURPLEH", "MULTIH", "INDIGOH"]
 
     bandana_collars = ["CRIMSONBANDANA", "BLUEBANDANA", "YELLOWANDANA", "CYANBANDANA", "REDBANDANA",
     "LIMEBANDANA" ,"GREENBANDANA", "RAINBOWBANDANA", "BLACKBANDANA", "SPIKESBANDANA", "WHITEBANDANA","PINKBANDANA", "PURPLEBANDANA", "MULTIBANDANA", "INDIGOBANDANA"]
-    harness_accessories = ["CRIMSONH", "BLUEH", "YELLOWH", "CYANH", "REDH", "LIMEH", "GREENH", "RAINBOWH", "BLACKH", "SPIKESH", "WHITEH", "PINKH",
-                           "PURPLEH", "MULTIH", "INDIGOH"]
+    
     bows_accessories = ["CRIMSONBOWS", "BLUEBOWS", "YELLOWBOWS", "CYANBOWS", "REDBOWS", "LIMEBOWS","GREENBOWS", "RAINBOWBOWS", "BLACKBOWS", "SPIKESBOWS", "WHITEBOWS",
                         "PINKBOWS", "PURPLEBOWS", "MULTIBOWS", "INDIGOBOWS"]
     dogteeth_collars = ["CRIMSONTEETHCOLLAR", "BLUETEETHCOLLAR", "YELLOWTEETHCOLLAR", "CYANTEETHCOLLAR", "REDTEETHCOLLAR",
@@ -264,8 +265,7 @@ class Pelt:
         "LIMEBOW", "GREENBOW", "RAINBOWBOW", "BLACKBOW", "SPIKESBOW", "WHITEBOW", "PINKBOW",
         "PURPLEBOW", "MULTIBOW", "INDIGOBOW", "CRIMSONNYLON", "BLUENYLON", "YELLOWNYLON", "CYANNYLON",
         "REDNYLON", "LIMENYLON", "GREENNYLON", "RAINBOWNYLON",
-        "BLACKNYLON", "SPIKESNYLON", "WHITENYLON", "PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON",
-
+        "BLACKNYLON", "SPIKESNYLON", "WHITENYLON", "PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON"
         
     ]
     flower_accessories = ["DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY",
@@ -304,6 +304,63 @@ class Pelt:
                     ]
     tail2_accessories = ["SEAWEED", "DAISY CORSAGE"
                     ]
+    head_accessories = [
+        "MOTH WINGS",
+        "ROSY MOTH WINGS",
+        "MORPHO BUTTERFLY",
+        "MONARCH BUTTERFLY",
+        "CICADA WINGS",
+        "BLACK CICADA",
+        "MAPLE LEAF",
+        "HOLLY",
+        "BLUE BERRIES",
+        "FORGET ME NOTS",
+        "RYE STALK",
+        "CATTAIL",
+        "POPPY",
+        "ORANGE POPPY",
+        "CYAN POPPY",
+        "WHITE POPPY",
+        "PINK POPPY",
+        "BLUEBELLS",
+        "LILY OF THE VALLEY",
+        "SNAPDRAGON",
+        "NETTLE",
+        "HEATHER",
+        "GORSE",
+        "JUNIPER",
+        "RASPBERRY",
+        "LAVENDER",
+        "OAK LEAVES",
+        "CATMINT",
+        "MAPLE SEED",
+        "LAUREL",
+        "BULB WHITE",
+        "BULB YELLOW",
+        "BULB ORANGE",
+        "BULB PINK",
+        "BULB BLUE",
+        "DRY CATMINT",
+        "DRY NETTLES",
+        "DRY LAURELS",
+    ]
+
+    body_accessories = [
+        "HERBS",
+        "PETALS",
+        "DRY HERBS"
+    ]
+
+    tail_accessories = [
+        "RED FEATHERS",
+        "BLUE FEATHERS",
+        "JAY FEATHERS",
+        "GULL FEATHERS",
+        "SPARROW FEATHERS",
+        "CLOVER",
+        "DAISY",
+        "BLUE GLORY"
+    ]
 
     tabbies = ["Tabby", "Ticked", "Mackerel", "Stermackerel", "Sillymackerel", "Dancemackerel", "Mimimackerel", 
                "Classic", "Sterclassic", "Sillyclassic", "Danceclassic", "Mimiclassic",
@@ -404,7 +461,7 @@ class Pelt:
                  physical_trait_hidden_2:str=None,
                  physical_trait_hidden_3:str=None,
                  physical_trait_hidden_4:str=None,
-                 accessory: str = None,
+                 accessory: list = None,
                  paralyzed: bool = False,
                  opacity: int = 100,
                  scars: list = None,
@@ -420,7 +477,6 @@ class Pelt:
                  fur_texture:str=None,
                  build:str=None,
                  height:str=None,
-                 accessories:list=None,
                  ) -> None:
         self.name = name
         self.colour = colour
@@ -434,8 +490,8 @@ class Pelt:
         self.vitiligo = vitiligo
         self.length = length
         self.points = points
+        self.accessory = accessory
         self.paralyzed = paralyzed
-        self.accessories = accessories if accessories is not None else []
         self.opacity = opacity
         self.scars = scars if isinstance(scars, list) else []
         self.tint = tint
@@ -464,7 +520,6 @@ class Pelt:
 
         self.reverse = reverse
         self.skin = skin
-        self.accessory = accessory 
         self.fur_texture = fur_texture if fur_texture is not None else choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse", "tangled", "fuzzy", "spiky"])
         self.build = build if build is not None else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate"])
         self.height = height if height is not None else choice(["petite", "short", "average", "average", "tall", "towering"])
@@ -565,7 +620,11 @@ class Pelt:
             self.pattern = "MINIMALTHREE"
         elif self.pattern == "MINIMAL4":
             self.pattern = "MINIMALFOUR"
-        
+
+        if isinstance(self.accessory, str):
+            self.accessory = [self.accessory]
+
+
     def init_eyes(self, parents):
         if not parents:
             self.eye_colour = choice(Pelt.eye_colours)
@@ -913,7 +972,7 @@ class Pelt:
 
     def init_accessories(self, age):
         if age == "newborn":
-            self.accessory = None
+            self.accessory = []
             return
 
         acc_display_choice = random.randint(0, 80)
@@ -924,7 +983,7 @@ class Pelt:
 
         if acc_display_choice == 1:
             self.accessory = choice([
-                choice(Pelt.plant_accessories),
+                [choice(Pelt.plant_accessories),
                 choice(Pelt.wild_accessories),
                 choice(Pelt.flower_accessories),
                 choice(Pelt.plant2_accessories),
@@ -936,14 +995,15 @@ class Pelt:
                 choice(Pelt.crafted_accessories),
                 choice(Pelt.tail2_accessories),
                 choice(Pelt.bone_accessories),
+                choice(Pelt.bandana_collars),
                 choice(Pelt.butterflies_accessories),
                 choice(Pelt.stuff_accessories),
                 choice(Pelt.harness_accessories),
                 choice(Pelt.bows_accessories),
-                choice(Pelt.dogteeth_collars)
+                choice(Pelt.dogteeth_collars)]
             ])
         else:
-            self.accessory = None
+            self.accessory = []
 
     def init_pattern(self):
         if self.name in Pelt.torties:
