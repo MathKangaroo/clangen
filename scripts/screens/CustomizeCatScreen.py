@@ -619,10 +619,13 @@ class CustomizeCatScreen(Screens):
 
     def handle_accessory_dropdown(self):
         selected_option = self.accessory_dropdown.selected_option
+        if not isinstance(self.the_cat.pelt.accessory, list):
+            self.the_cat.pelt.accessory = []
         if selected_option[0] == "None":
             self.the_cat.pelt.accessory = []
         else:
-            self.the_cat.pelt.accessory = selected_option[1]
+            if selected_option[1] not in self.the_cat.pelt.accessory:
+                self.the_cat.pelt.accessory.append(selected_option[1])
         self.make_cat_sprite()
 
     def handle_scar_dropdown(self, dropdown):
