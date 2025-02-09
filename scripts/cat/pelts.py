@@ -366,7 +366,12 @@ class Pelt:
         "OLD BRUSH",
         "BANANA PEEL",
         "BROKEN VHS TAPE",
-
+        "CLOVER",
+        "STICK",
+        "MOSS",
+        "IVY",
+        "ACORN",
+        "MONARCH BUTTERFLY1"
     ]
 
     body_accessories = [
@@ -388,7 +393,11 @@ class Pelt:
         "SILVER KEY",
         "OLD NEWSPAPER",
         "SEA GLASS",
-        "MUD AND DIRT"
+        "MUD AND DIRT",
+        "PUMPKIN",
+        "MOSS PELT",
+        "REEDS",
+        "BAMBOO"
     ]
 
     tail_accessories = [
@@ -404,6 +413,7 @@ class Pelt:
         "OLD SILVER WATCH",
         "OLD GOLD WATCH",
         "BAUBLES",
+        "SEAWEED"
     ]
 
     tabbies = ["Tabby", "Ticked", "Mackerel", "Stermackerel", "Sillymackerel", "Dancemackerel", "Mimimackerel", 
