@@ -582,43 +582,43 @@ class Pelt:
     """Holds all appearance information for a cat. """
 
     def __init__(self,
-                 name: str = "SingleColour",
-                 length: str = "short",
-                 colour: str = "WHITE",
-                 white_patches: str = None,
-                 eye_color: str = "BLUE",
-                 eye_colour2: str = None,
-                 tortiebase: str = None,
-                 tortiecolour: str = None,
-                 pattern:list=None,
-                 tortiepattern: str = None,
-                 vitiligo: str = None,
-                 points:str=None,
-                 physical_trait_1:str=None,
-                 physical_trait_2:str=None,
-                 physical_trait_3:str=None,
-                 physical_trait_4:str=None,
-                 physical_trait_hidden:str=None,
-                 physical_trait_hidden_2:str=None,
-                 physical_trait_hidden_3:str=None,
-                 physical_trait_hidden_4:str=None,
-                 accessory: list = None,
-                 paralyzed: bool = False,
-                 opacity: int = 100,
-                 scars: list = None,
-                 tint: str = "none",
-                 skin: str = "BLACK",
-                 white_patches_tint: str = "none",
-                 kitten_sprite: int = None,
-                 adol_sprite: int = None,
-                 adult_sprite: int = None,
-                 senior_sprite: int = None,
-                 para_adult_sprite: int = None,
-                 reverse: bool = False,
-                 fur_texture:str=None,
-                 build:str=None,
-                 height:str=None,
-                 ) -> None:
+        name: str = "SingleColour",
+        length: str = "short",
+        colour: str = "WHITE",
+        white_patches: str = None,
+        eye_color: str = "BLUE",
+        eye_colour2: str = None,
+        tortiebase: str = None,
+        tortiecolour: str = None,
+        pattern:list=None,
+        tortiepattern: str = None,
+        vitiligo: str = None,
+        points:str=None,
+        physical_trait_1:str=None,
+        physical_trait_2:str=None,
+        physical_trait_3:str=None,
+        physical_trait_4:str=None,
+        physical_trait_hidden:str=None,
+        physical_trait_hidden_2:str=None,
+        physical_trait_hidden_3:str=None,
+        physical_trait_hidden_4:str=None,
+        accessory: list = None,
+        paralyzed: bool = False,
+        opacity: int = 100,
+        scars: list = None,
+        tint: str = "none",
+        skin: str = "BLACK",
+        white_patches_tint: str = "none",
+        kitten_sprite: int = None,
+        adol_sprite: int = None,
+        adult_sprite: int = None,
+        senior_sprite: int = None,
+        para_adult_sprite: int = None,
+        reverse: bool = False,
+        fur_texture:str=None,
+        build:str=None,
+        height:str=None,
+    ) -> None:
         self.name = name
         self.colour = colour
         self.white_patches = white_patches
@@ -1123,7 +1123,7 @@ class Pelt:
             acc_display_choice = random.randint(0, 100)
 
         if acc_display_choice == 1:
-            self.accessory = choice([
+            self.accessory = [choice(
                 [choice(Pelt.plant_accessories),
                 choice(Pelt.wild_accessories),
                 choice(Pelt.flower_accessories),
@@ -1140,7 +1140,7 @@ class Pelt:
                 choice(Pelt.stuff_accessories),
                 choice(Pelt.harness_accessories),
                 choice(Pelt.bows_accessories)]
-            ])
+            )]
         else:
             self.accessory = []
 

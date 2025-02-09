@@ -833,7 +833,7 @@ def create_new_cat(
                 if bool(getrandbits(1)):
                     # TODO: refactor this entire function to remove this call amongst other things
                     from scripts.cat.pelts import Pelt
-                    accessory = choice(Pelt.collars), choice(Pelt.harness_accessories), choice(Pelt.bows_accessories)
+                    accessory = choice(Pelt.collars)
             elif loner and bool(
                     getrandbits(1)
             ):  # try to give name from full loner name list
@@ -2305,14 +2305,14 @@ def event_text_adjust(
     # acc_plural (only works for main_cat's acc)
     if "acc_plural" in text:
         text = text.replace(
-            "acc_plural", i18n.t(f"cat.accessories.{main_cat.pelt.accessory}", count=2)
+            "acc_plural", i18n.t(f"cat.accessories.{main_cat.pelt.accessory[-1]}", count=2)
         )
 
     # acc_singular (only works for main_cat's acc)
     if "acc_singular" in text:
         text = text.replace(
             "acc_singular",
-            i18n.t(f"cat.accessories.{main_cat.pelt.accessory}", count=1),
+            i18n.t(f"cat.accessories.{main_cat.pelt.accessory[-1]}", count=1),
         )
 
     if "given_herb" in text:
