@@ -690,7 +690,7 @@ class Sprites:
         # bandanas
         for row, bandanas in enumerate(bandanas_data):
             for col, bandana in enumerate(bandanas):
-                self.make_group('bandanas', (col, row), f'bandanas{bandana}')
+                self.make_group('bandanas', (col, row), f'collars{bandana}')
         # harnesses
         for row, harnesses in enumerate(harnesses_data):
             for col, harness in enumerate(harnesses):
@@ -702,7 +702,7 @@ class Sprites:
         # dog teeth collars
         for row, teethcollars in enumerate(dog_teeth_collars_data):
             for col, teethcollar in enumerate(teethcollars):
-                self.make_group('teethcollars', (col, row), f'teethcollars{teethcollar}')
+                self.make_group('teethcollars', (col, row), f'collars{teethcollar}')
 
 
     def load_symbols(self):

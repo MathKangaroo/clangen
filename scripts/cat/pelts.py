@@ -247,15 +247,9 @@ class Pelt:
     tail_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "CLOVERTAIL", "DAISYTAIL", "DAISY CORSAGE"]
     harness_accessories = ["CRIMSONH", "BLUEH", "YELLOWH", "CYANH", "REDH", "LIMEH", "GREENH", "RAINBOWH", "BLACKH", "SPIKESH", "WHITEH", "PINKH",
                            "PURPLEH", "MULTIH", "INDIGOH"]
-
-    bandana_collars = ["CRIMSONBANDANA", "BLUEBANDANA", "YELLOWANDANA", "CYANBANDANA", "REDBANDANA",
-    "LIMEBANDANA" ,"GREENBANDANA", "RAINBOWBANDANA", "BLACKBANDANA", "SPIKESBANDANA", "WHITEBANDANA","PINKBANDANA", "PURPLEBANDANA", "MULTIBANDANA", "INDIGOBANDANA"]
     
     bows_accessories = ["CRIMSONBOWS", "BLUEBOWS", "YELLOWBOWS", "CYANBOWS", "REDBOWS", "LIMEBOWS","GREENBOWS", "RAINBOWBOWS", "BLACKBOWS", "SPIKESBOWS", "WHITEBOWS",
                         "PINKBOWS", "PURPLEBOWS", "MULTIBOWS", "INDIGOBOWS"]
-    dogteeth_collars = ["CRIMSONTEETHCOLLAR", "BLUETEETHCOLLAR", "YELLOWTEETHCOLLAR", "CYANTEETHCOLLAR", "REDTEETHCOLLAR",
-                        "LIMETEETHCOLLAR","GREENTEETHCOLLAR", "RAINBOWTEETHCOLLAR", "BLACKTEETHCOLLAR", "SPIKESTEETHCOLLAR", "WHITETEETHCOLLAR",
-                        "PINKTEETHCOLLAR", "PURPLETEETHCOLLAR", "MULTITEETHCOLLAR", "INDIGOTEETHCOLLAR"]
     collars = [
         "CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME", "GREEN", "RAINBOW",
         "BLACK", "SPIKES", "WHITE", "PINK", "PURPLE", "MULTI", "INDIGO", "CRIMSONBELL", "BLUEBELL",
@@ -265,7 +259,13 @@ class Pelt:
         "LIMEBOW", "GREENBOW", "RAINBOWBOW", "BLACKBOW", "SPIKESBOW", "WHITEBOW", "PINKBOW",
         "PURPLEBOW", "MULTIBOW", "INDIGOBOW", "CRIMSONNYLON", "BLUENYLON", "YELLOWNYLON", "CYANNYLON",
         "REDNYLON", "LIMENYLON", "GREENNYLON", "RAINBOWNYLON",
-        "BLACKNYLON", "SPIKESNYLON", "WHITENYLON", "PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON"
+        "BLACKNYLON", "SPIKESNYLON", "WHITENYLON", "PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON",
+        "CRIMSONBANDANA", "BLUEBANDANA", "YELLOWANDANA", "CYANBANDANA", "REDBANDANA",
+        "LIMEBANDANA" ,"GREENBANDANA", "RAINBOWBANDANA", "BLACKBANDANA", "SPIKESBANDANA", "WHITEBANDANA",
+        "PINKBANDANA", "PURPLEBANDANA", "MULTIBANDANA", "INDIGOBANDANA",
+        "CRIMSONTEETHCOLLAR", "BLUETEETHCOLLAR", "YELLOWTEETHCOLLAR", "CYANTEETHCOLLAR", "REDTEETHCOLLAR",
+        "LIMETEETHCOLLAR","GREENTEETHCOLLAR", "RAINBOWTEETHCOLLAR", "BLACKTEETHCOLLAR", "SPIKESTEETHCOLLAR",
+        "WHITETEETHCOLLAR", "PINKTEETHCOLLAR", "PURPLETEETHCOLLAR", "MULTITEETHCOLLAR", "INDIGOTEETHCOLLAR"
         
     ]
     flower_accessories = ["DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY",
@@ -403,7 +403,7 @@ class Pelt:
         "CLOVERTAIL",
         "OLD SILVER WATCH",
         "OLD GOLD WATCH",
-        "BAUBLES,"
+        "BAUBLES",
     ]
 
     tabbies = ["Tabby", "Ticked", "Mackerel", "Stermackerel", "Sillymackerel", "Dancemackerel", "Mimimackerel", 
@@ -1039,12 +1039,10 @@ class Pelt:
                 choice(Pelt.crafted_accessories),
                 choice(Pelt.tail2_accessories),
                 choice(Pelt.bone_accessories),
-                choice(Pelt.bandana_collars),
                 choice(Pelt.butterflies_accessories),
                 choice(Pelt.stuff_accessories),
                 choice(Pelt.harness_accessories),
-                choice(Pelt.bows_accessories),
-                choice(Pelt.dogteeth_collars)]
+                choice(Pelt.bows_accessories)]
             ])
         else:
             self.accessory = []

@@ -833,7 +833,7 @@ def create_new_cat(
                 if bool(getrandbits(1)):
                     # TODO: refactor this entire function to remove this call amongst other things
                     from scripts.cat.pelts import Pelt
-                    accessory = choice(Pelt.collars), choice(Pelt.bandana_collars), choice(Pelt.harness_accessories), choice(Pelt.bows_accessories)
+                    accessory = choice(Pelt.collars), choice(Pelt.harness_accessories), choice(Pelt.bows_accessories)
             elif loner and bool(
                     getrandbits(1)
             ):  # try to give name from full loner name list
@@ -2849,7 +2849,7 @@ def generate_sprite(
         from scripts.cat.pelts import Pelt
         if not acc_hidden and cat.pelt.accessory:
             cat_accessories = cat.pelt.accessory
-            categories = ["collars", "butterflies_accessories", "stuff_accessories", "harness_accessories", "bows_accessories", "dogteeth_collars", "flower_accessories", "plant2_accessories", "snake_accessories", "smallAnimal_accessories", "deadInsect_accessories", "tail2_accessories", "crafted_accessories", "aliveInsect_accessories", "fruit_accessories",  "bone_accessories", "tail_accessories", "body_accessories", "head_accessories", "bandana_collars"]
+            categories = ["collars", "butterflies_accessories", "stuff_accessories", "harness_accessories", "bows_accessories", "flower_accessories", "plant2_accessories", "snake_accessories", "smallAnimal_accessories", "deadInsect_accessories", "tail2_accessories", "crafted_accessories", "aliveInsect_accessories", "fruit_accessories",  "bone_accessories", "tail_accessories", "body_accessories", "head_accessories"]
             for category in categories:
                 for accessory in cat_accessories:
                     if accessory in getattr(Pelt, category):
@@ -2866,10 +2866,6 @@ def generate_sprite(
                         elif accessory in cat.pelt.collars:
                             new_sprite.blit(
                                 sprites.sprites["collars" + accessory + cat_sprite], (0, 0)
-                            )
-                        elif accessory in cat.pelt.bandana_collars:
-                            new_sprite.blit(
-                                sprites.sprites["bandanas" + accessory + cat_sprite], (0, 0)
                             )
                         elif accessory in cat.pelt.bone_accessories:
                             new_sprite.blit(
@@ -2890,10 +2886,6 @@ def generate_sprite(
                         elif accessory in cat.pelt.bows_accessories:
                             new_sprite.blit(
                                 sprites.sprites["bows" + accessory + cat_sprite], (0, 0)
-                            )
-                        elif accessory in cat.pelt.dogteeth_collars:
-                            new_sprite.blit(
-                                sprites.sprites["teethcollars" + accessory + cat_sprite], (0, 0)
                             )
                         elif accessory in cat.pelt.flower_accessories:
                             new_sprite.blit(

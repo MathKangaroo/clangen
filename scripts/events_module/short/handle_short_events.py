@@ -387,16 +387,10 @@ class HandleShortEvents:
             acc_list.extend(pelts.plant_accessories)
         if "COLLAR" in possible_accs:
             acc_list.extend(pelts.collars)
-        if "BANDANA" in possible_accs:
-            acc_list.extend(pelts.bandana_collars)
         if "BONE" in possible_accs:
             acc_list.extend(pelts.bone_accessories)
-        if "TEETHCOLLAR" in possible_accs:
-            acc_list.extend(pelts.dogteeth_collars)
         if "HARNESS" in possible_accs:
             acc_list.extend(pelts.harness_accessories)
-        if "BANDANA" in possible_accs:
-            acc_list.extend(pelts.bandana_collars)
         if "BOWS" in possible_accs:
             acc_list.extend(pelts.bows_accessories)
         if "BUTTERFLIES" in possible_accs:
@@ -424,7 +418,7 @@ class HandleShortEvents:
 
         for acc in possible_accs:
             if acc not in ["WILD", "PLANT", "COLLAR", "FLOWER", "CRAFTED", "PLANT2", "SMALLANIMAL", "DEADINSECT",
-                           "ALIVEINSECT", "FRUIT", "SNAKE", "TAIL2","BONE", "BUTTERFLIES", "STUFF", "HARNESS", "BOWS", "TEETHCOLLAR"]:
+                           "ALIVEINSECT", "FRUIT", "SNAKE", "TAIL2","BONE", "BUTTERFLIES", "STUFF", "HARNESS", "BOWS"]:
                 acc_list.append(acc)
 
         if hasattr(self.main_cat.pelt, "scars"):
@@ -436,7 +430,7 @@ class HandleShortEvents:
                     if acc in acc_list:
                         acc_list.remove(acc)
 
-        accessory_groups = [pelts.collars, pelts.butterflies_accessories, pelts.bone_accessories, pelts.stuff_accessories, pelts.harness_accessories, pelts.bows_accessories, pelts.dogteeth_collars, pelts.flower_accessories, pelts.plant2_accessories, pelts.snake_accessories, pelts.smallAnimal_accessories, pelts.deadInsect_accessories, pelts.aliveInsect_accessories, pelts.fruit_accessories, pelts.crafted_accessories, pelts.tail2_accessories, pelts.bandana_collars, pelts.head_accessories, pelts.tail_accessories, pelts.body_accessories]
+        accessory_groups = [pelts.collars, pelts.butterflies_accessories, pelts.bone_accessories, pelts.stuff_accessories, pelts.harness_accessories, pelts.bows_accessories, pelts.flower_accessories, pelts.plant2_accessories, pelts.snake_accessories, pelts.smallAnimal_accessories, pelts.deadInsect_accessories, pelts.aliveInsect_accessories, pelts.fruit_accessories, pelts.crafted_accessories, pelts.tail2_accessories, pelts.head_accessories, pelts.tail_accessories, pelts.body_accessories]
         if self.main_cat.pelt.accessory:
             for acc in self.main_cat.pelt.accessory:
                 # find which accessory group it belongs to

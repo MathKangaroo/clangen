@@ -5168,7 +5168,9 @@
     "sub_type": ["accessory"],
     "weight": 30,
     "event_text": "m_c returned to camp after a few days. {PRONOUN/m_c/poss/CAP} fur was dirty and {PRONOUN/m_c/subject} looked fierce, especially with the collar {PRONOUN/m_c/subject} {VERB/m_c/are/is} wearing now.",
-    "new_accessory": ["TEETH COLLAR"],
+    "new_accessory": ["CRIMSONTEETHCOLLAR", "BLUETEETHCOLLAR", "YELLOWTEETHCOLLAR", "CYANTEETHCOLLAR", "REDTEETHCOLLAR",
+    "LIMETEETHCOLLAR","GREENTEETHCOLLAR", "RAINBOWTEETHCOLLAR", "BLACKTEETHCOLLAR", "SPIKESTEETHCOLLAR",
+    "WHITETEETHCOLLAR", "PINKTEETHCOLLAR", "PURPLETEETHCOLLAR", "MULTITEETHCOLLAR", "INDIGOTEETHCOLLAR"],
     "m_c":{
       "age": ["adolescent", "young adult", "adult", "senior adult"],
       "status": ["any"]

@@ -2112,7 +2112,7 @@ class Cat:
             "SNAKE",
             "OLD SILVER WATCH",
             "OLD GOLD WATCH",
-            "BAUBLES"
+            "BAUBLES",
             "GULL FEATHERS",
             "SPARROW FEATHERS",
             "CLOVERTAIL",
