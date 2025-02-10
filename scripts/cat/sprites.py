@@ -708,7 +708,7 @@ class Sprites:
         # harnesses
         for row, harnesses in enumerate(harnesses_data):
             for col, harness in enumerate(harnesses):
-                self.make_group('harnesses', (col, row), f'harnesses{harness}')
+                self.make_group('harnesses', (col, row), f'collars{harness}')
         # bows (on ear and tail) 
         for row, bows in enumerate(bows_data):
             for col, bow in enumerate(bows):

@@ -248,8 +248,6 @@ class Pelt:
     wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY1", "CICADA WINGS", "BLACK CICADA"]
   
     tail_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "CLOVERTAIL", "DAISYTAIL", "DAISY CORSAGE"]
-    harness_accessories = ["CRIMSONH", "BLUEH", "YELLOWH", "CYANH", "REDH", "LIMEH", "GREENH", "RAINBOWH", "BLACKH", "SPIKESH", "WHITEH", "PINKH",
-                           "PURPLEH", "MULTIH", "INDIGOH"]
     
     bows_accessories = ["CRIMSONBOWS", "BLUEBOWS", "YELLOWBOWS", "CYANBOWS", "REDBOWS", "LIMEBOWS","GREENBOWS", "RAINBOWBOWS", "BLACKBOWS", "SPIKESBOWS", "WHITEBOWS",
                         "PINKBOWS", "PURPLEBOWS", "MULTIBOWS", "INDIGOBOWS"]
@@ -275,6 +273,9 @@ class Pelt:
         "CRIMSONS", "BLUES", "YELLOWS", "CYANS", "ORANGES", "LIMES",
         "GREENS", "RAINBONS", "BLACKS", "SPIKESS", "WHITES",
         "PINKS", "PURPLES", "MULTIS", "INDIGOS",
+        "CRIMSONH", "BLUEH", "YELLOWH", "CYANH", "REDH", "LIMEH",
+        "GREENH", "RAINBOWH", "BLACKH", "SPIKESH", "WHITEH", "PINKH",
+        "PURPLEH", "MULTIH", "INDIGOH"
         
     ]
     flower_accessories = ["DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY",
@@ -1148,7 +1149,6 @@ class Pelt:
                 choice(Pelt.bone_accessories),
                 choice(Pelt.butterflies_accessories),
                 choice(Pelt.stuff_accessories),
-                choice(Pelt.harness_accessories),
                 choice(Pelt.bows_accessories)]
             )]
         else:
