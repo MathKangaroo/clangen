@@ -2879,10 +2879,6 @@ def generate_sprite(
                             new_sprite.blit(
                                 sprites.sprites["acc_twolegstuff" + accessory + cat_sprite], (0, 0)
                             )
-                        elif accessory in cat.pelt.harness_accessories:
-                            new_sprite.blit(
-                                sprites.sprites["harnesses" + accessory + cat_sprite], (0, 0)
-                            )
                         elif accessory in cat.pelt.bows_accessories:
                             new_sprite.blit(
                                 sprites.sprites["bows" + accessory + cat_sprite], (0, 0)
