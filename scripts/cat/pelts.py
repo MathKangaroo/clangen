@@ -405,7 +405,12 @@ class Pelt:
         "CHERRY",
         "YEW",
         "BIRD SKULL",
-        "LEAF BOW"
+        "LEAF BOW",
+        "LUNAR MOTH",
+        "DAPPLED MONARCH",
+        "POLYPHEMUS MOTH",
+        "MINT MOTH",
+        "ROSY MAPLE MOTH"
     ]
 
     body_accessories = [
