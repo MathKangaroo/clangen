@@ -678,7 +678,7 @@ class Pelt:
 
         self.reverse = reverse
         self.skin = skin
-        self.fur_texture = fur_texture if fur_texture is not None else choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse", "tangled", "fuzzy", "spiky"])
+        self.fur_texture = fur_texture if fur_texture is not None else choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse", "tangled", "fuzzy", "spiky", "shaggy"])
         self.build = build if build is not None else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate", "hunched"])
         self.height = height if height is not None else choice(["petite", "short", "average", "average", "tall", "towering"])
     @staticmethod
