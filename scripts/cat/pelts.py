@@ -175,6 +175,7 @@ class Pelt:
                    'monarch', 'oceloid', 'pinstripetabby', 'snowflake']
 
     pelt_length = ["short", "medium", "long"]
+    #please dontjudge the eye_colours section
     eye_colours = ['YELLOW', 'AMBER', 'HAZEL', 'PALEGREEN', 'GREEN', 'BLUE', 'DARKBLUE', 'GREY', 'CYAN', 'EMERALD', 'PALEBLUE', 
         'PALEYELLOW', 'GOLD', 'HEATHERBLUE', 'COPPER', 'SAGE', 'COBALT', 'SUNLITICE', 'GREENYELLOW', 'BRONZE', 'SILVER', 'ROSE',
         'ALGAE', 'SEAFOAM', 'LIGHT FLAME', 'CLOUDY', 'RED', 'TURQUOISE', 'SWAMP', 'RAINY', 'AQUAMARINE', 'EARTH', 'PUMPKIN', 'LILAC',
@@ -200,17 +201,17 @@ class Pelt:
     green_eyes = ['LICHEN', 'FERN', 'MINT', 'SPRING', 'APPLE', 'CHARTREUSE', 'LEAVES', 'MOSS', 'MEADOW', 'RIVER MOSS', 'TREE', 'THICKET', 'LEAF', 'EMERALD ORE', 'PEACOCK', 'LIGHT TURQUOISE', 'HAZELNUT', 'OLIVE', 'SAP', 'PALEGREEN', 'GREEN', 'EMERALD', 'SAGE', 'HAZEL', 'ALGAE', 'SWAMP', 'AQUAMARINE', 'EARTH', 'DIRT', 'CHRISTMAS', 'FOREST FIRE',
                   'LIME', 'LUCKY', 'DARK HAZEL', 'DARK TURQUOISE', 'AVOCADO', 'NEON GREEN', 'SEA', "ORANGE"]
     
-    physical_trait_teeth = ['TEETHUPPER', 'TEETHSABRE', 'TEETHUNDERBITE']
-    physical_trait_ear_type = ['EARSMALL', 'EARBIG', 'EARTALL', 'EARPANTHER']
-    physical_trait_ear_fold = ['FOLDBOTH', 'FOLDONE']
-    physical_trait_headfur = ['HEADFORELOCK', 'HEADCOWLICK', 'HEADMOHAWK', 'HEADTUFT', 'HEADEMO']
+    physical_trait_teeth = ['TEETHUPPER', 'TEETHSABRE', 'TEETHUNDERBITE', 'TEETHOVERBITE', 'TEETHHANG', 'TEETHJAGGED', 'TEETHTUSK', 'TEETHGONE', 'TEETHCHIPPED']
+    physical_trait_ear_type = ['EARSMALL', 'EARBIG', 'EARTALL', 'EARPANTHER', 'EARWIDE', 'EARFLUFFY']
+    physical_trait_ear_fold = ['FOLDBOTH', 'FOLDONE', 'EARCURL']
+    physical_trait_headfur = ['HEADFORELOCK', 'HEADCOWLICK', 'HEADMOHAWK', 'HEADTUFT', 'HEADEMO', 'HEADJOWLS']
     physical_trait_cheekfur = ['CHEEKLONG', 'CHEEKPOINTED', 'CHEEKFLUFF', 'CHEEKCURL']
-    physical_trait_mane = ['MANESILKY', 'MANEFLUFFY', 'MANERUFF', 'MANEHORSE']
-    physical_trait_fur_type = ['FURWAVY', 'FURCURLY', 'FURPATCHY', 'FURKINK']
+    physical_trait_mane = ['MANESILKY', 'MANEFLUFFY', 'MANERUFF', 'MANEHORSE', 'MANELION', 'MANEBRAIDED']
+    physical_trait_fur_type = ['FURWAVY', 'FURCURLY', 'FURPATCHY', 'FURKINK', 'FURSHAGGY']
     physical_trait_muzzle_type = ['MUZZLESHORT', 'MUZZLEBROAD', 'MUZZLELONG']
-    physical_trait_tail = ['TAILCROOKED', 'TAILLONG', 'TAILFEATHER', 'TAILCURL', 'TAILTUFT']
+    physical_trait_tail = ['TAILCROOKED', 'TAILLONG', 'TAILFEATHER', 'TAILCURL', 'TAILTUFT', 'TAILFORKED']
     physical_trait_bodyfur = ['BACKFLUFF', 'BACKRIDGE', 'SHOULDERTUFT']
-    physical_trait_misc = ['EARTUFTS', 'POLYDACTYL', 'LASHESUPPER', 'LASHESLOWER', 'WHISKERSLONG', 'CLAWSLONG', 'LEGTUFT']
+    physical_trait_misc = ['EARTUFTS', 'POLYDACTYL', 'LASHESUPPER', 'LASHESLOWER', 'WHISKERSLONG', 'CLAWSLONG', 'LEGTUFT', 'LARGEPAWS', 'SMALLPAWS', 'CLAWLESS', 'CLAWSSHORT', 'PAWTUFT']
 
     # bite scars by @wood pank on discord
 
@@ -678,7 +679,7 @@ class Pelt:
         self.reverse = reverse
         self.skin = skin
         self.fur_texture = fur_texture if fur_texture is not None else choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse", "tangled", "fuzzy", "spiky"])
-        self.build = build if build is not None else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate"])
+        self.build = build if build is not None else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate", "hunched"])
         self.height = height if height is not None else choice(["petite", "short", "average", "average", "tall", "towering"])
     @staticmethod
     def generate_new_pelt(gender: str, parents: tuple = (), age: str = "adult"):
