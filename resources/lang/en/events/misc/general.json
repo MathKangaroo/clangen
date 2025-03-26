@@ -916,7 +916,7 @@
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text": "m_c found a mysterious acc_singular growing in the frost and decided to wear it.",
-    "new_accessory": ["FORGET ME NOTS", "BLUEBELLS", "POPPY", "FRUIT", "FLOWER", "PLANT2", "DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "LILY OF THE VALLEY", "SNAPDRAGON", "POPPY", "ORANGE POPPY", "WHITE POPPY", "CYAN POPPY", "PINK POPPY", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY", "YELLOW PRIMROSE", "HESPERIS", "MARIGOLD", "CLOVER", "OGRASPBERRY", "RASPBERRY", "BLACKBERRY", "CHERRY", "GOLDEN RASPBERRY"],
+    "new_accessory": ["FORGET ME NOTS", "POPPYFLOWER", "DAISYFLOWER", "JUNIPERBERRY", "BORAGEFLOWER", "OAK", "BEECH", "LAURELLEAVES", "COLTSFOOT", "BINDWEED", "TORMENTIL", "BRIGHTEYE", "LAVENDERWREATH", "YARROW", "BLUEBELLS", "POPPY", "FRUIT", "FLOWER", "PLANT2", "DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "LILY OF THE VALLEY", "SNAPDRAGON", "POPPY", "ORANGE POPPY", "WHITE POPPY", "CYAN POPPY", "PINK POPPY", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY", "YELLOW PRIMROSE", "HESPERIS", "MARIGOLD", "CLOVER", "OGRASPBERRY", "RASPBERRY", "BLACKBERRY", "CHERRY", "GOLDEN RASPBERRY"],
     "m_c":{
       "age": ["any"],
       "status": ["any"]
@@ -5408,7 +5408,7 @@
     "sub_type": ["accessory"],
     "weight": 20,
     "event_text":  "r_c found a little patch of acc_plural and decided to gift them to m_c.",
-    "new_accessory": ["POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "LAVENDER", "HEATHER", "GORSE", "LILY OF THE VALLEY", "BLUEBELLS", "FORGET ME NOTS"],
+    "new_accessory": ["POPPY", "POPPYFLOWER", "DAISYFLOWER", "JUNIPERBERRY", "BORAGEFLOWER", "COLTSFOOT", "BINDWEED", "TORMENTIL", "BRIGHTEYE", "YARROW", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "LAVENDER", "HEATHER", "GORSE", "LILY OF THE VALLEY", "BLUEBELLS", "FORGET ME NOTS"],
     "m_c": {
       "age": ["adolescent", "young adult", "adult", "senior adult", "senior"]
     },
