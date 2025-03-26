@@ -416,7 +416,7 @@ class Pelt:
         "MINT MOTH",
         "ROSY MAPLE MOTH",
         "POPPYFLOWER",
-        "JUNIPER",
+        "JUNIPERBERRY",
         "DAISYFLOWER",
         "BORAGEFLOWER",
         "OAK",
