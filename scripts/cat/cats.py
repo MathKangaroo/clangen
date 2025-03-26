@@ -1032,6 +1032,28 @@ class Cat:
         #     output = i18n.t("utility.indefinite", text=output, m_c=self)
         event_text_adjust(Cat, output, main_cat=self)
         return output
+    
+    def describe_skin(self):
+        """Get a human-readable description of this cat's skin colour"""
+        skin = str(self.pelt.skin).lower()
+
+        if skin == "darkbrown":
+            skin = "dark brown"
+        elif skin == "lightbrown":
+            skin = "light brown"
+        elif skin == "darkgrey":
+            skin = "dark grey"
+        elif skin == "darksalmon":
+            skin = "dark salmon"
+        elif skin == "darkmarbled":
+            skin = "dark marbled"
+        elif skin == "lightmarbled":
+            skin = "light marbled"
+        elif skin == "darkblue":
+            skin = "dark blue"
+        elif skin == "lightblue":
+            skin = "light blue"
+        return skin
 
     def describe_eyes(self):
         """Get a human-readable description of this cat's eye colour"""

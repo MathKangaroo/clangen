@@ -1666,6 +1666,14 @@ class Pelt:
             if self.eye_colour2
             else i18n.t(f"cat.eyes.{self.eye_colour}")
         )
+    def describe_skin(self):
+        return (
+            adjust_list_text(
+                [
+                    i18n.t(f"cat.skin.{self.skin}"),
+                ]
+            )
+        )
     @staticmethod
     def describe_appearance(cat, short=False):
         """Return a description of a cat
