@@ -63,7 +63,7 @@ class Scar_Events:
 
     scar_allowed = {
         "bite-wound": canid_scars,
-        "cat-bite": bite_scars,
+        "cat bite": bite_scars,
         "severe burn": burn_scars,
         "rat bite": rat_scars,
         "snake bite": snake_scars,
