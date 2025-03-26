@@ -738,7 +738,7 @@
             "aggression": [10, 16],
             "stability": [0, 8]
         },
-        "sinister": {
+        "grim": {
             "lawfulness": [0, 8],
             "sociability": [0, 6],
             "aggression": [6, 16],
@@ -1796,7 +1796,7 @@
             "aggression": [8, 16],
             "stability": [0, 8]
         },
-        "grim": {
+        "sinister": {
             "lawfulness": [6, 12],
             "sociability": [0, 5],
             "aggression": [0, 6],
