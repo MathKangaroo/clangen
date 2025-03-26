@@ -1082,7 +1082,7 @@
         ]
     },
     {
-        "id": "grim_kit",
+        "id": "sinister_kit",
         "thoughts": [
 			"Is constantly staring at {PRONOUN/m_c/poss} Clanmates",
 			"Seems to appear out of nowhere",
@@ -1107,7 +1107,7 @@
 			"Asks the medicine cat which herbs make you sick"
         ],
         "main_trait_constraint": [
-            "grim"
+            "sinister"
         ],
         "random_living_status": [
             "living"
