@@ -1796,6 +1796,30 @@
             "aggression": [8, 16],
             "stability": [0, 8]
         },
+        "grim": {
+            "lawfulness": [6, 12],
+            "sociability": [0, 5],
+            "aggression": [0, 6],
+            "stability": [5, 10]
+        },
+		"prim": {
+            "lawfulness": [5, 8],
+            "sociability": [13, 16],
+            "aggression": [6, 12],
+            "stability": [10, 16]
+        },
+		"tender": {
+            "lawfulness": [8, 16],
+            "sociability": [0, 8],
+            "aggression": [0, 5],
+            "stability": [0, 8]
+        },
+        "jokester": {
+			"lawfulness": [0, 8],
+            "sociability": [10, 16],
+            "aggression": [0, 6],
+            "stability": [8, 16]
+        },
         "wild": {
             "lawfulness": [0, 8],
             "sociability": [6, 16],

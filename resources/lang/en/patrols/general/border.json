@@ -658,6 +658,122 @@
             }
         ]
         },
+        {
+        "patrol_id": "any_bord_appfriend",
+        "biome": ["any"],
+        "season": ["any"],
+        "types": ["border"],
+        "tags": ["new_cat"],
+        "patrol_art": "gen_train_soloapp",
+        "min_cats": 1,
+        "max_cats": 1,
+        "min_max_status": {
+		"apprentice": [1, 1]
+		},
+        "weight": 20,
+        "intro_text": "The moon is high overhead as p_l slinks along the o_c_n border, head low. {PRONOUN/p_l/subject/CAP} {VERB/p_l/hope/hopes} that nobody saw {PRONOUN/p_l/object} leave camp. {PRONOUN/p_l/subject/CAP} {VERB/p_l/aren't/isn't} sure {PRONOUN/p_l/subject} can handle being caught before seeing {PRONOUN/p_l/poss} friend. They've gotten away with it for this long, so they should be fine. Right?",
+        "decline_text": "This was a bad idea. It's too risky...and breaking the Code, besides. p_l {VERB/p_l/give/gives} up and {VERB/p_l/return/returns} to camp.",
+        "chance_of_success": 40,
+        "success_outcomes": [
+            {
+                "text": "This is it! p_l sees {PRONOUN/p_l/poss} friend sneaking up to the border. p_l eagerly rushes up to say hello, only to be surprised when they blurt out that they want to join p_l in c_n. It will take a lot of explaining back at camp, and the older cats might not approve...but p_l knows it's worth it.",
+                "exp": 10,
+                "weight": 20,
+				"art": "gen_train_youngerapp_olderapp",
+                "new_cat": [
+                    ["status:apprentice", "backstory:otherclan2"]
+                ],
+                "relationships": [
+                    {
+                        "cats_to": ["p_l"],
+						"cats_from": ["n_c:0"],
+						"mutual": true,
+						"values": ["platonic"],
+						"amount": 15
+                    },
+					{
+                        "cats_to": ["clan"],
+						"cats_from": ["p_l"],
+						"mutual": false,
+						"values": ["trust"],
+						"amount": -5
+                    }
+                ],
+                "other_clan_rep": -1
+            },
+            {
+                "text": "This is it! p_l eagerly rushes forward, greeting {PRONOUN/p_l/poss} friend with an affectionate headbump. p_l feels {PRONOUN/p_l/poss} heart flutter when the other apprentice blurts out that they want to join {PRONOUN/p_l/object} in c_n. It will take a lot of explaining back at camp, and the older cats might not approve...but p_l knows it's worth it.",
+                "exp": 10,
+                "weight": 20,
+				"art": "gen_train_youngerapp_olderapp",
+                "new_cat": [
+                    ["status:apprentice", "backstory:otherclan2"]
+                ],
+                "relationships": [
+                    {
+                        "cats_to": ["p_l"],
+						"cats_from": ["n_c:0"],
+						"mutual": true,
+						"values": ["platonic"],
+						"amount": 15
+                    },
+					{
+                        "cats_to": ["p_l"],
+						"cats_from": ["n_c:0"],
+						"mutual": true,
+						"values": ["romantic"],
+						"amount": 15
+                    },
+					{
+                        "cats_to": ["clan"],
+						"cats_from": ["p_l"],
+						"mutual": false,
+						"values": ["trust"],
+						"amount": -5
+                    }
+                ],
+                "other_clan_rep": -1
+            },
+			{
+                "text": "p_l is eager when {PRONOUN/p_l/subject} {VERB/p_l/see/sees} {PRONOUN/p_l/poss} friend approach the border. The pair of them have all night to play, and they quickly resume their game from last time. p_l hasn't laughed this long in ages, and before {PRONOUN/p_l/subject} {VERB/p_l/leave/leaves} {PRONOUN/p_l/subject} {VERB/p_l/promise/promises} to meet up again soon.",
+                "exp": 10,
+                "weight": 20,
+				"art": "gen_train_youngerapp_olderapp"
+            }
+        ],
+        "fail_outcomes": [
+            {
+                "text": "p_l has been waiting to see {PRONOUN/p_l/poss} friend from o_c_n for ages...but, instead, it's an enemy warrior who finds {PRONOUN/p_l/object} waiting. {PRONOUN/p_l/subject} {VERB/p_l/have/has} to pretend to be lost, avoiding trouble by a whisker.",
+                "exp": 0,
+                "weight": 20,
+				"art": "gen_speaking_cat_app",
+                "other_clan_rep": -1
+            },
+			{
+                "text": "p_l has been waiting to see {PRONOUN/p_l/poss} friend from o_c_n for ages...but, instead, it's an enemy warrior who finds {PRONOUN/p_l/object} waiting. The warrior accuses p_l of spying, and before {PRONOUN/p_l/subject} can explain, the warrior attacks! p_l flees back to camp, nursing a fresh injury.",
+                "exp": 0,
+                "weight": 20,
+				"art": "gen_speaking_cat_app",
+				"injury": [
+                    {
+                        "cats": ["p_l"],
+						"injuries": ["battle_injury"]
+                    }
+				],
+				"history_text": {
+                    "reg_death": "m_c died from injuries inflicted by an enemy warrior.",
+                    "scar": "m_c was scarred from a fight with an enemy warrior."
+                },
+                "other_clan_rep": -1
+            },
+			{
+                "text": "p_l is eager when {PRONOUN/p_l/subject} see their friend approach the border. p_l is ready to start playing...but before {PRONOUN/p_l/subject} {VERB/p_l/get/gets} the chance, the other apprentice announces that they can't keep meeting up. p_l protests, but it's all over. {PRONOUN/p_l/subject/CAP} {VERB/p_l/return/returns} back to camp, heartbroken.",
+                "exp": 0,
+                "weight": 20,
+				"art": "gen_speaking_cat_app"
+            }
+        ]
+    },
             {
                 "patrol_id": "gen_bord_fleeingloner",
                 "biome": ["any"],
