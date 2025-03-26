@@ -252,6 +252,9 @@ class Pelt:
     
     bows_accessories = ["CRIMSONBOWS", "BLUEBOWS", "YELLOWBOWS", "CYANBOWS", "REDBOWS", "LIMEBOWS","GREENBOWS", "RAINBOWBOWS", "BLACKBOWS", "SPIKESBOWS", "WHITEBOWS",
                         "PINKBOWS", "PURPLEBOWS", "MULTIBOWS", "INDIGOBOWS"]
+    
+    ster_accessories = ["POPPYFLOWER", "JUNIPER", "DAISYFLOWER", "BORAGEFLOWER", "OAK", "BEECH", "LAURELLEAVES",
+                        "COLTSFOOT", "BINDWEED", "TORMENTIL", "BRIGHTEYE", "LAVENDERWREATH", "YARROW"]
     collars = [
         "CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME", "GREEN", "RAINBOW",
         "BLACK", "SPIKES", "WHITE", "PINK", "PURPLE", "MULTI", "INDIGO", "CRIMSONBELL", "BLUEBELL",
@@ -411,7 +414,20 @@ class Pelt:
         "DAPPLED MONARCH",
         "POLYPHEMUS MOTH",
         "MINT MOTH",
-        "ROSY MAPLE MOTH"
+        "ROSY MAPLE MOTH",
+        "POPPYFLOWER",
+        "JUNIPER",
+        "DAISYFLOWER",
+        "BORAGEFLOWER",
+        "OAK",
+        "BEECH",
+        "LAURELLEAVES",
+        "COLTSFOOT",
+        "BINDWEED",
+        "TORMENTIL",
+        "BRIGHTEYE",
+        "LAVENDERWREATH",
+        "YARROW"
     ]
 
     body_accessories = [
@@ -1159,6 +1175,7 @@ class Pelt:
                 choice(Pelt.bone_accessories),
                 choice(Pelt.butterflies_accessories),
                 choice(Pelt.stuff_accessories),
+                choice(Pelt.ster_accessories),
                 choice(Pelt.bows_accessories)]
             )]
         else:

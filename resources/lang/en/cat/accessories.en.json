@@ -1697,7 +1697,72 @@
     "zero": "indigo french scarf",
     "many": "indigo french scarves",
     "one": "indigo french scarf"
+},
+"POPPYFLOWER": {
+    "zero": "poppy flower",
+    "many": "poppy flower",
+    "one": "poppy flower"
+},
+"JUNIPERBERRY": {
+    "zero": "juniper berry",
+    "many": "juniper berries",
+    "one": "juniper berry"
+},
+"DAISYFLOWER": {
+    "zero": "daisy flower",
+    "many": "daisy flowers",
+    "one": "daisy flower"
+},
+"BORAGEFLOWER": {
+    "zero": "borage flower",
+    "many": "borage flowers",
+    "one": "borage flower"
+},
+"OAK": {
+    "zero": "oak leaf",
+    "many": "oak leaves",
+    "one": "oak leaf"
+},
+"BEECH": {
+    "zero": "beech leaf",
+    "many": "beech leaves",
+    "one": "beech leaf"
+},
+"LAURELLEAVES": {
+    "zero": "laurel leaf",
+    "many": "laurel leaves",
+    "one": "laurel leaf"
+},
+"COLTSFOOT": {
+    "zero": "coltsfoot flower",
+    "many": "coltsfoot flowers",
+    "one": "coltsfoot flower"
+},
+"BINDWEED": {
+    "zero": "bindweed vine",
+    "many": "bindweed vines",
+    "one": "bindweed vine"
+},
+"TORMENTIL": {
+    "zero": "tormentil flower",
+    "many": "tormentil flowers",
+    "one": "tormentil flower"
+},
+"BRIGHTEYE": {
+    "zero": "bright-eye flower",
+    "many": "bright-eye flowers",
+    "one": "bright-eye flower"
+},
+"LAVENDERWREATH": {
+    "zero": "lavender wreath",
+    "many": "lavender wreaths",
+    "one": "lavender wreath"
+},
+"YARROW": {
+    "zero": "yarrow clump",
+    "many": "yarrow clumps",
+    "one": "yarrow clump"
+}
 
-    }
     }
 }

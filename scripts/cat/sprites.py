@@ -136,7 +136,7 @@ class Sprites:
             'fademask', 'fadestarclan', 'fadedarkforest','bandanas', 'stainvoithex',
             'symbols', 'plant2_accessories', 'flower_accessories', 'snake_accessories', 'eragonatorite', 'eragonawp', 'eragonaeyes', 'eragonaeyes2',
             'brindlecolours', 'wildcatcolours', 'wolfcolours', 'spotscolours', 'smokepointcolours',
-            'dalmatiancolours', 'finleappatchescolours', 'eragonatorite2', 'harnesses', 'bows', 'teethcollars', 'smallAnimal_accessories', 'aliveInsect_accessories',
+            'dalmatiancolours', 'finleappatchescolours', 'eragonatorite2', 'sterflowers', 'harnesses', 'bows', 'teethcollars', 'smallAnimal_accessories', 'aliveInsect_accessories',
     'deadInsect_accessories', 'fruit_accessories', 'crafted_accessories', 'tail2_accessories', 'bonesacc', 'butterflymothacc', 'twolegstuff', 'steragouticolours', 'sillyagouticolours', 'danceagouticolours', 'mimiagouticolours', 
             'sterbengalcolours', 'sillybengalcolours', 'dancebengalcolours', 'mimibengalcolours',
             'sterclassiccolours', 'sillyclassiccolours', 'danceclassiccolours', 'mimiclassiccolours',
@@ -501,6 +501,12 @@ class Sprites:
             ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY1", "CICADA WINGS", "BLACK CICADA"]
         ]
 
+        ster_data = [
+            ["POPPYFLOWER", "JUNIPERBERRY", "DAISYFLOWER", "BORAGEFLOWER", "OAK", "BEECH"],
+            ["LAURELLEAVES", "COLTSFOOT", "BINDWEED", "TORMENTIL", "BRIGHTEYE", "LAVENDERWREATH"],
+            ["YARROW"]
+        ]
+
         collars_data = [
             ["CRIMSON", "BLUE", "YELLOW", "CYAN", "RED", "LIME"],
             ["GREEN", "RAINBOW", "BLACK", "SPIKES", "WHITE"],
@@ -725,9 +731,14 @@ class Sprites:
             for col, tie in enumerate(ties):
                 self.make_group("ties", (col, row), f"collars{tie}")
          # french_scarves
-        for row, frenchscarvess in enumerate( french_scarves_data):
+        for row, frenchscarvess in enumerate(french_scarves_data):
             for col, frenchscarf in enumerate(frenchscarvess):
                 self.make_group("french_scarves", (col, row), f"collars{frenchscarf}")
+
+        # ster
+        for row, sterflowers in enumerate(ster_data):
+            for col, sterflower in enumerate(sterflowers):
+                self.make_group("sterflowers", (col, row), f"acc_ster{sterflower}")
     def load_symbols(self):
         """
         loads clan symbols
