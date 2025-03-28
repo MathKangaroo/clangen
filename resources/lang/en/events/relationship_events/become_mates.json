@@ -26,7 +26,8 @@
 		"This moon marks the beginning of the rest of their lives together for m_c and r_c.",
 		"Tails twined together, m_c and r_c announce that love has blossomed between them. They've become mates.",
 		"It's endearing how embarrassed m_c is, with {PRONOUN/m_c/object} and r_c briefly becoming the center of attention as new mates.",
-		"No one is going to blame m_c for the pride {PRONOUN/m_c/subject} {VERB/m_c/display/displays} in successfully asking r_c to become {PRONOUN/m_c/poss} mate. It's a wonderful life event to celebrate, and something to rightfully congratulate the couple on."
+		"No one is going to blame m_c for the pride {PRONOUN/m_c/subject} {VERB/m_c/display/displays} in successfully asking r_c to become {PRONOUN/m_c/poss} mate. It's a wonderful life event to celebrate, and something to rightfully congratulate the couple on.",
+		"m_c has never thought of {PRONOUN/m_c/object} and r_c as mates before, but finds {PRONOUN/m_c/self} answering yes when another cat asks if they are together."
 	],
 	"platonic_to_romantic":[
 		"m_c and r_c see each other in a different light and have become mates.",

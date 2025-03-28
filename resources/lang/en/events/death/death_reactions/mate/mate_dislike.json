@@ -1,7 +1,8 @@
 {
   "general": {
     "body": [
-      "Perhaps people expected r_c to be more mournful over m_c's passing, however r_c couldn't help but feel a bitter sense of relief to be free from m_c."
+      "Perhaps people expected r_c to be more mournful over m_c's passing, however r_c couldn't help but feel a bitter sense of relief to be free from m_c.",
+      "Everyone knew that m_c and r_c had been going through a rough patch, but it's still a shock when r_c doesn't even attend the vigil."
 
    ],
    "no_body": [
@@ -66,6 +67,7 @@
   },
   "charismatic": {
     "body": [
+      "r_c seems more intent on accepting the condolences of {PRONOUN/r_c.poss} Clanmates than remembering m_c's life."
 
     ],
     "no_body": [
@@ -82,18 +84,18 @@
   },
   "cold": {
     "body": [
-
+	"r_c avoids m_c's vigil, saying the Clan needs {PRONOUN/r_c/object} more than m_c does now."
     ],
     "no_body": [
-
+	"r_c avoids m_c's vigil, saying the Clan needs {PRONOUN/r_c/object} more than m_c does now."
     ]
   },
   "compassionate": {
     "body": [
-
+	"Even if {PRONOUN/r_c/subject} and m_c didn't see eye to eye at the end, r_c pulls it together enough to share a few anecdotes at the vigil."
     ],
     "no_body": [
-
+	"Even if {PRONOUN/r_c/subject} and m_c didn't see eye to eye at the end, r_c pulls it together enough to share a few anecdotes at the vigil."
     ]
   },
   "confident": {
@@ -114,10 +116,10 @@
   },
   "empathetic": {
     "body": [
-
+	"Even if {PRONOUN/r_c/subject} and m_c didn't see eye to eye at the end, r_c pulls it together enough to share a few anecdotes at the vigil."
     ],
     "no_body": [
-
+	"Even if {PRONOUN/r_c/subject} and m_c didn't see eye to eye at the end, r_c pulls it together enough to share a few anecdotes at the vigil."
     ]
   },
   "faithful": {
@@ -146,7 +148,7 @@
   },
   "lonesome": {
     "body": [
-
+	"m_c was never the perfect mate, but r_c can't help but feel a twinge of anxiety looking at {PRNOUN/m_c/poss} body. {PRONOUN/r_c/subject} {VERB/r_c/huddle/huddles} close as {PRONOUN/r_c/subject} {VERB/r_c/realize/realizes} {PRONOUN/r_c/poss} future is no longer bonded."
     ],
     "no_body": [
 
@@ -162,7 +164,7 @@
   },
   "loyal": {
     "body": [
-
+	"m_c was never the perfect mate, but r_c can't help but feel a twinge of anxiety looking at {PRNOUN/m_c/poss} body. {PRONOUN/r_c/subject} {VERB/r_c/huddle/huddles} close as {PRONOUN/r_c/subject} {VERB/r_c/realize/realizes} {PRONOUN/r_c/poss} future is no longer bonded."
     ],
     "no_body": [
 
@@ -170,7 +172,7 @@
   },
   "nervous": {
     "body": [
-
+	"m_c was never the perfect mate, but r_c can't help but feel a twinge of anxiety looking at {PRNOUN/m_c/poss} body. {PRONOUN/r_c/subject} {VERB/r_c/huddle/huddles} close as {PRONOUN/r_c/subject} {VERB/r_c/realize/realizes} {PRONOUN/r_c/poss} future is no longer bonded."
     ],
     "no_body": [
 
@@ -210,7 +212,7 @@
   },
   "shameless": {
     "body": [
-
+	"After m_c is buried, r_c looks happier than any cat's seen {PRONOUN/r_c/object} in a long time."
     ],
     "no_body": [
 
