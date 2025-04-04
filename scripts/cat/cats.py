@@ -2127,37 +2127,26 @@ class Cat:
             return
 
         # remove accessories if need be
-        if "NOTAIL" in self.pelt.scars and self.pelt.accessory in [
-            "RED FEATHERS",
-            "BLUE FEATHERS",
-            "JAY FEATHERS",
-            'SEAWEED', 'DAISY CORSAGE',
-            "SNAKE",
-            "OLD SILVER WATCH",
-            "OLD GOLD WATCH",
-            "BAUBLES",
-            "GULL FEATHERS",
-            "SPARROW FEATHERS",
-            "CLOVERTAIL",
-            "DAISYTAIL"
-        ]:
-            self.pelt.accessory = None
-        
-        if "HALFTAIL" in self.pelt.scars and self.pelt.accessory in [
-            "RED FEATHERS",
-            "BLUE FEATHERS",
-            "JAY FEATHERS",
-            'SEAWEED', 'DAISY CORSAGE',
-            "SNAKE",
-            "OLD SILVER WATCH",
-            "OLD GOLD WATCH",
-            "BAUBLES",
-            "GULL FEATHERS",
-            "SPARROW FEATHERS",
-            "CLOVERTAIL",
-            "DAISYTAIL"
-        ]:
-            self.pelt.accessory = None
+        if "NOTAIL" in self.pelt.scars or "HALFTAIL" in self.pelt.scars:
+            self.pelt.accessory = [
+                acc for acc in self.pelt.accessory
+                if acc not in (
+                    "RED FEATHERS",
+                    "BLUE FEATHERS",
+                    "JAY FEATHERS",
+                    "GULL FEATHERS",
+                    "SPARROW FEATHERS",
+                    "CLOVERTAIL",
+                    "DAISYTAIL",
+                    'SEAWEED',
+                    'DAISY CORSAGE',
+                    "SNAKE",
+                    "OLD SILVER WATCH",
+                    "OLD GOLD WATCH",
+                    "BAUBLES",
+                    "SEAWEED",
+                )
+            ]
 
        
            

@@ -213,8 +213,10 @@ class Scar_Events:
 
             specialty = random.choice(scar_pool)
             if specialty in ["NOTAIL", "HALFTAIL"]:
-                if cat.pelt.accessory in [
-                    "RED FEATHERS",
+                cat.pelt.accessory = [
+                    acc for acc in cat.pelt.accessory
+                    if acc not in (
+                        "RED FEATHERS",
                     "BLUE FEATHERS",
                     "JAY FEATHERS",
                     "GULL FEATHERS",
@@ -228,9 +230,8 @@ class Scar_Events:
                     "OLD GOLD WATCH",
                     "BAUBLES",
                     "SEAWEED",
-
-                ]:
-                    cat.pelt.accessory = None
+                    )
+                ]
 
             # combining left/right variations into the both version
             if "NOLEFTEAR" in cat.pelt.scars and specialty == "NORIGHTEAR":

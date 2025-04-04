@@ -789,7 +789,9 @@ class Pelt:
             elif self.cat_sprites["senior"] == 5:
                 self.cat_sprites["senior"] = 14
 
-        if isinstance(self.accessory, str):
+        if self.accessory is None:
+            self.accessory = []
+        elif isinstance(self.accessory, str):
             self.accessory = [self.accessory]
 
 
