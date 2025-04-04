@@ -815,6 +815,8 @@ class ProfileScreen(Screens):
             'FOLDBOTH': 'folded ears',
             'FOLDONE': 'one folded ear',
             'EARCURL': 'curled ears',
+            'EARDROOPY': 'droopy ears',
+            'EARRABBIT': 'rabbit-like ears',
             'HEADFORELOCK': 'forelock',
             'HEADCOWLICK': 'cowlick',
             'HEADMOHAWK': 'mohawk',
@@ -831,6 +833,7 @@ class ProfileScreen(Screens):
             'MANEHORSE': 'horse-like mane',
             'MANELION': 'lion-like mane',
             'MANEBRAIDED': 'braided mane',
+            'MANECOBRA': 'cobra-like mane',
             'FURWAVY': 'wavy fur',
             'FURCURLY': 'curly fur',
             'FURPATCHY': 'patchy fur',
@@ -872,7 +875,24 @@ class ProfileScreen(Screens):
             'SMALLPAWS': 'small paws',
             'CLAWLESS': 'clawless',
             'CLAWSSHORT': 'unusually short claws',
-            'PAWTUFT': 'tufted paws'
+            'PAWTUFT': 'tufted paws',
+            'BIGEYES': 'big eyes',
+            'SMALLEYES': 'small eyes',
+            'BIGNOSE': 'big nose',
+            'HEARTSHAPEDNOSE': 'heart-shaped nose',
+            'LONGLEGS': 'long-legged',
+            'SHORTLEGS': 'short-legged',
+            'CROSSEYED': 'cross-eyed',
+            'LAZYEYE': 'lazy eye',
+            'OVERGROWNTONGUE': 'overgrown tongue',
+            'LONGCHINFUR': 'long chin fur',
+            'SHORTCHINFUR': 'short chin fur',
+            'LONGMUZZLEFUR': 'long muzzle fur',
+            'LONGINNEREARFUR': 'long inner ear fur',
+            'WEBBEDPAWS': 'webbed paws',
+            'MISSINGTOE': 'missing a toe',
+            'UNDERSIZEDJAW': 'undersized jaw',
+            'OVERSIZED JAW': 'oversized jaw'
         }
 
         trait_list = []
