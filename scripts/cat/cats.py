@@ -512,7 +512,7 @@ class Cat:
         trans_chance = randint(0, 30)
         nb_chance = randint(0, 40)
         
-        prob_awake = 8
+        prob_awake = game.config["cat_generation"]["esper_chance"]
         
         if self.parent1 is not None:
             prob_awake /= 2
