@@ -50,7 +50,17 @@ class Thoughts:
     @staticmethod
     def cats_fulfill_thought_constraints(main_cat, random_cat, thought, game_mode, biome, season, camp) -> bool:
         """Check if the two cats fulfills the thought constraints."""
-
+         # This is for checking triggering content. Checks once for general triggers and once for specific triggers.
+        if "trigger" in thought:
+            if not game.settings["allow_triggers"]:
+                return False
+            else:
+                toggle = thought["trigger"]
+                if not game.settings[toggle]:
+                    return False
+                #print("Warning. Thoughts with " + toggle + " are currently enabled.")
+            
+        
         # This is for checking biome
         if "biome" in thought:
             if biome not in thought["biome"]:

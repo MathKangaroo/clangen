@@ -459,6 +459,8 @@ class Condition_Events:
             "LEGBITE": ["weak leg"],
             "TOETRAP": ["weak leg"],
             "HINDLEG": ["weak leg"],
+            "DECLAWED": ["declawed"],
+            "RASH": ["constant rash"],
         }
 
         scarless_conditions = [
@@ -476,7 +478,43 @@ class Condition_Events:
             "recurring shock",
             "lasting grief",
             "wobbly cat syndrome", "cleft palate",
-            "persistent headaches", "testosterone deficiency", "excess testosterone", "aneuploidy", "mosaicism", "chimerism"
+            "persistent headaches", "testosterone deficiency", "excess testosterone", "aneuploidy", "mosaicism", "chimerism",
+            "comet spirit",
+            "weighted heart",
+            "starwalker",
+            "obsessive mind",
+            "antisocial",
+            "anxiety",
+            "constant roaming pain",
+            "thunderous spirit",
+            "otherworldly mind",
+            "kitten regressor",
+            "puppy regressor",
+            "snow vision",
+            "echoing shock",
+            "irritable bowels",
+            "loose body",
+            "longcough",
+            "burning light",
+            "disrupted senses",
+            "constant nightmares",
+            "jellyfish joints",
+            "lazy eye",
+            "shattered soul",
+            "budding spirit",
+            "fractured spirit",
+            "pcos",
+            "infertile",
+            "curved spine",
+            "jumbled mind",
+            "counting fog",
+            "spirited heart",
+            "puzzled heart",
+            "face blindness",
+            "parrot chatter",
+            "selective mutism",
+            "frequent fainting",
+            "flooded paws"
         ]
 
         got_condition = False
@@ -536,15 +574,31 @@ class Condition_Events:
         cat.healed_condition = False
         event_list = []
         illness_progression = {
-            "running nose": "whitecough",
-            "kittencough": "whitecough",
-            "whitecough": "greencough",
+            "running nose": ["whitecough", "silvercough"],
+            "kittencough": "silvercough",
+            "whitecough": ["silvercough", "greencough"],
+            "silvercough": "greencough",
             "greencough": "yellowcough",
             "yellowcough": "redcough",
             "an infected wound": "a festering wound",
             "heat exhaustion": "heat stroke",
-            "stomachache": "diarrhea",
+            "stomachache": ["diarrhea", "constipation"],
             "grief stricken": "lasting grief",
+            "nightmares": "constant nightmares",
+            "anxiety attack": "panic attack",
+            "panic attack": ["shock", "paranoia"],
+            "sleeplessness": "ongoing sleeplessness",
+            "ticks": ["tick bites", "severe tick bites"],
+            "nest wetting": "night dirtmaking",
+            "verbal shutdown": "mute",
+            "tics": "tic attack",
+            "nausea": "stomachache",
+            "paranoia": "delusions",
+            "hallucinations" : "hostile hallucinations",
+            "hostile hallucinations": "psychotic episode",
+            "delusions": "psychotic episode",
+            "psychotic episode": "ongoing psychosis",
+            "ongoing psychosis": ["otherwordly mind", "obsessive mind", "thunderous spirit"],
         }
         Condition_Events.rebuild_strings()
         # ---------------------------------------------------------------------------- #
@@ -1106,12 +1160,21 @@ class Condition_Events:
                 # check if the new risk is a previous stage of a current illness
                 skip = False
                 if risk["name"] in progression:
-                    if progression[risk["name"]] in dictionary:
+                    if isinstance(progression[risk["name"]],list):
+                        for risk in progression[risk["name"]]:
+                            if risk in dictionary:
+                                skip = True
+                    elif progression[risk["name"]] in dictionary:
                         skip = True
+                        
+                if not game.clan.clan_settings["pregnancy turmoil"]:
+                    if risk["name"] == "turmoiled litter":
+                        skip = True
+                
                 # if it is, then break instead of giving the risk
                 if skip is True:
                     break
-
+                        
                 new_condition_name = risk["name"]
 
                 # lower risk of getting it again if not a perm condition

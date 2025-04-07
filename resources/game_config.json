@@ -186,10 +186,13 @@
 		]
 	},
 	"cat_generation": {
-		"base_permanent_condition": 90,
+		"base_permanent_condition": 10,
+		"multiple_permanent_conditions": 20,
+		"max_conditions_born_with": 3,
+		"comorbidity_chance": 5,
 		"base_male_tortie": 13,
 		"base_female_tortie": 4,
-		"base_heterochromia": 120,
+		"base_heterochromia": 60,
 		"direct_inheritance": 15,
 		"wildcard_tortie": 9,
 		"vit_chance": 8,
@@ -217,8 +220,8 @@
 		]
 	},
 	"accessory_generation": {
-		"base_acc_chance": 150,
-		"med_modifier": -80,
+		"base_acc_chance": 50,
+		"med_modifier": -30,
 		"baby_modifier": -20,
 		"elder_modifier": 20,
 		"happy_trait_modifier": -30,
