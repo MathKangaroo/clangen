@@ -512,7 +512,7 @@ class Cat:
         trans_chance = randint(0, 30)
         nb_chance = randint(0, 40)
         
-        prob_awake = 8
+        prob_awake = 2
         
         if self.parent1 is not None:
             prob_awake /= 2
@@ -523,10 +523,10 @@ class Cat:
         awakened_chance = randint(1,prob_awake)
         if awakened_chance == 1:
             self.generate_ability()
-            self.generate_ability()
-            double_powers = randint(1,prob_awake*4)
-            #if double_powers == 1:
-                #self.generate_ability()
+            #self.generate_ability()
+            double_powers = randint(1,prob_awake)
+            if double_powers == 1:
+                self.generate_ability()
 
         # GENDER IDENTITY
         if self.gender == "female" and not self.status in ['newborn', 'kitten']:

@@ -1304,7 +1304,7 @@ class MakeClanScreen(Screens):
         if cat.awakened:
             if cat.awakened["type"] == "esper":
                 text += "\n" + cat.awakened["class"] + "-class " + cat.awakened["type"]
-            else:
+            elif cat.awakened["type"] == "enhanced esper":
                 class1 = cat.awakened["class"][0]
                 class2 = cat.awakened["class"][1]
                 total_class = class1
@@ -1314,7 +1314,7 @@ class MakeClanScreen(Screens):
                     total_class = class2
                 elif class1 == "A" and class2 in ["S"]:
                     total_class = class2
-                text += "\n" + total_class + "-class " + cat.awakened["type"]
+                text += "\n" + total_class + "-class " + "enhanced esper!"
 
         return f"<b>{cat.name}</b><br>{cat.get_genderalign_string()}<br>{i18n.t('general.' + cat.age, count=1)}<br>{i18n.t('cat.personality.' + cat.personality.trait)}<br>{cat.skills.skill_string(short=True)}" + text
 

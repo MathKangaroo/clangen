@@ -998,7 +998,19 @@ class ProfileScreen(Screens):
         
         #AWAKENED
         if the_cat.awakened:
-            output += the_cat.awakened["class"] + "-class " + the_cat.awakened["type"] + "\n"
+            if the_cat.awakened["type"] == "esper":
+                output += the_cat.awakened["class"] + "-class " + the_cat.awakened["type"] +  "\n" 
+            elif the_cat.awakened["type"] == "enhanced esper":
+                class1 = the_cat.awakened["class"][0]
+                class2 = the_cat.awakened["class"][1]
+                total_class = class1
+                if class1 == "C" and class2 in ["B","A","S"]:
+                    total_class = class2
+                elif class1 == "B" and class2 in ["A","S"]:
+                    total_class = class2
+                elif class1 == "A" and class2 in ["S"]:
+                    total_class = class2
+                output += total_class + "-class " + "enhanced esper" + "\n"
 
         # LEADER LIVES:
         # Optional - Only shows up for leaders
@@ -1988,7 +2000,7 @@ class ProfileScreen(Screens):
             if self.the_cat.awakened["type"] == "esper":
                 all_illness_injuries.extend(
             [(self.the_cat.awakened["ability"], (self.the_cat.awakened["desc"]+ "<br>" + self.the_cat.awakened["class"] + "-class"))])
-            elif self.the_cat.awakened["type"] == " enhanced esper":
+            elif self.the_cat.awakened["type"] == "enhanced esper":
                 all_illness_injuries.extend(
             [(self.the_cat.awakened["ability"][0], (self.the_cat.awakened["desc"][0]+ "<br>" + self.the_cat.awakened["class"][0] + "-class"))])
                 all_illness_injuries.extend(
