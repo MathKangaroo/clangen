@@ -1300,7 +1300,21 @@ class MakeClanScreen(Screens):
         """Get tooltip for cat. Tooltip displays name, sex, age group, and trait."""
         text = ""
         if cat.permanent_condition:
-           text = f"<br>has a permanent condtion!"
+           text += f"<br>has a permanent condtion!"
+        if cat.awakened:
+            if cat.awakened["type"] == "esper":
+                text += "\n" + cat.awakened["class"] + "-class " + cat.awakened["type"]
+            else:
+                class1 = cat.awakened["class"][0]
+                class2 = cat.awakened["class"][1]
+                total_class = class1
+                if class1 == "C" and class2 in ["B","A","S"]:
+                    total_class = class2
+                elif class1 == "B" and class2 in ["A","S"]:
+                    total_class = class2
+                elif class1 == "A" and class2 in ["S"]:
+                    total_class = class2
+                text += "\n" + total_class + "-class " + cat.awakened["type"]
 
         return f"<b>{cat.name}</b><br>{cat.get_genderalign_string()}<br>{i18n.t('general.' + cat.age, count=1)}<br>{i18n.t('cat.personality.' + cat.personality.trait)}<br>{cat.skills.skill_string(short=True)}" + text
 

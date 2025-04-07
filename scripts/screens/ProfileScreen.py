@@ -983,6 +983,19 @@ class ProfileScreen(Screens):
         # NEWLINE ----------
         output += "\n"
         
+        dadm_text = ""
+        if len(the_cat.pronouns) == 1:
+            if the_cat.pronouns[0].get("subject") == the_cat.pronouns[0].get("object"):
+                    dadm_text += the_cat.pronouns[0].get("subject") + "/" + the_cat.pronouns[0].get("poss")
+            else:
+                    dadm_text += the_cat.pronouns[0].get("subject") + "/" + the_cat.pronouns[0].get("object")
+        else:
+            for pronoun in the_cat.pronouns:
+                    dadm_text += pronoun.get("subject") + "/"
+            if dadm_text[-1] == "/":
+                    dadm_text = dadm_text[:-1]
+        output += dadm_text + "\n"
+        
         #AWAKENED
         if the_cat.awakened:
             output += the_cat.awakened["class"] + "-class " + the_cat.awakened["type"] + "\n"
@@ -1974,7 +1987,12 @@ class ProfileScreen(Screens):
         if self.the_cat.awakened:
             if self.the_cat.awakened["type"] == "esper":
                 all_illness_injuries.extend(
-            [(self.the_cat.awakened["ability"], (self.the_cat.awakened["desc"]+ "<br>" + self.the_cat.awakened["class"] + "-class"))]) 
+            [(self.the_cat.awakened["ability"], (self.the_cat.awakened["desc"]+ "<br>" + self.the_cat.awakened["class"] + "-class"))])
+            elif self.the_cat.awakened["type"] == " enhanced esper":
+                all_illness_injuries.extend(
+            [(self.the_cat.awakened["ability"][0], (self.the_cat.awakened["desc"][0]+ "<br>" + self.the_cat.awakened["class"][0] + "-class"))])
+                all_illness_injuries.extend(
+            [(self.the_cat.awakened["ability"][1], (self.the_cat.awakened["desc"][1]+ "<br>" + self.the_cat.awakened["class"][1] + "-class"))])
 
         
         all_illness_injuries.extend([

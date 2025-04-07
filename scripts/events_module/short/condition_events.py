@@ -1130,6 +1130,7 @@ class Condition_Events:
         if dictionary == cat.permanent_condition:
             event_triggered = True
         for risk in conditions[condition]["risks"]:
+            #print(risk)
             if risk["name"] in (cat.injuries or cat.illnesses):
                 continue
             if (
@@ -1161,8 +1162,8 @@ class Condition_Events:
                 skip = False
                 if risk["name"] in progression:
                     if isinstance(progression[risk["name"]],list):
-                        for risk in progression[risk["name"]]:
-                            if risk in dictionary:
+                        for risky in progression[risk["name"]]:
+                            if risky in dictionary:
                                 skip = True
                     elif progression[risk["name"]] in dictionary:
                         skip = True

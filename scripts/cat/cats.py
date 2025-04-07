@@ -484,7 +484,18 @@ class Cat:
                             "dendrokinesis", "electrokinesis", "telempathy", "astral projection"])
         template["ability"] = power
         template["desc"] = choice(powers_dict[power][template["class"]])
+        if self.awakened:
+            template["type"] = "enhanced esper"
+            classes = [self.awakened["class"], template["class"]]
+            abilities = [self.awakened["ability"], template["ability"]]
+            while template["desc"] == self.awakened["desc"]:
+               template["desc"] = choice(powers_dict[power][template["class"]])
+            powers = [self.awakened["desc"], template["desc"]]
+            template["class"] = classes
+            template["ability"] = abilities
+            template["desc"] = powers
         self.awakened = template
+            
 
     def init_generate_cat(self, skill_dict):
         """
@@ -512,6 +523,10 @@ class Cat:
         awakened_chance = randint(1,prob_awake)
         if awakened_chance == 1:
             self.generate_ability()
+            self.generate_ability()
+            double_powers = randint(1,prob_awake*4)
+            #if double_powers == 1:
+                #self.generate_ability()
 
         # GENDER IDENTITY
         if self.gender == "female" and not self.status in ['newborn', 'kitten']:
@@ -4387,7 +4402,21 @@ class Cat:
                     
         awakened_text = ""        
         if self.awakened:
+            if self.awakened["type"] == "esper":
                 awakened_text = self.awakened["class"] + "-class " + self.awakened["type"] + "\n"
+                awakened_text += "power: " + self.awakened["ability"] + "\n"
+            else:
+                class1 = self.awakened["class"][0]
+                class2 = self.awakened["class"][1]
+                total_class = class1
+                if class1 == "C" and class2 in ["B","A","S"]:
+                    total_class = class2
+                elif class1 == "B" and class2 in ["A","S"]:
+                    total_class = class2
+                elif class1 == "A" and class2 in ["S"]:
+                    total_class = class2
+                awakened_text = total_class + "-class " + self.awakened["type"] + "\n"
+                awakened_text += "powers: " + self.awakened["ability"][0] + " and " +  self.awakened["ability"][1] + "\n"
 
 
         if self.permanent_condition:

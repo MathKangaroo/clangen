@@ -4,7 +4,8 @@
         "C": [
             "can create small flames",
             "can spark fires with a paw",
-            "sneezes sparks"
+            "sneezes sparks",
+            "has an abnormally high natural body temperature"
         ],
         "B": [
             "can create flames",
@@ -32,13 +33,15 @@
         "power": "can manipulate and control water",
         "C": [
             "can create bubbles",
-            "can control small streams of water"
+            "can control small streams of water",
+            "can breathe underwater"
         ],
         "B": [
             "can move water",
             "can create streams of water",
             "can summon rain clouds",
-            "can walk on water"
+            "can walk on water",
+            "can breathe underwater"
         ],
         "A":[
             "can summon rainstorms",
@@ -129,11 +132,13 @@
         "power": "can create illusions",
         "C": [
             "can make illusions targetting one sense",
-            "can make small illusions"
+            "can make small illusions",
+            "can appear displaced"
         ],
         "B": [
             "can make illusions targetting multiple senses",
-            "can create illusions of prey"
+            "can create illusions of prey",
+            "can appear displaced"
         ],
         "A": [
             "can make illusions targetting multiple senses",
@@ -149,16 +154,19 @@
         "power": "can transform into other animals",
         "C": [
            "can change fur color at will",
-           "can change eye color at will"
+           "can change eye color at will",
+           "can become younger or older at will"
         ],
         "B": [
-            "can transform into a bird",
+            "can transform into a small bird",
             "can transform into a fish",
             "can transform into a raccoon",
             "can transform into a squirrel",
             "can transform into a mouse",
             "can transform into a rat",
             "can transform into a gopher",
+            "can transform into a spider",
+            "can transform into a beetle",
             "can shrink"
         ],
         "A": [
@@ -175,6 +183,9 @@
             "can transform into a big cat",
             "can transform into a bird of prey",
             "can transform into a bear",
+            "can transform into any animal with wings",
+            "can transform into any animal with gills",
+            "can transform into any mammal",
             "can shrink or grow"
         ]
     },
@@ -182,10 +193,12 @@
         "power": "supernaturally enhanced strength",
         "C": [
             "is stronger than the average cat",
+            "has better stamina than the average cat",
             "has an unnaturally strong bite"
         ],
         "B": [
             "is strong enough to crush rocks",
+            "is resistant to pain",
             "has the bite of a dog"	
         ],
         "A": [
@@ -196,18 +209,50 @@
         "S": [
             "can destroy anything with a paw",
             "has the bite of a jaguar",
-            "can easily crush bones"
+            "can easily crush bones",
+            "is immune to physical pain"
+        ]
+    },
+    "super speed": {
+        "power": "supernaturally enhanced speed",
+        "C": [
+            "is faster than the average cat",
+            "has better stamina than the average cat",
+            "can sprint further than the average cat",
+            "can swim faster than the average cat"],
+        "B": [
+            "is as fast as a hare",
+            "is as fast as a greyhound",
+            "can sprint at full speed for a several minutes",
+            "can swim as fast as a fish"
+            
+        ],
+        "A": [
+            "is as fast as a gazelle",
+            "is as fast as a cheetah",
+            "can sprint at full speed for a several minutes",
+            "can swim as fast as a fish"
+            
+        ],
+        "S": [
+            "moves faster than the eye can see",
+            "is as fast as a cheetah",
+            "can sprint at full speed for a few miles",
+            "can swim faster than any fish"
+            
         ]
     },
     "enhanced senses": {
         "power": "can sense things beyond",
         "C": [
             "can hear better than the average cat",
-            "can see better than the average cat"
+            "can see better than the average cat",
+            "can sense texture without touching an object"
         ],
         "B": [
             "can see things from far away",
-            "can hear things from far away"
+            "can hear things from far away",
+            "can sense texture without touching an object"
         ],
         "A": [
             "can see things from far away",
@@ -244,8 +289,8 @@
         "power": "has body part(s) of a different animal",
         "C": [
             "has lizard eyes",
-            "has a fox tail"
-            
+            "has a fox tail",
+            "has a third eye"
         ],
         "B": [
             "has hooves",
@@ -253,7 +298,8 @@
             "has horns",
             "has two tails",
             "has rabbit ears",
-            "has antlers"
+            "has antlers",
+            "has a third eye"
         ],
         "A": [
             "has bird wings",
@@ -409,7 +455,8 @@
         "power": "can control light and shadows",
         "C": [
             "glows in the dark",
-            "can create elaborate shadow puppets"
+            "can create elaborate shadow puppets",
+            "has brightly glowing eyes"
         ],
         "B": [
             "can summon small balls of light",
@@ -444,7 +491,9 @@
             "can communicate with prey",
             "can understand twolegs fluently",
             "can communicate with aquatic creatures",
-            "can communicate with birds"
+            "can communicate with birds",
+            "can manipulate other species",
+            "can influence other species"
         ],
         "S": [
             "is fluent in every species' language",
@@ -463,7 +512,8 @@
             "can grow small flowers",
             "is venomous",
             "can speak to plants",
-            "can sense the feelings of plants"
+            "can sense the feelings of plants",
+            "is immune to poison"
         ],
         "A": [
             "can make any plant bloom or wither",
@@ -542,12 +592,34 @@
         "A": [
             "can enter the dreams of others",
             "can summon ghosts",
-            "can possess sleeping cats"
+            "can possess sleeping cats",
+            "has a soul that can leave the body temporarily"
         ],
         "S": [
             "can broadcast the dreams of others",
             "can summon ghosts",
-            "can possess other cats"
+            "can possess other cats",
+            "has a soul that can leave the body"
+        ]
+    },
+    "nullification": {
+        "C":[
+            "is resitant to the powers of others",
+            "cannot be sensed, even by magic",
+            "can sense the powers of others with touch"
+        ],
+        "B":[
+            "is resistant to the powers of others",
+            "is immune to the powers of C-class espers",
+            "can detect the powers of others from a distance"
+        ],
+        "A":[
+            "is immune to the powers of B and C-class espers",
+            "can temporarily disable the powers of others"
+        ],
+        "S":[
+            "is immune to the powers of A-class and below espers",
+            "can temporarily disable the powers of others"
         ]
     }
 }
