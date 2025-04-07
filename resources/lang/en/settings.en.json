@@ -1,6 +1,7 @@
 {
     "en": {
         "dark mode": "Dark mode",
+        "warriorified names": "Use warriors names for the new conditions",
         "dark mode_tooltip": "Camp backgrounds will match with the mode: nighttime for dark mode and daytime for light mode.",
         "fullscreen scaling": "Ignore fullscreen scaling rules",
         "fullscreen scaling_tooltip": "If enabled, fullscreen will display as large as possible (toggle fullscreen to update). This may include visual artifacts.",
