@@ -399,6 +399,13 @@ class Cat:
         #if not self.example:
             #new_condition = choice(["fractured spirit", "budding spirit", "shattered soul"])
             #self.get_permanent_condition(new_condition,born_with=True)
+        
+        if self.awakened and self.pelt.skin in ["LIGHTBLUE", "BLUE"] :
+            self.pelt.skin = choice(['BLACK', 'PINK', 'DARKBROWN', 'BROWN', 'LIGHTBROWN', 'DARK', 'DARKGREY', 'GREY', 'DARKSALMON',
+                    'SALMON', 'PEACH', 'DARKMARBLED', 'MARBLED', 'LIGHTMARBLED', 'DARKBLUE','RED'])
+        elif self.pelt.skin in ['BLACK', 'PINK', 'DARKBROWN', 'BROWN', 'LIGHTBROWN', 'DARK', 'DARKGREY', 'GREY', 'DARKSALMON',
+                    'SALMON', 'PEACH', 'DARKMARBLED', 'MARBLED', 'LIGHTMARBLED', 'DARKBLUE','RED'] and not self.awakened:
+            self.pelt.skin = choice(["LIGHTBLUE","BLUE"])
 
         # Private Sprite
         self._sprite = None
@@ -541,6 +548,7 @@ class Cat:
             double_powers = randint(1,prob_awake*4)
             if double_powers == 1 and self.awakened["type"] == "esper":
                 self.generate_ability()
+        
 
         # GENDER IDENTITY
         if self.gender == "female" and not self.status in ['newborn', 'kitten']:
