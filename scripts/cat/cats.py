@@ -400,12 +400,8 @@ class Cat:
             #new_condition = choice(["fractured spirit", "budding spirit", "shattered soul"])
             #self.get_permanent_condition(new_condition,born_with=True)
         
-        if self.awakened and self.pelt.skin in ["LIGHTBLUE", "BLUE"] :
-            self.pelt.skin = choice(['BLACK', 'PINK', 'DARKBROWN', 'BROWN', 'LIGHTBROWN', 'DARK', 'DARKGREY', 'GREY', 'DARKSALMON',
-                    'SALMON', 'PEACH', 'DARKMARBLED', 'MARBLED', 'LIGHTMARBLED', 'DARKBLUE','RED'])
-        elif self.pelt.skin in ['BLACK', 'PINK', 'DARKBROWN', 'BROWN', 'LIGHTBROWN', 'DARK', 'DARKGREY', 'GREY', 'DARKSALMON',
-                    'SALMON', 'PEACH', 'DARKMARBLED', 'MARBLED', 'LIGHTMARBLED', 'DARKBLUE','RED'] and not self.awakened:
-            self.pelt.skin = choice(["LIGHTBLUE","BLUE"])
+        if self.awakened and self.pelt.skin in Pelt.skin_sprites:
+            self.pelt.skin = choice(copy(Pelt.skin_sprites_magic))
 
         # Private Sprite
         self._sprite = None
