@@ -525,12 +525,12 @@ class Cat:
         prob_awake = game.config["cat_generation"]["esper_chance"]
         
         if self.parent1 is not None:
-            par1 = Cat.fetch_cat(parent1)
+            par1 = Cat.fetch_cat(self.parent1)
             if par1.awakened:
                 prob_awake /= 2
             
         if self.parent2 is not None:
-            par2 = Cat.fetch_cat(parent2)
+            par2 = Cat.fetch_cat(self.parent2)
             if par2.awakened:
                 prob_awake /= 2
         
