@@ -1302,7 +1302,7 @@ class MakeClanScreen(Screens):
         if cat.permanent_condition:
            text += f"<br>has a permanent condtion!"
         if cat.awakened:
-            if cat.awakened["type"] == "esper":
+            if cat.awakened["type"] in ["esper", "guide"]:
                 text += "\n" + cat.awakened["class"] + "-class " + cat.awakened["type"]
             elif cat.awakened["type"] == "enhanced esper":
                 class1 = cat.awakened["class"][0]

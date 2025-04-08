@@ -187,7 +187,7 @@
 	},
 	"cat_generation": {
 		"base_permanent_condition": 10,
-		"esper_chance": 8,
+		"esper_chance": 12,
 		"multiple_permanent_conditions": 20,
 		"max_conditions_born_with": 3,
 		"comorbidity_chance": 5,
@@ -313,7 +313,10 @@
 		"expanded_injury_chance": 250,
 		"cruel season_injury_chance": 150,
 		"permanent_condition_chance": 15,
-		"war_injury_modifier": 100
+		"war_injury_modifier": 100,
+		"max_alters": 20,
+		"max_splits": 3,
+		"plural_names": 100
 	},
 	"clan_creation": {
 		"rerolls": -1,

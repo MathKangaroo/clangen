@@ -36,7 +36,7 @@ from .Screens import Screens
 from ..cat.history import History
 from ..game_structure.localization import get_new_pronouns
 from ..game_structure.screen_settings import MANAGER
-from ..game_structure.windows import ChangeCatName, KillCat, ChangeCatToggles
+from ..game_structure.windows import ChangeCatName, KillCat, ChangeCatToggles, GuideEsper
 from ..housekeeping.datadir import get_save_dir
 from ..ui.generate_box import get_box, BoxStyles
 from ..ui.generate_button import ButtonStyles, get_button_dict
@@ -113,6 +113,7 @@ class ProfileScreen(Screens):
         self.history_text_box = None
         self.conditions_tab_button = None
         self.alters_tab_button = None
+        self.guide_tab_button = None
         self.condition_container = None
         self.left_conditions_arrow = None
         self.right_conditions_arrow = None
@@ -187,6 +188,8 @@ class ProfileScreen(Screens):
                 self.toggle_conditions_tab()
             elif event.ui_element == self.alters_tab_button:
                 self.toggle_alters_tab()
+            elif event.ui_element == self.guide_tab_button:
+                GuideEsper(self.the_cat)
             elif (
                     "leader_ceremony" in self.profile_elements
                     and event.ui_element == self.profile_elements["leader_ceremony"]
@@ -491,14 +494,14 @@ class ProfileScreen(Screens):
         )
         #self.placeholder_tab_3.disable()
 
-        self.placeholder_tab_4 = UISurfaceImageButton(
+        self.guide_tab_button = UISurfaceImageButton(
             ui_scale(pygame.Rect((576, 622), (176, 30))),
-            "",
+            "guide",
             get_button_dict(ButtonStyles.PROFILE_RIGHT, (176, 30)),
             object_id="@buttonstyles_profile_right",
             manager=MANAGER,
         )
-        self.placeholder_tab_4.disable()
+        self.guide_tab_button.disable()
 
         self.build_profile()
 
@@ -536,7 +539,7 @@ class ProfileScreen(Screens):
         self.conditions_tab_button.kill()
         self.alters_tab_button.kill()
         #self.placeholder_tab_3.kill()
-        self.placeholder_tab_4.kill()
+        self.guide_tab_button.kill()
         self.inspect_button.kill()
         self.customize_cat_button.kill()
         self.close_current_tab()
@@ -550,6 +553,8 @@ class ProfileScreen(Screens):
             self.alters_tab_button.enable()
         else:
             self.alters_tab_button.disable()
+        
+        self.guide_tab_button.disable()
 
         # use these attributes to create differing profiles for StarClan cats etc.
         is_sc_instructor = False
@@ -655,6 +660,8 @@ class ProfileScreen(Screens):
                 or self.the_cat.is_injured()
         ):
             self.profile_elements["med_den"].show()
+            if self.the_cat.is_ill() and "rampaging" in self.the_cat.illnesses:
+                self.guide_tab_button.enable()
         else:
             self.profile_elements["med_den"].hide()
 
@@ -998,7 +1005,7 @@ class ProfileScreen(Screens):
         
         #AWAKENED
         if the_cat.awakened:
-            if the_cat.awakened["type"] == "esper":
+            if the_cat.awakened["type"] in ["esper", "guide"]:
                 output += the_cat.awakened["class"] + "-class " + the_cat.awakened["type"] +  "\n" 
             elif the_cat.awakened["type"] == "enhanced esper":
                 class1 = the_cat.awakened["class"][0]

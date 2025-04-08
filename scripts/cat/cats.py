@@ -257,6 +257,7 @@ class Cat:
         self.alters = []
         self.front = None
         self.awakened = {}
+        self.guided = False
         self.df = False
         self.experience_level = None
 
@@ -394,6 +395,10 @@ class Cat:
                 load_existing_name=loading_cat,
                 cat=self,
             )
+        #FOR TESTING CONDITIONS
+        #if not self.example:
+            #new_condition = choice(["fractured spirit", "budding spirit", "shattered soul"])
+            #self.get_permanent_condition(new_condition,born_with=True)
 
         # Private Sprite
         self._sprite = None
@@ -477,13 +482,18 @@ class Cat:
             template["class"] = "A"
         elif strength > 4:
             template["class"] = "B"
+            
+        guide_or_esp = randint(1,2)
+        if guide_or_esp == 1:
+            template["type"] = "guide"
+        else:
+            power = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
+                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
+                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
+                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"])
+            template["desc"] = choice(powers_dict[power][template["class"]])
+            template["ability"] = power
         
-        power = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
-                            "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
-                            "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
-                            "dendrokinesis", "electrokinesis", "telempathy", "astral projection"])
-        template["ability"] = power
-        template["desc"] = choice(powers_dict[power][template["class"]])
         if self.awakened:
             template["type"] = "enhanced esper"
             classes = [self.awakened["class"], template["class"]]
@@ -515,17 +525,21 @@ class Cat:
         prob_awake = game.config["cat_generation"]["esper_chance"]
         
         if self.parent1 is not None:
-            prob_awake /= 2
+            par1 = Cat.fetch_cat(parent1)
+            if par1.awakened:
+                prob_awake /= 2
             
         if self.parent2 is not None:
-            prob_awake /= 2
+            par2 = Cat.fetch_cat(parent2)
+            if par2.awakened:
+                prob_awake /= 2
         
         awakened_chance = randint(1,prob_awake)
         if awakened_chance == 1:
             self.generate_ability()
             #self.generate_ability()
-            double_powers = randint(1,prob_awake)
-            if double_powers == 1:
+            double_powers = randint(1,prob_awake*4)
+            if double_powers == 1 and self.awakened["type"] == "esper":
                 self.generate_ability()
 
         # GENDER IDENTITY
@@ -613,6 +627,7 @@ class Cat:
 
         if not skill_dict:
             self.skills = CatSkills.generate_new_catskills(self.status, self.moons)
+            
 
     def __repr__(self):
         return "CAT OBJECT:" + self.ID
@@ -1737,6 +1752,8 @@ class Cat:
         if old_age != self.age:
             # Things to do if the age changes
             self.personality.facet_wobble(facet_max=2)
+        
+        #self.get_ill("rampaging")
 
         # Set personality to correct type
         self.personality.set_kit(self.age.is_baby())
@@ -1862,6 +1879,13 @@ class Cat:
         """handles the moon skip for illness"""
         if not self.is_ill():
             return True
+        
+        if illness == "rampaging":
+            if self.guided:
+                self.guided = False
+                self.healed_condition = True
+                return False
+            #COME BACK HERE
 
         if self.illnesses[illness]["event_triggered"]:
             self.illnesses[illness]["event_triggered"] = False
@@ -2515,6 +2539,12 @@ class Cat:
                 return
             if name in all_triggers:
                 print("triggering condition: " + name)
+        
+        if name == "rampaging":
+            if not self.awakened:
+                return
+            elif self.awakened["type"] == "guide":
+                return
                 
         illness = ILLNESSES[name]
         mortality = illness["mortality"][self.age.value]
@@ -3120,6 +3150,12 @@ class Cat:
                 "event_triggered": new_perm_condition.new,
                 "misdiagnosis": new_perm_condition.misdiagnosis
             }
+            
+            if self.is_plural():
+                if len(self.alters) < 1:
+                    self.system_core()
+                    self.new_alter(new_perm_condition.name)
+                    
             new_condition = True
         return new_condition
 
@@ -4402,9 +4438,10 @@ class Cat:
                     
         awakened_text = ""        
         if self.awakened:
-            if self.awakened["type"] == "esper":
+            if self.awakened["type"] in ["esper", "guide"]:
                 awakened_text = self.awakened["class"] + "-class " + self.awakened["type"] + "\n"
-                awakened_text += "power: " + self.awakened["ability"] + "\n"
+                if self.awakened["type"] == "esper":
+                    awakened_text += "power: " + self.awakened["ability"] + "\n"
             else:
                 class1 = self.awakened["class"][0]
                 class2 = self.awakened["class"][1]

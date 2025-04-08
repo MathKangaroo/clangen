@@ -138,5 +138,9 @@
   "ongoing psychosis": [
     "Despite interventions, m_c's psychotic symptoms have only deepened.",
     "Attempts to calm m_c have been unsuccessful - {PRONOUN/m_c/subject} is suffering from ongoing psychosis."
+  ],
+  "rampaging":[
+    "The combination of stress and overuse of {PRONOUN/m_c/poss} abilities has led to m_c entering a rampage.",
+    "Every esper knows the risks of using their powers, but it still comes as a shock when m_c enters a rampage."
   ]
 }
