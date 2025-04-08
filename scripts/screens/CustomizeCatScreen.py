@@ -663,7 +663,7 @@ class CustomizeCatScreen(Screens):
         if self.the_cat.awakened:
             previous_selection = self.the_cat.awakened["type"]
             
-        if previous_selection != "non" and previous_selection in ["guide","esper","enhanced esper"]:
+        if previous_selection != "none" and previous_selection in ["guide","esper","enhanced esper"]:
             self.the_cat.awakened = None
         if selected_option != "none":
             self.generate_ability(power_type = selected_option)
