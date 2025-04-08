@@ -340,6 +340,7 @@ class GuideEsper(UIWindow):
             elif event.ui_element == self.potential_next_page:
                 self.potential_guides_page += 1
                 self.update_potential_guides_container_page
+        return super().process_event(event)
 
 class SymbolFilterWindow(UIWindow):
     def __init__(self):
