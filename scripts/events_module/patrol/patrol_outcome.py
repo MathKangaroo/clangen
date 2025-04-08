@@ -558,11 +558,8 @@ class PatrolOutcome:
                 if kitty.is_awakened():
                     if kitty.awakened["type"] in ["esper", "enhanced esper"]:
                         rampage_chance = randint(1,6)
-                        if self.dead_cats is not None:
-                            rampage_chance = 1
-                        elif self.lost_cats is not None and rampage_chance > 1:
-                            rampage_chance -= 1
-                        if rampage_chance ==1:
+                        print(rampage_chance)
+                        if rampage_chance == 1:
                             kitty.get_ill("rampaging")
                             results.append(f"{kitty.name} is rampaging!")
                             num_rampage += 1
