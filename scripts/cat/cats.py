@@ -3,6 +3,7 @@ Contains the Cat and Personality classes
 """
 
 from __future__ import annotations
+from copy import copy
 
 import bisect
 import itertools
