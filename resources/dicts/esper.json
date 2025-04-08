@@ -1,6 +1,7 @@
 {
     "pyrokinesis": {
         "power": "can manipulate and control fire",
+        "skin":["FLAMES","LIGHT2", "SMOKE", "MAGMA"],
         "C": [
             "can create small flames",
             "can spark fires with a paw",
@@ -31,6 +32,7 @@
     },
     "hydrokinesis": {
         "power": "can manipulate and control water",
+        "skin":["MIST","BUBBLES"],
         "C": [
             "can create bubbles",
             "can control small streams of water",
@@ -58,6 +60,7 @@
     },
     "cyrokinesis": {
         "power": "can manipulate and control ice",
+        "skin":["MIST","SPARKLES", "BUBBLES"],
         "C": [
             "is ice cold to the touch",
             "sneezes snowflakes"
@@ -79,6 +82,7 @@
     },
     "geokinesis": {
         "power": "can manipulate and control rocks",
+        "skin":["LIGHT1","FLOWERS","MAGMA", "LIGHT2"],
         "C": [
             "can summon and control pebbles",
             "can control sand"
@@ -105,6 +109,7 @@
     },
     "aerokinesis": {
         "power": "can manipulate and control wind",
+        "skin":["LIGHT1", "MIST", "THUNDERSTORM"],
         "C": [
             "can control small gusts of wind",
             "purifies the surrounding air"
@@ -130,6 +135,7 @@
     },
     "illusions": {
         "power": "can create illusions",
+        "skin":["INK", "INK2", "SPARKLES", "PURPLEFLAMES", "SKELETON"],
         "C": [
             "can make illusions targetting one sense",
             "can make small illusions",
@@ -152,6 +158,7 @@
     },
     "shapeshifting": {
         "power": "can transform into other animals",
+        "skin":["FLESH", "SKELETON", "FLOWERS", "INK","INK2"],
         "C": [
            "can change fur color at will",
            "can change eye color at will",
@@ -191,6 +198,7 @@
     },
     "super strength": {
         "power": "supernaturally enhanced strength",
+        "skin":["SPARKLES", "FLAMES", "MAGMA","SMOKE", "INK2"],
         "C": [
             "is stronger than the average cat",
             "has better stamina than the average cat",
@@ -215,6 +223,7 @@
     },
     "super speed": {
         "power": "supernaturally enhanced speed",
+        "skin":["LIGHT1", "MIST", "INK2", "SPARKLES"],
         "C": [
             "is faster than the average cat",
             "has better stamina than the average cat",
@@ -244,6 +253,7 @@
     },
     "enhanced senses": {
         "power": "can sense things beyond",
+        "skin":["SPARKLES", "MIST", "LIGHT1", "LIGHT2"],
         "C": [
             "can hear better than the average cat",
             "can see better than the average cat",
@@ -266,6 +276,7 @@
     },
     "telekinesis": {
         "power": "can move things using the mind",
+        "skin":["PURPLEFLAMES", "SPARKLES"],
         "C": [
             "can push small objects with a thought",
             "can float small objects"
@@ -287,6 +298,7 @@
     },
     "chimera": {
         "power": "has body part(s) of a different animal",
+        "skin":["FLESH", "SKELETON", "INK", "INK2"],
         "C": [
             "has lizard eyes",
             "has a fox tail",
@@ -325,6 +337,7 @@
     },
     "invisibility": {
         "power": "can turn invisible",
+        "skin":["MIST", "LIGHT1", "SPARKLES"],
         "C": [
             "can become translucent",
             "appears to be blurry"
@@ -344,6 +357,7 @@
     },
     "incorporeal": {
         "power": "can travel through objects",
+        "skin":["MIST", "LIGHT1", "SPARKLES"],
         "C": [
             "can dodge better than the average cat",
             "can see through plants"
@@ -366,6 +380,7 @@
     },
     "mind control": {
         "power": "can control the minds of others",
+        "skin":["INK", "INK2", "PURPLEFLAMES"],
         "C": [
             "can influence the feelings of others",
             "is supernaturally charismatic",
@@ -399,6 +414,7 @@
     },
     "flight": {
         "power": "can fly (without wings)",
+        "skin":["MIST", "SPARKLES", "LIGHT1", "LIGHT2"],
         "C": [
             "can levitate a few inches",
             "can glide in the air",
@@ -422,6 +438,7 @@
     },
     "teleportation": {
         "power": "can teleport to another location",
+        "skin":["MIST", "SPARKLES", "PURPLEFLAMES", "LIGHT1", "LIGHT2"],
         "C": [
             "seems to blink between spaces",
             "can teleport a few inches"
@@ -443,6 +460,7 @@
     },
     "electromagnetic control": {
         "power": "can manipulate magnetic fields",
+        "skin":["THUNDERSTORM", "LIGHT1", "LIGHT2"],
         "C": [
             "has fur charged with static shocks",
             "can always sense true north"
@@ -464,6 +482,7 @@
     },
     "light manipulation":{
         "power": "can control light and shadows",
+        "skin":["THUNDERSTORM", "LIGHT1", "LIGHT2", "PURPLEFLAMES", "INK", "INK2"],
         "C": [
             "glows in the dark",
             "can create elaborate shadow puppets",
@@ -489,6 +508,7 @@
     },
     "beast speak": {
         "power": "can communicate with other animals",
+        "skin":["FLESH", "INK", "INK2", "SPARKLES", "FLOWERS", "DEATHBERRIES"],
         "C": [
             "can sense the emotions of non-cats",
             "can hear the voices of other species"
@@ -513,6 +533,7 @@
     },
     "dendrokinesis": {
         "power": "can manipulate and control plants",
+        "skin":["FLOWERS", "DEATHBERRIES"],
         "C": [
             "can grow small flowers",
             "has a tail  made of leaves",
@@ -542,6 +563,7 @@
     },
     "electrokinesis": {
         "power": "can manipulate and control lightning",
+        "skin":["THUNDERSTORM", "LIGHT1", "LIGHT2"],
         "C": [
             "sneezes sparks",
             "glows in the dark",
@@ -567,6 +589,7 @@
     },
     "telempathy":  {
         "power": "can broadcast and sense emotions",
+        "skin":["SPARKLES", "LIGHT1"],
         "C": [
             "can sense strong emotions",
             "can broadcast strong emotions"
@@ -591,6 +614,7 @@
     },
     "astral projection": {
         "power": "can project souls and spirits",
+        "skin":["SPARKLES", "PURPLEFLAMES"],
         "C": [
             "can see echoes of the past",
             "can see ghosts"
@@ -616,6 +640,8 @@
         ]
     },
     "nullification": {
+        "power": "can nullify the powers of others",
+        "skin":["DEATHBERRIES", "FLESH", "INK"],
         "C":[
             "is resitant to the powers of others",
             "cannot be sensed, even by magic",
@@ -636,6 +662,8 @@
         ]
     },
     "flesh manipulation": {
+        "power": "can heal and manipulate flesh and blood",
+        "skin":["FLESH", "SKELETON"],
         "C":[
             "can heal scrapes",
             "can regenerate from minor injuries"
@@ -656,6 +684,8 @@
         ]
     },
     "spatial manipulation": {
+        "power": "can create portals or manipulate space",
+        "skin":["SPARKLES", "PURPLEFLAMES"],
         "C":[
            "can tell the exact distance and size of objects",
            "can shrink objects slightly",

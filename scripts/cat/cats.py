@@ -402,8 +402,16 @@ class Cat:
             #self.get_permanent_condition(new_condition,born_with=True)
         
         if self.awakened and self.pelt.skin in Pelt.skin_sprites:
-            self.pelt.skin = choice(copy(Pelt.skin_sprites_magic))
-
+            if os.path.exists('resources/dicts/esper.json'):
+                with open('resources/dicts/esper.json') as read_file:
+                    powers_dict = ujson.loads(read_file.read())
+            if self.awakened["type"] == "guide":
+                #powerless shows twice bc we want it to be twice as common. visible guides
+                self.pelt.skin = choice(["POWERLESS1", "POWERLESS2","POWERLESS1", "POWERLESS2", "MIST","LIGHT1", "SPARKLES"])
+            elif self.awakened["type"] == "esper":
+                self.pelt.skin = choice(powers_dict[self.awakened["ability"]]["skin"])
+            elif self.awakened["type"] == "enhanced esper":
+                self.pelt.skin = choice(powers_dict[self.awakened["ability"][0]]["skin"])
         # Private Sprite
         self._sprite = None
 
