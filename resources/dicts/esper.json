@@ -368,22 +368,33 @@
         "power": "can control the minds of others",
         "C": [
             "can influence the feelings of others",
-            "is supernaturally charismatic"
+            "is supernaturally charismatic",
+            "can influence the dreams of others",
+            "can make other cats feel drowsy"
         ],
         "B": [
             "can influence the feelings of others",
             "has powerful suggestions",
-            "has a mesmerizing gaze"
+            "has a mesmerizing gaze",
+            "can control the dreams of others",
+            "can create nightmares",
+            "can make cats fall asleep"
         ],
         "A": [
             "has powerful suggestions",
             "can hypnotize others",
-            "has a mesmerizing gaze"
+            "has a mesmerizing gaze",
+            "can control the dreams of others",
+            "can create nightmares",
+            "can make cats fall asleep"
+
         ],
         "S": [
             "can control the minds of other cats",
             "can puppeteer other cats with ease",
-            "can hypnotize others"
+            "can hypnotize others",
+            "can trap a cat in an endless nightmare",
+            "can trap a cat in an endless dream"
         ]
     },
     "flight": {
@@ -587,10 +598,12 @@
         "B": [
             "can see echoes of the past",
             "can see ghosts",
-            "can enter the dreams of others"
+            "can enter the dreams of others",
+            "can infiltrate the nightmares of others"
         ],
         "A": [
             "can enter the dreams of others",
+            "can infiltrate the nightmares of others",
             "can summon ghosts",
             "can possess sleeping cats",
             "has a soul that can leave the body temporarily"
@@ -620,6 +633,50 @@
         "S":[
             "is immune to the powers of A-class and below espers",
             "can temporarily disable the powers of others"
+        ]
+    },
+    "flesh manipulation": {
+        "C":[
+            "can heal scrapes",
+            "can regenerate from minor injuries"
+        ],
+        "B":[
+            "can heal small wounds",
+            "can regenerate from minor injuries"
+        ],
+        "A":[
+            "can heal wounds",
+            "can regenerate from injuries",
+            "can create weapons from blood"
+        ],
+        "S":[
+            "can regenerate limbs",
+            "can control the blood of other cats",
+            "can create weapons from blood"
+        ]
+    },
+    "spatial manipulation": {
+        "C":[
+           "can tell the exact distance and size of objects",
+           "can shrink objects slightly",
+           "can grow objects slightly"
+        ],
+        "B":[
+            "can create portals large enough to fit a paw",
+            "can shrink objects",
+            "can grow objects",
+            "can store small objects in a pocket dimension"
+        ],
+        "A":[
+            "can create portals large enough to fit a a cat's head",
+            "can shrink and grow objects",
+            "can store objects in a pocket dimension"
+        ],
+        "S":[
+            "can create portals large enough to fit a cat",
+            "can shrink and grow objects",
+            "can phase through dimensions",
+            "can store large objects in a pocket dimension"
         ]
     }
 }

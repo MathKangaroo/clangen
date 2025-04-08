@@ -108,13 +108,8 @@
             false
         ],
         "self_harm": [
-            "Allow content with self harm.",
+            "Allow content with non-suicidal self harm.",
             "This toggle enables cats to experience self harm. This does not include suicide or attempts.",
-            false
-        ],
-        "suicidal_ideation": [
-            "Allow content with suicidal ideation.",
-            "This toggle enables cats to experience suicidal ideation. This does not include suicide or attempts.",
             false
         ],
         "psychosis": [
