@@ -3048,6 +3048,14 @@ class Cat:
             return
         
         misdiagnosis = False
+        try:
+            with open("resources/dicts/conditions/misdiagnoses.json", 'r', encoding="utf-8") as read_file:
+                misdiagnoses = ujson.loads(read_file.read())
+        except Exception as e:
+            print(
+                f"WARNING: There was an error reading the misdiagnoses file.\n",
+                e,
+            )
         if game.settings["allow_triggers"]:
             #check for trigger toggle 
             if game.settings["misdiagnosis"]:
