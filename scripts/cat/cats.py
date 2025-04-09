@@ -3356,7 +3356,8 @@ class Cat:
                 if self.is_plural():
                     self.alters = rel_data["alters"]
                     self.update_alters()
-                self.awakened = rel_data["awakened"]
+                if rel_data["awakened"]["type"] in ["esper", "guide", "enhanced esper"]:
+                    self.awakened = rel_data["awakened"]
 
             if "paralyzed" in self.permanent_condition and not self.pelt.paralyzed:
                 self.pelt.paralyzed = True
