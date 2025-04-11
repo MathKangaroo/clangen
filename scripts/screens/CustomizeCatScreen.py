@@ -349,6 +349,7 @@ class CustomizeCatScreen(Screens):
         if self.the_cat.awakened and 'FLAMES' not in self.skins:
             self.skins += copy(Pelt.skin_sprites_magic)
             self.skins += copy(Pelt.skin_sprites_elemental)
+            self.skins += ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW']
         self.skin_dropdown = create_dropdown((640, 360), (135, 40), create_options_list(self.skins, "upper"),
                                              get_selected_option(self.the_cat.pelt.skin, "upper"))
         self.eye_colour1_dropdown = create_dropdown((320, 445), (135, 40),

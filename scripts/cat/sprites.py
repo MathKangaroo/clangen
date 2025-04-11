@@ -124,7 +124,7 @@ class Sprites:
 
         for x in [
             'lineart', 'lineartdf', 'lineartdead', 'blep', 'booties', 'wheels', 'disabilityaccs', 'disabilityscars',
-            'eyes', 'eyes2', 'skin', 'skin_magic' , 'skin_elemental','eyesdark', 'dark2', 'eyesvivid', 'vivid2', 'towheeeyes', 'towheeeyes2',
+            'eyes', 'eyes2', 'skin', 'skin_magic' , 'skin_elemental', 'skin_bingle','eyesdark', 'dark2', 'eyesvivid', 'vivid2', 'towheeeyes', 'towheeeyes2',
             'scars', 'missingscars', 'wild', 
             'medcatherbs', 'beetleeyes', 'beetleeyes2', 'beetlemore', 'beetlemore2',
             'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
@@ -461,6 +461,12 @@ class Sprites:
             ['FROZEN', 'STONE', 'TREE', 'PURPLESPARKS', 'PURPLEGLOW', 'SHADOW'],
             ['YELLOWGLOW', 'FAEMANE', 'GREENGLOW', 'SHADOWBEAST', 'SPARKLES2', 'ROOTS']
         ]
+        
+        skin_colors_bingle = [
+            ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW', 'NULL1', 'NULL2', 'NULL3'],
+            ['NULL4', 'NULL5', 'NULL6','NULL7', 'NULL8', 'NULL9'],
+            ['NULL10', 'NULL11', 'NULL12', 'NULL13', 'NULL14', 'NULL15']
+        ]
 
         for row, colors in enumerate(skin_colors):
             for col, color in enumerate(colors):
@@ -473,6 +479,10 @@ class Sprites:
         for row, colors in enumerate(skin_colors_elemental):
             for col, color in enumerate(colors):
                 self.make_group('skin_elemental', (col, row), f"skin_elemental{color}")
+        
+        for row, colors in enumerate(skin_colors_bingle):
+            for col, color in enumerate(colors):
+                self.make_group('skin_bingle', (col, row), f"skin_bingle{color}")
 
         self.load_scars()
         self.load_symbols()
