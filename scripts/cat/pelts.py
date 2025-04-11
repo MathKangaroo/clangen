@@ -636,7 +636,7 @@ class Pelt:
     skin_sprites_elemental = ['FLAMES2', 'BUBBLES2', 'VINES', 'WIND', 'LIGHTNING', 'BLUEFLAMES', 'FROZEN', 'STONE', 'TREE',
                     'PURPLESPARKS', 'PURPLEGLOW', 'SHADOW', 'YELLOWGLOW', 'FAEMANE', 'GREENGLOW', 'SHADOWBEAST', 'SPARKLES2', 'ROOTS']
     
-    skin_sprites_bingle = ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW', 'NULL1', 'NULL2', 'NULL3', 'NULL4', 'NULL5', 'NULL6',
+    skin_sprites_bingle = ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW', 'THIRDEYE', 'CRYSTALS', 'FOXTAIL', 'NULL4', 'NULL5', 'NULL6',
                     'NULL7', 'NULL8', 'NULL9', 'NULL10', 'NULL11', 'NULL12', 'NULL13', 'NULL14', 'NULL15']
 
     """Holds all appearance information for a cat. """

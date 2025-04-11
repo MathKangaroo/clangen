@@ -463,7 +463,7 @@ class Sprites:
         ]
         
         skin_colors_bingle = [
-            ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW', 'NULL1', 'NULL2', 'NULL3'],
+            ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW', 'THIRDEYE', 'CRYSTALS', 'FOXTAIL'],
             ['NULL4', 'NULL5', 'NULL6','NULL7', 'NULL8', 'NULL9'],
             ['NULL10', 'NULL11', 'NULL12', 'NULL13', 'NULL14', 'NULL15']
         ]
