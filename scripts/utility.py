@@ -2163,12 +2163,13 @@ def event_text_adjust(
     if "m_c" in text:
         if main_cat:
             cat_name = str(main_cat.name)
-            if main_cat.is_plural():
-                if main_cat.front:
-                    name = str(main_cat.front)
-                    if len(main_cat.alters) > 0:
-                        if name != cat_name:
-                            cat_name = name + " (" + str(main_cat.name) + ")"
+            if game.switches["cur_screen"] != "change gender screen":
+                if main_cat.is_plural():
+                    if main_cat.front:
+                        name = str(main_cat.front)
+                        if len(main_cat.alters) > 0:
+                            if name != cat_name:
+                                cat_name = name + " (" + str(main_cat.name) + ")"
 
             replace_dict["m_c"] = (str(cat_name), choice(main_cat.pronouns))
 
