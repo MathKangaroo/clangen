@@ -257,7 +257,7 @@ class Cat:
         self.permanent_condition = {}
         self.alters = []
         self.front = None
-        self.awakened = {}
+        self.awakened = None
         self.guided = False
         self.df = False
         self.experience_level = None
@@ -407,7 +407,7 @@ class Cat:
                     powers_dict = ujson.loads(read_file.read())
             if self.awakened["type"] == "guide":
                 #powerless shows twice bc we want it to be twice as common. visible guides
-                self.pelt.skin = choice(["POWERLESS1", "POWERLESS2","POWERLESS1", "POWERLESS2", "MIST","LIGHT1", "SPARKLES"])
+                self.pelt.skin = choice(["POWERLESS1", "POWERLESS2","POWERLESS1", "POWERLESS2", "MIST","LIGHT1", "SPARKLES", "SPARKLES2"])
             elif self.awakened["type"] == "esper":
                 self.pelt.skin = choice(powers_dict[self.awakened["ability"]]["skin"])
             elif self.awakened["type"] == "enhanced esper":

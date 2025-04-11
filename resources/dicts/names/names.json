@@ -651,5 +651,9 @@
 	],
 	"inappropriate_names": [
 		"wetback", "yellowface", "redface", "blackface", "brownface", "pancakeface", "yellowbone", "molesting"
-	]
+	],
+  "normal_plural_suffixes": [
+    " Collective", " System", " Pack", " Colony", " Conspiracy", " Shoal", " Swarm", " Pounce", " Clutter", " Herd",
+    " Band", " Murder", " Charm", " Skulk", " Flock", " Cloud", " Pride", " Plague", " Nest", " Pod", " Family", " Mischief"
+  ]
 }

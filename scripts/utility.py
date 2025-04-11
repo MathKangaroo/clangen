@@ -2245,7 +2245,11 @@ def event_text_adjust(
 
     # med_name
     if "med_name" in text:
-        med = choice(get_alive_status_cats(Cat, ["medicine cat"], working=True))
+        meds = get_alive_status_cats(Cat, ["medicine cat"], working=True)
+        if len(meds) == 0:
+            med = choice(get_alive_status_cats(Cat, ["medicine cat","medicine cat apprentice"], working=True))
+        else:
+            med = choice(meds)
         replace_dict["med_name"] = (str(med.name), choice(med.pronouns))
 
     # assign all names and pronouns
@@ -2836,9 +2840,12 @@ def generate_sprite(
         if cat.pelt.skin in ['BLACK', 'PINK', 'DARKBROWN', 'BROWN', 'LIGHTBROWN', 'DARK', 'DARKGREY', 'GREY', 'DARKSALMON',
                     'SALMON', 'PEACH', 'DARKMARBLED', 'MARBLED', 'LIGHTMARBLED', 'DARKBLUE', 'BLUE', 'LIGHTBLUE', 'RED']:
             new_sprite.blit(sprites.sprites["skin" + cat.pelt.skin + cat_sprite], (0, 0))
-        else:
+        elif cat.pelt.skin in ['FLAMES', 'FLOWERS', 'LIGHT1', 'SPARKLES', 'INK', 'MIST', 'MAGMA', 'SMOKE', 'PURPLEFLAMES',
+                    'INK2', 'THUNDERSTORM', 'LIGHT2', 'DEATHBERRIES', 'SKELETON', 'FLESH', 'POWERLESS1', 'POWERLESS2', 'BUBBLES']:
             new_sprite.blit(sprites.sprites["skin_magic" + cat.pelt.skin + cat_sprite], (0, 0))
-
+        else:
+            new_sprite.blit(sprites.sprites["skin_elemental" + cat.pelt.skin + cat_sprite], (0, 0))
+       
         if not scars_hidden:
             for scar in cat.pelt.scars:
                 if scar in cat.pelt.scars2:
