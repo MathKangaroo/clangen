@@ -2875,6 +2875,26 @@ def generate_sprite(
                                 sprites.sprites["acc_wild" + accessory + cat_sprite],
                                 (0, 0),
                             )
+                        elif accessory in cat.pelt.booties:
+                            new_sprite.blit(
+                                sprites.sprites['booties' + accessory + cat_sprite], (0, 0)
+                            )
+                        elif accessory in cat.pelt.wheels:
+                            new_sprite.blit(
+                                sprites.sprites['wheels' + accessory + cat_sprite], (0, 0)
+                            )
+                        elif accessory in cat.pelt.toy_accessories:
+                            new_sprite.blit(
+                                sprites.sprites['acc_dismod' + accessory + cat_sprite], (0, 0)
+                            )
+                        elif accessory in cat.pelt.blankie_accessories:
+                            new_sprite.blit(
+                                sprites.sprites['acc_dismod' + accessory + cat_sprite], (0, 0)
+                            )
+                        elif accessory in cat.pelt.flag_accessories:
+                            new_sprite.blit(
+                                sprites.sprites['acc_dismod' + accessory + cat_sprite], (0, 0)
+                            )
                         elif accessory in cat.pelt.collars:
                             new_sprite.blit(
                                 sprites.sprites["collars" + accessory + cat_sprite], (0, 0)
@@ -2919,6 +2939,7 @@ def generate_sprite(
                             new_sprite.blit(
                                 sprites.sprites["acc_aliveInsect" + accessory + cat_sprite], (0, 0)
                             )
+                        
                         elif accessory in cat.pelt.fruit_accessories:
                             new_sprite.blit(
                                 sprites.sprites["acc_fruit" + accessory + cat_sprite], (0, 0)
@@ -2934,6 +2955,14 @@ def generate_sprite(
                         elif accessory in cat.pelt.ster_accessories:
                             new_sprite.blit(
                                 sprites.sprites["acc_ster" + accessory + cat_sprite], (0, 0)
+                            )
+                        elif accessory in cat.pelt.sailormoon:
+                            new_sprite.blit(
+                                sprites.sprites["acc_sailor" + accessory + cat_sprite], (0, 0)
+                            )
+                        elif accessory in cat.pelt.randomaccessories:
+                            new_sprite.blit(
+                                sprites.sprites["acc_random" + accessory + cat_sprite], (0, 0)
                             )
         # Apply fading fog
         if (

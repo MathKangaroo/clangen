@@ -72,7 +72,7 @@ class Pelt:
         'Singlestripe': 'singlestripe',
         'Sterstripe': 'sterstripe',
         'Sillystripe': 'sillystripe',
-        'Dancestripe': 'sillystripe',
+        'Dancestripe': 'dancestripe',
         'Mimistripe': 'mimistripe',
         'Masked': 'masked',
         'Stermasked': 'stermasked',
@@ -209,7 +209,7 @@ class Pelt:
     physical_trait_mane = ['MANESILKY', 'MANEFLUFFY', 'MANERUFF', 'MANEHORSE', 'MANELION', 'MANEBRAIDED', 'MANECOBRA']
     physical_trait_fur_type = ['FURWAVY', 'FURCURLY', 'FURPATCHY', 'FURKINK', 'FURSHAGGY']
     physical_trait_muzzle_type = ['MUZZLESHORT', 'MUZZLEBROAD', 'MUZZLELONG']
-    physical_trait_tail = ['TAILCROOKED', 'TAILLONG', 'TAILFEATHER', 'TAILCURL', 'TAILTUFT', 'TAILFORKED']
+    physical_trait_tail = ['TAILCROOKED', 'TAILLONG', 'TAILFEATHER', 'TAILCURL', 'TAILTUFT', 'TAILFORKED', 'TAILFOX']
     physical_trait_bodyfur = ['BACKFLUFF', 'BACKRIDGE', 'SHOULDERTUFT']
     physical_trait_misc = ['EARTUFTS', 'POLYDACTYL', 'LASHESUPPER', 'LASHESLOWER', 'WHISKERSLONG', 'CLAWSLONG', 'LEGTUFT', 'LARGEPAWS', 'SMALLPAWS', 'CLAWLESS', 'CLAWSSHORT', 'PAWTUFT',
                            "BIGEYES", "SMALLEYES", "BIGNOSE", "HEARTSHAPEDNOSE", 'LONGLEGS', 'SHORTLEGS',
@@ -293,9 +293,17 @@ class Pelt:
         "PINKS", "PURPLES", "MULTIS", "INDIGOS",
         "CRIMSONH", "BLUEH", "YELLOWH", "CYANH", "REDH", "LIMEH",
         "GREENH", "RAINBOWH", "BLACKH", "SPIKESH", "WHITEH", "PINKH",
-        "PURPLEH", "MULTIH", "INDIGOH"
+        "PURPLEH", "MULTIH", "INDIGOH",
+        "CRIMSONBOO", "MAGENTABOO", "PINKBOO", "BLOODORANGEBOO", "ORANGEBOO", "YELLOWBOO",
+        "LIMEBOO", "DARKGREENBOO", "GREENBOO", "TEALBOO", "LIGHTBLUEBOO", "BLUEBOO",
+        "DARKBLUEBOO", "LIGHTPURPLEBOO", "DARKPURPLEBOO", "VIBRANTPURPLEBOO", "PINKREDBOO",
+        "WHITEBOO", "LIGHTGRAYBOO", "GRAYBOO", "BROWNBOO", "BLACKBOO"
         
     ]
+    randomaccessories = ["DOGWOOD", "TREESTAR", "RACCOON LEAF", "WHITE RACCOON LEAF", "CHERRY BLOSSOM", "DAISY BLOOM",
+            "FEATHERS", "RED ROSE", "WHITE ROSE", "PEBBLE", "PEBBLE COLLECTION", "GOLDEN FLOWER",
+            "DANDELIONS", "DANDELION PUFFS", "DICE", "GOLDEN EARRINGS"
+                    ]
     flower_accessories = ["DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY",
                      "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF",
                       "PURPLE GLORY", "YELLOW PRIMROSE", "HESPERIS",
@@ -326,6 +334,9 @@ class Pelt:
                     ]
 
     fruit_accessories = ["OGRASPBERRY", "BLACKBERRY", "GOLDEN RASPBERRY", "CHERRY", "YEW"
+                    ]
+    sailormoon = ["MOON", "MERCURY", "MARS", "JUPITER", "VENUS", "TUXEDO MASK",
+                  "URANUS", "NEPTUNE", "PLUTO", "SATURN", "MINI MOON", "CRYSTAL BALL"
                     ]
 
     crafted_accessories = ["WILLOWBARK BAG", "CLAY DAISY POT", "CLAY AMANITA POT", "CLAY BROWNCAP POT", "BIRD SKULL", "LEAF BOW"
@@ -441,12 +452,34 @@ class Pelt:
         "TORMENTIL",
         "BRIGHTEYE",
         "LAVENDERWREATH",
-        "YARROW"
+        "YARROW",
+        "MOON",
+        "MERCURY",
+        "MARS",
+        "JUPITER",
+        "VENUS",
+        "URANUS",
+        "NEPTUNE",
+        "PLUTO",
+        "SATURN",
+        "MINI MOON",
+        "CHERRY BLOSSOM",
+        "DAISY BLOOM",
+        "PEBBLE", 
+        "GOLDEN FLOWER",
+        "DANDELIONS",
+        "DANDELION PUFFS",
+        "DICE",
+        "GOLDEN EARRINGS"
     ]
 
     body_accessories = [
         "HERBS",
         "PETALS",
+        "RED ROSE",
+        "WHITE ROSE",
+        "PEBBLE COLLECTION",
+        "FEATHERS",
         "DRY HERBS",
         "SNAKE",
         "RIBS",
@@ -516,6 +549,10 @@ class Pelt:
         "CLAY DAISY POT",
         "CLAY AMANITA POT",
         "CLAY BROWNCAP POT",
+        "CRYSTAL BALL",
+        "TUXEDO MASK",
+        "RACCOON LEAF",
+        "WHITE RACCOON LEAF",
         "WHEELS", "BALL", "MOUSE", "BONE", "MOSSBLANKIE", "AUTISMFLAG", "DISFLAG", "ZEBFLAG"
         "CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT", "GREENBOOT",
         "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT", "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"
@@ -535,6 +572,8 @@ class Pelt:
         "OLD SILVER WATCH",
         "OLD GOLD WATCH",
         "BAUBLES",
+        "DOGWOOD",
+        "TREESTAR",
         "SEAWEED",
         "CRIMSONBOWS",
         "BLUEBOWS",
