@@ -2074,6 +2074,14 @@ class ProfileScreen(Screens):
             x.kill()
         self.condition_data = {}
         for con in all_illness_injuries[self.conditions_page]:
+            
+            if con[0] in self.the_cat.permanent_condition:
+                if "misdiagnosis" in self.the_cat.permanent_condition[con[0]] and self.the_cat.permanent_condition[con[0]]["misdiagnosis"] is not False: 
+                    condition_name = self.change_condition_name(con[0], self.the_cat.permanent_condition[con[0]]["misdiagnosis"])
+                else:
+                    condition_name = self.change_condition_name(con[0])
+            else:
+                condition_name = self.change_condition_name(con[0])
             # Background Box
             self.condition_data[f"bg_{con}"] = pygame_gui.elements.UIPanel(
                 ui_scale(pygame.Rect((x_pos, 13), (142, 142))),
@@ -2084,7 +2092,7 @@ class ProfileScreen(Screens):
             )
 
             self.condition_data[f"name_{con}"] = UITextBoxTweaked(
-                con[0],
+                condition_name,
                 ui_scale(pygame.Rect((0, 0), (120, -1))),
                 line_spacing=0.90,
                 object_id="#text_box_30_horizcenter",
@@ -2222,7 +2230,7 @@ class ProfileScreen(Screens):
         self.condition_container = pygame_gui.core.UIContainer(
             ui_scale(pygame.Rect((89, 471), (624, 151))), MANAGER
         )
-        all_illness_injuries = []
+        all_alters = []
         # gather a list of all the conditions and info needed.
         if self.the_cat.is_plural:
             if "shattered soul" in self.the_cat.permanent_condition:
@@ -2232,7 +2240,7 @@ class ProfileScreen(Screens):
                 else:
                     minmoons = 0
                 if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
-                    all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
+                    all_alters.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
             elif "budding spirit" in self.the_cat.permanent_condition:
                 con = "budding spirit"
                 if self.the_cat.permanent_condition[con]["born_with"] is True:
@@ -2240,7 +2248,7 @@ class ProfileScreen(Screens):
                 else:
                     minmoons = 0
                 if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
-                    all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
+                    all_alters.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
             elif "fractured spirit" in self.the_cat.permanent_condition:
                 con = "fractured spirit"
                 if self.the_cat.permanent_condition[con]["born_with"] is True:
@@ -2248,11 +2256,11 @@ class ProfileScreen(Screens):
                 else:
                     minmoons = 0
                 if self.the_cat.permanent_condition[con]["moons_until"] <= minmoons:
-                    all_illness_injuries.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
+                    all_alters.extend([(i["name"], self.get_alter_details(i)) for i in self.the_cat.alters])
 
-        all_illness_injuries = chunks(all_illness_injuries, 4)
+        all_alters = chunks(all_alters, 4)
 
-        if not all_illness_injuries:
+        if not all_alters:
             self.conditions_page = 0
             self.right_conditions_arrow.disable()
             self.left_conditions_arrow.disable()
@@ -2261,8 +2269,8 @@ class ProfileScreen(Screens):
         # Adjust the page number if it somehow goes out of range.
         if self.conditions_page < 0:
             self.conditions_page = 0
-        elif self.conditions_page > len(all_illness_injuries) - 1:
-            self.conditions_page = len(all_illness_injuries) - 1
+        elif self.conditions_page > len(all_alters) - 1:
+            self.conditions_page = len(all_alters) - 1
 
         # Disable the arrow buttons
         if self.conditions_page == 0:
@@ -2270,7 +2278,7 @@ class ProfileScreen(Screens):
         else:
             self.left_conditions_arrow.enable()
 
-        if self.conditions_page >= len(all_illness_injuries) - 1:
+        if self.conditions_page >= len(all_alters) - 1:
             self.right_conditions_arrow.disable()
         else:
             self.right_conditions_arrow.enable()
@@ -2279,7 +2287,7 @@ class ProfileScreen(Screens):
         for x in self.condition_data.values():
             x.kill()
         self.condition_data = {}
-        for con in all_illness_injuries[self.conditions_page]:
+        for con in all_alters[self.conditions_page]:
             # Background Box
             self.condition_data[f"bg_{con}"] = pygame_gui.elements.UIPanel(
                 ui_scale(pygame.Rect((x_pos, 13), (142, 142))),
@@ -2317,6 +2325,18 @@ class ProfileScreen(Screens):
 
             x_pos += 152
         return
+    
+    @staticmethod
+    def change_condition_name(condition, misdiagnosis=None):
+        if game.settings["allow_triggers"] and game.settings["misdiagnosis"]:
+            if misdiagnosis is not None:
+                condition = condition.replace(condition, misdiagnosis)
+                                                            
+        if not game.settings["warriorified names"]:
+            if condition in Cat.dad_names:
+                condition = condition.replace(condition, Cat.dad_names.get(condition))
+
+        return condition
     
     def get_alter_details(self, alter):
         text_list = []
