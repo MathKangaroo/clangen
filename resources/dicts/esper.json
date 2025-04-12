@@ -60,7 +60,7 @@
     },
     "cyrokinesis": {
         "power": "can manipulate and control ice",
-        "skin":["MIST","SPARKLES", "FROZEN"],
+        "skin":["MIST","SPARKLES", "FROZEN", "FROSTGLOW", "CRYSTALS"],
         "C": [
             "is ice cold to the touch",
             "sneezes snowflakes"
@@ -82,7 +82,7 @@
     },
     "geokinesis": {
         "power": "can manipulate and control rocks",
-        "skin":["LIGHT1","ROOTS","MAGMA", "STONE"],
+        "skin":["CRYSTALS","ROOTS","MAGMA", "STONE"],
         "C": [
             "can summon and control pebbles",
             "can control sand"
@@ -158,7 +158,7 @@
     },
     "shapeshifting": {
         "power": "can transform into other animals",
-        "skin":["FLESH", "SKELETON", "SHADOWBEAST", "INK","INK2", "FAEMANE"],
+        "skin":["FLESH", "SKELETON", "SHADOWBEAST", "INK","INK2", "FAEMANE","GREENCHIMERA", "CORALCHIMERA", "FOXTAIL"],
         "C": [
            "can change fur color at will",
            "can change eye color at will",
@@ -276,7 +276,7 @@
     },
     "telekinesis": {
         "power": "can move things using the mind",
-        "skin":["PURPLEFLAMES", "SPARKLES", "BLUEFLAMES", "SPARKLES2"],
+        "skin":["PURPLEFLAMES", "SPARKLES", "BLUEFLAMES", "SPARKLES2", "THIRDEYE"],
         "C": [
             "can push small objects with a thought",
             "can float small objects"
@@ -298,7 +298,7 @@
     },
     "chimera": {
         "power": "has body part(s) of a different animal",
-        "skin":["FLESH", "SKELETON", "INK", "INK2", "SHADOWBEAST", "FAEMANE"],
+        "skin":["FLESH", "SKELETON", "INK", "INK2", "SHADOWBEAST", "GREENCHIMERA", "CORALCHIMERA", "FOXTAIL"],
         "C": [
             "has lizard eyes",
             "has a fox tail",
@@ -311,7 +311,8 @@
             "has two tails",
             "has rabbit ears",
             "has antlers",
-            "has a third eye"
+            "has a third eye",
+            "has a snake for a tail"
         ],
         "A": [
             "has bird wings",
@@ -322,7 +323,8 @@
             "has spider legs",
             "has fins",
             "is covered in armored scales",
-            "has three fox tails"
+            "has three fox tails",
+            "has a snake for a tail"
 
         ],
         "S": [
@@ -337,7 +339,7 @@
     },
     "invisibility": {
         "power": "can turn invisible",
-        "skin":["MIST", "LIGHT1", "SPARKLES", "SPARKLES2", "BLUEFLAMES"],
+        "skin":["MIST", "LIGHT1", "SPARKLES", "SPARKLES2", "BLUEFLAMES", "FROSTGLOW"],
         "C": [
             "can become translucent",
             "appears to be blurry"
@@ -589,7 +591,7 @@
     },
     "telempathy":  {
         "power": "can broadcast and sense emotions",
-        "skin":["SPARKLES", "LIGHT1", "SPARKLES2"],
+        "skin":["SPARKLES", "LIGHT1", "SPARKLES2", "THIRDEYE"],
         "C": [
             "can sense strong emotions",
             "can broadcast strong emotions"
@@ -614,7 +616,7 @@
     },
     "astral projection": {
         "power": "can project souls and spirits",
-        "skin":["SPARKLES", "PURPLEFLAMES", "SPARKLES2", "BLUEFLAMES"],
+        "skin":["SPARKLES", "PURPLEFLAMES", "SPARKLES2", "BLUEFLAMES", "THIRDEYE"],
         "C": [
             "can see echoes of the past",
             "can see ghosts"
@@ -663,7 +665,7 @@
     },
     "flesh manipulation": {
         "power": "can heal and manipulate flesh and blood",
-        "skin":["FLESH", "SKELETON"],
+        "skin":["FLESH", "SKELETON", "INK"],
         "C":[
             "can heal scrapes",
             "can regenerate from minor injuries"
