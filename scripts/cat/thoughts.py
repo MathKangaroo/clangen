@@ -1,5 +1,6 @@
 import traceback
 from random import choice
+from scripts.game_structure.game_essentials import game
 
 import ujson
 
