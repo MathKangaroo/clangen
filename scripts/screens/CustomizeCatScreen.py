@@ -315,9 +315,12 @@ class CustomizeCatScreen(Screens):
         #                                              DROPDOWN SETUP START                                            #
         # ------------------------------------------------------------------------------------------------------------"""
         
-        magiccolors = ['CSAgouti', 'CSBengal', 'CSClassic', 'CSMackerel', 'CSMarbled', 'CSMasked',
-                            'CSRosette', 'CSSingle', 'CSSinglestripe', 'CSSmoke', 'CSSokoke',
-                            'CSSpeckled', 'CSTabby', 'CSTicked']
+        magiccolors = ["CSSingle", "CSTabby", "CSTicked", "CSMackerel", "CSClassic",
+                       "CSSpeckled", "CSAgouti", "CSSokoke", "CSRosette", "CSSmoke",
+                       "CSSinglestripe", "CSMarbled", "CSBengal", "CSMasked",
+                       "CS2Single", "CS2Tabby", "CS2Ticked", "CS2Mackerel", "CS2Classic",
+                       "CS2Speckled", "CS2Agouti", "CS2Sokoke", "CS2Rosette", "CS2Smoke",
+                       "CS2Singlestripe", "CS2Marbled", "CS2Bengal", "CS2Masked"]
         if not self.the_cat.awakened and 'CSAgouti' in self.pelt_names:
             for item in self.pelt_names:
                 if item in magiccolors:

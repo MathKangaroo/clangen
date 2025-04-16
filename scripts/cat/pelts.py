@@ -18,6 +18,7 @@ class Pelt:
         'DanceSingle': 'dancesingle',
         'MimiSingle': 'mimisingle',
         'CSSingle': 'cs_single',
+        'CS2Single': 'cs_single2',
         'TwoColour': 'single',
         'Tabby': 'tabby',
         'Stertabby': 'stertabby',
@@ -25,74 +26,87 @@ class Pelt:
         'Dancetabby': 'dancetabby',
         'Mimitabby': 'mimitabby',
         'CSTabby': 'cs_tabby',
+        'CS2Tabby': 'cs_tabby2',
         'Marbled': 'marbled',
         'Stermarbled': 'stermarbled',
         'Sillymarbled': 'sillymarbled',
         'Dancemarbled': 'dancemarbled',
         'Mimimarbled': 'mimimarbled',
         'CSMarbled': 'cs_marbled',
+        'CS2Marbled': 'cs_marbled2',
         'Rosette': 'rosette',
         'Sterrosette': 'sterrosette',
         'Sillyrosette': 'sillyrosette',
         'Dancerosette': 'dancerosette',
         'Mimirosette': 'mimirosette',
         'CSRosette': 'cs_rosette',
+        'CS2Rosette': 'cs_rosette2',
         'Smoke': 'smoke',
         'Stersmoke': 'stersmoke',
         'Sillysmoke': 'sillysmoke',
         'Dancesmoke': 'dancesmoke',
         'Mimismoke': 'mimismoke',
         'CSSmoke': 'cs_smoke',
+        'CS2Smoke': 'cs_smoke2',
         'Ticked': 'ticked',
         'Sterticked': 'sterticked',
         'Sillyticked': 'sillyticked',
         'Danceticked': 'danceticked',
         'Mimiticked': 'mimiticked',
         'CSTicked': 'cs_ticked',
+        'CS2Ticked': 'cs_ticked2',
         'Speckled': 'speckled',
         'Sterspeckled': 'sterspeckled',
         'Sillyspeckled': 'sillyspeckled',
         'Dancespeckled': 'dancespeckled',
         'Mimispeckled': 'mimispeckled',
         'CSSpeckled': 'cs_speckled',
+        'CS2Speckled': 'cs_speckled2',
         'Bengal': 'bengal',
         'Sterbengal': 'sterbengal',
         'Sillybengal': 'sillybengal',
         'Dancebengal': 'dancebengal',
         'Mimibengal': 'mimibengal',
         'CSBengal': 'cs_bengal',
+        'CS2Bengal': 'cs_bengal2',
         'Mackerel': 'mackerel',
         'Stermackerel': 'stermackerel',
         'Sillymackerel': 'sillymackerel',
         'Dancemackerel': 'dancemackerel',
         'Mimimackerel': 'mimimackerel',
         'CSMackerel': 'cs_mackerel',
+        'CS2Mackerel': 'cs_mackerel2',
         'Classic': 'classic',
         'Sterclassic': 'sterclassic',
         'Sillyclassic': 'sillyclassic',
         'Danceclassic': 'danceclassic',
         'Mimiclassic': 'mimiclassic',
         'CSClassic': 'cs_classic',
+        'CS2Classic': 'cs_classic2',
         'Sokoke': 'sokoke',
         'Stersokoke': 'stersokoke',
         'Sillysokoke': 'sillysokoke',
         'Dancesokoke': 'dancesokoke',
         'Mimisokoke': 'mimisokoke',
         'CSSokoke': 'cs_sokoke',
+        'CS2Sokoke': 'cs_sokoke2',
         'Agouti': 'agouti',
         'CSAgouti': 'cs_agouti',
+        'CS2Agouti': 'cs_agouti2',
         'Singlestripe': 'singlestripe',
         'Sterstripe': 'sterstripe',
         'Sillystripe': 'sillystripe',
         'Dancestripe': 'dancestripe',
         'Mimistripe': 'mimistripe',
         'CSSinglestripe': 'cs_singlestripe',
+        'CS2Singlestripe': 'cs_singlestripe2',
         'Masked': 'masked',
         'Stermasked': 'stermasked',
         'Sillymasked': 'sillymasked',
         'Dancemasked': 'dancemasked',
         'Mimimasked': 'mimimasked',
         'CSMasked': 'cs_masked',
+        'CS2Masked': 'cs_masked2',
         'Brindle': 'brindle',
         'Wolf': 'wolf',
         'Wildcat': 'wildcat',
@@ -186,7 +200,11 @@ class Pelt:
                    'sterspeckled', 'sillyspeckled', 'dancespeckled', 'mimispeckled',
                    'stertabby', 'sillytabby', 'dancetabby', 'mimitabby',
                    'sterticked', 'sillyticked', 'danceticked', 'mimiticked', 'abyssinian', 'clouded', 'doberman', 'ghosttabby', 'merle',
-                   'monarch', 'oceloid', 'pinstripetabby', 'snowflake']
+                   'monarch', 'oceloid', 'pinstripetabby', 'snowflake',
+                   'cs_single', 'cs_tabby', 'cs_bengal', 'cs_marbled', 'cs_ticked', 'cs_smoke', 'cs_rosette', 'cs_speckled', 'cs_mackerel',
+                   'cs_classic', 'cs_sokoke', 'cs_agouti', 'cs_singlestripe', 'cs_masked',
+                   'cs_single2', 'cs_tabby2', 'cs_bengal2', 'cs_marbled2', 'cs_ticked2', 'cs_smoke2', 'cs_rosette2', 'cs_speckled2', 'cs_mackerel2',
+                   'cs_classic2', 'cs_sokoke2', 'cs_agouti2', 'cs_singlestripe2', 'cs_masked2']
 
     pelt_length = ["short", "medium", "long"]
     #please dontjudge the eye_colours section
@@ -635,8 +653,11 @@ class Pelt:
               "Masked", "Stermasked", "Sillymasked", "Dancemasked", "Mimimasked", "Maned", "Ocelot", "Cheetah", "Wildcat", "Wolf", "Finleappatches", "Dalmatian", "Abyssinian", "Clouded", "Snowflake", "Oceloid", "Monarch"]
     torties = ["Tortie", "Calico"]
     magic = ["CSSingle", "CSTabby", "CSTicked", "CSMackerel", "CSClassic",
-             "CSSpeckled", "CSAgouti", "CSSokoke", "CSRosette", "ColorSmoke",
-             "CSSinglestripe", "CSMarbled", "CSBengal", "CSMasked"]
+             "CSSpeckled", "CSAgouti", "CSSokoke", "CSRosette", "CSSmoke",
+             "CSSinglestripe", "CSMarbled", "CSBengal", "CSMasked",
+             "CS2Single", "CS2Tabby", "CS2Ticked", "CS2Mackerel", "CS2Classic",
+             "CS2Speckled", "CS2Agouti", "CS2Sokoke", "CS2Rosette", "CS2Smoke",
+             "CS2Singlestripe", "CS2Marbled", "CS2Bengal", "CS2Masked"]
     pelt_categories = [tabbies, spotted, plain, exotic, torties, magic]
 
     # SPRITE NAMES
@@ -986,27 +1007,29 @@ class Pelt:
         # ------------------------------------------------------------------------------------------------------------#
 
         # Determine pelt.
-        weights = [0, 0, 0, 0]  # Weights for each pelt group. It goes: (tabbies, spotted, plain, exotic)
+        weights = [0, 0, 0, 0, 0]  # Weights for each pelt group. It goes: (tabbies, spotted, plain, exotic, magic)
         for p_ in par_peltnames:
             if p_ in Pelt.tabbies:
-                add_weight = (50, 10, 5, 7)
+                add_weight = (50, 10, 5, 7, 0)
             elif p_ in Pelt.spotted:
-                add_weight = (10, 50, 5, 5)
+                add_weight = (10, 50, 5, 5, 0)
             elif p_ in Pelt.plain:
-                add_weight = (5, 5, 50, 0)
+                add_weight = (5, 5, 50, 0, 0)
             elif p_ in Pelt.exotic:
-                add_weight = (15, 15, 1, 45)
+                add_weight = (15, 15, 1, 45, 0)
+            elif p_ in Pelt.magic:
+                add_weight = (15, 15, 5, 25, 50)
             elif p_ is None:  # If there is at least one unknown parent, a None will be added to the set.
-                add_weight = (35, 20, 30, 15)
+                add_weight = (35, 20, 30, 15, 0)
             else:
-                add_weight = (0, 0, 0, 0)
+                add_weight = (0, 0, 0, 0, 0)
 
             for x in range(0, len(weights)):
                 weights[x] += add_weight[x]
 
         # A quick check to make sure all the weights aren't 0
         if all([x == 0 for x in weights]):
-            weights = [1, 1, 1, 1]
+            weights = [1, 1, 1, 1, 1]
 
         # Now, choose the pelt category and pelt. The extra 0 is for the tortie pelts,
         chosen_pelt = choice(
