@@ -127,7 +127,7 @@ class Sprites:
             'eyes', 'eyes2', 'skin', 'skin_magic' , 'skin_elemental', 'skin_bingle','eyesdark', 'dark2', 'eyesvivid', 'vivid2', 'towheeeyes', 'towheeeyes2',
             'scars', 'missingscars', 'wild', 
             'medcatherbs', 'beetleeyes', 'beetleeyes2', 'beetlemore', 'beetlemore2',
-            'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
+            'collars', 'bellcollars', 'bowcollars', 'nyloncollars', 'colorsplash_horn', 'colorsplash_kitsune', 'colorsplash_mermaid',
             'singlecolours', 'speckledcolours', 'tabbycolours', 'bengalcolours', 'marbledcolours',
             'rosettecolours', 'smokecolours', 'tickedcolours', 'mackerelcolours', 'classiccolours',
             'sokokecolours', 'agouticolours', 'singlestripecolours', 'maskedcolours',
@@ -152,7 +152,9 @@ class Sprites:
             'sterspeckledcolours', 'sillyspeckledcolours', 'dancespeckledcolours', 'mimispeckledcolours',
             'stertabbycolours', 'sillytabbycolours', 'dancetabbycolours', 'mimitabbycolours',
             'stertickedcolours', 'sillytickedcolours', 'dancetickedcolours', 'mimitickedcolours',
-            'boosbandanas_accessories', 'sailormoon', 'randomaccessories'
+            'boosbandanas_accessories', 'sailormoon', 'randomaccessories', 'star_chimes', 'lantern',
+            'cs_agouticolours', 'cs_bengalcolours', 'cs_classiccolours', 'cs_mackerelcolours', 'cs_marbledcolours', 'cs_maskedcolours', 'cs_rosettecolours',
+            'cs_singlecolours', 'cs_singlestripecolours', 'cs_smokecolours', 'cs_sokokecolours', 'cs_speckledcolours', 'cs_tabbycolours','cs_tickedcolours'
         ]:
             if "lineart" in x and (game.config["fun"]["april_fools"] or is_today(SpecialDate.APRIL_FOOLS)):
                 self.spritesheet(f"sprites/aprilfools{x}.png", x)
@@ -355,7 +357,10 @@ class Sprites:
             'stersokokecolours', 'sillysokokecolours', 'dancesokokecolours', 'mimisokokecolours',
             'sterspeckledcolours', 'sillyspeckledcolours', 'dancespeckledcolours', 'mimispeckledcolours',
             'stertabbycolours', 'sillytabbycolours', 'dancetabbycolours', 'mimitabbycolours',
-            'stertickedcolours', 'sillytickedcolours', 'dancetickedcolours', 'mimitickedcolours'
+            'stertickedcolours', 'sillytickedcolours', 'dancetickedcolours', 'mimitickedcolours',
+            'cs_agouticolours', 'cs_bengalcolours', 'cs_classiccolours', 'cs_mackerelcolours', 'cs_marbledcolours', 'cs_maskedcolours', 'cs_rosettecolours',
+            'cs_singlecolours', 'cs_singlestripecolours', 'cs_smokecolours', 'cs_sokokecolours', 'cs_speckledcolours', 'cs_tabbycolours','cs_tickedcolours'
+
         ]
 
         for row, colors in enumerate(color_categories):
@@ -567,6 +572,24 @@ class Sprites:
             ["CLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"]
         ]
         
+        colorsplash_horn_data = [
+            ["CSYELLOWHORN", "CSORANGEHORN", "CSGREENHORN", "CSFROSTHORN", "CSSILVERHORN", "CSCYANHORN"],
+            ["CSMAROONHORN", "CSVIOLETHORN", "CSINDIGOHORN", "CSBLUEHORN", "CSBLACKHORN"],
+            ["CSLIMEHORN", "CSGOLDHORN", "CSMOSSHORN", "CSBROWNHORN"]
+        ]
+        
+        colorsplash_kitsune_data = [
+            ["CSYELLOWKITSUNE", "CSORANGEKITSUNE", "CSGREENKITSUNE", "CSFROSTKITSUNE", "CSSILVERKITSUNE", "CSCYANKITSUNE"],
+            ["CSMAROONKITSUNE", "CSVIOLETKITSUNE", "CSINDIGOKITSUNE", "CSBLUEKITSUNE", "CSBLACKKITSUNE"],
+            ["CSLIMEKITSUNE", "CSGOLDKITSUNE", "CSMOSSKITSUNE", "CSBROWNKITSUNE"]
+        ]
+        
+        colorsplash_mermaid_data = [
+            ["CSYELLOWMERMAID", "CSORANGEMERMAID", "CSGREENMERMAID", "CSFROSTMERMAID", "CSSILVERMERMAID", "CSCYANMERMAID"],
+            ["CSMAROONMERMAID", "CSVIOLETMERMAID", "CSINDIGOMERMAID", "CSBLUEMERMAID", "CSBLACKMERMAID"],
+            ["CSLIMEMERMAID", "CSGOLDMERMAID", "CSMOSSMERMAID", "CSBROWNMERMAID"]
+        ]
+        
         sailormoon_data = [
             ["MOON", "MERCURY", "MARS", "JUPITER", "VENUS", "TUXEDO MASK"],
             ["URANUS", "NEPTUNE", "PLUTO", "SATURN", "MINI MOON", "CRYSTAL BALL"]
@@ -688,6 +711,9 @@ class Sprites:
         ]
         
         wheels_data = [["WHEELS"]]
+        
+        chime_data = [["SILVER MOON","GOLD STAR", "GOLD MOON", "MOON AND STARS"]]
+        lantern_data = [["LANTERN"]]
 
         # medcatherbs
         for row, herbs in enumerate(medcatherbs_data):
@@ -776,6 +802,22 @@ class Sprites:
         for row, bandanas in enumerate(bandanas_data):
             for col, bandana in enumerate(bandanas):
                 self.make_group('bandanas', (col, row), f'collars{bandana}')
+        
+        # colorsplash horn
+        for row, horncollars in enumerate(colorsplash_horn_data):
+            for col, horncollar in enumerate(horncollars):
+                self.make_group('colorsplash_horn', (col, row), f'acc_colorsplash{horncollar}')
+        
+        # colorsplash kitsune
+        for row, kitsunecollars in enumerate(colorsplash_kitsune_data):
+            for col, kitsunecollar in enumerate(kitsunecollars):
+                self.make_group('colorsplash_kitsune', (col, row), f'acc_colorsplash{kitsunecollar}')
+        
+        # colorsplash mermaid
+        for row, mermaidcollars in enumerate(colorsplash_mermaid_data):
+            for col, mermaidcollar in enumerate(mermaidcollars):
+                self.make_group('colorsplash_mermaid', (col, row), f'acc_colorsplash{mermaidcollar}')
+                
         # harnesses
         for row, harnesses in enumerate(harnesses_data):
             for col, harness in enumerate(harnesses):
@@ -830,6 +872,16 @@ class Sprites:
         for row, randomaccessories in enumerate(random_data):
             for col, randomaccessory in enumerate(randomaccessories):
                 self.make_group("randomaccessories", (col, row), f"acc_random{randomaccessory}")
+        
+        # chimes
+        for row, chimes in enumerate(chime_data):
+            for col, chimeaccessory in enumerate(chimes):
+                self.make_group("star_chimes", (col, row), f"acc_chime{chimeaccessory}")
+        
+        # lantern
+        for row, lanterns in enumerate(lantern_data):
+            for col, lantern in enumerate(lanterns):
+                self.make_group("lantern", (col, row), f"acc_lantern{lantern}")
 
                 
     def load_symbols(self):

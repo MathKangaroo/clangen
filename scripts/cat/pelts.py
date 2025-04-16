@@ -17,68 +17,82 @@ class Pelt:
         'SillySingle': 'sillysingle',
         'DanceSingle': 'dancesingle',
         'MimiSingle': 'mimisingle',
+        'CSSingle': 'cs_single',
         'TwoColour': 'single',
         'Tabby': 'tabby',
         'Stertabby': 'stertabby',
         'Sillytabby': 'sillytabby',
         'Dancetabby': 'dancetabby',
         'Mimitabby': 'mimitabby',
+        'CSTabby': 'cs_tabby',
         'Marbled': 'marbled',
         'Stermarbled': 'stermarbled',
         'Sillymarbled': 'sillymarbled',
         'Dancemarbled': 'dancemarbled',
         'Mimimarbled': 'mimimarbled',
+        'CSMarbled': 'cs_marbled',
         'Rosette': 'rosette',
         'Sterrosette': 'sterrosette',
         'Sillyrosette': 'sillyrosette',
         'Dancerosette': 'dancerosette',
         'Mimirosette': 'mimirosette',
+        'CSRosette': 'cs_rosette',
         'Smoke': 'smoke',
         'Stersmoke': 'stersmoke',
         'Sillysmoke': 'sillysmoke',
         'Dancesmoke': 'dancesmoke',
         'Mimismoke': 'mimismoke',
+        'CSSmoke': 'cs_smoke',
         'Ticked': 'ticked',
         'Sterticked': 'sterticked',
         'Sillyticked': 'sillyticked',
         'Danceticked': 'danceticked',
         'Mimiticked': 'mimiticked',
+        'CSTicked': 'cs_ticked',
         'Speckled': 'speckled',
         'Sterspeckled': 'sterspeckled',
         'Sillyspeckled': 'sillyspeckled',
         'Dancespeckled': 'dancespeckled',
         'Mimispeckled': 'mimispeckled',
+        'CSSpeckled': 'cs_speckled',
         'Bengal': 'bengal',
         'Sterbengal': 'sterbengal',
         'Sillybengal': 'sillybengal',
         'Dancebengal': 'dancebengal',
         'Mimibengal': 'mimibengal',
+        'CSBengal': 'cs_bengal',
         'Mackerel': 'mackerel',
         'Stermackerel': 'stermackerel',
         'Sillymackerel': 'sillymackerel',
         'Dancemackerel': 'dancemackerel',
         'Mimimackerel': 'mimimackerel',
+        'CSMackerel': 'cs_mackerel',
         'Classic': 'classic',
         'Sterclassic': 'sterclassic',
         'Sillyclassic': 'sillyclassic',
         'Danceclassic': 'danceclassic',
         'Mimiclassic': 'mimiclassic',
+        'CSClassic': 'cs_classic',
         'Sokoke': 'sokoke',
         'Stersokoke': 'stersokoke',
         'Sillysokoke': 'sillysokoke',
         'Dancesokoke': 'dancesokoke',
         'Mimisokoke': 'mimisokoke',
+        'CSSokoke': 'cs_sokoke',
         'Agouti': 'agouti',
+        'CSAgouti': 'cs_agouti',
         'Singlestripe': 'singlestripe',
         'Sterstripe': 'sterstripe',
         'Sillystripe': 'sillystripe',
         'Dancestripe': 'dancestripe',
         'Mimistripe': 'mimistripe',
+        'CSSinglestripe': 'cs_singlestripe',
         'Masked': 'masked',
         'Stermasked': 'stermasked',
         'Sillymasked': 'sillymasked',
         'Dancemasked': 'dancemasked',
         'Mimimasked': 'mimimasked',
+        'CSMasked': 'cs_masked',
         'Brindle': 'brindle',
         'Wolf': 'wolf',
         'Wildcat': 'wildcat',
@@ -343,6 +357,18 @@ class Pelt:
                     ]
     tail2_accessories = ["SEAWEED", "DAISY CORSAGE"
                     ]
+    
+    chime_accessories = ["SILVER MOON","GOLD STAR", "GOLD MOON", "MOON AND STARS"]
+    lantern_accessories = ["LANTERN"]
+    
+    colorsplash_accessories = ["CSYELLOWHORN", "CSORANGEHORN", "CSGREENHORN", "CSFROSTHORN", "CSSILVERHORN", "CSCYANHORN",
+                               "CSMAROONHORN", "CSVIOLETHORN", "CSINDIGOHORN", "CSBLUEHORN", "CSBLACKHORN", "CSLIMEHORN",
+                               "CSGOLDHORN", "CSMOSSHORN", "CSBROWNHORN", "CSYELLOWKITSUNE", "CSORANGEKITSUNE", "CSGREENKITSUNE",
+                               "CSFROSTKITSUNE", "CSSILVERKITSUNE", "CSCYANKITSUNE","CSMAROONKITSUNE", "CSVIOLETKITSUNE", "CSINDIGOKITSUNE",
+                               "CSBLUEKITSUNE", "CSBLACKKITSUNE", "CSLIMEKITSUNE", "CSGOLDKITSUNE", "CSMOSSKITSUNE", "CSBROWNKITSUNE",
+                               "CSYELLOWMERMAID", "CSORANGEMERMAID", "CSGREENMERMAID", "CSFROSTMERMAID", "CSSILVERMERMAID", "CSCYANMERMAID",
+                               "CSMAROONMERMAID", "CSVIOLETMERMAID", "CSINDIGOMERMAID", "CSBLUEMERMAID", "CSBLACKMERMAID", "CSLIMEMERMAID",
+                               "CSGOLDMERMAID", "CSMOSSMERMAID", "CSBROWNMERMAID"]
     head_accessories = [
         "MOTH WINGS",
         "ROSY MOTH WINGS",
@@ -470,7 +496,8 @@ class Pelt:
         "DANDELIONS",
         "DANDELION PUFFS",
         "DICE",
-        "GOLDEN EARRINGS"
+        "GOLDEN EARRINGS",
+        "SILVER MOON","GOLD STAR", "GOLD MOON", "MOON AND STARS"
     ]
 
     body_accessories = [
@@ -553,6 +580,7 @@ class Pelt:
         "TUXEDO MASK",
         "RACCOON LEAF",
         "WHITE RACCOON LEAF",
+        "LANTERN",
         "WHEELS", "BALL", "MOUSE", "BONE", "MOSSBLANKIE", "AUTISMFLAG", "DISFLAG", "ZEBFLAG",
         "CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT", "GREENBOOT",
         "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT", "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT"
@@ -606,7 +634,10 @@ class Pelt:
               "Marbled", "Stermarbled", "Sillymarbled", "Dancemarbled", "Mimimarbled",
               "Masked", "Stermasked", "Sillymasked", "Dancemasked", "Mimimasked", "Maned", "Ocelot", "Cheetah", "Wildcat", "Wolf", "Finleappatches", "Dalmatian", "Abyssinian", "Clouded", "Snowflake", "Oceloid", "Monarch"]
     torties = ["Tortie", "Calico"]
-    pelt_categories = [tabbies, spotted, plain, exotic, torties]
+    magic = ["CSSingle", "CSTabby", "CSTicked", "CSMackerel", "CSClassic",
+             "CSSpeckled", "CSAgouti", "CSSokoke", "CSRosette", "ColorSmoke",
+             "CSSinglestripe", "CSMarbled", "CSBengal", "CSMasked"]
+    pelt_categories = [tabbies, spotted, plain, exotic, torties, magic]
 
     # SPRITE NAMES
     single_colours = [
@@ -993,7 +1024,7 @@ class Pelt:
                 break
 
         # Determine tortie:
-        if gender == "female":
+        if gender == "female" or gender == "intersex":
             torbie = random.getrandbits(tortie_chance_f) == 1
         else:
             torbie = random.getrandbits(tortie_chance_m) == 1
@@ -1102,7 +1133,7 @@ class Pelt:
 
         # Determine pelt.
         chosen_pelt = choice(
-            random.choices(Pelt.pelt_categories, weights=(35, 20, 30, 15, 0), k=1)[0]
+            random.choices(Pelt.pelt_categories, weights=(35, 20, 30, 15, 0,0), k=1)[0]
         )
 
         # Tortie chance

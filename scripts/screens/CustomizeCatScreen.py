@@ -314,6 +314,17 @@ class CustomizeCatScreen(Screens):
         """------------------------------------------------------------------------------------------------------------#
         #                                              DROPDOWN SETUP START                                            #
         # ------------------------------------------------------------------------------------------------------------"""
+        
+        magiccolors = ['CSAgouti', 'CSBengal', 'CSClassic', 'CSMackerel', 'CSMarbled', 'CSMasked',
+                            'CSRosette', 'CSSingle', 'CSSinglestripe', 'CSSmoke', 'CSSokoke',
+                            'CSSpeckled', 'CSTabby', 'CSTicked']
+        if not self.the_cat.awakened and 'CSAgouti' in self.pelt_names:
+            for item in self.pelt_names:
+                if item in magiccolors:
+                    self.pelt_names.remove(item)
+        elif self.the_cat.awakened and 'CSAgouti' not in self.pelt_names:
+            self.pelt_names +=magiccolors
+        
         self.pelt_name_dropdown = create_dropdown((320, 125), (135, 40),
                                                   create_options_list(self.pelt_names, "capitalize"),
                                                   get_selected_option(self.the_cat.pelt.name, "capitalize"))
@@ -350,6 +361,8 @@ class CustomizeCatScreen(Screens):
             magic_skin_temp = copy(Pelt.skin_sprites_magic) + copy(Pelt.skin_sprites_elemental) + ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW','THIRDEYE', 'CRYSTALS', 'FOXTAIL','CLOUDS']
             magic_skin_temp.sort()
             self.skins += magic_skin_temp
+        elif not self.the_cat.awakened and 'FLAMES' in self.skins:
+            self.skins = copy(Pelt.skin_sprites)
         self.skin_dropdown = create_dropdown((640, 360), (135, 40), create_options_list(self.skins, "upper"),
                                              get_selected_option(self.the_cat.pelt.skin, "upper"))
         self.eye_colour1_dropdown = create_dropdown((320, 445), (135, 40),
@@ -360,6 +373,8 @@ class CustomizeCatScreen(Screens):
                                                         get_selected_option(self.the_cat.pelt.eye_colour2,
                                                                             "upper") if self.the_cat.pelt.eye_colour2 else get_selected_option(
                                                             self.the_cat.pelt.eye_colour, "upper")))
+        if self.the_cat.awakened and 'CSYELLOWHORN' not in self.accessories:
+            self.accessories += copy(Pelt.colorsplash_accessories)
         self.accessory_dropdown = create_dropdown((568, 525), (180, 40), create_options_list(self.accessories, "upper"),
                                                   get_selected_option(self.the_cat.pelt.accessory, "upper"), "dropup")
 
