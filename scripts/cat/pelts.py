@@ -291,6 +291,11 @@ class Pelt:
     ster_accessories = ["POPPYFLOWER", "JUNIPERBERRY", "DAISYFLOWER", "BORAGEFLOWER", "OAK", "BEECH", "LAURELLEAVES",
                         "COLTSFOOT", "BINDWEED", "TORMENTIL", "BRIGHTEYE", "LAVENDERWREATH", "YARROW"]
     
+    beetle_accessories = ["FROG FRIEND", "MOUSE FRIEND", "BUNNY HAT", "SMILEY HAT", "PARTY HAT", "SANTA HAT",
+                          "STICK FRIEND", "BAT WING SUIT", "PINK BOWTIE", "GRAY BOWTIE", "PINK SCARF",
+                          "BLUETAILED SKINK", "BLACKHEADED ORIOLE", "MILKSNAKE", "WORM FRIEND"]
+    beetle_feathers = ["THRUSH FEATHERS", "GOLDFINCH FEATHERS", "DOVE FEATHERS", "PEACOCK FEATHERS", "HAWK FEATHERS",
+                       "BLUE JAY FEATHERS", "ROBIN FEATHERS", "FIERY FEATHERS", "SUNSET FEATHERS", "SILVER FEATHERS"]
     # dad accessories
     toy_accessories = ["BALL", "MOUSE", "BONE"]
     blankie_accessories = ["MOSSBLANKIE"]
@@ -408,6 +413,16 @@ class Pelt:
         "BLUEBELLS",
         "LILY OF THE VALLEY",
         "SNAPDRAGON",
+        "BUNNY HAT",
+        "SMILEY HAT",
+        "PARTY HAT",
+        "SANTA HAT",
+        "STICK FRIEND",
+        "PINK SCARF",
+        "BLUETAILED SKINK",
+        "BLACKHEADED ORIOLE",
+        "MILKSNAKE",
+        "WORM FRIEND",
         "NETTLE",
         "HEATHER",
         "GORSE",
@@ -546,6 +561,11 @@ class Pelt:
         "MOSS PELT",
         "REEDS",
         "BAMBOO",
+        "BAT WING SUIT",
+        "PINK BOWTIE",
+        "GRAY BOWTIE",
+        "FROG FRIEND",
+        "MOUSE FRIEND",
         "HESPERIS",
         "GRASS SNAKE",
         "BLUE RACER",
@@ -635,7 +655,17 @@ class Pelt:
         "PINKBOWS",
         "PURPLEBOWS",
         "MULTIBOWS",
-        "INDIGOBOWS"
+        "INDIGOBOWS",
+        "THRUSH FEATHERS",
+        "GOLDFINCH FEATHERS",
+        "DOVE FEATHERS",
+        "PEACOCK FEATHERS",
+        "HAWK FEATHERS",
+        "BLUE JAY FEATHERS",
+        "ROBIN FEATHERS",
+        "FIERY FEATHERS",
+        "SUNSET FEATHERS",
+        "SILVER FEATHERS"
     ]
 
     tabbies = ["Tabby", "Ticked", "Mackerel", "Stermackerel", "Sillymackerel", "Dancemackerel", "Mimimackerel", 
