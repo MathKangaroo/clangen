@@ -641,6 +641,7 @@ class Condition_Events:
                     )
 
                 event = event_text_adjust(Cat, event, main_cat=cat)
+                event = Condition_Events.change_condition_name(event)
 
                 if cat.status == "leader":
                     event = event + " " + get_leader_life_notice()
@@ -750,6 +751,7 @@ class Condition_Events:
                     )
 
                 event = event_text_adjust(Cat, event, main_cat=cat)
+                event = Condition_Events.change_condition_name(event)
 
                 if cat.status == "leader":
                     event = event + " " + get_leader_life_notice()
@@ -793,6 +795,7 @@ class Condition_Events:
                         )
 
                 event = event_text_adjust(Cat, event, main_cat=cat)
+                event = Condition_Events.change_condition_name(event)
 
                 game.herb_events_list.append(event)
 
@@ -866,7 +869,8 @@ class Condition_Events:
                     event = possible_string_list[random_index]
                     event = event_text_adjust(
                         Cat, event, main_cat=cat, random_cat=med_cat
-                    )  # adjust the text
+                    )
+                    event = Condition_Events.change_condition_name(event)# adjust the text
 
                 if event is not None:
                     event_list.append(event)
@@ -1008,6 +1012,7 @@ class Condition_Events:
                 event = event_text_adjust(
                     Cat, event, main_cat=cat, random_cat=med_cat
                 )  # adjust the text
+                event = Condition_Events.change_condition_name(event)
                 event_list.append(event)
                 if med_cat:
                     cat_dict["r_c"] = med_cat
@@ -1032,6 +1037,76 @@ class Condition_Events:
             )
         return
 
+    @staticmethod
+    def change_condition_name(text):
+        dad_names = {
+            "a starwalker": "autistic",
+            "starwalker": "autism",
+            "an obsessive mind": "OCD",
+            "obsessive mind": "OCD",
+            "a weighted heart": "MDD",
+            "a comet spirit": "ADHD",
+            "weighted heart": "MDD",
+            "comet spirit": "ADHD",
+            "constant roaming pain": "fibromyalgia",
+            "ongoing sleeplessness": "chronic insomnia",
+            "{VERB/m_c/'re/'s} a body biter": " {VERB/m_c/have/has} a body-focused repetitive disorder",
+            "a thunderous spirit": "BPD",
+            "thunderous spirit": "BPD",
+            "an otherworldly mind": "schizophrenia",
+            "otherworldly mind": "schizophrenia",
+            "snow vision": "visual snow",
+            "kitten regressor": "age regressor",
+            "puppy regressor": "pet regressor",
+            "irritable bowels": "IBS",
+            "jellyfish joints": "HSD",
+            "loose body": "hEDS",
+            "burning light": "chronic light sensitivity",
+            "wait out the burn": "wait out the sensitivity",
+            "jumbled noise": "auditory processing disorder",
+            "some disrupted senses": "sensory processing disorder",
+            "constant rash": "eczema",
+            "a confused body": "tourette's",
+            "has falling paws": "orthostatic hypotension",
+            "with falling paws": "orthostatic hypotension",
+            "falling paws": "orthostatic hypotension",
+            "shattered soul": "DID system",
+            "budding spirit": "OSDD-1b system",
+            "fractured spirit": "OSDD-1a system",
+            "a curved spine": "scoliosis",
+            "a jumbled mind": "dyslexia",
+            "counting fog": "dyscalculia",
+            "a spirited heart": "hyperempathetic",
+            "puzzled heart": "low empathy",
+            "spirited heart": "hyperempathy",
+            "is a puzzled heart": "has low empathy",
+            "be a puzzled heart": "have low empathy",
+            "parrot chatter": "echolalia",
+            "frequent fainting": "vasovagal syncope",
+            "flooded paws": "POTS",
+            "bad knee": "meniscus tear",
+
+            "sunblindness": "light sensitivity",
+
+            "seasonal lethargy": "seasonal depression",
+            "lethargy": "depression",
+            "sleeplessness": "insomnia",
+            "ear buzzing": "tinnitus",
+            "kittenspace": "littlespace",
+            "puppyspace": "petspace",
+            "parrot chatter": "echolalia",
+            "parroting": "echolalia",
+            "thought blind": "aphantasia",
+            "faux pregnant": "phantom pregnancy",
+        }
+        
+        if not game.settings["warriorified names"]:
+            for con in dad_names:
+                if con in text:
+                    text = text.replace(con, dad_names.get(con))
+
+        return text
+    
     @staticmethod
     def determine_retirement(cat, triggered):
         if game.clan.clan_settings["retirement"] or cat.no_retire:
@@ -1250,6 +1325,7 @@ class Condition_Events:
                 event = event_text_adjust(
                     Cat, event, main_cat=cat, random_cat=med_cat
                 )  # adjust the text
+                event = Condition_Events.change_condition_name(event)
 
                 event_list.append(event)
 
