@@ -186,7 +186,7 @@
 		]
 	},
 	"cat_generation": {
-		"base_permanent_condition": 10,
+		"base_permanent_condition": 15,
 		"esper_chance": 6,
 		"multiple_permanent_conditions": 20,
 		"max_conditions_born_with": 3,
@@ -246,7 +246,11 @@
 		"become_mediator_chances": {
 			"warrior": 5000,
 			"elder": 400
-		}
+		},
+		"disabled_cat_med_chance_increase": 2,
+		"comment": [
+			"The disabled_cat_med_chance_increase (2 by default) will divide the chance of disabled cats becoming medicine cat/mediator apprentices by its value."
+		]
 	},
 	"lost_cat": {
 		"rejoin_chance": 20

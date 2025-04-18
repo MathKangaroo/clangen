@@ -1316,10 +1316,31 @@ class Events:
                         "loving",
                         "wise",
                         "faithful",
+                        #more traits
+                        "dedicated",
+                        "forgiving",
+                        "maternal",
+                        "gentle",
+                        "warm",
+                        "patient",
+                        "scholarly",
+                        "nerdy",
+                        "methodical",
+                        "teacherly"
                     ]:
-                        chance = int(chance / 1.3)
-                    if cat.is_disabled():
-                        chance = int(chance / 2)
+                        chance = int(chance / 1.5)
+                    elif cat.personality.trait in [
+                        "bloodthirsty",
+                        "absent-minded",
+                        "distracted",
+                        "destructive"
+                        
+                    ]:
+                        chance = int(chance * 1.5)
+                    
+                    if cat.is_disabled() and game.clan.clan_settings["higher_disabled_med_rates"]:
+                        chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+
 
                     if chance == 0:
                         chance = 1
