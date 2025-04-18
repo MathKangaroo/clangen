@@ -660,7 +660,7 @@ class ProfileScreen(Screens):
                 or self.the_cat.is_injured()
         ):
             self.profile_elements["med_den"].show()
-            if self.the_cat.is_ill() and "rampaging" in self.the_cat.illnesses:
+            if self.the_cat.is_ill() and "rampaging" in self.the_cat.illnesses and not self.the_cat.guided:
                 self.guide_tab_button.enable()
         else:
             self.profile_elements["med_den"].hide()

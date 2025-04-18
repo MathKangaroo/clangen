@@ -149,6 +149,7 @@ class GuideEsper(UIWindow):
             and i.status not in ["kitten", "newborn"]
             and i.is_awakened()
             and i.awakened["type"] == "guide"
+            and not i.outside
         ]
         return valid_guides
     
