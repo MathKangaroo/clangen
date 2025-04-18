@@ -1288,7 +1288,7 @@ class Events:
                     has_med_app = any(
                         cat.status == "medicine cat apprentice" for cat in med_cat_list
                     )
-
+                    
                     # assign chance to become med app depending on current med cat and traits
                     chance = game.config["roles"]["base_medicine_app_chance"]
                     if has_elder_med == med_cat_list:
@@ -1309,6 +1309,15 @@ class Events:
                         chance = int(chance / 7.125)
                     elif has_med:
                         chance = int(chance * 2.22)
+                    
+                    skills_string = str(cat.skills)
+                    med_skills = ["TEACHER", "CLEVER", "STAR", "DELIVERER", "HERBALIST", "HISTORIAN",
+                                  "PRODIGY", "VET", "SCHOLAR", "THINKER", "MEMORY", "GARDENER",
+                                  "HEALER", "LORE"]
+                    
+                    for skill in med_skills:
+                        if skill in skills_string:
+                            chance = int(chance/1.5)
 
                     if cat.personality.trait in [
                         "careful",
@@ -1319,7 +1328,7 @@ class Events:
                         #more traits
                         "dedicated",
                         "forgiving",
-                        "maternal",
+                        "nurturing",
                         "gentle",
                         "warm",
                         "patient",
@@ -1368,16 +1377,38 @@ class Events:
                                 break
 
                         chance = game.config["roles"]["mediator_app_chance"]
+                        skills_string = str(cat.skills)
+                        media_skills = ["TEACHER", "CLEVER", "SPEAKER", "MEDIATOR", "INSIGHTFUL", "KIT", "HISTORIAN",
+                                        "PATIENT", "INNOVATOR", "MATCHMAKER", "COOPERATIVE", "MUSICVIBES", "AURAVIBES",
+                                        "GIFTGIVER", "LANGUAGE", "THINKER", "SONG"]
+                    
+                        for skill in media_skills:
+                            if skill in skills_string:
+                                chance = int(chance/1.5)
                         if cat.personality.trait in [
                             "charismatic",
                             "loving",
                             "responsible",
                             "wise",
                             "thoughtful",
+                            #more traits
+                            "scheming",
+                            "calculating",
+                            "teacherly",
+                            "civil",
+                            "sympathetic",
+                            "polite",
+                            "flirty",
+                            "manipulative",
+                            "talkative",
+                            "cooperative",
+                            "philosophical"
                         ]:
                             chance = int(chance / 1.5)
-                        if cat.is_disabled():
-                            chance = int(chance / 2)
+                            
+                        if cat.is_disabled() and game.clan.clan_settings["higher_disabled_med_rates"]:
+                            chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+
 
                         if chance == 0:
                             chance = 1
@@ -1395,7 +1426,6 @@ class Events:
                             self.ceremony(cat, "apprentice")
                             self.ceremony_accessory = True
                             self.gain_accessories(cat)
-
             # graduate
             if cat.status in [
                 "apprentice",

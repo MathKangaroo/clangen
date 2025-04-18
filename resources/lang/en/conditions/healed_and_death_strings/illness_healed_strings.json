@@ -325,5 +325,8 @@
 	],
 	"rampaging": [
 		"With the help of a guide, m_c was able to overcome {PRONOUN/m_c/poss} rampage."
+	],
+	"constant nightmares": [
+		"m_c is no longer plagued with nightmares every night."
 	]
 }
