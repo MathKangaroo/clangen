@@ -321,10 +321,13 @@ class CustomizeCatScreen(Screens):
                        "CS2Single", "CS2Tabby", "CS2Ticked", "CS2Mackerel", "CS2Classic",
                        "CS2Speckled", "CS2Agouti", "CS2Sokoke", "CS2Rosette", "CS2Smoke",
                        "CS2Singlestripe", "CS2Marbled", "CS2Bengal", "CS2Masked"]
-        if not self.the_cat.awakened and 'CSAgouti' in self.pelt_names:
-            for item in self.pelt_names:
-                if item in magiccolors:
+        if not self.the_cat.awakened:
+            print("i got here")
+            for item in magiccolors:
+                if item in self.pelt_names:
+                    print(item)
                     self.pelt_names.remove(item)
+            print(self.pelt_names)
         elif self.the_cat.awakened and 'CSAgouti' not in self.pelt_names:
             self.pelt_names +=magiccolors
         
