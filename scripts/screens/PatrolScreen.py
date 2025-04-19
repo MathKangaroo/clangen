@@ -843,6 +843,8 @@ class PatrolScreen(Screens):
         for x in self.patrol_obj.patrol_cats:
             if x.personality.trait not in traits:
                 traits.append(x.personality.trait)
+            if x.personality.trait2 not in traits:
+                traits.append(x.personality.trait2)
 
             if x.skills.primary and x.skills.primary.get_short_skill() not in skills:
                 skills.append(x.skills.primary.get_short_skill())

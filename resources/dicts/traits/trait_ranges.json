@@ -858,12 +858,6 @@
             "aggression": [0, 8],
             "stability": [0, 8]  
         },
-        "desolate": {
-            "lawfulness": [4, 10],
-            "sociability": [0, 6],
-            "aggression": [0, 8],
-            "stability": [8, 16]
-        },
         "amoral": {
             "lawfulness": [0, 6],
             "sociability": [0, 8],

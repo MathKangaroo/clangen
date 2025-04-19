@@ -129,6 +129,8 @@ def json_load():
                 cat["trait"] = "principled"
             if cat["trait"] == "fun loving":
                 cat["trait"] = "fun-loving"
+            if cat["trait2"] == None:
+                cat["trait2"] = "strange"
             if "accessories" in cat:
                 cat["accessory"] = cat.pop("accessories")
 
@@ -226,6 +228,7 @@ def json_load():
                 facets = [int(i) for i in cat["facets"].split(",")]
                 new_cat.personality = Personality(
                     trait=cat["trait"],
+                    trait2=cat["trait2"],
                     kit_trait=new_cat.age in ["newborn", "kitten"],
                     lawful=facets[0],
                     social=facets[1],
@@ -234,7 +237,7 @@ def json_load():
                 )
             else:
                 new_cat.personality = Personality(
-                    trait=cat["trait"], kit_trait=new_cat.age in ["newborn", "kitten"]
+                    trait=cat["trait"],trait2=cat["trait2"], kit_trait=new_cat.age in ["newborn", "kitten"]
                 )
 
             new_cat.mentor = cat["mentor"]

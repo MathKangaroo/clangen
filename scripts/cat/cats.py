@@ -225,7 +225,7 @@ class Cat:
         self.age = None
         self.skills = CatSkills(skill_dict=skill_dict)
         self.personality = Personality(
-            trait="troublesome", lawful=0, aggress=0, stable=0, social=0
+            trait="troublesome", trait2="strange", lawful=0, aggress=0, stable=0, social=0
         )
         self.parent1 = parent1
         self.parent2 = parent2
@@ -855,7 +855,9 @@ class Cat:
         self.exiled = True
         self.outside = True
         self.status = "exiled"
-        if self.personality.trait == "vengeful":
+        bitter_traits = ["vengeful", "bloodthirsty", "cunning", "intense", "destructive", "spiteful",
+                         "remorseless", "antagonistic", "malicious", "sadistic"]
+        if self.personality.trait in bitter_traits or self.personality.trait2 in bitter_traits:
             self.thought = "Swears their revenge for being exiled"
         else:
             self.thought = "Is shocked that they have been exiled"
@@ -946,7 +948,7 @@ class Cat:
                 for x in very_high_values:
                     possible_strings.extend(
                         self.generate_events.possible_death_reactions(
-                            family_relation, x, cat.personality.trait, body_status
+                            family_relation, x, choice([cat.personality.trait,cat.personality.trait2]), body_status
                         )
                     )
 
@@ -1039,7 +1041,7 @@ class Cat:
                 for x in high_values:
                     possible_strings.extend(
                         self.generate_events.possible_death_reactions(
-                            family_relation, x, cat.personality.trait, body_status
+                            family_relation, x, choice([cat.personality.trait,cat.personality.trait2]), body_status
                         )
                     )
 
@@ -4517,6 +4519,10 @@ class Cat:
                 for condition in self.permanent_condition:
                     dadm_text += self.change_condition_name(str(condition)) + "\n"
                 dadm_text = dadm_text[:-1]
+                
+        trait_text = i18n.t(f"cat.personality.{self.personality.trait}")
+        if self.personality.trait != self.personality.trait2:
+            trait_text += " & " + i18n.t(f"cat.personality.{self.personality.trait2}")
         if make_clan:
             return "\n".join(
                 [
@@ -4527,7 +4533,7 @@ class Cat:
                         else "general.kitten_profile",
                         count=1,
                     ),
-                    i18n.t(f"cat.personality.{self.personality.trait}"),
+                    trait_text,
                     self.skills.skill_string(),
                     dadm_text,
                     awakened_text,
@@ -4537,7 +4543,7 @@ class Cat:
             return "<br>".join(
                 [
                     i18n.t(f"general.{self.status.lower()}", count=1),
-                    i18n.t(f"cat.personality.{self.personality.trait}"),
+                    trait_text,
                     self.skills.skill_string(short=True),
                     i18n.t(f"cat.skills.{self.experience_level}")
                     + (
@@ -4552,7 +4558,7 @@ class Cat:
                 [
                     i18n.t("general.moons_age", count=self.moons),
                     self.genderalign,
-                    i18n.t(f"cat.personality.{self.personality.trait}"),
+                    trait_text,
                 ]
             )
 
@@ -4561,7 +4567,7 @@ class Cat:
                 i18n.t("general.moons_age", count=self.moons),
                 i18n.t(f"general.{self.status.lower()}", count=1),
                 self.genderalign,
-                i18n.t(f"cat.personality.{self.personality.trait}"),
+                trait_text,
             ]
         )
     def get_save_dict(self, faded=False):
@@ -4595,6 +4601,7 @@ class Cat:
                 "backstory": self.backstory or None,
                 "moons": self.moons,
                 "trait": self.personality.trait,
+                "trait2": self.personality.trait2,
                 "facets": self.personality.get_facet_string(),
                 "parent1": self.parent1,
                 "parent2": self.parent2,
