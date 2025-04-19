@@ -2221,14 +2221,15 @@ def event_text_adjust(
 
     # new_cats (include pre version)
     if "n_c" in text:
-        for i, cat_list in enumerate(new_cats):
-            if len(new_cats) > 1:
-                pronoun = localization.get_new_pronouns("default plural")[0]
-            else:
-                pronoun = choice(cat_list[0].pronouns)
+        if new_cats:
+            for i, cat_list in enumerate(new_cats):
+                if len(new_cats) > 1:
+                    pronoun = localization.get_new_pronouns("default plural")[0]
+                else:
+                    pronoun = choice(cat_list[0].pronouns)
 
-            replace_dict[f"n_c:{i}"] = (str(cat_list[0].name), pronoun)
-            replace_dict[f"n_c_pre:{i}"] = (str(cat_list[0].name.prefix), pronoun)
+                replace_dict[f"n_c:{i}"] = (str(cat_list[0].name), pronoun)
+                replace_dict[f"n_c_pre:{i}"] = (str(cat_list[0].name.prefix), pronoun)
 
     # mur_c (murdered cat for reveals)
     if "mur_c" in text:
