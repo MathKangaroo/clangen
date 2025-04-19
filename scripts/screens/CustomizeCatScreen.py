@@ -322,12 +322,9 @@ class CustomizeCatScreen(Screens):
                        "CS2Speckled", "CS2Agouti", "CS2Sokoke", "CS2Rosette", "CS2Smoke",
                        "CS2Singlestripe", "CS2Marbled", "CS2Bengal", "CS2Masked"]
         if not self.the_cat.awakened:
-            print("i got here")
             for item in magiccolors:
                 if item in self.pelt_names:
-                    print(item)
                     self.pelt_names.remove(item)
-            print(self.pelt_names)
         elif self.the_cat.awakened and 'CSAgouti' not in self.pelt_names:
             self.pelt_names +=magiccolors
         
@@ -364,7 +361,7 @@ class CustomizeCatScreen(Screens):
         self.tint_dropdown = create_dropdown((480, 360), (135, 40), create_options_list(self.tints, "lower"),
                                              get_selected_option(self.the_cat.pelt.tint, "lower"))
         if self.the_cat.awakened and 'FLAMES' not in self.skins:
-            magic_skin_temp = copy(Pelt.skin_sprites_magic) + copy(Pelt.skin_sprites_elemental) + ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW','THIRDEYE', 'CRYSTALS', 'FOXTAIL','CLOUDS']
+            magic_skin_temp = copy(Pelt.skin_sprites_magic) + copy(Pelt.skin_sprites_elemental) + ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW','THIRDEYE', 'CRYSTALS', 'FOXTAIL','CLOUDS', 'BATWINGS', 'CRYSTALS2']
             magic_skin_temp.sort()
             self.skins += magic_skin_temp
         elif not self.the_cat.awakened and 'FLAMES' in self.skins:
