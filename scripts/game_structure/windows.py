@@ -171,7 +171,7 @@ class GuideEsper(UIWindow):
         if total_pages <= 1:
             self.potential_last_page.disable()
             self.potential_next_page.disable()
-        elif self.potential_mates_page >= total_pages - 1:
+        elif self.potential_guides_page >= total_pages - 1:
             self.potential_last_page.enable()
             self.potential_next_page.disable()
         elif self.potential_guides_page <= 0:
