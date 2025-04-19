@@ -854,6 +854,11 @@ class PatrolScreen(Screens):
                 and x.skills.secondary.get_short_skill() not in skills
             ):
                 skills.append(x.skills.secondary.get_short_skill())
+            if (
+                x.skills.tertiary
+                and x.skills.tertiary.get_short_skill() not in skills
+            ):
+                skills.append(x.skills.tertiary.get_short_skill())
 
         self.elements["patrol_info"] = pygame_gui.elements.UITextBox(
             "screens.patrol.label_patrol_info",
