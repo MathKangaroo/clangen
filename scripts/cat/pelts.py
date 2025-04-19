@@ -759,6 +759,10 @@ class Pelt:
     
     skin_sprites_bingle = ['GREENCHIMERA', 'CORALCHIMERA', 'FROSTGLOW', 'THIRDEYE', 'CRYSTALS', 'FOXTAIL', 'BATWINGS', 'CLOUDS', 'TRANSCLOUDS',
                     'SPOOKYCRYSTALS', 'NULL8', 'NULL9', 'NULL10', 'NULL11', 'NULL12', 'NULL13', 'NULL14', 'NULL15']
+    
+    skin_sprites_math = ['LIGHTPURPLE', 'BLUE', 'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED', 'BRIGHTPINK', 'BRIGHTORANGE',
+                         'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE', 'WHITE', 'BLACK', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW', 'NULL1']
+
 
     """Holds all appearance information for a cat. """
 

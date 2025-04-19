@@ -407,7 +407,9 @@ class Cat:
                     powers_dict = ujson.loads(read_file.read())
             if self.awakened["type"] == "guide":
                 #powerless shows twice bc we want it to be twice as common. visible guides
-                self.pelt.skin = choice(["POWERLESS1", "POWERLESS2","POWERLESS1", "POWERLESS2", "MIST","LIGHT1", "SPARKLES", "SPARKLES2"])
+                
+                self.pelt.skin = choice(['LIGHTPURPLE', 'BLUE', 'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED', 'BRIGHTPINK', 'BRIGHTORANGE',
+                         'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE', 'WHITE', 'BLACK', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW',"MIST","LIGHT1", "SPARKLES", "SPARKLES2"])
             elif self.awakened["type"] == "esper":
                 self.pelt.skin = choice(powers_dict[self.awakened["ability"]]["skin"])
             elif self.awakened["type"] == "enhanced esper":
