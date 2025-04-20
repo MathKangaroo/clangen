@@ -4,6 +4,7 @@ from .CeremonyScreen import CeremonyScreen
 from .ChangeGenderScreen import ChangeGenderScreen
 from .ChooseAdoptiveParentScreen import ChooseAdoptiveParentScreen
 from .ChooseMateScreen import ChooseMateScreen
+from .ChooseBestieScreen import ChooseBestieScreen
 from .ChooseMentorScreen import ChooseMentorScreen
 from .ClanScreen import ClanScreen
 from .ClanSettingsScreen import ClanSettingsScreen
@@ -75,6 +76,7 @@ class AllScreens:
     patrol_screen = PatrolScreen("patrol screen")
 
     choose_mate_screen = ChooseMateScreen("choose mate screen")
+    choose_bestie_screen = ChooseBestieScreen("choose bestie screen")
     choose_mentor_screen = ChooseMentorScreen("choose mentor screen")
     choose_adoptive_parent_screen = ChooseAdoptiveParentScreen(
         "choose adoptive parent screen"
@@ -117,6 +119,8 @@ class AllScreens:
         cls.choose_adoptive_parent_screen = ChooseAdoptiveParentScreen(
             "choose adoptive parent screen"
         )
+        cls.choose_bestie_screen = ChooseBestieScreen("choose bestie screen")
+        
         cls.relationship_screen = RelationshipScreen("relationship screen")
         cls.family_tree_screen = FamilyTreeScreen("family tree screen")
         cls.mediation_screen = MediationScreen("mediation screen")
