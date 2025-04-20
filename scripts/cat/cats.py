@@ -3582,6 +3582,10 @@ class Cat:
         # Current mentor
         if other_cat.ID in self.apprentice or self.ID in other_cat.apprentice:
             return False
+        
+        #Current bestie
+        if other_cat.ID in self.bestie or self.ID in other_cat.bestie:
+            return False
 
         # Former mentor
         is_former_mentor = (
