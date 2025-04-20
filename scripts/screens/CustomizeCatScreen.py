@@ -128,6 +128,7 @@ class CustomizeCatScreen(Screens):
 
         self.patterns = copy(Pelt.tortiepatterns)
         self.patterns.sort()
+        self.patterns.insert(0, "None")
         self.pattern_label = None
         self.pattern_dropdown = None
 
@@ -609,7 +610,11 @@ class CustomizeCatScreen(Screens):
 
         # convert to list
         if attribute == "pattern":
-            if isinstance(self.the_cat.pelt.pattern, list):
+            if selected_option == "NONE":
+                self.the_cat.pelt.pattern = None
+            elif self.the_cat.pelt.pattern is None:
+                self.the_cat.pelt.pattern = [selected_option]
+            elif isinstance(self.the_cat.pelt.pattern, list):
                 self.the_cat.pelt.pattern.append(selected_option)
             else:
                 self.the_cat.pelt.pattern = [selected_option]
@@ -822,7 +827,7 @@ class CustomizeCatScreen(Screens):
                 for dropdown in dropdowns:
                     dropdown.kill()
 
-                self.the_cat.pelt.pattern = [self.patterns[0]]
+                self.the_cat.pelt.pattern = None
                 if previous_pelt_name in ['SingleColour', 'TwoColour']:
                     self.the_cat.pelt.tortiebase = "single"
                 else:
