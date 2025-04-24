@@ -571,12 +571,15 @@ class Cat:
         if self.parent1 is not None:
             par1 = Cat.fetch_cat(self.parent1)
             if par1.awakened:
-                prob_awake -= 2
+                prob_awake = int(prob_awake/2)
             
         if self.parent2 is not None:
             par2 = Cat.fetch_cat(self.parent2)
             if par2.awakened:
-                prob_awake -= 2
+                prob_awake = int(prob_awake/2)
+        
+        if prob_awake < 1:
+            prob_awake = 1
         
         awakened_chance = randint(1,prob_awake)
         if awakened_chance == 1:
