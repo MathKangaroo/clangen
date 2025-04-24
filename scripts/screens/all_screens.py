@@ -125,6 +125,6 @@ class AllScreens:
         
         cls.relationship_screen = RelationshipScreen("relationship screen")
         cls.family_tree_screen = FamilyTreeScreen("family tree screen")
-        cls.caretaker_screen = CaretakerScreen("mediation screen")
-        cls.mediation_screen = MediationScreen("caretaker screen")
+        cls.caretaker_screen = CaretakerScreen("caretaker screen")
+        cls.mediation_screen = MediationScreen("mediation screen")
         cls.change_gender_screen = ChangeGenderScreen("change gender screen")
