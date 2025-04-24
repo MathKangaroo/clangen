@@ -7,6 +7,8 @@
         "cat_feelings": "~~%{name}'s feelings~~",
         "cant_work": "This mediator can't work this moon. ",
         "already_worked": "This mediator has already worked this moon. ",
+        "care_cant_work": "This caretaker can't work this moon. ",
+        "care_already_worked": "This caretaker has already worked this moon. ",
         "pair_already_mediated": "This pair has already been mediated this moon. ",
         "sabotage_failed": "Sabotage Failed!",
         "mediate_failed": "Mediate Failed!",

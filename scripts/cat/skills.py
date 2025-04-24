@@ -796,6 +796,19 @@ class CatSkills:
     def __repr__(self) -> str:
         return f"<CatSkills: Primary: |{self.primary}|, Secondary: |{self.secondary}|, Tertiary: |{self.tertiary}|, Hidden: |{self.hidden}|>"
 
+    def gain_new_skill_as_kit(self, skill_string, tier):
+        skill_save = skill_string
+        skill_save += ",1,False"
+        temp = Skill.generate_from_save_string(skill_save)
+        if tier == "secondary" and self.secondary == None:
+            if temp != self.primary:
+                self.secondary = temp
+        elif tier == "tertiary" and self.tertiary == None:
+            if temp != self.primary and temp != self.secondary:
+                self.tertiary = temp
+            
+        
+    
     @staticmethod
     def generate_new_catskills(status, moons, hidden_skill: HiddenSkillEnum = None):
         """Generates a new skill"""

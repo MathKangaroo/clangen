@@ -93,6 +93,12 @@ class Events:
                 "apprentice",
                 "mediator",
                 "mediator apprentice",
+                "denkeeper",
+                "denkeeper apprentice",
+                "caretaker",
+                "caretaker apprentice",
+                "messenger",
+                "messenger apprentice"
             }
             and not cat.dead
             and not cat.outside
@@ -550,12 +556,68 @@ class Events:
                     )
                 )
                 cat.status_change("mediator")
+    
+    def denkeeper_events(self, cat):
+        """Check for denkeeper events"""
+
+        if game.clan.clan_settings["become_denkeeper"]:
+            # Note: These chances are large since it triggers every moon.
+            # Checking every moon has the effect giving older cats more chances to become a mediator
+            _ = game.config["roles"]["become_denkeeper_chances"]
+            if cat.status in _ and not int(random.random() * _[cat.status]):
+                game.cur_events_list.append(
+                    Single_Event(
+                        event_text_adjust(
+                            Cat, i18n.t("hardcoded.event_denkeeper_app"), main_cat=cat
+                        ),
+                        "ceremony",
+                        cat.ID,
+                    )
+                )
+                cat.status_change("denkeeper")
+    def caretaker_events(self, cat):
+        """Check for caretaker events"""
+
+        if game.clan.clan_settings["become_caretaker"]:
+            # Note: These chances are large since it triggers every moon.
+            # Checking every moon has the effect giving older cats more chances to become a mediator
+            _ = game.config["roles"]["become_caretaker_chances"]
+            if cat.status in _ and not int(random.random() * _[cat.status]):
+                game.cur_events_list.append(
+                    Single_Event(
+                        event_text_adjust(
+                            Cat, i18n.t("hardcoded.event_caretaker_app"), main_cat=cat
+                        ),
+                        "ceremony",
+                        cat.ID,
+                    )
+                )
+                cat.status_change("caretaker")
+    
+    def messenger_events(self, cat):
+        """Check for messenger events"""
+
+        if game.clan.clan_settings["become_messenger"]:
+            # Note: These chances are large since it triggers every moon.
+            # Checking every moon has the effect giving older cats more chances to become a mediator
+            _ = game.config["roles"]["become_messenger_chances"]
+            if cat.status in _ and not int(random.random() * _[cat.status]):
+                game.cur_events_list.append(
+                    Single_Event(
+                        event_text_adjust(
+                            Cat, i18n.t("hardcoded.event_messenger_app"), main_cat=cat
+                        ),
+                        "ceremony",
+                        cat.ID,
+                    )
+                )
+                cat.status_change("messenger")
 
     def get_moon_freshkill(self):
         """Adding auto freshkill for the current moon."""
         healthy_hunter = list(
             filter(
-                lambda c: c.status in ["warrior", "apprentice", "leader", "deputy"]
+                lambda c: c.status in ["warrior", "apprentice", "leader", "deputy", "denkeeper", "denkeeper apprentice", "caretaker apprentice", "messenger apprentice"]
                 and not c.dead
                 and not c.outside
                 and not c.exiled
@@ -568,7 +630,7 @@ class Events:
         for cat in healthy_hunter:
             lower_value = game.prey_config["auto_warrior_prey"][0]
             upper_value = game.prey_config["auto_warrior_prey"][1]
-            if cat.status == "apprentice":
+            if cat.status in ["apprentice", "denkeeper apprentice", "caretaker apprentice", "messenger apprentice"]:
                 lower_value = game.prey_config["auto_apprentice_prey"][0]
                 upper_value = game.prey_config["auto_apprentice_prey"][1]
 
@@ -608,7 +670,7 @@ class Events:
             # handle warrior
             healthy_warriors = list(
                 filter(
-                    lambda c: c.status in ["warrior", "leader", "deputy"]
+                    lambda c: c.status in ["warrior", "leader", "deputy", "denkeeper"]
                     and not c.dead
                     and not c.outside
                     and not c.exiled
@@ -623,7 +685,7 @@ class Events:
             # handle apprentices
             healthy_apprentices = list(
                 filter(
-                    lambda c: c.status == "apprentice"
+                    lambda c: c.status in ["apprentice", "denkeeper apprentice", "caretaker apprentice", "messenger apprentice"]
                     and not c.dead
                     and not c.outside
                     and not c.exiled
@@ -651,7 +713,7 @@ class Events:
             # get warriors to help
             healthy_warriors = get_alive_status_cats(
                 Cat,
-                get_status=["warrior", "deputy", "leader"],
+                get_status=["warrior", "deputy", "leader", "denkeeper", "caretaker", "messenger"],
                 working=True
             )
 
@@ -690,7 +752,7 @@ class Events:
             # handle prey
             healthy_warriors = list(
                 filter(
-                    lambda c: c.status in ["warrior", "leader", "deputy"]
+                    lambda c: c.status in ["warrior", "leader", "deputy", "denkeeper"]
                     and not c.dead
                     and not c.outside
                     and not c.exiled
@@ -848,12 +910,21 @@ class Events:
                 "mediator apprentice",
                 "kitten",
                 "newborn",
+                "denkeeper apprentice",
+                "messenger apprentice",
+                "caretaker apprentice"
             ]:
                 if x.moons >= 15:
                     if x.status == "medicine cat apprentice":
                         self.ceremony(x, "medicine cat")
                     elif x.status == "mediator apprentice":
                         self.ceremony(x, "mediator")
+                    elif x.status == "denkeeper apprentice":
+                        self.ceremony(x, "denkeeper")
+                    elif x.status == "caretaker apprentice":
+                        self.ceremony(x, "caretaker")
+                    elif x.status == "messenger apprentice":
+                        self.ceremony(x, "messenger")
                     else:
                         self.ceremony(x, "warrior")
                 elif (
@@ -862,6 +933,9 @@ class Events:
                         "apprentice",
                         "medicine cat apprentice",
                         "mediator apprentice",
+                        "denkeeper apprentice",
+                        "messenger apprentice",
+                        "caretaker apprentice"
                     ]
                     and x.moons >= 6
                 ):
@@ -984,6 +1058,9 @@ class Events:
         # Handle Mediator Events
         # TODO: this is not a great way to handle them, ideally they should be converted to ShortEvent format
         self.mediator_events(cat)
+        self.denkeeper_events(cat)
+        self.caretaker_events(cat)
+        self.messenger_events(cat)
 
         # handle nutrition amount
         # (CARE: the cats have to be fed before this happens - should be handled in "one_moon" function)
@@ -1359,7 +1436,7 @@ class Events:
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
                     else:
-                        # Chance for mediator apprentice
+                        # Chance for specialized apprentice
                         mediator_list = list(
                             filter(
                                 lambda x: x.status == "mediator"
@@ -1368,23 +1445,81 @@ class Events:
                                 Cat.all_cats_list,
                             )
                         )
+                        caretaker_list = list(
+                            filter(
+                                lambda x: x.status == "caretaker"
+                                and not x.dead
+                                and not x.outside,
+                                Cat.all_cats_list,
+                            )
+                        )
+                        denkeeper_list = list(
+                            filter(
+                                lambda x: x.status == "denkeeper"
+                                and not x.dead
+                                and not x.outside,
+                                Cat.all_cats_list,
+                            )
+                        )
+                        messenger_list = list(
+                            filter(
+                                lambda x: x.status == "messenger"
+                                and not x.dead
+                                and not x.outside,
+                                Cat.all_cats_list,
+                            )
+                        )
 
-                        # This checks if at least one mediator already has an apprentice.
+                        # This checks if at least one specialist already has an apprentice.
                         has_mediator_apprentice = False
                         for c in mediator_list:
                             if c.apprentice:
                                 has_mediator_apprentice = True
                                 break
+                        
+                        has_denkeeper_apprentice = False
+                        for c in denkeeper_list:
+                            if c.apprentice:
+                                has_denkeeper_apprentice = True
+                                break
+                        
+                        has_caretaker_apprentice = False
+                        for c in caretaker_list:
+                            if c.apprentice:
+                                has_caretaker_apprentice = True
+                                break
+                            
+                        has_messenger_apprentice = False
+                        for c in messenger_list:
+                            if c.apprentice:
+                                has_messenger_apprentice = True
+                                break
 
-                        chance = game.config["roles"]["mediator_app_chance"]
+                        mediator_chance = game.config["roles"]["mediator_app_chance"]
+                        caretaker_chance = game.config["roles"]["caretaker_app_chance"]
+                        denkeeper_chance = game.config["roles"]["denkeeper_app_chance"]
+                        messenger_chance = game.config["roles"]["messenger_app_chance"]
                         skills_string = str(cat.skills)
                         media_skills = ["TEACHER", "CLEVER", "SPEAKER", "MEDIATOR", "INSIGHTFUL", "KIT", "HISTORIAN",
                                         "PATIENT", "INNOVATOR", "MATCHMAKER", "COOPERATIVE", "MUSICVIBES", "AURAVIBES",
                                         "GIFTGIVER", "LANGUAGE", "THINKER", "SONG"]
-                    
+                        care_skills = ["MEDTIATOR", "INSIGHTFUL", "STORY", "KIT", "DELIVERER", "ASSIST", "PATIENT", "GRACE"]
+                        den_skills = ["HUNTER", "CAMP", "GARDENER", "DECORATOR", "MEMORY", "ASSIST", "HISTORIAN",
+                                      "BOOKMAKER", "CHEF", "CLEAN", "IMMUNE", "TUNNELER"]
+                        mess_skills = ["RUNNER", "SENSE", "WAKEFUL", "AGILE", "STEALTHY", "TRACKER", "LANGUAGE", "MESSENGER"]
                         for skill in media_skills:
                             if skill in skills_string:
-                                chance = int(chance/1.5)
+                                mediator_chance = int(chance/1.5)
+                        for skill in care_skills:
+                            if skill in skills_string:
+                                caretaker_chance = int(chance/1.5)
+                        for skill in den_skills:
+                            if skill in skills_string:
+                                denkeeper_chance = int(chance/1.5)
+                        for skill in mess_skills:
+                            if skill in skills_string:
+                                messenger_chance = int(chance/1.5)
+                        
                         if cat.personality.trait in [
                             "charismatic",
                             "loving",
@@ -1404,22 +1539,65 @@ class Events:
                             "cooperative",
                             "philosophical"
                         ]:
-                            chance = int(chance / 1.5)
+                            mediator_chance = int(chance / 1.5)
+                        
+                        if cat.personality.trait in ["stable", "tidy","blunt", "polished", "perfectionist", "dry", "organized"]:
+                            denkeeper_chance = int(chance/1.5)
+                        
+                        if cat.personality.trait in ["loving", "nurturing","polite","thoughtful", "cooperative", "sentimental", "delicate"]:
+                            caretaker_chance = int(chance/1.5)
+                        
+                        if cat.personality.trait in ["sneaky", "reliable", "punctual", "escapist", "persuasive"]:
+                            messenger_chance = int(chance/1.5)
                             
                         if cat.is_disabled() and game.clan.clan_settings["higher_disabled_med_rates"]:
-                            chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            mediator_chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            caretaker_chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            messenger_chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            denkeeper_chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            
 
 
-                        if chance == 0:
-                            chance = 1
+                        if mediator_chance == 0:
+                            mediator_chance = 1
+                        if caretaker_chance == 0:
+                            caretaker_chance = 1
+                        if messenger_chance == 0:
+                            messenger_chance = 1
+                        if denkeeper_chance == 0:
+                            denkeeper_chance = 1
 
                         # Only become a mediator if there is already one in the clan.
                         if (
                             mediator_list
                             and not has_mediator_apprentice
-                            and not int(random.random() * chance)
+                            and not int(random.random() * mediator_chance)
                         ):
                             self.ceremony(cat, "mediator apprentice")
+                            self.ceremony_accessory = True
+                            self.gain_accessories(cat)
+                        elif (
+                            caretaker_list
+                            and not has_caretaker_apprentice
+                            and not int(random.random() * caretaker_chance)
+                        ):
+                            self.ceremony(cat, "caretaker apprentice")
+                            self.ceremony_accessory = True
+                            self.gain_accessories(cat)
+                        elif (
+                            denkeeper_list
+                            and not has_denkeeper_apprentice
+                            and not int(random.random() * denkeeper_chance)
+                        ):
+                            self.ceremony(cat, "denkeeper apprentice")
+                            self.ceremony_accessory = True
+                            self.gain_accessories(cat)
+                        elif (
+                            messenger_list
+                            and not has_messenger_apprentice
+                            and not int(random.random() * messenger_chance)
+                        ):
+                            self.ceremony(cat, "messenger apprentice")
                             self.ceremony_accessory = True
                             self.gain_accessories(cat)
                         else:
@@ -1431,6 +1609,9 @@ class Events:
                 "apprentice",
                 "mediator apprentice",
                 "medicine cat apprentice",
+                "caretaker apprentice",
+                "denkeeper apprentice",
+                "messenger apprentice"
             ]:
 
                 if game.clan.clan_settings["12_moon_graduation"]:
@@ -1467,6 +1648,18 @@ class Events:
 
                     elif cat.status == "mediator apprentice":
                         self.ceremony(cat, "mediator", preparedness)
+                        self.ceremony_accessory = True
+                        self.gain_accessories(cat)
+                    elif cat.status == "caretaker apprentice":
+                        self.ceremony(cat, "caretaker", preparedness)
+                        self.ceremony_accessory = True
+                        self.gain_accessories(cat)
+                    elif cat.status == "denkeeper apprentice":
+                        self.ceremony(cat, "denkeeper", preparedness)
+                        self.ceremony_accessory = True
+                        self.gain_accessories(cat)
+                    elif cat.status == "messenger apprentice":
+                        self.ceremony(cat, "messenger", preparedness)
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
 
@@ -1519,6 +1712,9 @@ class Events:
             "medicine cat": ["medicine cat"],
             "warrior": ["warrior", "deputy", "leader", "elder"],
             "mediator": ["mediator"],
+            "caretaker": ["caretaker"],
+            "messenger": ["messenger"],
+            "denkeeper": ["denkeeper"]
         }
 
         try:
@@ -1526,7 +1722,7 @@ class Events:
             possible_ceremonies.update(self.ceremony_id_by_tag[promoted_to])
 
             # Get ones for prepared status ----------------------------------------------
-            if promoted_to in ["warrior", "medicine cat", "mediator"]:
+            if promoted_to in ["warrior", "medicine cat", "mediator", "caretaker", "messenger", "denkeeper"]:
                 possible_ceremonies = possible_ceremonies.intersection(
                     self.ceremony_id_by_tag[preparedness]
                 )
@@ -1683,14 +1879,14 @@ class Events:
 
         # getting the random honor if it's needed
         random_honor = None
-        if promoted_to in ["warrior", "mediator", "medicine cat"]:
+        if promoted_to in ["warrior", "mediator", "medicine cat", "messenger", "caretaker", "denkeeper"]:
             traits = load_lang_resource("events/ceremonies/ceremony_traits.json")
             try:
                 random_honor = random.choice(traits[cat.personality.trait])
             except KeyError:
                 random_honor = i18n.t("defaults.ceremony_honor")
 
-        if cat.status in ["warrior", "medicine cat", "mediator"]:
+        if cat.status in ["warrior", "medicine cat", "mediator", "messenger", "caretaker", "denkeeper"]:
             History.add_app_ceremony(cat, random_honor)
 
         ceremony_tags, ceremony_text = self.CEREMONY_TXT[
@@ -1772,7 +1968,7 @@ class Events:
         # chance to gain acc
         acc_chances = game.config["accessory_generation"]
         chance = acc_chances["base_acc_chance"]
-        if cat.status in ["medicine cat", "medicine cat apprentice"]:
+        if cat.status in ["medicine cat", "medicine cat apprentice", "caretaker", "caretaker apprentice"]:
             chance += acc_chances["med_modifier"]
         if cat.age in [CatAgeEnum.KITTEN, CatAgeEnum.ADOLESCENT]:
             chance += acc_chances["baby_modifier"]
@@ -1792,6 +1988,9 @@ class Events:
             "inquisitive",
             "strange",
             "shameless",
+            "energetic",
+            "cheerful",
+            "creative"
         ]:
             chance += acc_chances["happy_trait_modifier"]
         elif cat.personality.trait in [
@@ -1801,6 +2000,11 @@ class Events:
             "bullying",
             "insecure",
             "nervous",
+            "blunt",
+            "scheming",
+            "envious",
+            "venomous",
+            "argumentative"
         ]:
             chance += acc_chances["grumpy_trait_modifier"]
         if cat.pelt.accessory and len(cat.pelt.accessory) >= 1:
@@ -1871,6 +2075,9 @@ class Events:
             "apprentice",
             "medicine cat apprentice",
             "mediator apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ]:
 
             if cat.not_working() and int(random.random() * 3):
@@ -2037,7 +2244,13 @@ class Events:
 
         # disaster death chance
         if game.clan.clan_settings.get("disasters"):
-            if not random.getrandbits(10):  # 1/1010
+            #if clan has a messenger, decreases chance
+            disaster_risk = 10 # 1/1010
+            for cat in Cat.all_cats_list:
+                if cat.status in ["messenger", "messenger apprentice"]:
+                    disaster_risk += 1
+                    break
+            if not random.getrandbits(disaster_risk):  # 1/1010
                 handle_short_events.handle_event(
                     event_type="birth_death",
                     main_cat=cat,
@@ -2259,13 +2472,18 @@ class Events:
         meds = get_alive_status_cats(
             Cat, ["medicine cat", "medicine cat apprentice"], working=True, sort=True
         )
+        
+        denkeepers = get_alive_status_cats(
+            Cat, ["denkeeper", "denkeeper apprentice"], working=True, sort=True
+        )
 
         for illness in cat.illnesses:
             # check if illness can infect other cats
             if cat.illnesses[illness]["infectiousness"] == 0:
                 continue
             chance = cat.illnesses[illness]["infectiousness"]
-            chance += len(meds) * 7
+            chance += len(meds) * 5
+            chance += len(denkeepers) * 5
             if not int(random.random() * chance):  # 1/chance to infect
                 # fleas are the only condition allowed to spread outside of cold seasons
                 if (
@@ -2430,7 +2648,7 @@ class Events:
                 filter(
                     lambda x: not x.dead
                     and not x.outside
-                    and x.status == "warrior"
+                    and x.status in "warrior"
                     and (x.apprentice or x.former_apprentices),
                     Cat.all_cats_list,
                 )

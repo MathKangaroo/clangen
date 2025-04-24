@@ -72,7 +72,13 @@ class Cat:
     rank_sort_order = [
         "newborn",
         "kitten",
+        "caretaker apprentice",
+        "caretaker",
         "elder",
+        "messenger apprentice",
+        "messenger",
+        "denkeeper apprentice",
+        "denkeeper",
         "apprentice",
         "warrior",
         "mediator apprentice",
@@ -328,6 +334,9 @@ class Cat:
                 "apprentice",
                 "mediator apprentice",
                 "medicine cat apprentice",
+                "messenger apprentice",
+                "denkeeper apprentice",
+                "caretaker apprentice"
             ]:
                 self.age = CatAgeEnum.ADOLESCENT
             else:
@@ -1186,7 +1195,7 @@ class Cat:
     def rank_change_traits_skill(self, mentor):
         """Updates trait and skill upon ceremony"""
 
-        if self.status in ["warrior", "medicine cat", "mediator"]:
+        if self.status in ["warrior", "medicine cat", "mediator", "messenger", "denkeeper", "caretaker"]:
             # Give a couple doses of mentor influence:
             if mentor:
                 max_influence = randint(0, 2)
@@ -1813,6 +1822,9 @@ class Cat:
             "apprentice",
             "mediator apprentice",
             "medicine cat apprentice",
+            "messenger apprentice",
+            "denkeeper apprentice",
+            "caretaker apprentice"
         ]:
             self.update_mentor()
 
@@ -2037,8 +2049,9 @@ class Cat:
 
 
     def add_split(self, new_alter, origin):
-        if self.alters[new_alter]:
-            self.alters[new_alter]["splits"].append(origin)
+        if len(self.alters) > 0:
+            if self.alters[new_alter]:
+                self.alters[new_alter]["splits"].append(origin)
 
     def new_alter(self,condition):
         template = {
@@ -2428,7 +2441,7 @@ class Cat:
                 if ("recovering from birth" not in self.injuries and "faux pregnant" not in self.injuries and "pregnant" not in self.injuries and "turmoiled litter" not in self.illnesses) or (("recovering from birth" in self.injuries or "faux pregnant" in self.injuries or "pregnant" in self.injuries or "turmoiled litter" in self.illnesses) and alter["role"] != "little"):
                     can_front.append(alter["name"])
             self.front = choice(can_front)
-            if self.moons > 12 and self.status not in ["apprentice", "medicine cat apprentice", "mediator apprentice"]:
+            if self.moons > 12 and self.status not in ["apprentice", "medicine cat apprentice", "mediator apprentice", "denkeeper apprentice", "messenger apprentice", "caretaker apprentice"]:
                 if game.clan.clan_settings["plural names"]:
                     # chance of cat choosing a plural name: 1 in 100 default
                     if game.config["condition_related"]["plural_names"] > 1:
@@ -3251,6 +3264,9 @@ class Cat:
             "apprentice",
             "medicine cat apprentice",
             "mediator apprentice",
+            "messenger apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice"
         ]:
             _ment = Cat.fetch_cat(self.mentor) if self.mentor else None
             self.status_change(
@@ -3281,6 +3297,11 @@ class Cat:
 
     def contact_with_ill_cat(self, cat: Cat):
         """handles if one cat had contact with an ill cat"""
+        
+        current_denkeepers = []
+        for cat in Cat.all_cats_list:
+            if cat.status in ["denkeeper", "denkeeper apprentice"]:
+                current_denkeepers.append(cat)
 
         infectious_illnesses = []
         if self.is_ill() or cat is None or not cat.is_ill():
@@ -3314,6 +3335,10 @@ class Cat:
                             chance of {illness_name} infection to {rate}"
                         )
                         rate = 1
+            
+            if len(current_denkeepers) > 0:
+                for keeper in current_denkeepers:
+                    rate = int(rate* 1.5)
 
             if not random() * rate:
                 text = f"{self.name} had contact with {cat.name} and now has {illness_name}."
@@ -3434,6 +3459,21 @@ class Cat:
             and potential_mentor.status != "mediator"
         ):
             return False
+        if (
+            self.status == "caretaker apprentice"
+            and potential_mentor.status != "caretaker"
+        ):
+            return False
+        if (
+            self.status == "messenger apprentice"
+            and potential_mentor.status != "messenger"
+        ):
+            return False
+        if (
+            self.status == "denkeeper apprentice"
+            and potential_mentor.status != "denkeeper"
+        ):
+            return False
 
         # If not an app, don't need a mentor
         if "apprentice" not in self.status:
@@ -3482,7 +3522,7 @@ class Cat:
             or self.outside
             or self.exiled
             or self.status
-            not in ["apprentice", "mediator apprentice", "medicine cat apprentice"]
+            not in ["apprentice", "mediator apprentice", "medicine cat apprentice", "messenger apprentice", "caretaker apprentice", "denkeeper apprentice"]
         )
         if illegible_for_mentor:
             self.__remove_mentor()

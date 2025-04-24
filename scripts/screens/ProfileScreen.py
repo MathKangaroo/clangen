@@ -202,6 +202,12 @@ class ProfileScreen(Screens):
                     and event.ui_element == self.profile_elements["mediation"]
             ):
                 self.change_screen("mediation screen")
+            elif (
+                    "care" in self.profile_elements
+                    and event.ui_element == self.profile_elements["care"]
+            ):
+                print("test switch")
+                self.change_screen("caretaker screen")
             elif event.ui_element == self.profile_elements["favourite_button"]:
                 self.the_cat.favourite = not self.the_cat.favourite
                 self.profile_elements["favourite_button"].change_object_id(
@@ -715,6 +721,16 @@ class ProfileScreen(Screens):
             )
             if self.the_cat.dead or self.the_cat.outside:
                 self.profile_elements["mediation"].disable()
+        
+        elif self.the_cat.status in ["caretaker", "caretaker apprentice"]:
+            self.profile_elements["care"] = UIImageButton(
+                ui_scale(pygame.Rect((383, 110), (34, 34))),
+                "",
+                object_id="#care_button",
+                manager=MANAGER,
+            )
+            if self.the_cat.dead or self.the_cat.outside:
+                self.profile_elements["care"].disable()
 
     def generate_column1(self, the_cat):
         """Generate the left column information"""

@@ -251,6 +251,19 @@
 			"warrior": 5000,
 			"elder": 400
 		},
+		"messenger_app_chance": 50,
+		"become_messenger_chances": {
+			"warrior": 5000,
+			"elder": 400
+		},"caretaker_app_chance": 50,
+		"become_caretaker_chances": {
+			"warrior": 5000,
+			"elder": 400
+		},"denkeeper_app_chance": 50,
+		"become_denkeeper_chances": {
+			"warrior": 5000,
+			"elder": 400
+		},
 		"disabled_cat_med_chance_increase": 2,
 		"comment": [
 			"The disabled_cat_med_chance_increase (2 by default) will divide the chance of disabled cats becoming medicine cat/mediator apprentices by its value."
@@ -336,7 +349,10 @@
 		"max_apprentice_age": {
 			"medicine cat apprentice": 30,
 			"apprentice": 25,
-			"mediator apprentice": 25
+			"mediator apprentice": 25,
+			"messenger apprentice": 25,
+			"caretaker apprentice": 25,
+			"denkeeper apprentice": 25
 		},
 		"min_graduating_age": 10
 	},
