@@ -337,7 +337,11 @@ class ProfileScreen(Screens):
                         self.the_cat.thought = (
                             "Is distraught after being sent to the Place of No Stars"
                         )
-
+                self.clear_profile()
+                self.build_profile()
+                self.update_disabled_buttons_and_text()
+            elif event.ui_element == self.reincarnate_button:     
+                self.the_cat.get_reincarnation()
                 self.clear_profile()
                 self.build_profile()
                 self.update_disabled_buttons_and_text()
@@ -790,7 +794,15 @@ class ProfileScreen(Screens):
                     [i18n.t(f"cat.accessories.{acc}", count=0) for acc in the_cat.pelt.accessory])
             )
             # NEWLINE ----------
+        
+        #reincarnation
+        if the_cat.past_life:
+            output += "\n" + "reincarnation of " + str(Cat.fetch_cat(the_cat.past_life).name)
+        if the_cat.reincarnation:
+            output += "\n" + "reincarnated as " + str(Cat.fetch_cat(the_cat.reincarnation).name)
 
+        
+        
         # PARENTS
         all_parents = [Cat.fetch_cat(i) for i in the_cat.get_parents()]
         if all_parents:
@@ -2584,6 +2596,16 @@ class ProfileScreen(Screens):
                 starting_height=2,
                 manager=MANAGER,
             )
+            
+            self.reincarnate_button = UIImageButton(
+                ui_scale(pygame.Rect((578, 0), (172, 36))),
+                "screens.profile.reincarnate",
+                object_id="#kill_cat_button",
+                starting_height=2,
+                manager=MANAGER,
+                anchors={"top_target": self.kill_cat_button},
+            )
+            
             self.destroy_accessory_button = UISurfaceImageButton(
                 ui_scale(pygame.Rect((578, 0), (172, 36))),
                 "screens.profile.destroy_accessory",
@@ -2591,7 +2613,7 @@ class ProfileScreen(Screens):
                 object_id="@buttonstyles_ladder_bottom",
                 starting_height=2,
                 manager=MANAGER,
-                anchors={"top_target": self.kill_cat_button},
+                anchors={"top_target": self.reincarnate_button},
             )
 
             # These are a placeholders, to be killed and recreated in self.update_disabled_buttons_and_text().
@@ -2697,7 +2719,10 @@ class ProfileScreen(Screens):
                 manager=MANAGER,
             )
             text = "screens.profile.exile"
+            self.reincarnate_button.disable()
             if self.the_cat.dead:
+                if not self.the_cat.reincarnation:
+                    self.reincarnate_button.enable()
                 text = "screens.profile.exile_df"
                 layer = self.df
                 if self.the_cat.df:
@@ -2856,6 +2881,7 @@ class ProfileScreen(Screens):
             self.exile_cat_button.kill()
             if hasattr(self, "exile_layer"):
                 self.exile_layer.kill()
+            self.reincarnate_button.kill()
             self.destroy_accessory_button.kill()
         elif self.open_tab == "history":
             self.backstory_background.kill()

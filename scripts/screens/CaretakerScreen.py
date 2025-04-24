@@ -65,7 +65,7 @@ class CaretakerScreen(Screens):
             self.mute_button_pressed(event)
 
             if event.ui_element == self.back_button:
-                self.change_screen("profile screen")
+                self.change_screen(game.last_screen_forupdate)
             elif event.ui_element == self.last_med:
                 self.selected_caretaker -= 1
                 self.update_caretaker_info()

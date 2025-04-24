@@ -177,6 +177,8 @@ class Cat:
         backstory="clanborn",
         parent1=None,
         parent2=None,
+        past_life = None,
+        reincarnation = None,
         adoptive_parents=None,
         suffix=None,
         specsuffix_hidden=False,
@@ -235,6 +237,8 @@ class Cat:
         )
         self.parent1 = parent1
         self.parent2 = parent2
+        self.past_life = past_life
+        self.reincarnation = reincarnation
         self.adoptive_parents = adoptive_parents if adoptive_parents else []
         self.pelt = pelt if pelt else Pelt()
         self.former_mentor = []
@@ -2570,6 +2574,32 @@ class Cat:
     #                                  conditions                                  #
     # ---------------------------------------------------------------------------- #
 
+    def get_reincarnation(self):
+        backstory = "reincarnation_starclan"
+        if self.df:
+            backstory = "reincarnation_df"
+        elif self.outside or self.exiled:
+            backstory = "reincarnation_unknown"
+        reincarnation = Cat(parent1 = self.ID, parent2 = self.ID, prefix = self.name.prefix, status = "newborn", moons = 0, backstory=backstory, gender=self.gender, past_life = self.ID)
+        game.clan.add_cat(reincarnation)
+        #we use self as both parents to increase similarity, but obviously
+        #we dont want that to stay as the parents LOL
+        reincarnation.parent1 = None
+        reincarnation.parent2 = None
+        History.add_beginning(reincarnation, clan_born=False)
+        reincarnation.past_life = self.ID
+        self.reincarnation = reincarnation.ID
+        #if game.clan.clan_settings["reincarnation_autofade"]:
+            #self.faded = True
+        '''
+        
+        "reincarnation_autofade": [
+            "Cats fade upon reincarnation",
+            "After reincarnation, a cat will automatically fade.",
+            false
+        ],
+        '''
+    
     def get_ill(self, name, event_triggered=False, lethal=True, severity="default"):
         """Add an illness to this cat.
 
@@ -4703,6 +4733,8 @@ class Cat:
                 "dead_for": self.dead_for,
                 "parent1": self.parent1,
                 "parent2": self.parent2,
+                "past_life": self.past_life,
+                "reincarnation": self.reincarnation,
                 "adoptive_parents": self.adoptive_parents,
                 "df": self.df,
                 "faded_offspring": self.faded_offspring,
@@ -4727,6 +4759,8 @@ class Cat:
                 "facets": self.personality.get_facet_string(),
                 "parent1": self.parent1,
                 "parent2": self.parent2,
+                "past_life": self.past_life,
+                "reincarnation": self.reincarnation,
                 "adoptive_parents": self.adoptive_parents,
                 "mentor": self.mentor or None,
                 "former_mentor": (
