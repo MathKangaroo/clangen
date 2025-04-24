@@ -2648,7 +2648,7 @@ class Events:
                 filter(
                     lambda x: not x.dead
                     and not x.outside
-                    and x.status in "warrior"
+                    and x.status == "warrior"
                     and (x.apprentice or x.former_apprentices),
                     Cat.all_cats_list,
                 )
