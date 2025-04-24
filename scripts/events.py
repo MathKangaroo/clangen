@@ -1509,16 +1509,16 @@ class Events:
                         mess_skills = ["RUNNER", "SENSE", "WAKEFUL", "AGILE", "STEALTHY", "TRACKER", "LANGUAGE", "MESSENGER"]
                         for skill in media_skills:
                             if skill in skills_string:
-                                mediator_chance = int(chance/1.5)
+                                mediator_chance = int(mediator_chance/1.5)
                         for skill in care_skills:
                             if skill in skills_string:
-                                caretaker_chance = int(chance/1.5)
+                                caretaker_chance = int(caretaker_chance/1.5)
                         for skill in den_skills:
                             if skill in skills_string:
-                                denkeeper_chance = int(chance/1.5)
+                                denkeeper_chance = int(denkeeper_chance/1.5)
                         for skill in mess_skills:
                             if skill in skills_string:
-                                messenger_chance = int(chance/1.5)
+                                messenger_chance = int(messenger_chance/1.5)
                         
                         if cat.personality.trait in [
                             "charismatic",
@@ -1539,22 +1539,22 @@ class Events:
                             "cooperative",
                             "philosophical"
                         ]:
-                            mediator_chance = int(chance / 1.5)
+                            mediator_chance = int(mediator_chance / 1.5)
                         
                         if cat.personality.trait in ["stable", "tidy","blunt", "polished", "perfectionist", "dry", "organized"]:
-                            denkeeper_chance = int(chance/1.5)
+                            denkeeper_chance = int(denkeeper_chance/1.5)
                         
                         if cat.personality.trait in ["loving", "nurturing","polite","thoughtful", "cooperative", "sentimental", "delicate"]:
-                            caretaker_chance = int(chance/1.5)
+                            caretaker_chance = int(caretaker_chance/1.5)
                         
                         if cat.personality.trait in ["sneaky", "reliable", "punctual", "escapist", "persuasive"]:
-                            messenger_chance = int(chance/1.5)
+                            messenger_chance = int(messenger_chance/1.5)
                             
                         if cat.is_disabled() and game.clan.clan_settings["higher_disabled_med_rates"]:
-                            mediator_chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
-                            caretaker_chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
-                            messenger_chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
-                            denkeeper_chance = int(chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            mediator_chance = int(mediator_chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            caretaker_chance = int(caretaker_chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            messenger_chance = int(messenger_chance / game.config["roles"]["disabled_cat_med_chance_increase"])
+                            denkeeper_chance = int(denkeeper_chance / game.config["roles"]["disabled_cat_med_chance_increase"])
                             
 
 
