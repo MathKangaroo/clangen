@@ -2881,6 +2881,11 @@ def generate_sprite(
                                 sprites.sprites["acc_herbs" + accessory + cat_sprite],
                                 (0, 0),
                             )
+                        elif accessory in cat.pelt.chime_accessories:
+                            new_sprite.blit(
+                                sprites.sprites["acc_chime" + accessory + cat_sprite],
+                                (0, 0),
+                            )
                         elif accessory in cat.pelt.wild_accessories:
                             new_sprite.blit(
                                 sprites.sprites["acc_wild" + accessory + cat_sprite],
