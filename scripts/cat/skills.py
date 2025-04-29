@@ -1028,7 +1028,7 @@ class CatSkills:
                 if not self.tertiary and self.secondary and not int(random.random() * 22):
                     # if there's no secondary skill, try to give one!
                     self.tertiary = Skill.get_random_skill(
-                        points=0, interest_only=True, exclude=self.secondary.path
+                        points=0, interest_only=True, exclude=[self.secondary.path,self.primary.path]
                     )
 
                 # Check if they get any points this moon
