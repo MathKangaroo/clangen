@@ -649,7 +649,7 @@ class Sprites:
         boos_data = [["CRIMSONBOO", "MAGENTABOO", "PINKBOO", "BLOODORANGEBOO", "ORANGEBOO", "YELLOWBOO"],
                     ["LIMEBOO", "DARKGREENBOO", "GREENBOO", "TEALBOO", "LIGHTBLUEBOO", "BLUEBOO"],
                     ["DARKBLUEBOO", "LIGHTPURPLEBOO", "DARKPURPLEBOO", "VIBRANTPURPLEBOO", "PINKREDBOO", "WHITEBOO"],
-                    ["LIGHTGRAYBOO", "GRAYBOO", "BROWNBOO", "BLACKBOO"]]
+                    ["LIGHTGRAYBOO", "GRAYBOO", "BLACKBOO", "BROWNBOO"]]
 
         aliveInsect_data = [
             ["BROWN SNAIL", "RED SNAIL", "WORM", "BLUE SNAIL", "ZEBRA ISOPOD", "DUCKY ISOPOD", "DAIRY COW ISOPOD", "BEETLEJUICE ISOPOD", "BEE", "RED LADYBUG"],
@@ -722,7 +722,7 @@ class Sprites:
      
         french_scarves_data = [
             ["CRIMSONS", "BLUES", "YELLOWS", "CYANS", "ORANGES", "LIMES"],
-            ["GREENS", "RAINBONS", "BLACKS", "SPIKESS", "WHITES"],
+            ["GREENS", "RAINBOWS", "BLACKS", "SPIKESS", "WHITES"],
             ["PINKS", "PURPLES", "MULTIS", "INDIGOS"]
         ]
         

@@ -918,10 +918,10 @@ def create_new_cat(
         # chance to give the new cat a permanent condition, higher chance for found kits and litters
         if kit or litter:
             chance = int(
-                game.config["cat_generation"]["base_permanent_condition"] / 11.25
+                game.config["cat_generation"]["base_permanent_condition"] / 2
             )
         else:
-            chance = game.config["cat_generation"]["base_permanent_condition"] + 10
+            chance = game.config["cat_generation"]["base_permanent_condition"] + 2
         if not int(random() * chance):
             possible_conditions = []
             for condition in PERMANENT:
