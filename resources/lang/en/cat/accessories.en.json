@@ -2333,7 +2333,7 @@
               "many": "gold mermaid tail",
               "one": "gold mermaid tail"
           },
-          "CSORANGEORN": {
+          "CSORANGEMERMAID": {
               "zero": "orange mermaid tail",
               "many": "orange mermaid tail",
               "one": "orange mermaid tail"
@@ -2498,7 +2498,27 @@
         "many": "silver feathers",
         "one": "silver feathers"
             
-            }
+            },
+    "WISTERIA2": {
+        "zero": "wisteria",
+        "many": "wisterias",
+        "one": "a wisteria stem"
+    },
+    "ROSE MALLOW": {
+        "zero": "rose mallow",
+        "many": "rose mallows",
+        "one": "a rose mallow"
+    },
+    "PICKLEWEED": {
+        "zero": "pickleweed",
+        "many": "pickleweeds",
+        "one": "a pickleweed stem"
+    },
+    "GOLDEN CREEPING JENNY": {
+        "zero": "golden creeping jenny",
+        "many": "golden creeping jennies",
+        "one": "a golden creeping jenny"
+    }
       }
 
 }

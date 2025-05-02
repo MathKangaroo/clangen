@@ -328,5 +328,13 @@
 	],
 	"constant nightmares": [
 		"m_c is no longer plagued with nightmares every night."
+	],
+	"deer tick fever": [
+		"m_c has recovered from deer tick fever.",
+		"m_c breathes a sigh of relief - {PRONOUN/m_c/poss} deer tick fever has abated."
+	],
+	"tremors":[
+		"m_c's tremors have calmed down.",
+		"m_c's paws are no longer shaking as much."
 	]
 }

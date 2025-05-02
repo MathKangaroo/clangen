@@ -528,7 +528,7 @@ class Cat:
             template["class"] = "B"
             
         guide_or_esp = randint(1,2)
-        if guide_or_esp == 1:
+        if guide_or_esp == 1 and not self.awakened:
             template["type"] = "guide"
         else:
             power = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",

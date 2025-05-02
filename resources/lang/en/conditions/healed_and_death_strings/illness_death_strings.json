@@ -223,5 +223,9 @@
   "rampaging": [
     "Without a guide to stop {PRONOUN/m_c/poss} rampage, m_c's abilities imploded, leaving {PRONOUN/m_c/object} dead.",
     "m_c was too far gone for any guiding, and died during {PRONOUN/m_c/poss} rampage."
+  ],
+  "deer tick fever": [
+    "m_c died of deer tick fever.",
+    "Deer tick fever has taken m_c's life."
   ]
 }
