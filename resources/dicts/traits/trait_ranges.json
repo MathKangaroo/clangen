@@ -522,7 +522,7 @@
             "aggression": [0, 1],
             "stability": [10, 16]
         },
-        "passive-agressive": {
+        "passive-aggressive": {
             "lawfulness": [0, 8],
             "sociability": [0, 8],
             "aggression": [4, 14],
@@ -1200,7 +1200,7 @@
             "aggression": [0, 4],
             "stability": [0, 5]
         },
-        "arguementative": {
+        "argumentative": {
             "lawfulness": [8, 16],
             "sociability": [2, 10],
             "aggression": [10, 16],
@@ -1478,7 +1478,7 @@
             "aggression": [0, 8],
             "stability": [10, 16]
         },
-        "CHAOS CHAOS": {
+        "chaotic": {
             "lawfulness": [0, 6],
             "sociability": [0, 6],
             "aggression": [12, 16],
@@ -1502,7 +1502,7 @@
             "aggression": [0, 8],
             "stability": [8, 16]
         },
-        "sillay": {
+        "silly": {
             "lawfulness": [0, 16],
             "sociability": [8, 16],
             "aggression": [4, 14],
@@ -1736,12 +1736,6 @@
             "sociability": [0, 5],
             "aggression": [6, 15],
             "stability": [2, 7]
-        },
-        "threat to society": {
-            "lawfulness": [0, 6],
-            "sociability": [6, 16],
-            "aggression": [8, 16],
-            "stability": [0, 6]
         },
         "protective": {
             "lawfulness": [8, 16],

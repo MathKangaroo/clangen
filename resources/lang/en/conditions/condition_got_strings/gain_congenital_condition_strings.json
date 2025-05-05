@@ -314,5 +314,22 @@
     "As m_c grows, {PRONOUN/m_c/poss} knee starts to ache. r_c sighs and tells {PRONOUN/m_c/object} that {PRONOUN/m_c/subject} {VERB/m_c/have/has} a bad knee.",
     "m_c's knee always locks up and makes {PRONOUN/m_c/object} trip - {PRONOUN/m_c/subject} {VERB/m_c/have/has} a bad knee.",
     "m_c's parent had always assumed m_c's knee being painful was because {PRONOUN/m_c/subject} {VERB/m_c/were/was} having growing pains. It turns out, m_c actually has a bad knee."
+  ],
+  "bipolar i": [
+    "m_c doesn't understand why {PRONOUN/m_c/poss} mood seems to change so drastically between moons.",
+    "One week m_c is bursting with energy, the next {PROUNOUN/m_c/subject} can barely rouse {PRONOUN/m_c/self} from {PRONOUN/m_c/poss} nest."
+  ],
+  "bipolar ii": [
+    "m_c doesn't understand why {PRONOUN/m_c/poss} mood seems to change so drastically between moons.",
+    "Sometimes m_c struggles to even get out of {PRONOUN/m_c/poss} nest in the mornings, weighed down by a heavy air in {PRONOUN/m_c/poss} heart."
+  ],
+  "essential tremor":[
+    "No matter what m_c tries, {PRONOUN/m_c/poss} paws can never stay perfectly still.",
+    "m_c keeps repeatedly dropping {PRONOUN/m_c/poss} prey until {PRONOUN/m_c/subject} give up in frustration.",
+    "After a trip to the medicine den, m_c learns that most cats' paws don't shake at all, much less constantly."
+  ],
+  "foggy mind": [
+    "After recalling a shared happy memory with a friend, m_c realizes that {PRONOUN/m_c/subject} feel completely disconnected from the memory. It doesn't even seem to be {PRONOUN/m_c/poss} own.",
+    "m_c tries to explain the best {PRONOUN/m_c/subject} can- everything feels so distorted from reality. {PRONOUN/m_c/poss/CAP} paws are too big and too small from day-to-day, {PRONOUN/m_c/subject} can sometimes even feel {PRONOUN/m_c/poss} own self float away from {PRONOUN/m_c/poss} body."
   ]
 }

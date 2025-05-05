@@ -514,7 +514,11 @@ class Condition_Events:
             "parrot chatter",
             "selective mutism",
             "frequent fainting",
-            "flooded paws"
+            "flooded paws",
+            "bipolar i",
+            "bipolar ii",
+            "foggy mind",
+            "deer tick disease"
         ]
 
         got_condition = False
