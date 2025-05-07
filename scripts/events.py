@@ -1058,9 +1058,6 @@ class Events:
         # Handle Mediator Events
         # TODO: this is not a great way to handle them, ideally they should be converted to ShortEvent format
         self.mediator_events(cat)
-        self.denkeeper_events(cat)
-        self.caretaker_events(cat)
-        self.messenger_events(cat)
 
         # handle nutrition amount
         # (CARE: the cats have to be fed before this happens - should be handled in "one_moon" function)
@@ -2197,6 +2194,9 @@ class Events:
         random_cat = get_random_moon_cat(
             Cat, cat, parent_child_modifier=True, mentor_app_modifier=True
         )
+        
+        if cat.dead:
+            return
 
         # chance to kill leader: 1/50 by default
         if (
