@@ -176,7 +176,7 @@ class CustomizeStatsScreen(Screens):
                        "ANIMALTAKER", "ANIMALMAGNET", "VET", "AURAVIBES", "HIDER", "STARGAZER", "GIFTGIVER", "HYDRO", "DISGUISE", "LANGUAGE", "TREASURE",
                        "SCHOLAR", "THINKER", "COMFORTER", "CLEAN", "SONG", "TUNNELER", "ARTISAN", "EXPLORER", "CHEF", "DETECTIVE", "BOOKMAKER", "ASSIST",
                        "MEMORY", "AGILE", "DECORATOR", "WAKEFUL", "GARDENER", "PROPHET", "DREAM", "DARK", "HEALER", "LORE", "KIT", "INSIGHTFUL", "MEDIATOR",
-                       "SWIMMER", "RUNNER", "HUNTER"]
+                       "SWIMMER", "RUNNER", "HUNTER", "DAY", "NIGHT"]
         self.skill_strings_dict = {
                 "TEACHER": SkillPath.TEACHER,
                 "FIGHTER": SkillPath.FIGHTER,
@@ -252,7 +252,9 @@ class CustomizeStatsScreen(Screens):
                 "MEDIATOR": SkillPath.MEDIATOR,
                 "SWIMMER": SkillPath.SWIMMER,
                 "RUNNER": SkillPath.RUNNER,
-                "HUNTER": SkillPath.HUNTER
+                "HUNTER": SkillPath.HUNTER,
+                "DAY": SkillPath.DAY,
+                "NIGHT": SkillPath.NIGHT
             }
         self.skills.sort()
         self.skills.insert(0, "None")
@@ -313,6 +315,9 @@ class CustomizeStatsScreen(Screens):
         
         self.genders = ["male", "female", "intersex"]
         self.genders_label = None
+        
+        self.physical_traits = []
+        self.physical_traits_label = None
 
     def screen_switches(self):
         super().screen_switches()
@@ -358,7 +363,7 @@ class CustomizeStatsScreen(Screens):
                                              (25, 395), (270, 60), "#text_box_26_horizcenter")
         
         self.heal_message = create_text_box("Clears all injuries and illnesses. This cannot be undone.",
-                                             (325, 395), (270, 60), "#text_box_26_horizcenter")
+                                             (325, 520), (270, 60), "#text_box_26_horizcenter")
         
         self.reset_facets_message = create_text_box("Changing facets will redo the cat's facets to match the FIRST (primary) trait. This will likely change the cat's secondary trait.",
                                              (25, 495), (270, 90), "#text_box_26_horizcenter")
@@ -393,7 +398,7 @@ class CustomizeStatsScreen(Screens):
         #self.pose_right_button = create_button((486, 530), (30, 30), get_arrow(1, False), ButtonStyles.ROUNDED_RECT)
         #self.reverse_button = create_button((105, 530), (70, 30), "Reverse", ButtonStyles.ROUNDED_RECT)
         self.reset_button = create_button((110, 450), (105, 30), "Reset", ButtonStyles.SQUOVAL)
-        self.heal_button = create_button((410, 450), (105, 30), "Heal", ButtonStyles.SQUOVAL)
+        self.heal_button = create_button((410, 575), (105, 30), "Heal", ButtonStyles.SQUOVAL)
         self.reset_facets_button = create_button((110, 575), (105, 30), "Reset Facets", ButtonStyles.SQUOVAL)
 
     def setup_dropdowns(self):

@@ -2626,6 +2626,10 @@ class Cat:
         if name == "kittencough" and self.status != "kitten":
             return
         
+        if game.config["event_generation"]["max_illnesses"] > 0:
+            if len(self.illnesses) == game.config["event_generation"]["max_illnesses"]:
+                return
+        
         eating_disorders = [ "anorexia", "ARFID", "bulimia", "binge-eating disorder", "food hoarding", "pica"]
         self_harm = ["harmful stims"]
         dissociation = ["derealization", "depersonalization" , "amnesia"]
@@ -3085,6 +3089,10 @@ class Cat:
             return
         if "deaf" in self.permanent_condition and name == "partial hearing loss":
             return
+        
+        if game.config["event_generation"]["max_perm_conditions"] > 2:
+            if len(self.permanent_condition) == game.config["event_generation"]["max_perm_conditions"]:
+                return
 
         # remove accessories if need be
         if "NOTAIL" in self.pelt.scars or "HALFTAIL" in self.pelt.scars:
