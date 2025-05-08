@@ -282,6 +282,7 @@ class Cat:
         self.no_retire = False
 
         self.prevent_fading = False  # Prevents a cat from fading
+        self.immortality = False
 
         self.faded_offspring = (
             []
@@ -816,6 +817,10 @@ class Cat:
         else:
             self.injuries.clear()
             self.illnesses.clear()
+            
+        if self.immortality:
+            print("haha can't kill me :3")
+            return
 
         # Deal with leader death
         text = ""
@@ -830,7 +835,7 @@ class Cat:
                 final_thought = event_text_adjust(self, death_thought, main_cat=self)
                 self.thought = final_thought
                 return ""
-            elif game.clan.leader_lives <= 0:
+            elif game.clan.leader_lives <= 0:           
                 self.dead = True
                 game.just_died.append(self.ID)
                 game.clan.leader_lives = 0
@@ -1803,7 +1808,8 @@ class Cat:
     def one_moon(self):
         """Handles a moon skip for an alive cat."""
         old_age = self.age
-        self.moons += 1
+        if not self.immortality:
+            self.moons += 1
         if self.moons == 1 and self.status == "newborn":
             self.status = "kitten"
         self.in_camp = 1
@@ -5029,6 +5035,7 @@ class Cat:
                 "faded_offspring": self.faded_offspring,
                 "opacity": self.pelt.opacity,
                 "prevent_fading": self.prevent_fading,
+                "immortality": self.immortality,
                 "favourite": self.favourite,
                 "fur_texture": self.pelt.fur_texture,
                 "height": self.pelt.height,

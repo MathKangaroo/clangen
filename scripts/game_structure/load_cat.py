@@ -329,6 +329,9 @@ def json_load():
             new_cat.prevent_fading = (
                 cat["prevent_fading"] if "prevent_fading" in cat else False
             )
+            new_cat.immortality = (
+                cat["immortality"] if "immortality" in cat else False
+            )
             new_cat.favourite = cat["favourite"] if "favourite" in cat else False
 
             if "died_by" in cat or "scar_event" in cat or "mentor_influence" in cat:
