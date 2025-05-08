@@ -316,7 +316,8 @@ class CustomizeStatsScreen(Screens):
         self.genders = ["male", "female", "intersex"]
         self.genders_label = None
         
-        self.physical_traits = []
+        self.physical_traits = Pelt.physical_trait_teeth + Pelt.physical_trait_ear_type + Pelt.physical_trait_ear_fold + Pelt.physical_trait_headfur + Pelt.physical_trait_cheekfur + Pelt.physical_trait_mane + Pelt.physical_trait_fur_type + Pelt.physical_trait_muzzle_type + Pelt.physical_trait_tail + Pelt.physical_trait_bodyfur + Pelt.physical_trait_misc
+        self.physical_traits.insert(0, "NONE")
         self.physical_traits_label = None
 
     def screen_switches(self):
@@ -358,7 +359,7 @@ class CustomizeStatsScreen(Screens):
                                                         "#text_box_22_horizleft")
         self.gender_label = create_text_box("biological sex", (480, 335), (135, 40), "#text_box_22_horizleft")
         
-        #self.skin_label = create_text_box("skin", (640, 335), (135, 40), "#text_box_22_horizleft")
+        self.physical_trait1_label = create_text_box("physical trait 1", (640, 335), (135, 40), "#text_box_22_horizleft")
         self.reset_message = create_text_box("Changes cannot be reset after leaving this cat's customization page.",
                                              (25, 395), (270, 60), "#text_box_26_horizcenter")
         
@@ -367,9 +368,9 @@ class CustomizeStatsScreen(Screens):
         
         self.reset_facets_message = create_text_box("Changing facets will redo the cat's facets to match the FIRST (primary) trait. This will likely change the cat's secondary trait.",
                                              (25, 495), (270, 90), "#text_box_26_horizcenter")
-        #self.eye_colour1_label = create_text_box("eye colour 1", (320, 420), (135, 40), "#text_box_22_horizleft")
-        #self.heterochromia_text = create_text_box("heterochromia", (495, 451), (135, 40), "#text_box_26_horizcenter")
-        #self.eye_colour2_label = create_text_box("eye colour 2", (640, 420), (135, 40), "#text_box_22_horizleft")
+        self.physical_trait2_label = create_text_box("physical trait 2", (320, 420), (135, 40), "#text_box_22_horizleft")
+        self.physical_trait3_label = create_text_box("physical trait 3", (480, 420), (135, 40), "#text_box_22_horizleft")
+        self.physical_trait4_label = create_text_box("physical trait 4", (640, 420), (135, 40), "#text_box_22_horizleft")
         #self.accessory_label = create_text_box("accessory", (568, 500), (135, 40), "#text_box_22_horizleft")
         #self.pose_label = create_text_box("pose", (406, 500), (110, 40), "#text_box_22_horizleft")
         #self.reverse_label = create_text_box("reverse", (52, 500), (135, 40), "#text_box_22_horizleft")
@@ -463,6 +464,15 @@ class CustomizeStatsScreen(Screens):
         self.gender_dropdown = create_dropdown((480, 360), (135, 40), create_options_list(self.genders, "lower"),
                                              get_selected_option(self.the_cat.gender, "lower"))
         
+        
+        self.physical_trait1_dropdown = create_dropdown((640, 360), (135, 40), create_options_list(self.physical_traits, "upper"),
+                                             get_selected_option(self.the_cat.pelt.physical_trait_1, "upper"))
+        self.physical_trait2_dropdown = create_dropdown((320, 445), (135, 40), create_options_list(self.physical_traits, "upper"),
+                                             get_selected_option(self.the_cat.pelt.physical_trait_2, "upper"))
+        self.physical_trait3_dropdown = create_dropdown((480, 445), (135, 40), create_options_list(self.physical_traits, "upper"),
+                                             get_selected_option(self.the_cat.pelt.physical_trait_3, "upper"))
+        self.physical_trait4_dropdown = create_dropdown((640, 445), (135, 40), create_options_list(self.physical_traits, "upper"),
+                                             get_selected_option(self.the_cat.pelt.physical_trait_4, "upper"))
         '''
         self.skin_dropdown = create_dropdown((640, 360), (135, 40), create_options_list(self.skins, "upper"),
                                              get_selected_option(self.the_cat.pelt.skin, "upper"))
@@ -537,7 +547,11 @@ class CustomizeStatsScreen(Screens):
             "height": self.the_cat.pelt.height,
             "backstory": self.the_cat.backstory,
             "gender": self.the_cat.gender,
-            "genderalign":self.the_cat.genderalign
+            "genderalign":self.the_cat.genderalign,
+            "physical_trait1": self.the_cat.pelt.physical_trait_1,
+            "physical_trait2": self.the_cat.pelt.physical_trait_2,
+            "physical_trait3": self.the_cat.pelt.physical_trait_3,
+            "physical_trait4": self.the_cat.pelt.physical_trait_4,
         }
 
 
@@ -599,7 +613,7 @@ class CustomizeStatsScreen(Screens):
                 
             #self.print_pelt_attributes()  # for testing purposes
         elif event.type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
-            if event.ui_element in [self.permanent_condition_dropdown, self.trait1_dropdown, self.trait2_dropdown, self.skill1_dropdown, self.skill2_dropdown, self.skill3_dropdown,self.fur_texture_dropdown, self.build_dropdown, self.height_dropdown, self.backstory_dropdown, self.gender_dropdown]:
+            if event.ui_element in [self.permanent_condition_dropdown, self.trait1_dropdown, self.trait2_dropdown, self.skill1_dropdown, self.skill2_dropdown, self.skill3_dropdown,self.fur_texture_dropdown, self.build_dropdown, self.height_dropdown, self.backstory_dropdown, self.gender_dropdown, self.physical_trait1_dropdown, self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown]:
                 self.handle_dropdown_change(event.ui_element)
             #self.print_pelt_attributes()  # for testing purposes
                 
@@ -630,6 +644,10 @@ class CustomizeStatsScreen(Screens):
         else:
             self.the_cat.skills.tertiary = Skill(self.skill_strings_dict[self.initial_state["skill3"]], self.the_cat.skills.tertiary.points, self.the_cat.skills.tertiary.interest_only)
         
+        self.the_cat.pelt.physical_trait_1 = self.initial_state["physical_trait1"]
+        self.the_cat.pelt.physical_trait_2 = self.initial_state["physical_trait2"]
+        self.the_cat.pelt.physical_trait_3 = self.initial_state["physical_trait3"]
+        self.the_cat.pelt.physical_trait_4 = self.initial_state["physical_trait4"]
         self.update_ui_elements()
     
     def reset_facets(self):
@@ -659,6 +677,20 @@ class CustomizeStatsScreen(Screens):
             self.the_cat.pelt.height = selected_option
         if dropdown == self.build_dropdown:
             self.the_cat.pelt.build = selected_option
+        
+        if dropdown in [self.physical_trait1_dropdown, self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown]:
+            if selected_option == "none":
+                selected_option = None
+            else:
+                selected_option = selected_option.upper()
+        if dropdown == self.physical_trait1_dropdown:
+            self.the_cat.pelt.physical_trait_1 = selected_option
+        if dropdown == self.physical_trait2_dropdown:
+            self.the_cat.pelt.physical_trait_2 = selected_option
+        if dropdown == self.physical_trait3_dropdown:
+            self.the_cat.pelt.physical_trait_3 = selected_option
+        if dropdown == self.physical_trait4_dropdown:
+            self.the_cat.pelt.physical_trait_4 = selected_option
         
         if dropdown == self.permanent_condition_dropdown:
             if selected_option == "none":
@@ -719,7 +751,8 @@ class CustomizeStatsScreen(Screens):
         labels = [
             self.permanent_condition_label, self.trait1_label, self.trait2_label, self.skill1_label, self.skill2_label, self.skill3_label,
             self.fur_texture_label, self.build_label, self.height_label, self.backstory_label, self.gender_label,
-            self.reset_message, self.reset_facets_message, self.heal_message
+            self.reset_message, self.reset_facets_message, self.heal_message, self.physical_trait1_label, self.physical_trait2_label,
+            self.physical_trait3_label, self.physical_trait4_label
         ]
         for label in labels:
             label.kill()
@@ -734,7 +767,8 @@ class CustomizeStatsScreen(Screens):
     def kill_dropdowns(self):
         dropdowns = [
             self.permanent_condition_dropdown, self.trait1_dropdown, self.trait2_dropdown, self.skill1_dropdown, self.skill2_dropdown, self.skill3_dropdown,
-            self.fur_texture_dropdown, self.build_dropdown, self.height_dropdown, self.backstory_dropdown, self.gender_dropdown
+            self.fur_texture_dropdown, self.build_dropdown, self.height_dropdown, self.backstory_dropdown, self.gender_dropdown, self.physical_trait1_dropdown,
+            self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown
         ]
         for dropdown in dropdowns:
             dropdown.kill()
