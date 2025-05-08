@@ -435,7 +435,7 @@ class Relationship:
             value_weights["romantic"] += 1
         if self.besties:
             value_weights["platonic"] += 1
-        if self.enemy:
+        if self.enemies:
             value_weights["dislike"] += 1
             value_weights["jealousy"] += 1
 
