@@ -653,10 +653,18 @@
     "Wolf", "Wolverine", "Woodpecker", "Worm", "Wren", "Yorkie", "Zebu"
 	],
 	"inappropriate_names": [
-		"wetback", "yellowface", "redface", "blackface", "brownface", "pancakeface", "yellowbone", "molesting"
+		"wetback", "yellowface", "redface", "blackface", "brownface", "pancakeface", "yellowbone", "molesting",
+    "bleaksight", "lostface", "deadfoot", "tornface", "brokentail", "crookedjaw", "crookedeye", "crookedfoot",
+    "brokeneye", "brokentooth", "brokenfoot", "brokenjaw", "brokenspirit", "crookedarch", "burneyes", "burneye",
+    "burntail", "burnleg", "burnfoot", "burnface", "wetdream", "littlecatcher", "wetdream", "cameltoe", "smokeweed",
+    "weedsmoke", "quicknut", "deepthroat"
 	],
   "normal_plural_suffixes": [
     " Collective", " System", " Pack", " Colony", " Conspiracy", " Shoal", " Swarm", " Pounce", " Clutter", " Herd",
     " Band", " Murder", " Charm", " Skulk", " Flock", " Cloud", " Pride", " Plague", " Nest", " Pod", " Family", " Mischief"
+  ],
+  "leader_plural_suffixes": [
+    " Constellation", " Galaxy", " Belt", " Ring", " Cluster", " Nova", " Nebula", " Shooting Stars", " Meteor Shower",
+    " Asterism", " Cosmos"
   ]
 }

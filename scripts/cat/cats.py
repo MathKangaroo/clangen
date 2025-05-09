@@ -821,6 +821,10 @@ class Cat:
         if self.immortality:
             print("haha can't kill me :3")
             return
+        
+        if self.dead:
+            print("you can't die twice...")
+            return
 
         # Deal with leader death
         text = ""
