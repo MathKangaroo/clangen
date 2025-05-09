@@ -3071,7 +3071,9 @@
         ],
         "main_skill_constraint": [
             "STAR,2",
-            "DARK,2"
+            "DARK,2",
+            "GHOST,2",
+            "UNKNOWN,2"
         ],
         "random_status_constraint": [
             "kitten"
@@ -3178,7 +3180,13 @@
             "mediator",
             "deputy",
             "leader",
-            "elder"
+            "elder",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice",
+            "caretaker",
+            "denkeeper",
+            "messenger"
         ],
         "random_status_constraint": [
             "apprentice",
@@ -3189,7 +3197,13 @@
             "mediator",
             "deputy",
             "leader",
-            "elder"
+            "elder",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice",
+            "caretaker",
+            "denkeeper",
+            "messenger"
         ],
         "random_living_status": [
             "living"
@@ -3242,7 +3256,13 @@
             "mediator",
             "deputy",
             "leader",
-            "elder"
+            "elder",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice",
+            "caretaker",
+            "denkeeper",
+            "messenger"
         ],
         "main_backstory_constraint": [
             "clan_founder",
@@ -3312,7 +3332,13 @@
             "mediator",
             "deputy",
             "leader",
-            "elder"
+            "elder",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice",
+            "caretaker",
+            "denkeeper",
+            "messenger"
         ],
         "main_backstory_constraint": [
             "otherclan1",
@@ -3338,7 +3364,13 @@
             "mediator",
             "deputy",
             "leader",
-            "elder"
+            "elder",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice",
+            "caretaker",
+            "denkeeper",
+            "messenger"
         ],
         "main_backstory_constraint": [
             "wandering_healer1",
@@ -3361,7 +3393,13 @@
             "medicine cat",
             "mediator",
             "deputy",
-            "elder"
+            "elder",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice",
+            "caretaker",
+            "denkeeper",
+            "messenger"
         ],
         "main_backstory_constraint": [
             "refugee1",
@@ -3395,7 +3433,13 @@
             "mediator",
             "deputy",
             "leader",
-            "elder"
+            "elder",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice",
+            "caretaker",
+            "denkeeper",
+            "messenger"
         ],
         "main_backstory_constraint": [
             "refugee5",
@@ -3427,7 +3471,13 @@
             "mediator",
             "deputy",
             "leader",
-            "elder"
+            "elder",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice",
+            "caretaker",
+            "denkeeper",
+            "messenger"
         ],
         "main_backstory_constraint": [
             "refugee5",
@@ -3641,7 +3691,9 @@
         ],
         "main_status_constraint": [
             "medicine cat",
-            "medicine cat apprentice"
+            "medicine cat apprentice",
+            "caretaker",
+            "caretaker apprentice"
         ],
         "random_status_constraint": [
             "kitten"
@@ -3707,7 +3759,10 @@
         ],
         "main_status_constraint": [
             "apprentice",
-            "warrior"
+            "warrior",
+            "denkeeper",
+            "caretaker",
+            "messenger"
         ],
         "random_status_constraint": [
             "deputy",
@@ -3745,7 +3800,9 @@
         "main_status_constraint": [
             "warrior",
             "deputy",
-            "leader"
+            "leader",
+            "caretaker",
+            "caretaker apprentice"
         ],
         "random_status_constraint": [
             "medicine cat"
@@ -3794,7 +3851,9 @@
             "apprentice",
             "warrior",
             "deputy",
-            "leader"
+            "leader",
+            "denkeeper",
+            "denkeeper apprentice"
         ]
     },
     {
@@ -3812,13 +3871,15 @@
             "apprentice",
             "warrior",
             "deputy",
-            "leader"
+            "leader",
+            "denkeeper",
+            "denkeeper apprentice"
         ]
     },
     {
         "id": "apprentices_thoughts",
         "thoughts": [
-            "Gossips",
+            "Gossips about past apprentices",
             "Acts angsty",
             "Dreads {PRONOUN/m_c/poss} apprentice duties",
             "Fell into the nearby creek yesterday and is still feeling damp",
@@ -3851,7 +3912,10 @@
         "main_status_constraint": [
             "apprentice",
             "mediator apprentice",
-            "medicine cat apprentice"
+            "medicine cat apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ]
     },
     {
@@ -3863,7 +3927,10 @@
         "main_status_constraint": [
             "apprentice",
             "medicine cat apprentice",
-            "mediator apprentice"
+            "mediator apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ],
         "random_living_status": [
             "living"
@@ -3884,7 +3951,10 @@
         "main_status_constraint": [
             "apprentice",
             "mediator apprentice",
-            "medicine cat apprentice"
+            "medicine cat apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ],
         "relationship_constraint": [
             "app/mentor"
@@ -3898,7 +3968,10 @@
         "main_status_constraint": [
             "apprentice",
             "medicine cat apprentice",
-            "mediator apprentice"
+            "mediator apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ],
         "random_status_constraint": [
             "mediator"
@@ -3917,7 +3990,10 @@
         "main_status_constraint": [
             "apprentice",
             "medicine cat apprentice",
-            "mediator apprentice"
+            "mediator apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ],
         "random_status_constraint": [
             "leader"
@@ -3933,7 +4009,10 @@
         ],
         "main_status_constraint": [
             "apprentice",
-            "mediator apprentice"
+            "mediator apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ],
         "random_status_constraint": [
             "medicine cat"
@@ -3950,7 +4029,10 @@
         ],
         "main_status_constraint": [
             "apprentice",
-            "mediator apprentice"
+            "mediator apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ],
         "random_status_constraint": [
             "medicine cat apprentice"
@@ -3974,7 +4056,10 @@
         "main_status_constraint": [
             "apprentice",
             "medicine cat apprentice",
-            "mediator apprentice"
+            "mediator apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ],
         "random_status_constraint": [
             "kitten"
@@ -8184,5 +8269,97 @@
                 "harmful stims"
             ]
         }
+    },
+    {
+        "id": "gen_esper",
+        "thoughts": [
+            "Realizes that {PRONOUN/m_c/subject} {VERB/m_c/have/has}n't been guided in a while",
+            "Practices using {PRONOUN/m_c/poss} powers for combat",
+            "Practices using {PRONOUN/m_c/poss} powers for hunting",
+            "Wonders if being a guide would have been more exciting"
+        ],
+        "main_awakened_constraint":[
+            "esper",
+            "enhanced esper"
+        ],
+        "random_status_constraint": [
+            "any"
+        ],
+        "random_living_status": [
+            "living"
+        ]
+    },
+    {
+        "id": "gen_esper",
+        "thoughts": [
+            "Wonders if being an esper would have been more exciting"
+        ],
+        "main_awakened_constraint":[
+            "guide"
+        ],
+        "random_status_constraint": [
+            "any"
+        ],
+        "random_living_status": [
+            "living"
+        ]
+    },
+    {
+        "id": "gen_dendrokinesis",
+        "thoughts": [
+            "Feels safer amongst flowers than cats"
+        ],
+        "main_awakened_constraint":[
+            "esper",
+            "enhanced esper"
+        ],
+        "main_power_constraint":[
+            "dendrokinesis"
+        ],
+        "random_status_constraint": [
+            "any"
+        ],
+        "random_living_status": [
+            "living"
+        ]
+    },
+    {
+        "id": "gen_bestie",
+        "thoughts": [
+            "Is sharing prey with r_c",
+            "Is on a walk with r_c",
+            "Is taking a nap in r_c's nest",
+            "Wants to work hard to impress r_c",
+            "Thinks r_c is THE best friend of all time",
+            "Is napping with r_c",
+            "Can't stop admiring r_c",
+            "Is waiting for r_c to return to camp",
+            "Explores the territory with r_c",
+            "Takes r_c to {PRONOUN/m_c/poss} favorite spot",
+            "Is on a walk with r_c",
+            "Saves the last of r_c's favorite prey for {PRONOUN/r_c/object}",
+            "Brings r_c {PRONOUN/r_c/poss} favorite prey",
+            "Is pressing against r_c, purring loudly",
+            "Makes time for r_c today"
+        ],
+        "random_living_status": [
+            "living"
+        ],
+        "relationship_constraint": [
+            "besties"
+        ]
+    },
+    {
+        "id": "gen_enemy",
+        "thoughts":[
+            "Wishes r_c would run away to another Clan",
+            "Wishes r_c would be exiled"
+        ],
+        "random_living_status": [
+            "living"
+        ],
+        "relationship_constraint": [
+            "enemies"
+        ]
     }
 ]
