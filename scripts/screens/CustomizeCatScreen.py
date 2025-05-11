@@ -815,7 +815,7 @@ class CustomizeCatScreen(Screens):
             self.tortie_base_dropdown = create_dropdown((320, 200), (135, 40), "None", "None")
             self.tortie_colour_dropdown = create_dropdown((480, 200), (135, 40), "None", "None")
             self.tortie_pattern_dropdown = create_dropdown((640, 200), (135, 40), "None", "None")
-            self.tortie_tint_dropdown = create_dropdown((640, 605), (135, 40) "None", "None")
+            self.tortie_tint_dropdown = create_dropdown((640, 605), (135, 40), "None", "None")
 
             self.the_cat.pelt.pattern = None
             self.the_cat.pelt.tortiebase = None
