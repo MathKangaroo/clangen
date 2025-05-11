@@ -2803,7 +2803,7 @@ def generate_sprite(
                         patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour + cat_sprite].copy()
 
                         tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        tint.fill(tuple(sprites.cat_tints["tint_colours"][cat.pelt.tortie_tint]))
+                        tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][cat.pelt.tortie_tint]))
                         patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
 
                         patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
@@ -2863,7 +2863,7 @@ def generate_sprite(
                  'NEO YELLOWRED', 'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK', 'NEO MINT', 'NEO BLACKBLUE']
         if cat.pelt.eye_colour in neos_eyes:
             eyes = sprites.sprites["neos_eyes" + cat.pelt.eye_colour + cat_sprite].copy()
-        else: 
+        else:
             eyes = sprites.sprites["eyes" + cat.pelt.eye_colour + cat_sprite].copy()
 
         if cat.pelt.eye_colour2 != None:
