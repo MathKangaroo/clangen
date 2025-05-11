@@ -459,6 +459,10 @@ class ProfileScreen(Screens):
             object_id="@buttonstyles_squoval",
             manager=MANAGER,
         )
+        if self.the_cat.status== "newborn":
+            self.customize_stats_button.disable()
+        else:
+            self.customize_stats_button.enable()
         self.inspect_button = UISurfaceImageButton(
             ui_scale(pygame.Rect((741, 60), (34, 34))),
             Icon.MAGNIFY,
@@ -1674,6 +1678,9 @@ class ProfileScreen(Screens):
             "apprentice",
             "medicine cat apprentice",
             "mediator apprentice",
+            "caretaker apprentice",
+            "denkeeper apprentice",
+            "messenger apprentice"
         ]:
             influence_history = i18n.t("cat.history.training_app")
         else:
