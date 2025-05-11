@@ -398,8 +398,6 @@ class CustomizeCatScreen(Screens):
         self.scar4_dropdown = create_dropdown((492, 605), (135, 40), create_options_list(self.scars, "upper"),
                                               get_selected_option(scars[3:], "upper"), "dropup")
         
-        self.scar4_dropdown = create_dropdown((492, 605), (135, 40), create_options_list(self.scars, "upper"),
-                                              get_selected_option(scars[3:], "upper"), "dropup")
         
         self.tortie_tint_dropdown = create_dropdown((640, 605), (135, 40), create_options_list(self.tints, "upper"),
                                              get_selected_option(self.the_cat.pelt.tortie_tint, "upper"), "dropup")
