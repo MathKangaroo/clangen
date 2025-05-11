@@ -923,7 +923,7 @@ class CustomizeCatScreen(Screens):
             self.white_patches_label, self.vitiligo_label, self.points_label, self.white_patches_tint_label,
             self.tint_label, self.skin_label, self.eye_colour1_label, self.eye_colour2_label, self.heterochromia_text,
             self.reset_message, self.pose_label, self.reverse_label, self.accessory_label, self.scar_message,
-            self.scar1_label, self.scar2_label, self.scar3_label, self.scar4_label
+            self.scar1_label, self.scar2_label, self.scar3_label, self.scar4_label, self.tortie_tints_label 
         ]
         for label in labels:
             label.kill()
@@ -944,7 +944,7 @@ class CustomizeCatScreen(Screens):
             self.vitiligo_dropdown,
             self.points_dropdown, self.skin_dropdown, self.white_patches_tint_dropdown, self.tint_dropdown,
             self.eye_colour1_dropdown, self.eye_colour2_dropdown, self.accessory_dropdown,
-            self.scar1_dropdown, self.scar2_dropdown, self.scar3_dropdown, self.scar4_dropdown
+            self.scar1_dropdown, self.scar2_dropdown, self.scar3_dropdown, self.scar4_dropdown, self.tortie_tint_dropdown 
         ]
         for dropdown in dropdowns:
             dropdown.kill()
