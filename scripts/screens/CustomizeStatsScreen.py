@@ -323,6 +323,10 @@ class CustomizeStatsScreen(Screens):
         self.physical_traits = Pelt.physical_trait_teeth + Pelt.physical_trait_ear_type + Pelt.physical_trait_ear_fold + Pelt.physical_trait_headfur + Pelt.physical_trait_cheekfur + Pelt.physical_trait_mane + Pelt.physical_trait_fur_type + Pelt.physical_trait_muzzle_type + Pelt.physical_trait_tail + Pelt.physical_trait_bodyfur + Pelt.physical_trait_misc
         self.physical_traits.insert(0, "NONE")
         self.physical_traits_label = None
+        
+        self.powers = ["none", "esper", "guide", "enhanced esper"]
+        self.powers_label = None
+        self.powers_dropdown = None
 
     def screen_switches(self):
         super().screen_switches()
@@ -386,6 +390,8 @@ class CustomizeStatsScreen(Screens):
         #self.scar4_label = create_text_box("scar 4", (496, 580), (135, 40), "#text_box_22_horizleft")
         
         #self.powers_label = create_text_box("powers", (646, 580), (135, 40), "#text_box_22_horizleft")
+        
+        self.powers_label = create_text_box("powers", (646, 500), (135, 40), "#text_box_22_horizleft")
         """------------------------------------------------------------------------------------------------------------#
         #                                              LABEL SETUP END                                                 #
         # ------------------------------------------------------------------------------------------------------------"""
@@ -477,6 +483,13 @@ class CustomizeStatsScreen(Screens):
                                              get_selected_option(self.the_cat.pelt.physical_trait_3, "upper"))
         self.physical_trait4_dropdown = create_dropdown((640, 445), (135, 40), create_options_list(self.physical_traits, "upper"),
                                              get_selected_option(self.the_cat.pelt.physical_trait_4, "upper"))
+        
+        powers = "none"
+        if self.the_cat.awakened:
+            powers = self.the_cat.awakened["type"]
+        self.powers_dropdown = create_dropdown((642, 525), (135, 40), create_options_list(self.powers, "upper"),
+                                              get_selected_option(powers, "upper"), "dropup")
+
         '''
         self.skin_dropdown = create_dropdown((640, 360), (135, 40), create_options_list(self.skins, "upper"),
                                              get_selected_option(self.the_cat.pelt.skin, "upper"))
@@ -535,12 +548,25 @@ class CustomizeStatsScreen(Screens):
 
     def setup_cat_elements(self):
         self.capture_initial_state()
+        
+    def handle_powers_dropdown(self, dropdown):
+        selected_option = dropdown.selected_option[1]
+        previous_selection = "none"
+        if self.the_cat.awakened:
+            previous_selection = self.the_cat.awakened["type"]
+            
+        if previous_selection != "none" and previous_selection in ["guide","esper","enhanced esper"]:
+            self.the_cat.awakened = None
+        if selected_option != "none":
+            self.generate_ability(power_type = selected_option)
+        self.make_cat_sprite()
 
     # store state for reset
     # TODO: append values to a list with identifier to retain values between cat pages
     def capture_initial_state(self):
         self.initial_state = {
             "permanent_condition": self.the_cat.permanent_condition,
+            "awakened": self.the_cat.awakened,
             "trait": self.the_cat.personality.trait,
             "trait2": self.the_cat.personality.trait2,
             "skill1": self.the_cat.skills.primary.path.name,
@@ -619,6 +645,8 @@ class CustomizeStatsScreen(Screens):
         elif event.type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
             if event.ui_element in [self.permanent_condition_dropdown, self.trait1_dropdown, self.trait2_dropdown, self.skill1_dropdown, self.skill2_dropdown, self.skill3_dropdown,self.fur_texture_dropdown, self.build_dropdown, self.height_dropdown, self.backstory_dropdown, self.gender_dropdown, self.physical_trait1_dropdown, self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown]:
                 self.handle_dropdown_change(event.ui_element)
+            elif event.ui_element == self.powers_dropdown:
+                self.handle_powers_dropdown(event.ui_element)
             #self.print_pelt_attributes()  # for testing purposes
                 
     
@@ -652,6 +680,8 @@ class CustomizeStatsScreen(Screens):
         self.the_cat.pelt.physical_trait_2 = self.initial_state["physical_trait2"]
         self.the_cat.pelt.physical_trait_3 = self.initial_state["physical_trait3"]
         self.the_cat.pelt.physical_trait_4 = self.initial_state["physical_trait4"]
+        
+        self.the_cat.awakened = self.initial_state["awakened"] 
         self.update_ui_elements()
     
     def reset_facets(self):
@@ -728,7 +758,60 @@ class CustomizeStatsScreen(Screens):
                 elif dropdown == self.skill3_dropdown:
                     if self.the_cat.skills.tertiary:
                         self.the_cat.skills.tertiary = None
+                        
+                        
+    def generate_ability(self, power_type = "esper"):
+        if os.path.exists('resources/dicts/esper.json'):
+            with open('resources/dicts/esper.json') as read_file:
+                powers_dict = ujson.loads(read_file.read())
+                
+        power_type = power_type.lower()
+        template = {
+            "type": power_type,
+            "class": "C",
+            "ability": "none",
+            "desc": "none"
+            }
+        strength = randint(1,10)
+        if strength == 10:
+            template["class"] = "S"
+        elif strength > 7:
+            template["class"] = "A"
+        elif strength > 4:
+            template["class"] = "B"
         
+        if power_type in ["esper", "enhanced esper"]:
+            power = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
+                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
+                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
+                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"])
+            template["desc"] = choice(powers_dict[power][template["class"]])
+            template["ability"] = power
+            if power_type == "enhanced esper":
+                strength = randint(1,10)
+                class2 = "C"
+                if strength == 10:
+                    class2 = "S"
+                elif strength > 7:
+                    class2 = "A"
+                elif strength > 4:
+                    class2 = "B"
+                power2 = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
+                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
+                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
+                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"])
+                desc2 = choice(powers_dict[power2][class2])
+                
+                classes = [template["class"], class2]
+                abilities = [template["ability"], power2]
+                while template["desc"] == desc2:
+                   desc2 = choice(powers_dict[power2][class2])
+                powers = [template["desc"], desc2]
+                
+                template["class"] = classes
+                template["ability"] = abilities
+                template["desc"] = powers
+        self.the_cat.awakened = template       
 
     def handle_back_button(self):
         self.change_screen("profile screen")
@@ -756,7 +839,7 @@ class CustomizeStatsScreen(Screens):
             self.permanent_condition_label, self.trait1_label, self.trait2_label, self.skill1_label, self.skill2_label, self.skill3_label,
             self.fur_texture_label, self.build_label, self.height_label, self.backstory_label, self.gender_label,
             self.reset_message, self.reset_facets_message, self.heal_message, self.physical_trait1_label, self.physical_trait2_label,
-            self.physical_trait3_label, self.physical_trait4_label
+            self.physical_trait3_label, self.physical_trait4_label, self.powers_label
         ]
         for label in labels:
             label.kill()
@@ -772,7 +855,7 @@ class CustomizeStatsScreen(Screens):
         dropdowns = [
             self.permanent_condition_dropdown, self.trait1_dropdown, self.trait2_dropdown, self.skill1_dropdown, self.skill2_dropdown, self.skill3_dropdown,
             self.fur_texture_dropdown, self.build_dropdown, self.height_dropdown, self.backstory_dropdown, self.gender_dropdown, self.physical_trait1_dropdown,
-            self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown
+            self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown, self.powers_dropdown
         ]
         for dropdown in dropdowns:
             dropdown.kill()
