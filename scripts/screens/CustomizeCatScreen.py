@@ -766,7 +766,8 @@ class CustomizeCatScreen(Screens):
             self.pattern_dropdown,
             self.tortie_base_dropdown,
             self.tortie_colour_dropdown,
-            self.tortie_pattern_dropdown
+            self.tortie_pattern_dropdown,
+            self.tortie_tint_dropdown
         ]
         if new_pelt_name in ["Calico", "Tortie"]:
             if previous_pelt_name not in ["Calico", "Tortie"]:
@@ -801,6 +802,8 @@ class CustomizeCatScreen(Screens):
                                                                create_options_list(self.tortie_bases, "lower"),
                                                                get_selected_option(self.the_cat.pelt.tortiepattern,
                                                                                    "lower"))
+                self.tortie_tint_dropdown = create_dropdown((640, 605), (135, 40), create_options_list(self.tints, "upper"),
+                                             get_selected_option(self.the_cat.pelt.tortie_tint, "upper"), "dropup")
 
                 for dropdown in dropdowns:
                     dropdown.enable()
@@ -812,14 +815,17 @@ class CustomizeCatScreen(Screens):
             self.tortie_base_dropdown = create_dropdown((320, 200), (135, 40), "None", "None")
             self.tortie_colour_dropdown = create_dropdown((480, 200), (135, 40), "None", "None")
             self.tortie_pattern_dropdown = create_dropdown((640, 200), (135, 40), "None", "None")
+            self.tortie_tint_dropdown = create_dropdown((640, 605), (135, 40) "None", "None")
 
             self.the_cat.pelt.pattern = None
             self.the_cat.pelt.tortiebase = None
             self.the_cat.pelt.tortiecolour = None
             self.the_cat.pelt.tortiepattern = None
+            
+            self.the_cat.pelt.tortie_tint = "none"
 
             for dropdown in [self.pattern_dropdown, self.tortie_base_dropdown, self.tortie_colour_dropdown,
-                             self.tortie_pattern_dropdown]:
+                             self.tortie_pattern_dropdown, self.tortie_tint_dropdown]:
                 dropdown.disable()
 
     def check_white_patches_tint(self):
