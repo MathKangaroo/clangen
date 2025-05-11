@@ -188,7 +188,7 @@ class Pelt:
                       'AKITA', 'CHESSBORAD','ANT','CREAMV','BUNNY','MOJO','STAINSONE','STAINST',
                       'HALFHEART','FRECKLESTHREE','KITTY', 'SUNRISE','HUSKY','STATNTHREE','MASK', 'S','PAW','SWIFTPAW',
                       'BOOMSTAR','MIST','LEON', 'LADY','LEGS','MEADOW', 'SALT','BAMBI','PRIMITVE','SKUNKSTRIPE','NEPTUNE','KARAPATITWO',
-                      'CHAOS', 'MOSCOW','HALF','CAPETOWN','SUN','BANAN','PANDA','DOVE','PINTOTWO', 'SNOWSHOE','SKY', 'MOONSTONE', 'DRIP',
+                      'CHAOS', 'MOSCOW','ERAHALF','CAPETOWN','SUN','BANAN','PANDA','DOVE','PINTOTWO', 'SNOWSHOE','SKY', 'MOONSTONE', 'DRIP',
                       'CRESCENT', 'ETERNAL', 'WINGTWO', 'STARBORN',  'SPIDERLEGS', 'APPEL', 'RUG', 'LUCKY',
                       'SOCKS', 'BRAMBLEBERRY', 'LATKA', 'ASTRONAUT', 'STORK',]
     tortiebases = ['single', 'tabby', 'bengal', 'marbled', 'ticked', 'smoke', 'rosette', 'speckled', 'mackerel',
@@ -232,7 +232,6 @@ class Pelt:
             'FERN', 'APPLE', 'MOSS', 'THICKET', 'PEACOCK', 'OLIVE','STORMY BLUE', 'DEPTHS', 'STORMY', 'TEAL', 'INDIGO', 'STEEL', 'PEACH', 'DAFFODIL', 'MARIGOLD', 'BRASS', 'DARKAMBER', 'DAWN SKIES','MINT',
              'CHARTREUSE', 'MEADOW', 'LEAF', 'LIGHT TURQUOISE', 'SAP', 'ALBINISTIC', 'COBALT ORE', 'RAIN', 'CYAN DYE', 'PERIWINKLE PURPLE', 'ICY CRACK', 'PINK', 'MORNING', 'DARK BROWN' , 'BAY', 'NEON GREEN', 'SEA', 'DISCORD',
              'AUTUMN LEAF', 'RUBY', 'PHANTOM', 'RIVER MOSS', 'WICKED', 'ORANGE']
-    
     yellow_eyes = ['BULLET', 'GREY SILVER', 'PEACH', 'LIGHT YELLOW', 'SAND', 'DAFFODIL', 'SUNSHINE', 'MUSTARD', 'MARIGOLD', 'GOLD ORE', 'BRONZE ORE', 'BRASS', 'FOSSILIZED AMBER', 'TIMBER', 'DARKAMBER', 'DUSKY', 'COPPER ORE', 'DAWN SKY','YELLOW', 'AMBER', 'PALEYELLOW', 'GOLD', 'COPPER', 'GREENYELLOW', 'BRONZE', 'SILVER', 'ROSE', 'LIGHT FLAME', 'RED',
                    'PUMPKIN', 'BROWN', 'CEDAR', 'DARK PINE', 'FALL', 'GOLD MOON', 'OXIDIZED', 'BERRY BANANA', 'WORMY', 'THUNDERBOLT',
                    'VOLCANO', 'SEASHELL', 'PARADOX', 'BLESSING', 'VALENTINE', 'PALE BROWN', 'CRIMSON', 'MORNING',
@@ -763,7 +762,7 @@ class Pelt:
                 'GOATEE', 'PRINCE', 'FAROFA', 'MISTER', 'PANTS', 'REVERSEPANTS', 'HALFWHITE', 'APPALOOSA', 'PIEBALD',
                 'CURVED', 'GLASS', 'MASKMANTLE', 'MAO', 'PAINTED', 'SHIBAINU', 'OWL', 'BUB', 'SPARROW', 'TRIXIE',
                 'SAMMY', 'FRONT', 'BLOSSOMSTEP', 'BULLSEYE', 'FINN', 'SCAR', 'BUSTER', 'HAWKBLAZE', 'CAKE', 'CHITAL',
-                'MINKTHREE', 'MINKOREO', 'WOLF', 'PINTO', 'CHESSBORAD', 'SUNRISE','HUSKY', 'S', 'STATNTHREE', 'MIST', 'LADY', 'HALF', 'SUN',
+                'MINKTHREE', 'MINKOREO', 'WOLF', 'PINTO', 'CHESSBORAD', 'SUNRISE','HUSKY', 'S', 'STATNTHREE', 'MIST', 'LADY', 'ERAHALF', 'SUN',
                   'PINTOTWO', 'SKY', 'MINKGRUMPYFACE', 'MINKPACMAN', 'MINKPAIGE', 'MINKMOTTLED', 'MINKDELILAH', 'TIGERBODYSTRIPE', 'BLACKTIGERBODYSTRIPE', 'BROWNTIGERBODYSTRIPE', 'GINGERTIGERBODYSTRIPE']
     mostly_white = ['VAN', 'ONEEAR', 'LIGHTSONG', 'TAIL', 'HEART', 'MOORISH', 'APRON', 'CAPSADDLE',
                     'CHESTSPECK', 'BLACKSTAR', 'PETAL', 'HEARTTWO','PEBBLESHINE', 'BOOTS', 'COW', 'COWTWO', 'LOVEBUG',
@@ -807,6 +806,7 @@ class Pelt:
         tortiecolour: str = None,
         pattern:list=None,
         tortiepattern: str = None,
+        tortie_tint: str = "none",
         vitiligo: str = None,
         points:str=None,
         physical_trait_1:str=None,
@@ -843,6 +843,7 @@ class Pelt:
         self.pattern = pattern
         self.tortiepattern = tortiepattern
         self.tortiecolour = tortiecolour
+        self.tortie_tint = tortie_tint
         self.vitiligo = vitiligo
         self.length = length
         self.points = points
@@ -931,11 +932,11 @@ class Pelt:
         if self.eye_colour2 == "BLUE2":
             self.eye_colour2 = "COBALT"
         if self.eye_colour2 == "VIOLET2":
-            self.eye_colour2 == "BLACKBERRY"
+            self.eye_colour2 = "BLACKBERRY"
         if self.eye_colour2 == "ROSE2":
-            self.eye_colour2 == "DARK ROSE"
+            self.eye_colour2 = "DARK ROSE"
         if self.eye_colour2 == "TURQUOISE2":
-            self.eye_colour2 == "DARK TURQUOISE"
+            self.eye_colour2 = "DARK TURQUOISE"
 
         if self.eye_colour in ["BLUEYELLOW", "BLUEGREEN"]:
             if self.eye_colour == "BLUEYELLOW":
@@ -945,7 +946,7 @@ class Pelt:
             self.eye_colour = "BLUE"
         
         if self.colour == "Lynx2":
-            self.colour == "Dalmatian"
+            self.colour = "Dalmatian"
 
         if self.length == 'long':
             if self.cat_sprites['adult'] not in [9, 10, 11]:
@@ -1058,7 +1059,7 @@ class Pelt:
             return self.randomize_pattern_color(gender)
 
         # There is a 1/10 chance for kits to have the exact same pelt as one of their parents
-        if not random.randint(0, game.config["cat_generation"]["direct_inheritance"]):  # 1/10 chance
+        if game.config["cat_generation"]["direct_inheritance"] != 0 and not random.randint(0, game.config["cat_generation"]["direct_inheritance"]):  # 1/10 chance
             selected = choice(par_pelts)
             self.name = selected.name
             self.length = selected.length
@@ -1414,7 +1415,7 @@ class Pelt:
                                                      'ticked', 'sterticked', 'sillyticked', 'danceticked', 'mimiticked',
                                                      'brindle', 'spots'])
                     else:
-                        self.tortiepattern = random.choices([self.tortiebase, 'single'], weights=[97, 3], k=1)[0]
+                        self.tortiepattern = random.choices([self.tortiebase, random.choice(['single', 'stersingle', 'sillysingle', 'dancesingle', 'mimisingle'])], weights=[97, 3], k=1)[0]
 
                     if self.colour == "WHITE":
                         possible_colors = Pelt.white_colours.copy()
@@ -1459,7 +1460,7 @@ class Pelt:
             return
 
         # Direct inheritance. Will only work if at least one parent has white patches, otherwise continue on.
-        if par_whitepatches and not random.randint(0, game.config["cat_generation"]["direct_inheritance"]):
+        if par_whitepatches and game.config["cat_generation"]["direct_inheritance"] != 0 and not random.randint(0, game.config["cat_generation"]["direct_inheritance"]):
             # This ensures Torties and Calicos won't get direct inheritance of incorrect white patch types
             _temp = par_whitepatches.copy()
             if self.name == "Tortie":
@@ -1551,7 +1552,7 @@ class Pelt:
         ))
 
         num = game.config["cat_generation"]["base_extra_white"]
-        
+
         if any(white in Pelt.high_white for white in chosen_white_patches):
             num -= 2
         elif any(white in Pelt.little_white for white in chosen_white_patches) or any(white in Pelt.mid_white for white in chosen_white_patches):
@@ -1640,7 +1641,7 @@ class Pelt:
             self.vitiligo = choice(Pelt.vit)
 
         # If the cat was rolled previously to have white patches, then determine the patch they will have
-        # these functions also handle points. 
+        # these functions also handle points.
         if pelt_white:
             if parents:
                 self.white_patches_inheritance(parents)
@@ -1667,6 +1668,28 @@ class Pelt:
         else:
             self.tint = "none"
 
+        # TORTIE TINT
+        # Basic tints as possible for all colors.
+        if self.name in ["Tortie", "Calico"]:
+            base_tints = sprites.cat_tints["possible_tints"]["basic"]
+            if self.tortiecolour in sprites.cat_tints["colour_groups"]:
+                color_group = sprites.cat_tints["colour_groups"].get(self.tortiecolour, "warm")
+                color_tints = sprites.cat_tints["possible_tints"][color_group]
+            else:
+                color_tints = []
+
+            while self.tint in base_tints:
+                base_tints.remove(self.tint)
+            while self.tint in color_tints:
+                base_tints.remove(self.tint)
+
+            if (base_tints or color_tints) and random.randint(1, 10) == 1:
+                self.tortie_tint = choice(base_tints + color_tints)
+            else:
+                self.tortie_tint = self.tint
+        else:
+            self.tortie_tint = "none"
+
         # WHITE PATCHES TINT
         if self.white_patches or self.points:
             # Now for white patches
@@ -1683,7 +1706,7 @@ class Pelt:
                 self.white_patches_tint = "none"
         else:
             self.white_patches_tint = "none"
-        
+
     def init_physical_traits(self, parents: tuple=()):
         
         trait_categories = [
