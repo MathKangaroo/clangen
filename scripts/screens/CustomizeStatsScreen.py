@@ -328,6 +328,22 @@ class CustomizeStatsScreen(Screens):
         self.powers = ["none", "esper", "guide", "enhanced esper"]
         self.powers_label = None
         self.powers_dropdown = None
+        
+        self.abilities = ["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
+                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
+                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
+                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"]
+        self.abilities.sort()
+        self.abilities.insert(0, "None")
+        
+        self.classes = ["C","B", "A", "S"]
+        self.class_level = None
+        self.class_dropdown = None
+        
+        self.ability1_label = None
+        self.ability1_dropdown = None
+        self.ability2_label = None
+        self.ability2_dropdown = None
 
     def screen_switches(self):
         super().screen_switches()
@@ -373,10 +389,10 @@ class CustomizeStatsScreen(Screens):
                                              (25, 395), (270, 60), "#text_box_26_horizcenter")
         
         self.heal_message = create_text_box("Clears all injuries and illnesses. This cannot be undone.",
-                                             (325, 520), (270, 60), "#text_box_26_horizcenter")
+                                             (25, 580), (270, 60), "#text_box_26_horizcenter")
         
-        self.reset_facets_message = create_text_box("Changing facets will redo the cat's facets to match the FIRST (primary) trait. This will likely change the cat's secondary trait.",
-                                             (25, 495), (270, 90), "#text_box_26_horizcenter")
+        self.reset_facets_message = create_text_box("Resets facets to the current primary trait. This may change the secondary trait.",
+                                             (25, 485), (270, 60), "#text_box_26_horizcenter")
         self.physical_trait2_label = create_text_box("physical trait 2", (320, 420), (135, 40), "#text_box_22_horizleft")
         self.physical_trait3_label = create_text_box("physical trait 3", (480, 420), (135, 40), "#text_box_22_horizleft")
         self.physical_trait4_label = create_text_box("physical trait 4", (640, 420), (135, 40), "#text_box_22_horizleft")
@@ -392,7 +408,10 @@ class CustomizeStatsScreen(Screens):
         
         #self.powers_label = create_text_box("powers", (646, 580), (135, 40), "#text_box_22_horizleft")
         
-        self.powers_label = create_text_box("powers", (646, 500), (135, 40), "#text_box_22_horizleft")
+        self.powers_label = create_text_box("powers", (480, 500), (135, 40), "#text_box_22_horizleft")
+        self.ability2_label = create_text_box("ability2", (640, 580), (135, 40), "#text_box_22_horizleft")
+        self.class_label = create_text_box("class", (640, 500), (135, 40), "#text_box_22_horizleft")
+        self.ability1_label = create_text_box("ability1", (480, 580), (135, 40), "#text_box_22_horizleft")
         """------------------------------------------------------------------------------------------------------------#
         #                                              LABEL SETUP END                                                 #
         # ------------------------------------------------------------------------------------------------------------"""
@@ -410,8 +429,8 @@ class CustomizeStatsScreen(Screens):
         #self.pose_right_button = create_button((486, 530), (30, 30), get_arrow(1, False), ButtonStyles.ROUNDED_RECT)
         #self.reverse_button = create_button((105, 530), (70, 30), "Reverse", ButtonStyles.ROUNDED_RECT)
         self.reset_button = create_button((110, 450), (105, 30), "Reset", ButtonStyles.SQUOVAL)
-        self.heal_button = create_button((410, 575), (105, 30), "Heal", ButtonStyles.SQUOVAL)
-        self.reset_facets_button = create_button((110, 575), (105, 30), "Reset Facets", ButtonStyles.SQUOVAL)
+        self.heal_button = create_button((110, 640), (105, 30), "Heal", ButtonStyles.SQUOVAL)
+        self.reset_facets_button = create_button((110, 545), (105, 30), "Reset Facets", ButtonStyles.SQUOVAL)
 
     def setup_dropdowns(self):
         """------------------------------------------------------------------------------------------------------------#
@@ -486,10 +505,37 @@ class CustomizeStatsScreen(Screens):
                                              get_selected_option(self.the_cat.pelt.physical_trait_4, "upper"))
         
         powers = "none"
+        powerclass = "none"
         if self.the_cat.awakened:
             powers = self.the_cat.awakened["type"]
-        self.powers_dropdown = create_dropdown((642, 525), (135, 40), create_options_list(self.powers, "upper"),
+            if self.the_cat.awakened["type"] == "enhanced esper":
+                powerclass = self.the_cat.awakened["class"][0]
+            else:
+                powerclass = self.the_cat.awakened["class"]
+        self.powers_dropdown = create_dropdown((480, 525), (135, 40), create_options_list(self.powers, "upper"),
                                               get_selected_option(powers, "upper"), "dropup")
+        self.class_dropdown = create_dropdown((640, 525), (135, 40), create_options_list(self.classes, "upper"),
+                                              get_selected_option(powerclass, "upper"), "dropup")
+        ability1 = "none"
+        ability2 = "none"
+        if self.the_cat.awakened:
+            if self.the_cat.awakened["type"] == "esper":
+                ability1 = self.the_cat.awakened["ability"]
+            elif self.the_cat.awakened["type"] == "enhanced esper":
+                ability1 = self.the_cat.awakened["ability"][0]
+                ability2 = self.the_cat.awakened["ability"][1]
+                
+        self.ability1_dropdown = create_dropdown((480, 605), (135, 40), create_options_list(self.abilities, "upper"),
+                                              get_selected_option(ability1, "upper"), "dropup")
+        
+        self.ability2_dropdown = create_dropdown((640, 605), (135, 40), create_options_list(self.abilities, "upper"),
+                                              get_selected_option(ability2, "upper"), "dropup")
+        
+        if not self.the_cat.awakened or self.the_cat.awakened["type"] == "guide":
+            self.ability1_dropdown.disable()
+            self.ability2_dropdown.disable()
+        elif self.the_cat.awakened["type"] == "esper":
+            self.ability2_dropdown.disable()
 
         '''
         self.skin_dropdown = create_dropdown((640, 360), (135, 40), create_options_list(self.skins, "upper"),
@@ -644,11 +690,35 @@ class CustomizeStatsScreen(Screens):
                 
             #self.print_pelt_attributes()  # for testing purposes
         elif event.type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
+            if os.path.exists('resources/dicts/esper.json'):
+                    with open('resources/dicts/esper.json') as read_file:
+                        powers_dict = ujson.loads(read_file.read())
             if event.ui_element in [self.permanent_condition_dropdown, self.trait1_dropdown, self.trait2_dropdown, self.skill1_dropdown, self.skill2_dropdown, self.skill3_dropdown,self.fur_texture_dropdown, self.build_dropdown, self.height_dropdown, self.backstory_dropdown, self.gender_dropdown, self.physical_trait1_dropdown, self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown]:
                 self.handle_dropdown_change(event.ui_element)
             elif event.ui_element == self.powers_dropdown:
                 self.handle_powers_dropdown(event.ui_element)
-            #self.print_pelt_attributes()  # for testing purposes
+            elif event.ui_element == self.ability1_dropdown:
+                selected_option = self.ability1_dropdown.selected_option[1].lower()
+                if self.the_cat.awakened["type"] == "esper":
+                    self.the_cat.awakened["ability"] = selected_option
+                    self.the_cat.awakened["desc"] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])
+                elif self.the_cat.awakened["type"] == "enhanced esper":
+                    self.the_cat.awakened["ability"][0] = selected_option
+                    self.the_cat.awakened["desc"][0] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])
+                self.update_ui_elements()
+            elif event.ui_element == self.ability2_dropdown:
+                selected_option = self.ability1_dropdown.selected_option[1].lower()
+                self.the_cat.awakened["ability"][1] = selected_option
+                self.the_cat.awakened["desc"][1] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])
+            elif event.ui_element == self.class_dropdown:
+                selected_option = self.class_dropdown.selected_option[1].upper()
+                if self.the_cat.awakened["type"] == "enhanced esper":
+                    self.the_cat.awakened["class"] = [selected_option, selected_option]
+                    self.the_cat.awakened["desc"] = [choice(powers_dict[self.the_cat.awakened["ability"][0]][selected_option]),choice(powers_dict[self.the_cat.awakened["ability"][1]][selected_option])]
+                else:
+                    self.the_cat.awakened["class"] = selected_option
+                    if self.the_cat.awakened["type"] == "esper":
+                        self.the_cat.awakened["desc"] = choice(powers_dict[self.the_cat.awakened["ability"]][selected_option])
                 
     
     def reset_attributes(self):
@@ -840,7 +910,8 @@ class CustomizeStatsScreen(Screens):
             self.permanent_condition_label, self.trait1_label, self.trait2_label, self.skill1_label, self.skill2_label, self.skill3_label,
             self.fur_texture_label, self.build_label, self.height_label, self.backstory_label, self.gender_label,
             self.reset_message, self.reset_facets_message, self.heal_message, self.physical_trait1_label, self.physical_trait2_label,
-            self.physical_trait3_label, self.physical_trait4_label, self.powers_label
+            self.physical_trait3_label, self.physical_trait4_label, self.powers_label, self.ability1_label, self.ability2_label,
+            self.class_label
         ]
         for label in labels:
             label.kill()
@@ -856,7 +927,8 @@ class CustomizeStatsScreen(Screens):
         dropdowns = [
             self.permanent_condition_dropdown, self.trait1_dropdown, self.trait2_dropdown, self.skill1_dropdown, self.skill2_dropdown, self.skill3_dropdown,
             self.fur_texture_dropdown, self.build_dropdown, self.height_dropdown, self.backstory_dropdown, self.gender_dropdown, self.physical_trait1_dropdown,
-            self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown, self.powers_dropdown
+            self.physical_trait2_dropdown, self.physical_trait3_dropdown, self.physical_trait4_dropdown, self.powers_dropdown, self.ability1_dropdown,
+            self.ability2_dropdown, self.class_dropdown
         ]
         for dropdown in dropdowns:
             dropdown.kill()
