@@ -438,7 +438,7 @@ class Cat:
         neon_eyes_chance = 16
         if self.awakened and self.awakened["type"] == "guide":
             neon_eyes_chance = 4
-        elif self.awakened and randint(1,neon_eyes_chance) == 1:
+        if self.awakened and randint(1,neon_eyes_chance) == 1:
             self.pelt.eye_colour = choice(neos_eyes)
 
         
