@@ -341,7 +341,9 @@ def json_load():
                 cat["immortality"] if "immortality" in cat else False
             )
             new_cat.favourite = cat["favourite"] if "favourite" in cat else False
-
+            new_cat.favourite_moon = cat["favourite_moon"] if "favourite_moon" in cat else False
+            new_cat.favourite_star = cat["favourite_star"] if "favourite_star" in cat else False
+            
             if "died_by" in cat or "scar_event" in cat or "mentor_influence" in cat:
                 new_cat.convert_history(
                     cat["died_by"] if "died_by" in cat else [],

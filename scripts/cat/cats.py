@@ -292,6 +292,8 @@ class Cat:
         # the next save.
 
         self.favourite = False
+        self.favourite_moon = False
+        self.favourite_star = False
 
         self.specsuffix_hidden = specsuffix_hidden
         self.inheritance = None
@@ -5059,6 +5061,8 @@ class Cat:
                 "prevent_fading": self.prevent_fading,
                 "immortality": self.immortality,
                 "favourite": self.favourite,
+                "favourite_moon": self.favourite_moon,
+                "favourite_star": self.favourite_star,
                 "fur_texture": self.pelt.fur_texture,
                 "height": self.pelt.height,
                 "build": self.pelt.build
