@@ -390,10 +390,15 @@ class Cat:
 
         # In camp status
         self.in_camp = 1
+        secondary_biome = None
+        biome_weights = None
         if "biome" in kwargs:
             biome = kwargs["biome"]
+            # ^ idk what these are. Hopefully not putting 2nd biome stuff here won't mess things up ^
         elif game.clan is not None:
             biome = game.clan.biome
+            secondary_biome = game.clan.secondary_biome if game.clan.secondary_biome else game.clan.biome
+            biome_weights = game.clan.biome_weights if game.clan.biome_weights else "Equal"
         else:
             biome = None
         # NAME
@@ -403,6 +408,8 @@ class Cat:
                 prefix,
                 suffix,
                 biome=biome,
+                secondary_biome=secondary_biome,
+                biome_weights=biome_weights,
                 specsuffix_hidden=self.specsuffix_hidden,
                 load_existing_name=loading_cat,
                 cat=self,
@@ -434,7 +441,7 @@ class Cat:
                 self.pelt.skin = choice(powers_dict[self.awakened["ability"]]["skin"])
             elif self.awakened["type"] == "enhanced esper":
                 self.pelt.skin = choice(powers_dict[self.awakened["ability"][0]]["skin"])
-                
+
         neos_eyes = ['NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW', 'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN',
                  'NEO YELLOWRED', 'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK', 'NEO MINT', 'NEO BLACKBLUE']
         neon_eyes_chance = 16
@@ -443,7 +450,7 @@ class Cat:
         if self.awakened and randint(1,neon_eyes_chance) == 1:
             self.pelt.eye_colour = choice(neos_eyes)
 
-        
+
         magiccolors = ["CSSingle", "CSTabby", "CSTicked", "CSMackerel", "CSClassic",
                        "CSSpeckled", "CSAgouti", "CSSokoke", "CSRosette", "CSSmoke",
                        "CSSinglestripe", "CSMarbled", "CSBengal", "CSMasked",
@@ -1865,6 +1872,9 @@ class Cat:
         other_cat = choice(list(all_cats.keys()))
         game_mode = game.switches["game_mode"]
         biome = game.switches["biome"]
+        secondary_biome = game.switches["secondary_biome"]
+        biome_weights = game.switches["biome_weights"]
+
         camp = game.switches["camp_bg"]
         try:
             season = game.clan.current_season
@@ -1928,7 +1938,7 @@ class Cat:
 
         # get chosen thought
         chosen_thought = Thoughts.get_chosen_thought(
-            self, other_cat, game_mode, biome, season, camp
+            self, other_cat, game_mode, biome, secondary_biome, biome_weights, season, camp
         )
 
         chosen_thought = event_text_adjust(
@@ -5114,8 +5124,8 @@ class Cat:
 
 
 # Creates a random cat
-def create_cat(status, moons=None, biome=None):
-    new_cat = Cat(status=status, biome=biome)
+def create_cat(status, moons=None, biome=None, secondary_biome=None, biome_weights=None):
+    new_cat = Cat(status=status, biome=biome, secondary_biome=secondary_biome, biome_weights=biome_weights)
 
     if moons is not None:
         new_cat.moons = moons
