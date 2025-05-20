@@ -604,6 +604,8 @@ def create_new_cat_block(
                     chosen_cat.name.give_suffix(
                         pelt=chosen_cat.pelt,
                         biome=game.clan.biome,
+                        secondary_biome=game.clan.secondary_biome,
+                        biome_weights=game.clan.biome_weights,
                         tortiepattern=chosen_cat.pelt.tortiepattern,
                     )
                 else:  # completely new name
@@ -611,10 +613,14 @@ def create_new_cat_block(
                         eyes=chosen_cat.pelt.eye_colour,
                         colour=chosen_cat.pelt.colour,
                         biome=game.clan.biome,
+                        secondary_biome=game.clan.secondary_biome,
+                        biome_weights=game.clan.biome_weights
                     )
                     chosen_cat.name.give_suffix(
                         pelt=chosen_cat.pelt.colour,
                         biome=game.clan.biome,
+                        secondary_biome=game.clan.secondary_biome,
+                        biome_weights=game.clan.biome_weights,
                         tortiepattern=chosen_cat.pelt.tortiepattern,
                     )
 
@@ -946,15 +952,15 @@ def create_new_cat(
                     continue
                 possible_conditions.append(condition)
             if "excess testosterone" in possible_conditions:
-                    possible_conditions.remove("excess testosterone")
+                possible_conditions.remove("excess testosterone")
             if "testosterone deficiency" in possible_conditions:
-                    possible_conditions.remove("testosterone deficiency")
+                possible_conditions.remove("testosterone deficiency")
             if "chimerism" in possible_conditions:
-                    possible_conditions.remove("chimerism")
+                possible_conditions.remove("chimerism")
             if "mosaicism" in possible_conditions:
-                    possible_conditions.remove("mosaicism")
+                possible_conditions.remove("mosaicism")
             if "aneuploidy" in possible_conditions:
-                    possible_conditions.remove("aneuploidy")
+                possible_conditions.remove("aneuploidy")
             if possible_conditions:
                     chosen_condition = choice(possible_conditions)
 
@@ -1908,7 +1914,20 @@ def get_special_snippet_list(
     (i.e. ["hate", "fear", "dread"] becomes "hate, fear, and dread") - Default is True
     :return: a list of the chosen items from chosen_list or a formatted string if format is True
     """
-    biome = game.clan.biome.casefold()
+
+    chosen_biome = game.clan.biome
+    if game.clan.secondary_biome != game.clan.biome:
+        if game.clan.biome_weights == "Equal":
+            chosen_biome = random.choice([game.clan.biome, game.clan.secondary_biome])
+        elif game.clan.biome_weights == "Third":
+            chosen_biome = random.choice([game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+        elif game.clan.biome_weights == "Fourth":
+            chosen_biome = random.choice(
+                [game.clan.biome, game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+        else:
+            chosen_biome = game.clan.biome
+
+    biome = chosen_biome.casefold()
     global SNIPPETS
     if langs["snippet"] != i18n.config.get("locale"):
         langs["snippet"] = i18n.config.get("locale")
@@ -2854,9 +2873,27 @@ def generate_sprite(
             new_sprite.blit(points, (0, 0))
 
         if cat.pelt.vitiligo:
-            new_sprite.blit(
-                sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite], (0, 0)
-            )
+            if game.settings["vit tint"]:
+                vitiligo = sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite].copy()
+                if (
+                        cat.pelt.white_patches_tint != "none"
+                        and cat.pelt.white_patches_tint
+                        in sprites.white_patches_tints["tint_colours"]
+                ):
+                    tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    tint.fill(
+                        tuple(
+                            sprites.white_patches_tints["tint_colours"][
+                                cat.pelt.white_patches_tint
+                            ]
+                        )
+                    )
+                    vitiligo.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                new_sprite.blit(vitiligo, (0, 0))
+            else:
+                new_sprite.blit(
+                    sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite], (0, 0)
+                )
 
         # draw eyes & scars1
         neos_eyes = ['NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW', 'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN',
