@@ -463,11 +463,15 @@ class Events:
                                         invited_cat.name.prefix,
                                         invited_cat.name.suffix,
                                         game.clan.biome,
+                                        game.clan.secondary_biome,
+                                        game.clan.biome_weights,
                                         cat=invited_cat,
                                     )
                                     invited_cat.name.give_suffix(
                                         pelt=None,
                                         biome=game.clan.biome,
+                                        secondary_biome=game.clan.secondary_biome,
+                                        biome_weights=game.clan.biome_weights,
                                         tortiepattern=None,
                                     )
                                     invited_cat.specsuffix_hidden = False
