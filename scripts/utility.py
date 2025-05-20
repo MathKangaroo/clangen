@@ -2179,8 +2179,6 @@ def event_text_adjust(
                         if len(main_cat.alters) > 0:
                             if name != cat_name:
                                 cat_name = name + " (" + str(main_cat.name) + ")"
-            if main_cat.dead and main_cat not in game.just_died:
-                cat_name = cat_name + "DEAD!!!"
 
             replace_dict["m_c"] = (str(cat_name), choice(main_cat.pronouns))
 
