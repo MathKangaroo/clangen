@@ -1970,7 +1970,7 @@ class Cat:
 
     def moon_skip_illness(self, illness):
         """handles the moon skip for illness"""
-        if not self.is_ill():
+        if not self.is_ill() or self.dead:
             return True
         
         if illness == "rampaging":
@@ -2019,7 +2019,7 @@ class Cat:
 
     def moon_skip_injury(self, injury):
         """handles the moon skip for injury"""
-        if not self.is_injured():
+        if not self.is_injured() or self.dead:
             return True
 
         if self.injuries[injury]["event_triggered"] is True:
@@ -2411,7 +2411,7 @@ class Cat:
 
     def moon_skip_permanent_condition(self, condition):
         """handles the moon skip for permanent conditions"""
-        if not self.is_disabled():
+        if not self.is_disabled() or self.dead:
             return "skip"
 
         if self.permanent_condition[condition]["event_triggered"]:
@@ -3487,8 +3487,9 @@ class Cat:
                 if self.is_plural():
                     self.alters = rel_data["alters"]
                     self.update_alters()
-                if rel_data["awakened"]["type"] in ["esper", "guide", "enhanced esper"]:
-                    self.awakened = rel_data["awakened"]
+                if "awakened" in rel_data:
+                    if rel_data["awakened"]["type"] in ["esper", "guide", "enhanced esper"]:
+                        self.awakened = rel_data["awakened"]
 
             if "paralyzed" in self.permanent_condition and not self.pelt.paralyzed:
                 self.pelt.paralyzed = True

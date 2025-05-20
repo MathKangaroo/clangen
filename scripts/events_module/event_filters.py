@@ -234,18 +234,24 @@ def event_for_cat(cat_info: dict, cat, cat_group: list = None, event_id: str = N
         :param event_id: if event comes with an id, include it here
         :param p_l: if event is a patrol, include patrol leader object here
         """
-
+    
     func_lookup = {
         "age": _check_cat_age(cat, cat_info.get("age", [])),
         "status": _check_cat_status(cat, cat_info.get("status", [])),
         "trait": _check_cat_trait(cat, cat_info.get("trait", []), cat_info.get("not_trait", [])),
         "skills": _check_cat_skills(cat, cat_info.get("skill", []), cat_info.get("not_skill", [])),
         "backstory": _check_cat_backstory(cat, cat_info.get("backstory", [])),
-        "gender": _check_cat_gender(cat, cat_info.get("gender", []))
+        "gender": _check_cat_gender(cat, cat_info.get("gender", [])),
+        #"dead": _check_cat_dead(cat, alive_dead),
     }
 
     for func in func_lookup:
         if not func_lookup[func]:
+            return False
+        
+    if "dies" in cat_info:
+        alive_dead = cat_info.get("dies", [])
+        if alive_dead and cat.dead:
             return False
 
     if cat_info.get("relationship_status", []):
@@ -367,6 +373,15 @@ def _check_cat_gender(cat, genders: list) -> bool:
         return True
 
     if cat.gender in genders:
+        return True
+
+    return False
+
+def _check_cat_dead(cat, alive_dead: bool) -> bool:
+    """
+        checks if cat has the correct gender
+        """
+    if not cat.dead and alive_dead:
         return True
 
     return False

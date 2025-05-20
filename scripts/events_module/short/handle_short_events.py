@@ -129,7 +129,6 @@ class HandleShortEvents:
         elif event_type == "health":
             event_type = "injury"
         possible_short_events = GenerateEvents.possible_short_events(event_type)
-
         final_events = GenerateEvents.filter_possible_short_events(
             Cat_class=Cat,
             possible_events=possible_short_events,
@@ -490,24 +489,25 @@ class HandleShortEvents:
 
         # kill cats
         for cat in dead_list:
-            if "birth_death" not in self.types:
-                self.types.append("birth_death")
+            if not cat.dead:
+                if "birth_death" not in self.types:
+                    self.types.append("birth_death")
 
-            if cat.status == "leader":
-                if "all_lives" in self.chosen_event.tags:
-                    game.clan.leader_lives -= 10
-                elif "some_lives" in self.chosen_event.tags:
-                    game.clan.leader_lives -= random.randrange(
-                        2, self.current_lives - 1
-                    )
+                if cat.status == "leader":
+                    if "all_lives" in self.chosen_event.tags:
+                        game.clan.leader_lives -= 10
+                    elif "some_lives" in self.chosen_event.tags:
+                        game.clan.leader_lives -= random.randrange(
+                            2, self.current_lives - 1
+                        )
+                    else:
+                        game.clan.leader_lives -= 1
+
+                    cat.die(body)
+                    self.additional_event_text = get_leader_life_notice()
+
                 else:
-                    game.clan.leader_lives -= 1
-
-                cat.die(body)
-                self.additional_event_text = get_leader_life_notice()
-
-            else:
-                cat.die(body)
+                    cat.die(body)
 
     def handle_mass_death(self):
         """
@@ -837,6 +837,7 @@ class HandleShortEvents:
 
         # adjust entire herb store
         if supply_type == "all_herb":
+            print(herb_supply.entire_supply.copy())
             for herb, count in herb_supply.entire_supply.copy():
                 herb_list.append(herb)
                 if adjustment == "reduce_full":

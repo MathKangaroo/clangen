@@ -261,9 +261,7 @@ class Condition_Events:
         # return immediately if they're already dead
         triggered = False
         if cat.dead:
-            if cat.dead:
-                triggered = True
-            return triggered
+            return True
 
         event_string = None
 
@@ -273,6 +271,8 @@ class Condition_Events:
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
             # ---------------------------------------------------------------------------- #
+            if cat.outside:
+                return True
             random_number = int(
                 random.random()
                 * game.get_config_value(
@@ -364,8 +364,7 @@ class Condition_Events:
         )
 
         if cat.dead:
-            triggered = True
-            return triggered
+            return True
 
         # handle if the current cat is already injured
         if cat.is_injured():
@@ -381,6 +380,8 @@ class Condition_Events:
             triggered = Condition_Events.handle_already_injured(cat)
         else:
             # EVENTS
+            if cat.outside:
+                return True
             if (
                 not triggered
                 and cat.personality.trait

@@ -163,9 +163,11 @@ class CustomizeStatsScreen(Screens):
             "bipolar i",
             "bipolar ii",
             "foggy mind",
-            "deer tick disease"
+            "deer tick disease",
+            "seizure prone",
+            "allergies"
         ]
-        self.permanent_conditions = copy(scarless_conditions) + ["one bad eye", "lost a leg", "lost their tail", "twisted leg", "declawed", "constant rash"]
+        self.permanent_conditions = copy(scarless_conditions) + ["lost a leg", "lost their tail", "twisted leg", "declawed", "constant rash"]
         self.permanent_conditions.sort()
         self.permanent_conditions.insert(0, "none")
         self.permanent_conditions_label = None
@@ -521,6 +523,10 @@ class CustomizeStatsScreen(Screens):
                                               get_selected_option(powers, "upper"), "dropup")
         self.class_dropdown = create_dropdown((640, 525), (135, 40), create_options_list(self.classes, "upper"),
                                               get_selected_option(powerclass, "upper"), "dropup")
+        self.class_dropdown.disable()
+        if self.the_cat.awakened:
+            self.class_dropdown.enable()
+        
         ability1 = "none"
         ability2 = "none"
         if self.the_cat.awakened:

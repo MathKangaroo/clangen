@@ -1058,6 +1058,9 @@ class Events:
         # Handle Mediator Events
         # TODO: this is not a great way to handle them, ideally they should be converted to ShortEvent format
         self.mediator_events(cat)
+        self.caretaker_events(cat)
+        self.denkeeper_events(cat)
+        self.mediator_events(cat)
 
         # handle nutrition amount
         # (CARE: the cats have to be fed before this happens - should be handled in "one_moon" function)
