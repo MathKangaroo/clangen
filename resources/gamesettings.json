@@ -21,6 +21,11 @@
             "IE: use starwalker instead of autism.",
             true
         ],
+        "vit tint": [
+            "Tinted vitiligo",
+            "Tints a cat's vitiligo with their white patch tint.",
+            false
+        ],
         "dark mode": [
             "Dark mode",
             "Camp backgrounds will match with the mode: nighttime for dark mode and daytime for light mode.",
