@@ -72,8 +72,8 @@ class Thoughts:
                 if not game.settings[toggle]:
                     return False
                 #print("Warning. Thoughts with " + toggle + " are currently enabled.")
-            
-        
+
+
         # This is for checking biome
         if "biome" in thought:
             if biome not in thought["biome"]:
@@ -387,7 +387,7 @@ class Thoughts:
             print("ERROR: loading thoughts")
 
     @staticmethod
-    def get_chosen_thought(main_cat, other_cat, game_mode, biome, season, camp):
+    def get_chosen_thought(main_cat, other_cat, game_mode, biome, secondary_biome, biome_weights, season, camp):
         # get possible thoughts
         try:
             cat_name = (main_cat.name.prefix + main_cat.name.suffix).replace(" ", "").lower()
@@ -397,7 +397,19 @@ class Thoughts:
             # checks if the cat is ClanGen Bug to give the funni thought, otherwise proceed as usual
             elif cat_name == "clangenbug":
                 return "Snug as a ClanGen Bug in a rug!"
-            chosen_thought_group = choice(Thoughts.load_thoughts(main_cat, other_cat, game_mode, biome, season, camp))
+
+            chosen_biome = biome
+            if secondary_biome != biome:
+                if biome_weights == "Equal":
+                    chosen_biome = random.choice([biome, secondary_biome])
+                elif biome_weights == "Third":
+                    chosen_biome = random.choice([biome, biome, secondary_biome])
+                elif biome_weights == "Fourth":
+                    chosen_biome = random.choice([biome, biome, biome, secondary_biome])
+                else:
+                    chosen_biome = biome
+
+            chosen_thought_group = choice(Thoughts.load_thoughts(main_cat, other_cat, game_mode, chosen_biome, season, camp))
             chosen_thought = choice(chosen_thought_group["thoughts"])
         except Exception:
             traceback.print_exc()
