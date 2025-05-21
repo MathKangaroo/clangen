@@ -2,6 +2,8 @@ import re
 
 import ujson
 
+import random
+
 from scripts.game_structure.game_essentials import game
 from scripts.special_dates import get_special_date, contains_special_date_tag
 from scripts.utility import (
@@ -9,12 +11,17 @@ from scripts.utility import (
     filter_relationship_type,
 )
 
-def event_for_location(locations: list) -> bool:
+
+def event_for_location(locations: list, biome: str) -> bool:
     """
     checks if the clan is within the given locations
     """
     if "any" in locations:
         return True
+    """
+    else:
+        print(biome + ", " + str(locations) + " two")
+    """
 
     for place in locations:
         if ":" in place:
@@ -25,10 +32,10 @@ def event_for_location(locations: list) -> bool:
             req_biome = place
             req_camps = ["any"]
 
-        if req_biome == game.clan.biome.lower():
-            if "any" in req_camps or game.clan.camp_bg in req_camps:
+        if req_biome == biome.lower():
+            if "any" in req_camps or (game.clan.camp_bg in req_camps and biome == game.clan.biome):
                 return True
-        return False
+    return False
 
 
 def event_for_season(seasons: list) -> bool:
@@ -234,7 +241,7 @@ def event_for_cat(cat_info: dict, cat, cat_group: list = None, event_id: str = N
         :param event_id: if event comes with an id, include it here
         :param p_l: if event is a patrol, include patrol leader object here
         """
-    
+
     func_lookup = {
         "age": _check_cat_age(cat, cat_info.get("age", [])),
         "status": _check_cat_status(cat, cat_info.get("status", [])),
@@ -242,13 +249,13 @@ def event_for_cat(cat_info: dict, cat, cat_group: list = None, event_id: str = N
         "skills": _check_cat_skills(cat, cat_info.get("skill", []), cat_info.get("not_skill", [])),
         "backstory": _check_cat_backstory(cat, cat_info.get("backstory", [])),
         "gender": _check_cat_gender(cat, cat_info.get("gender", [])),
-        #"dead": _check_cat_dead(cat, alive_dead),
+        # "dead": _check_cat_dead(cat, alive_dead),
     }
 
     for func in func_lookup:
         if not func_lookup[func]:
             return False
-        
+
     if "dies" in cat_info:
         alive_dead = cat_info.get("dies", [])
         if alive_dead and cat.dead:
