@@ -976,17 +976,19 @@ class Pelt:
         elif isinstance(self.accessory, str):
             self.accessory = [self.accessory]
 
-        if isinstance(self.pattern, str):
-            self.pattern = [self.pattern]
-        if isinstance(self.white_patches, str):
-            self.white_patches = [self.white_patches]
+        if self.pattern is not None:
+            if isinstance(self.pattern, str):
+                self.pattern = [self.pattern]
+        if self.white_patches is not None:
+            if isinstance(self.white_patches, str):
+                self.white_patches = [self.white_patches]
 
-        if "HALF" in self.white_patches:
-            self.white_patches.remove("HALF")
-            self.white_patches.append("ERAHALF")
-        if "MASK" in self.white_patches:
-            self.white_patches.remove("MASK")
-            self.white_patches.append("ERAMASK")
+            if "HALF" in self.white_patches:
+                self.white_patches.remove("HALF")
+                self.white_patches.append("ERAHALF")
+            if "MASK" in self.white_patches:
+                self.white_patches.remove("MASK")
+                self.white_patches.append("ERAMASK")
 
     def init_eyes(self, parents):
         """Sets eye color for this cat's pelt. Takes parents' eye colors into account.
