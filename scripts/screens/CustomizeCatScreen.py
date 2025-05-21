@@ -375,7 +375,7 @@ class CustomizeCatScreen(Screens):
         elif not self.the_cat.awakened and 'Neo fire' in self.eye_colours:
             self.eye_colours =  [colour.capitalize() for colour in copy(Pelt.eye_colours)]
             self.eye_colours.sort()
-            
+
         self.eye_colour1_dropdown = create_dropdown((320, 445), (135, 40),
                                                     create_options_list(self.eye_colours, "upper"),
                                                     get_selected_option(self.the_cat.pelt.eye_colour, "upper"))
@@ -447,8 +447,12 @@ class CustomizeCatScreen(Screens):
             self.tortie_tint_dropdown.disable()
 
     def setup_white_patches_tint(self):
-        if self.the_cat.pelt.white_patches is None and self.the_cat.pelt.points is None:
-            self.white_patches_tint_dropdown.disable()
+        if game.settings["vit tint"]:
+            if self.the_cat.pelt.white_patches is None and self.the_cat.pelt.points is None and self.the_cat.pelt.vitiligo is None:
+                self.white_patches_tint_dropdown.disable()
+        else:
+            if self.the_cat.pelt.white_patches is None and self.the_cat.pelt.points is None:
+                self.white_patches_tint_dropdown.disable()
 
     def setup_eye_colours(self):
         if self.eye_colour2_dropdown.selected_option[1] == self.eye_colour1_dropdown.selected_option[1]:
@@ -828,16 +832,28 @@ class CustomizeCatScreen(Screens):
                 dropdown.disable()
 
     def check_white_patches_tint(self):
-        if self.the_cat.pelt.points is None and self.the_cat.pelt.white_patches is None:
-            self.the_cat.pelt.white_patches_tint = "none"
-            self.white_patches_tint_dropdown.kill()
-            self.white_patches_tint_dropdown = create_dropdown((320, 360), (135, 40),
-                                                               create_options_list(self.white_patches_tints, "lower"),
-                                                               get_selected_option(self.the_cat.pelt.white_patches_tint,
-                                                                                   "lower"))
-            self.white_patches_tint_dropdown.disable()
+        if game.settings["vit tint"]:
+            if self.the_cat.pelt.vitiligo is None and self.the_cat.pelt.points is None and self.the_cat.pelt.white_patches is None:
+                self.the_cat.pelt.white_patches_tint = "none"
+                self.white_patches_tint_dropdown.kill()
+                self.white_patches_tint_dropdown = create_dropdown((320, 360), (135, 40),
+                                                                   create_options_list(self.white_patches_tints, "lower"),
+                                                                   get_selected_option(self.the_cat.pelt.white_patches_tint,
+                                                                                       "lower"))
+                self.white_patches_tint_dropdown.disable()
+            else:
+                self.white_patches_tint_dropdown.enable()
         else:
-            self.white_patches_tint_dropdown.enable()
+            if self.the_cat.pelt.points is None and self.the_cat.pelt.white_patches is None:
+                self.the_cat.pelt.white_patches_tint = "none"
+                self.white_patches_tint_dropdown.kill()
+                self.white_patches_tint_dropdown = create_dropdown((320, 360), (135, 40),
+                                                                   create_options_list(self.white_patches_tints, "lower"),
+                                                                   get_selected_option(self.the_cat.pelt.white_patches_tint,
+                                                                                       "lower"))
+                self.white_patches_tint_dropdown.disable()
+            else:
+                self.white_patches_tint_dropdown.enable()
 
     def make_heterochromia_checkbox(self):
         self.kill_cat_element("heterochromia_checkbox")
