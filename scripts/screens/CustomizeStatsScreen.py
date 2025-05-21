@@ -298,13 +298,81 @@ class CustomizeStatsScreen(Screens):
         self.traits_label1 = None
         self.traits_label2 = None
         
-        self.backstories = ["clan_founder", "clanborn", "halfclan1", "halfclan2", "outsider_roots1", "outsider_roots2", "loner1", "loner2", "loner3", "loner4", "kittypet1",
-                            "kittypet2", "kittypet3", "kittypet4", "rogue1", "rogue2", "rogue3", "abandoned1", "abandoned2", "abandoned3", "abandoned4", "abandoned5", "otherclan1",
-                            "otherclan2", "otherclan3", "otherclan4", "otherclan5", "disgraced1", "disgraced2", "disgraced3", "retired_leader", "medicine_cat", "ostracized_warrior",
-                            "refugee1", "refugee2", "refugee3", "refugee4", "refugee5", "refugee6", "tragedy_survivor1", "tragedy_survivor2", "tragedy_survivor3", "tragedy_survivor4",
-                            "wandering_healer1", "wandering_healer2", "guided1", "guided2", "guided3", "guided4", "orphaned1", "orphaned2", "orphaned3", "orphaned4", "orphaned5",
-                            "orphaned6", "outsider1", "outsider2", "outsider3", "unknown", "reincarnation_starclan", "reincarnation_df", "reincarnation_unknown", "animal1", "animal2",
-                            "animal3", "animal4", "animal5", "animal6", "half_cat1", "half_cat2", "tribe1", "tribe2", "tribe3", "tribe4"]
+        self.backstories = [
+            "clan_founder",
+            "clanborn",
+            "halfclan1",
+            "halfclan2",
+            "outsider_roots1",
+            "outsider_roots2",
+            "loner1",
+            "loner2",
+            "loner3",
+            "loner4",
+            "kittypet1",
+            "kittypet2",
+            "kittypet3",
+            "kittypet4",
+            "rogue1",
+            "rogue2",
+            "rogue3",
+            "abandoned1",
+            "abandoned2",
+            "abandoned3",
+            "abandoned4",
+            "otherclan1",
+            "otherclan2",
+            "otherclan3",
+            "otherclan4",
+            "disgraced1",
+            "disgraced2",
+            "disgraced3",
+            "retired_leader",
+            "medicine_cat",
+            "ostracized_warrior",
+            "refugee1",
+            "refugee2",
+            "refugee3",
+            "refugee4",
+            "refugee5",
+            "refugee6",
+            "tragedy_survivor1",
+            "tragedy_survivor2",
+            "tragedy_survivor3",
+            "tragedy_survivor4",
+            "wandering_healer1",
+            "wandering_healer2",
+            "guided1",
+            "guided2",
+            "guided3",
+            "guided4",
+            "orphaned1",
+            "orphaned2",
+            "orphaned3",
+            "orphaned4",
+            "orphaned5",
+            "orphaned6",
+            "outsider1",
+            "outsider2",
+            "outsider3",
+            "animal1",
+            "animal2",
+            "animal3",
+            "animal4",
+            "animal5",
+            "animal6",
+            "half_cat1",
+            "half_cat2",
+            "reincarnation_starclan",
+            "reincarnation_df",
+            "reincarnation_unknown",
+            "tribe_roots1",
+            "tribe_roots2",
+            "tribe1",
+            "tribe2",
+            "tribe3",
+            "tribe4"
+        ]
         self.backstories.sort()
         self.backstory_label = None
         
@@ -330,23 +398,23 @@ class CustomizeStatsScreen(Screens):
         self.powers = ["none", "esper", "guide", "enhanced esper"]
         self.powers_label = None
         self.powers_dropdown = None
-        
+
         self.abilities = ["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
                                 "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
                                 "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
                                 "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"]
         self.abilities.sort()
         self.abilities.insert(0, "None")
-        
+
         self.classes = ["C","B", "A", "S"]
         self.class_level = None
         self.class_dropdown = None
-        
+
         self.ability1_label = None
         self.ability1_dropdown = None
         self.ability2_label = None
         self.ability2_dropdown = None
-        
+
         self.fave_markers = ["default", "moon", "star"]
         self.fave_label = None
         self.fave_dropdown = None
@@ -526,7 +594,7 @@ class CustomizeStatsScreen(Screens):
         self.class_dropdown.disable()
         if self.the_cat.awakened:
             self.class_dropdown.enable()
-        
+
         ability1 = "none"
         ability2 = "none"
         if self.the_cat.awakened:
@@ -535,19 +603,19 @@ class CustomizeStatsScreen(Screens):
             elif self.the_cat.awakened["type"] == "enhanced esper":
                 ability1 = self.the_cat.awakened["ability"][0]
                 ability2 = self.the_cat.awakened["ability"][1]
-                
+
         self.ability1_dropdown = create_dropdown((480, 605), (135, 40), create_options_list(self.abilities, "upper"),
                                               get_selected_option(ability1, "upper"), "dropup")
-        
+
         self.ability2_dropdown = create_dropdown((640, 605), (135, 40), create_options_list(self.abilities, "upper"),
                                               get_selected_option(ability2, "upper"), "dropup")
-        
+
         if not self.the_cat.awakened or self.the_cat.awakened["type"] == "guide":
             self.ability1_dropdown.disable()
             self.ability2_dropdown.disable()
         elif self.the_cat.awakened["type"] == "esper":
             self.ability2_dropdown.disable()
-        
+
         fave_status = "None"
         if self.the_cat.favourite:
             if self.the_cat.favourite_moon:
@@ -556,7 +624,7 @@ class CustomizeStatsScreen(Screens):
                 fave_status = "star"
             else:
                 fave_status = "default"
-                
+
         self.fave_dropdown = create_dropdown((320, 525), (135, 40), create_options_list(self.fave_markers, "upper"),
                                              get_selected_option(fave_status, "upper"))
 
@@ -755,7 +823,7 @@ class CustomizeStatsScreen(Screens):
                 elif selected_option == "star":
                     self.the_cat.favourite_star = True
                     self.the_cat.favourite_moon = False
-                
+
     
     def reset_attributes(self):
         self.the_cat.personality.trait = self.initial_state["trait"]
