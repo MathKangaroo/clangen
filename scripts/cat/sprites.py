@@ -207,7 +207,7 @@ class Sprites:
         neos_eyes = [['NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW', 'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN'],
                  ['NEO YELLOWRED', 'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK', 'NEO MINT', 'NEO BLACKBLUE']]
 
-        
+
         # Define era eye colors
         era_eye_colors = [
             ['DARK HAZEL', 'ROSE GOLD', 'DARK ROSE', 'REVERSE SUNLITICE', 'ICY', 'SUNSET', 'LAVENDER', 'ECLIPSE', 'BLACK',
@@ -251,7 +251,7 @@ class Sprites:
             for col, color in enumerate(colors):
                 self.make_group('eyesvivid', (col, row), f'eyes{color}')
                 self.make_group('vivid2', (col, row), f'eyes2{color}')
-        
+
         for row, colors in enumerate(neos_eyes):
             for col, color in enumerate(colors):
                 self.make_group('neos_eyes', (col, row), f'neos_eyes{color}')
@@ -303,7 +303,7 @@ class Sprites:
              'AKITA'],
             ['CHESSBORAD','ANT','CREAMV','BUNNY','MOJO','STAINSONE','STAINST',
               'HALFHEART','FRECKLESTHREE','KITTY'],
-            ['SUNRISE','HUSKY','STATNTHREE','MASK', 'S','PAW','SWIFTPAW','BOOMSTAR','MIST','LEON'],
+            ['SUNRISE','HUSKY','STATNTHREE', 'ERAMASK', 'S','PAW','SWIFTPAW','BOOMSTAR','MIST','LEON'],
             ['LADY','LEGS','MEADOW', 'SALT','BAMBI','PRIMITVE','SKUNKSTRIPE','NEPTUNE','KARAPATITWO','CHAOS'],
             ['MOSCOW','ERAHALF','CAPETOWN','SUN','BANAN','PANDA','DOVE','PINTOTWO', 'SNOWSHOE','SKY'],
             ['MOONSTONE', 'DRIP', 'CRESCENT', 'ETERNAL', 'WINGTWO', 'STARBORN',  'SPIDERLEGS', 'APPEL', 'RUG', 'LUCKY'],
@@ -436,7 +436,7 @@ class Sprites:
             ['SHADOW', 'RAIN', 'MGLA', 'MOONLIGHT', 'MOUSE', 'SATURN', 'MARBLETORINE', 'AMBERTWO', 'PATTERN', 'MOSS'],
             ['MONKEY', 'BUMBLEBEE', 'KINTSUGITWO', 'STORM', 'CLASSICTORNIE', 'STRIPEONETORITE', 'MACKERELTORITE', 'AMBERTHREE', 'SHADE', 'GRAFFITI'],
             ['AGOUTITORIE', 'BENGALTORITE', 'TABBYTORITE', 'SOKKOKETORITE', 'SPECKLEDTORITE', 'TICKEDTORIE', 'MORRO', 'AMBERFOUR', 'DOG', 'ONESPOT'],
-            
+
            ]
        # toritemaskthree
         torite_mask_two2 = [
@@ -444,7 +444,7 @@ class Sprites:
              'AKITA'],
             ['CHESSBORAD','ANT','CREAMV','BUNNY','MOJO','STAINSONE','STAINST',
               'HALFHEART','FRECKLESTHREE','KITTY'],
-            ['SUNRISE','HUSKY','STATNTHREE','MASK', 'S','PAW','SWIFTPAW','BOOMSTAR','MIST','LEON'],
+            ['SUNRISE','HUSKY','STATNTHREE', 'ERAMASK', 'S','PAW','SWIFTPAW','BOOMSTAR','MIST','LEON'],
             ['LADY','LEGS','MEADOW', 'SALT','BAMBI','PRIMITVE','SKUNKSTRIPE','NEPTUNE','KARAPATITWO', 'CHAOS'],
             ['MOSCOW','ERAHALF','CAPETOWN','SUN','BANAN','PANDA','DOVE','PINTOTWO', 'SNOWSHOE','SKY'],
             ['MOONSTONE', 'DRIP', 'CRESCENT', 'ETERNAL', 'WINGTWO', 'STARBORN',  'SPIDERLEGS', 'APPEL', 'RUG', 'LUCKY'],
@@ -497,7 +497,7 @@ class Sprites:
             ['005', '006', '007','008', '009', '010'],
             ['011', '012', '013', '014', '015', '016']
         ]
-        
+
         skin_colors_math = [
             ['LIGHTPURPLE', 'BLUE2', 'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED'],
             ['BRIGHTPINK', 'BRIGHTORANGE','MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE'],
@@ -519,11 +519,11 @@ class Sprites:
         for row, colors in enumerate(skin_colors_bingle):
             for col, color in enumerate(colors):
                 self.make_group('skin_bingle', (col, row), f"skin_bingle{color}")
-                
+
         for row, colors in enumerate(skin_colors_bingle2):
             for col, color in enumerate(colors):
                 self.make_group('skin_bingle2', (col, row), f"skin_bingle2{color}")
-        
+
         for row, colors in enumerate(skin_colors_math):
             for col, color in enumerate(colors):
                 self.make_group('skin_mathkangaroo', (col, row), f"skin_mathkangaroo{color}")
@@ -666,7 +666,7 @@ class Sprites:
         ]
 
         deadInsect_data = [
-            ["LUNAR MOTH", "ROSY MAPLE MOTH", "MONARCH BUTTERFLY", "DAPPLED MONARCH", "POLYPHEMUS MOTH", "MINT MOTH"]
+            ["LUNAR MOTH", "ROSY MAPLE MOTH", "OGMONARCH BUTTERFLY", "DAPPLED MONARCH", "POLYPHEMUS MOTH", "MINT MOTH"]
         ]
         
         boos_data = [["CRIMSONBOO", "MAGENTABOO", "PINKBOO", "BLOODORANGEBOO", "ORANGEBOO", "YELLOWBOO"],
@@ -941,7 +941,7 @@ class Sprites:
             for col, lantern in enumerate(lanterns):
                 self.make_group("lantern", (col, row), f"acc_lantern{lantern}")
 
-                
+
     def load_symbols(self):
         """
         loads clan symbols
