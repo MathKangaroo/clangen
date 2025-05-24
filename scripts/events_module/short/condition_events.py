@@ -1129,6 +1129,14 @@ class Condition_Events:
                 "medicine cat apprentice",
                 "mediator",
                 "mediator apprentice",
+                "denkeeper",
+                "denkeeper apprentice",
+                "caretaker",
+                "caretaker apprentice",
+                "gardener apprentice",
+                "gardener",
+                "storyteller",
+                "storyteller apprentice"
                 "elder",
             ]
         ):

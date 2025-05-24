@@ -402,23 +402,31 @@ class HerbSupply:
         :param specific_quantity_bonus: a specific float to multiply the gathered herb amount by
         """
         # meds with relevant skills will get a boost to the herbs they find
-        # SENSE finds larger amount of herbs
-        # CLEVER finds greater quantity of herbs
+        # SENSE and GARDENER finds larger amount of herbs
+        # CLEVER and HERBALIST finds greater quantity of herbs
         primary = med_cat.skills.primary.path
         secondary = None
+        tertiary = None
         if med_cat.skills.secondary:
             secondary = med_cat.skills.secondary.path
+        if med_cat.skills.tertiary:
+            tertiary = med_cat.skills.tertiary.path
         amount_modifier = 1
         quantity_modifier = 1
 
-        if primary == SkillPath.SENSE:
+        if primary == SkillPath.SENSE or primary == SkillPath.GARDENER:
             amount_modifier = game.config["clan_resources"]["herbs"]["primary_sense"]
-        elif primary == SkillPath.CLEVER:
+        elif primary == SkillPath.CLEVER or primary == SkillPath.HERBALIST:
             quantity_modifier = game.config["clan_resources"]["herbs"]["primary_clever"]
 
-        if secondary == SkillPath.SENSE:
+        if secondary == SkillPath.SENSE or secondary == SkillPath.GARDENER:
             amount_modifier = game.config["clan_resources"]["herbs"]["secondary_sense"]
-        elif secondary == SkillPath.CLEVER:
+        elif secondary == SkillPath.CLEVER or secondary == SkillPath.HERBALIST:
+            quantity_modifier = game.config["clan_resources"]["herbs"]["secondary_clever"]
+        
+        if tertiary == SkillPath.SENSE or tertiary == SkillPath.GARDENER:
+            amount_modifier = game.config["clan_resources"]["herbs"]["secondary_sense"]
+        elif tertiary == SkillPath.CLEVER or tertiary == SkillPath.HERBALIST:
             quantity_modifier = game.config["clan_resources"]["herbs"]["secondary_clever"]
 
         # list of the herbs, sorted by most need

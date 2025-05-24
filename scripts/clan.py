@@ -53,6 +53,11 @@ class Clan:
         "leader",
         "elder",
         "mediator",
+        "caretaker",
+        "denkeeper",
+        "gardener",
+        "messenger",
+        "storyteller"
         "general",
     ]
 
@@ -211,17 +216,40 @@ class Clan:
         created in the 'clan created' screen, not every time
         the program starts
         """
+        #creating the clan guide. boosted chance for common roles (warrior, deputy, leader, medicine cat, apprentice)
         self.instructor = Cat(
             status=choice(
                 [
                     "apprentice",
+                    "apprentice",
                     "mediator apprentice",
                     "medicine cat apprentice",
+                    "caretaker apprentice",
+                    "caretaker",
+                    "denkeeper apprentice",
+                    "denkeeper",
+                    "gardener",
+                    "gardener apprentice",
+                    "messenger",
+                    "messenger apprentice",
+                    "storyteller",
+                    "storyteller apprentice"
+                    "warrior",
+                    "warrior",
                     "warrior",
                     "medicine cat",
+                    "medicine cat",
+                    "medicine cat",
+                    "leader",
+                    "leader",
                     "leader",
                     "mediator",
+                    "mediator",
+                    "mediator",
                     "deputy",
+                    "deputy",
+                    "deputy",
+                    "elder",
                     "elder",
                 ]
             ),

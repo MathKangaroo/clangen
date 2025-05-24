@@ -78,8 +78,8 @@
             false
         ],
         "higher_disabled_med_rates": [
-            "Higher med/mediator odds for cats with permanent conditions",
-            "Cats with permanent conditions will be 2 times more likely to become a medicine cat or mediator apprentice when they hit 6 moons old. This does not effect the chance to become a mediator later in life, if the setting is on.",
+            "Higher non-warrior odds for cats with permanent conditions",
+            "Cats with permanent conditions will be 2 times more likely to become a non-warrior apprentice when they hit 6 moons old. This does not effect the chance to become a mediator later in life, if the setting is on.",
             false
         ],
         "become_mediator": [
@@ -88,18 +88,28 @@
             false
         ],
         "become_messenger": [
-            "Allow warriors and elders to choose to become messenger",
+            "Allow warriors and elders to choose to become messengers",
             "Warriors and elders will have a chance to become messengers upon timeskip.",
             false
         ],
         "become_denkeeper": [
-            "Allow warriors and elders to choose to become denkeeper",
+            "Allow warriors and elders to choose to become denkeepers",
             "Warriors and elders will have a chance to become denkeepers upon timeskip.",
             false
         ],
         "become_caretaker": [
-            "Allow warriors and elders to choose to become caretaker",
+            "Allow warriors and elders to choose to become caretakers",
             "Warriors and elders will have a chance to become caretakers upon timeskip.",
+            false
+        ],
+        "become_gardener": [
+            "Allow warriors and elders to choose to become gardeners",
+            "Warriors and elders will have a chance to become gardeners upon timeskip.",
+            false
+        ],
+        "become_storyteller": [
+            "Allow warriors and elders to choose to become storytellers",
+            "Warriors and elders will have a chance to become storytellers upon timeskip.",
             false
         ],
         "plural names": [

@@ -138,6 +138,8 @@ class AllegiancesScreen(Screens):
         living_denkeepers = []
         living_warriors = []
         living_apprentices = []
+        living_gardeners = [],
+        living_storytellers = [],
         living_kits = []
         living_elders = []
         for cat in living_cats:
@@ -153,13 +155,19 @@ class AllegiancesScreen(Screens):
                 living_denkeepers.append(cat)
             elif cat.status == "messenger":
                 living_messengers.append(cat)
+            elif cat.status == "gardener":
+                living_gardeners.append(cat)
+            elif cat.status == "storyteller":
+                living_storytellers.append(cat)
             elif cat.status in [
                 "apprentice",
                 "medicine cat apprentice",
                 "mediator apprentice",
                 "caretaker apprentice",
                 "messenger apprentice",
-                "denkeeper apprentice"
+                "denkeeper apprentice",
+                "gardener apprentice",
+                "storyteller apprentice"
             ]:
                 living_apprentices.append(cat)
             elif cat.status in ["kitten", "newborn"]:
@@ -237,6 +245,14 @@ class AllegiancesScreen(Screens):
 
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_denkeepers])
             outputs.append(_box)
+        if living_gardeners:
+            _box = ["", ""]
+            _box[
+                0
+            ] = f"<b><u>{i18n.t('general.gardener', count=len(living_gardeners)).upper()}</u></b>"
+
+            _box[1] = "\n".join([self.generate_one_entry(i) for i in living_gardeners])
+            outputs.append(_box)
         if living_messengers:
             _box = ["", ""]
             _box[
@@ -244,6 +260,14 @@ class AllegiancesScreen(Screens):
             ] = f"<b><u>{i18n.t('general.messenger', count=len(living_messengers)).upper()}</u></b>"
 
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_messengers])
+            outputs.append(_box)
+        if living_storytellers:
+            _box = ["", ""]
+            _box[
+                0
+            ] = f"<b><u>{i18n.t('general.storyteller', count=len(living_storytellers)).upper()}</u></b>"
+
+            _box[1] = "\n".join([self.generate_one_entry(i) for i in living_storytellers])
             outputs.append(_box)
 
         # Warrior Box:

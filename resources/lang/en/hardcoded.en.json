@@ -50,6 +50,10 @@
         "event_denkeeper_app": "m_c has chosen to use {PRONOUN/m_c/poss} skills and experience to help watch over the camp. A meeting is called, and {PRONOUN/m_c/subject} {VERB/m_c/become/becomes} the Clan's newest denkeeper.",
         "event_mediator_app": "m_c has chosen to use {PRONOUN/m_c/poss} skills and experience to help solve the Clan's disagreements. A meeting is called, and {PRONOUN/m_c/subject} {VERB/m_c/become/becomes} the Clan's newest mediator.",
         "event_messenger_app": "m_c has chosen to use {PRONOUN/m_c/poss} skills and experience to help deliver messenges. A meeting is called, and {PRONOUN/m_c/subject} {VERB/m_c/become/becomes} the Clan's newest messenger.",
+        "event_gardener_app": "m_c has chosen to use {PRONOUN/m_c/poss} skills and experience to grow herbs. A meeting is called, and {PRONOUN/m_c/subject} {VERB/m_c/become/becomes} the Clan's newest gardener.",
+        "event_storyteller_app": "m_c has chosen to use {PRONOUN/m_c/poss} skills and experience to help teach the Clan's history. A meeting is called, and {PRONOUN/m_c/subject} {VERB/m_c/become/becomes} the Clan's newest storyteller.",
+        
+        
         "herbs_found": {
             "zero": "med_name could not find any herbs this moon.",
             "many": "med_name gathered %{insert} this moon."
