@@ -1133,10 +1133,12 @@ class Condition_Events:
                 "denkeeper apprentice",
                 "caretaker",
                 "caretaker apprentice",
+                "messenger",
+                "messenger apprentice",
                 "gardener apprentice",
                 "gardener",
                 "storyteller",
-                "storyteller apprentice"
+                "storyteller apprentice",
                 "elder",
             ]
         ):

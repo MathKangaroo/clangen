@@ -138,8 +138,8 @@ class AllegiancesScreen(Screens):
         living_denkeepers = []
         living_warriors = []
         living_apprentices = []
-        living_gardeners = [],
-        living_storytellers = [],
+        living_gardeners = []
+        living_storytellers = []
         living_kits = []
         living_elders = []
         for cat in living_cats:
