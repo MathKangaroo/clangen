@@ -193,6 +193,8 @@ class CustomizeCatScreen(Screens):
 
         self.eye_colours = [colour.capitalize() for colour in copy(Pelt.eye_colours)]
         self.eye_colours.sort()
+        self.eye_colours += [colour.capitalize() for colour in copy(Pelt.flutter_eyes)]
+        self.eye_colours += [colour.capitalize() for colour in copy(Pelt.lamp_eyes)]
         self.eye_colours += [colour.capitalize() for colour in copy(Pelt.neos_eyes)]
         self.eye_colour1_label = None
         self.eye_colour1_dropdown = None
@@ -214,7 +216,7 @@ class CustomizeCatScreen(Screens):
         self.pose_left_button = None
 
         self.accessories = list(
-            dict.fromkeys(Pelt.plant_accessories + Pelt.flower_accessories + Pelt.bows_accessories + Pelt.plant2_accessories + Pelt.ster_accessories + Pelt.wild_accessories + Pelt.tail_accessories + Pelt.collars + Pelt.snake_accessories + Pelt.smallAnimal_accessories + Pelt.deadInsect_accessories + Pelt.aliveInsect_accessories + Pelt.fruit_accessories + Pelt.crafted_accessories + Pelt.tail2_accessories + Pelt.bone_accessories + Pelt.butterflies_accessories + Pelt.stuff_accessories + Pelt.toy_accessories + Pelt.blankie_accessories + Pelt.flag_accessories + Pelt.wheels + Pelt.booties + Pelt.randomaccessories + Pelt.sailormoon + Pelt.beetle_feathers + Pelt.beetle_accessories + Pelt.chime_accessories))
+            dict.fromkeys(Pelt.plant_accessories + Pelt.flower_accessories + Pelt.bows_accessories + Pelt.plant2_accessories + Pelt.ster_accessories + Pelt.wild_accessories + Pelt.tail_accessories + Pelt.collars + Pelt.snake_accessories + Pelt.smallAnimal_accessories + Pelt.deadInsect_accessories + Pelt.aliveInsect_accessories + Pelt.fruit_accessories + Pelt.crafted_accessories + Pelt.tail2_accessories + Pelt.bone_accessories + Pelt.butterflies_accessories + Pelt.stuff_accessories + Pelt.toy_accessories + Pelt.blankie_accessories + Pelt.flag_accessories + Pelt.wheels + Pelt.booties + Pelt.randomaccessories + Pelt.sailormoon + Pelt.beetle_feathers + Pelt.beetle_accessories + Pelt.chime_accessories+ Pelt.lantern_accessories))
         self.accessories.sort()
         self.accessories.insert(0, "None")
         self.accessories += copy(Pelt.colorsplash_accessories)
