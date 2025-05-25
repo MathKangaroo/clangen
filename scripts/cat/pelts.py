@@ -12,7 +12,7 @@ from scripts.utility import adjust_list_text
 
 class Pelt:
     sprites_names = {
-        "SingleColour": 'single',
+        'SingleColour': 'single',
         'SterSingle': 'stersingle',
         'SillySingle': 'sillysingle',
         'DanceSingle': 'dancesingle',
