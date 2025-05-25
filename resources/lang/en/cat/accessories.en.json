@@ -2518,8 +2518,158 @@
             "zero": "golden creeping jenny",
             "many": "golden creeping jennies",
             "one": "a golden creeping jenny"
+        },
+        "WHITE NECKERCHIEF": {
+            "zero": "white neckerchief",
+            "many": "white neckerchiefs",
+            "one": "a white neckerchief"
+        },
+        "BABYBLUE NECKERCHIEF": {
+            "zero": "babyblue neckerchief",
+            "many": "babyblue neckerchiefs",
+            "one": "a babyblue neckerchief"
+        },
+        "LIGHTPURPLE NECKERCHIEF": {
+            "zero": "light purple neckerchief",
+            "many": "light purple neckerchiefs",
+            "one": "a light purple neckerchief"
+        },
+        "BLUE NECKERCHIEF": {
+            "zero": "blue neckerchief",
+            "many": "blue neckerchiefs",
+            "one": "a blue neckerchief"
+        },
+        "PURPLE NECKERCHIEF": {
+            "zero": "purple neckerchief",
+            "many": "purple neckerchiefs",
+            "one": "a purple neckerchief"
+        },
+        "DARKPURPLE NECKERCHIEF": {
+            "zero": "dark purple neckerchief",
+            "many": "dark purple neckerchiefs",
+            "one": "a dark purple neckerchief"
+        },
+        "LIGHTPINK NECKERCHIEF": {
+            "zero": "light pink neckerchief",
+            "many": "light pink neckerchiefs",
+            "one": "a light pink neckerchief"
+        },
+        "LIGHTYELLOW NECKERCHIEF": {
+            "zero": "light yellow neckerchief",
+            "many": "light yellow neckerchiefs",
+            "one": "a light yellow neckerchief"
+        },
+        "PINK NECKERCHIEF": {
+            "zero": "pink neckerchief",
+            "many": "pink neckerchiefs",
+            "one": "a pink neckerchief"
+        },
+        "ORANGE NECKERCHIEF": {
+            "zero": "orange neckerchief",
+            "many": "orange neckerchiefs",
+            "one": "a orange neckerchief"
+        },
+        "RED NECKERCHIEF": {
+            "zero": "red neckerchief",
+            "many": "red neckerchiefs",
+            "one": "a red neckerchief"
+        },
+        "CYAN NECKERCHIEF": {
+            "zero": "cyan neckerchief",
+            "many": "cyan neckerchiefs",
+            "one": "a cyan neckerchief"
+        },
+        "YELLOWGREEN NECKERCHIEF": {
+            "zero": "yellow-green neckerchief",
+            "many": "yellow-green neckerchiefs",
+            "one": "a yellow-green neckerchief"
+        },
+        "TURQUOISE NECKERCHIEF": {
+            "zero": "turquoise neckerchief",
+            "many": "turquoise neckerchiefs",
+            "one": "a turquoise neckerchief"
+        },
+        "GREEN NECKERCHIEF": {
+            "zero": "green neckerchief",
+            "many": "green neckerchiefs",
+            "one": "a green neckerchief"
+        },
+        "WHITE WITCHHAT": {
+            "zero": "white witch hat",
+            "many": "white witch hats",
+            "one": "a white witch hat"
+        },
+        "BABYBLUE WITCHHAT": {
+            "zero": "babyblue witch hat",
+            "many": "babyblue witch hats",
+            "one": "a babyblue witch hat"
+        },
+        "LIGHTPURPLE WITCHHAT": {
+            "zero": "light purple witch hat",
+            "many": "light purple witch hats",
+            "one": "a light purple witch hat"
+        },
+        "BLUE WITCHHAT": {
+            "zero": "blue witch hat",
+            "many": "blue witch hats",
+            "one": "a blue witch hat"
+        },
+        "PURPLE WITCHHAT": {
+            "zero": "purple witch hat",
+            "many": "purple witch hats",
+            "one": "a purple witch hat"
+        },
+        "DARKPURPLE WITCHHAT": {
+            "zero": "dark purple witch hat",
+            "many": "dark purple witch hats",
+            "one": "a dark purple witch hat"
+        },
+        "LIGHTPINK WITCHHAT": {
+            "zero": "light pink witch hat",
+            "many": "light pink witch hats",
+            "one": "a light pink witch hat"
+        },
+        "LIGHTYELLOW WITCHHAT": {
+            "zero": "light yellow witch hat",
+            "many": "light yellow witch hats",
+            "one": "a light yellow witch hat"
+        },
+        "PINK WITCHHAT": {
+            "zero": "pink witch hat",
+            "many": "pink witch hats",
+            "one": "a pink witch hat"
+        },
+        "ORANGE WITCHHAT": {
+            "zero": "orange witch hat",
+            "many": "orange witch hats",
+            "one": "a orange witch hat"
+        },
+        "RED WITCHHAT": {
+            "zero": "red witch hat",
+            "many": "red witch hats",
+            "one": "a red witch hat"
+        },
+        "CYAN WITCHHAT": {
+            "zero": "cyan witch hat",
+            "many": "cyan witch hats",
+            "one": "a cyan witch hat"
+        },
+        "YELLOWGREEN WITCHHAT": {
+            "zero": "yellow-green witch hat",
+            "many": "yellow-green witch hats",
+            "one": "a yellow-green witch hats"
+        },
+        "TURQUOISE WITCHHAT": {
+            "zero": "turquoise witch hat",
+            "many": "turquoise witch hats",
+            "one": "a turquoise witch hat"
+        },
+        "GREEN WITCHHAT": {
+            "zero": "green witch hat",
+            "many": "green witch hats",
+            "one": "a green witch hat"
         }
       
-}
+    }
 
 }
