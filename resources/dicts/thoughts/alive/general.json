@@ -1550,7 +1550,7 @@
             "fierce",
             "strong",
             "intense",
-            "arguementative",
+            "argumentative",
             "forceful",
             "remorseless",
             "cruel",
@@ -2161,7 +2161,7 @@
             "questioning",
             "unpredictable",
             "selfish",
-            "arguementative"
+            "argumentative"
         ]
     },
     {
@@ -2178,7 +2178,7 @@
             "questioning",
             "unpredictable",
             "selfish",
-            "arguementative"
+            "argumentative"
         ],
         "random_status_constraint": [
             "leader"
@@ -2202,7 +2202,7 @@
             "questioning",
             "unpredictable",
             "selfish",
-            "arguementative"
+            "argumentative"
         ],
         "main_status_constraint": [
             "apprentice",
