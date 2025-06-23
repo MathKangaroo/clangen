@@ -323,18 +323,28 @@
 		"m_c is in tune with reality again and no longer undergoing psychosis.",
 		"m_c has managed to overcome {PRONOUN/m_c/poss} psychotic symptoms and reconnect with reality."
 	],
-	"rampaging": [
-		"With the help of a guide, m_c was able to overcome {PRONOUN/m_c/poss} rampage."
-	],
-	"constant nightmares": [
-		"m_c is no longer plagued with nightmares every night."
+	"tremors":[
+		"m_c's tremors have calmed down.",
+		"m_c's paws are no longer shaking as much."
 	],
 	"deer tick fever": [
 		"m_c has recovered from deer tick fever.",
 		"m_c breathes a sigh of relief - {PRONOUN/m_c/poss} deer tick fever has abated."
 	],
-	"tremors":[
-		"m_c's tremors have calmed down.",
-		"m_c's paws are no longer shaking as much."
+	"emotionally numb": [
+		"m_c breathes a sigh of relief when taking in the sounds and sights of nature make {PRONOUN/m_c/object} happy again.",
+		"m_c has realized what {PRONOUN/m_c/subject} {VERB/m_c/are/is} feeling!",
+		"m_c has sorted {PRONOUN/m_c/poss} emotions again.",
+		"m_c's clanmates are happy to see {PRONOUN/m_c/object} laughing again.",
+		"m_c's feelings once again come to them like a river and not like a breeze."
+	],
+	"double tongue": [
+		"m_c could almost cry from relief when {PRONOUN/m_c/subject} have stopped lying out of impulse.",
+		"m_c has stopped lying.",
+		"Old habits die hard. Luckily for m_c, {PRONOUN/m_c/poss} double tongue has stopped for now.",
+		"The truth no longer seems so scary for m_c."
+	],
+	"rampaging": [
+		"With the help of a guide, m_c was able to overcome {PRONOUN/m_c/poss} rampage."
 	]
 }

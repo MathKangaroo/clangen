@@ -94,7 +94,7 @@ class Cat:
     ]
     
     dad_names = {
-        "starwalker": "autism",
+        "prismatic mind": "autism",
         "obsessive mind": "OCD",
         "weighted heart": "MDD",
         "comet spirit": "ADHD",
@@ -130,6 +130,11 @@ class Cat:
         "frequent fainting": "vasovagal syncope",
         "flooded paws": "POTS",
         "bad knee": "meniscus tear",
+        "foggy mind": "DPDR",
+        "emotionally numb": "alexithymia",
+        "being emotionally numb": "having alexithymia",
+        "double tongue": "chronic lying",
+        "murky mind": "dysthemia",
 
         "sunblindness": "light sensitivity",
         "faux pregnant": "phantom pregnancy",
@@ -141,7 +146,9 @@ class Cat:
         "ear buzzing": "tinnitus",
         "kittenspace": "littlespace",
         "puppyspace": "petspace",
-        "parroting": "echolalia"
+        "parroting": "echolalia",
+        "deer tick fever": "Lyme disease",
+        "deer tick disease": "post-treatment Lyme disease"
     }
 
     gender_tags = {"female": "F", "male": "M", 'intersex' : 'I'}
@@ -442,7 +449,12 @@ class Cat:
                 #powerless shows twice bc we want it to be twice as common. visible guides
                 
                 self.pelt.skin = choice(['LIGHTPURPLE', 'BLUE2', 'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED', 'BRIGHTPINK', 'BRIGHTORANGE',
-                         'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE', 'WHITE', 'BLACK2', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW',"MIST","LIGHT1", "SPARKLES", "SPARKLES2"])
+                                        'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE', 'WHITE', 'BLACK2', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW',"MIST","LIGHT1", "SPARKLES", "SPARKLES2",
+                                        'STAINDUST', 'STAINICEBLUE', 'STAININDIGO', 'STAINBLUE', 'STAINPURPLE', 'STAINDARKBLUE',"MIST","LIGHT1", "SPARKLES", "SPARKLES2"
+                                        'STAINLIGHTPINK', 'STAINYELLOW', 'STAINPINK', 'STAINGOLD', 'STAINHOTPINK', 'STRAINDIRT',
+                                        'STAINCYAN', 'STAINLIME', 'STAINTURQUOISE', 'STAINGREEN', 'STAINBLUEGREEN', 'STAINPEACOCK',
+                                        'LIGHTPURPLE', 'BLUE2', 'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED', 'BRIGHTPINK', 'BRIGHTORANGE',
+                                        'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE', 'WHITE', 'BLACK2', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW',"MIST","LIGHT1", "SPARKLES", "SPARKLES2"])
             elif self.awakened["type"] == "esper":
                 self.pelt.skin = choice(powers_dict[self.awakened["ability"]]["skin"])
             elif self.awakened["type"] == "enhanced esper":
@@ -460,6 +472,8 @@ class Cat:
         angel_eyes = ['ANGEL YELLOW', 'ANGEL ORANGE', 'ANGEL HAZEL', 'ANGEL YELLOWGREEN', 'ANGEL GREEN', 'ANGEL BLUE', 'ANGEL DARKBLUE', 'ANGEL GRAY', 'ANGEL CYAN', 'ANGEL TURQUOISE', 'ANGEL PURPLE', 'ANGEL GOLD',
                  'ANGEL COPPER', 'ANGEL MINT', 'ANGEL DARKBLUE2', 'ANGEL BLUE2', 'ANGEL BROWN', 'ANGEL SILVER', 'ANGEL LIGHTYELLOW', 'ANGEL DARKYELLOW', 'ANGEL GOLDENGREEN']
 
+        snail_eyes = ['SNAIL YELLOW', 'SNAIL ORANGE', 'SNAIL HAZEL', 'SNAIL YELLOWGREEN', 'SNAIL GREEN', 'SNAIL BLUE', 'SNAIL DARKBLUE', 'SNAIL GRAY', 'SNAIL CYAN', 'SNAIL TURQUOISE', 'SNAIL PURPLE', 'SNAIL GOLD',
+                 'SNAIL COPPER', 'SNAIL MINT', 'SNAIL DARKBLUE2', 'SNAIL BLUE2', 'SNAIL BROWN', 'SNAIL SILVER', 'SNAIL LIGHTYELLOW', 'SNAIL DARKYELLOW', 'SNAIL GOLDENGREEN']
         
         neon_eyes_chance = 16
         if self.awakened and self.awakened["type"] == "guide":
@@ -472,12 +486,15 @@ class Cat:
             self.pelt.eye_colour = choice(flutter_eyes)
         elif self.awakened and randint(1,20) == 1:
             self.pelt.eye_colour = choice(lamp_eyes)
+        elif self.awakened and randint(1,20) == 1:
+            self.pelt.eye_colour = choice(snail_eyes)
 
 
         magiccolors = ["CSSingle", "CSTabby", "CSTicked", "CSMackerel", "CSClassic",
                        "CSSpeckled", "CSAgouti", "CSSokoke", "CSRosette", "CSSmoke",
-                       "CSSinglestripe", "CSMarbled", "CSBengal", "CSMasked",
-                       "CS2Single", "CS2Tabby", "CS2Ticked", "CS2Mackerel", "CS2Classic",
+                       "CSSinglestripe", "CSMarbled", "CSBengal", "CSMasked"]
+        
+        magiccolors2 = ["CS2Single", "CS2Tabby", "CS2Ticked", "CS2Mackerel", "CS2Classic",
                        "CS2Speckled", "CS2Agouti", "CS2Sokoke", "CS2Rosette", "CS2Smoke",
                        "CS2Singlestripe", "CS2Marbled", "CS2Bengal", "CS2Masked"]
 
@@ -509,8 +526,12 @@ class Cat:
              "SparkleSpeckled", "SparkleAgouti", "SparkleSokoke", "SparkleRosette", "SparkleSmoke",
              "SparkleSinglestripe", "SparkleMarbled", "SparkleBengal", "SparkleMasked"]
         
+        magiccolorspride = ["PrideAgouti", "PrideBengal", 'PrideClassic', 'PrideMackerel']
+        
         if not self.awakened and self.pelt.name in magiccolors:
             self.pelt.name.replace('CS', '')
+        if not self.awakened and self.pelt.name in magiccolors2:
+            self.pelt.name.replace('CS2', '')
         if not self.awakened and self.pelt.name in magiccolorskris:
             self.pelt.name.replace('Kris', '')
         if not self.awakened and self.pelt.name in magiccolorsmeteor:
@@ -525,42 +546,20 @@ class Cat:
             self.pelt.name.replace('Pastel', '')
         if not self.awakened and self.pelt.name in magiccolorssparkle:
             self.pelt.name.replace('Sparkle', '')
+        if not self.awakened and self.pelt.name in magiccolorspride:
+            self.pelt.name.replace('Pride', '')
         
-        allmagic = magiccolors + magiccolorskris + magiccolorsmeteor + magiccolorshive + magiccolorspepper + magiccolorsheta + magiccolorspastel + magiccolorssparkle
+        allmagic = magiccolors + magiccolors2 + magiccolorskris + magiccolorsmeteor + magiccolorshive + magiccolorspepper + magiccolorsheta + magiccolorspastel + magiccolorssparkle + magiccolorspride
+        magic_weighted = magiccolors + magiccolors2 + magiccolors + magiccolors2 + magiccolors + magiccolors2 + magiccolorskris + magiccolorsmeteor + magiccolorsmeteor + magiccolorshive + magiccolorspepper + magiccolorsheta + magiccolorspastel + magiccolorssparkle + magiccolorspride
+        
         if self.awakened and self.pelt.name not in allmagic:
             if randint(1,3) == 1:
-                color_chance = randint(1,15)
-                if color_chance < 6:
-                    self.pelt.name = choice(magiccolors)
-                elif color_chance < 11:
-                    self.pelt.name = choice(magiccolorsmeteor)
-                elif color_chance == 11:
-                    self.pelt.name = choice(magiccolorshive)
-                elif color_chance == 12:
-                    self.pelt.name = choice(magiccolorskris)
-                elif color_chance == 13:
-                    self.pelt.name = choice(magiccolorsheta)
-                elif color_chance == 14:
-                    self.pelt.name = choice(magiccolorspastel)
-                elif color_chance == 15:
-                    self.pelt.name = choice(magiccolorssparkle)
-        elif self.pelt.name not in allmagic:
-            if randint(1,20) == 1:
-                color_chance = randint(1,15)
-                if color_chance < 6:
-                    self.pelt.name = choice(magiccolors)
-                elif color_chance < 11:
-                    self.pelt.name = choice(magiccolorsmeteor)
-                elif color_chance == 11:
-                    self.pelt.name = choice(magiccolorshive)
-                elif color_chance == 12:
-                    self.pelt.name = choice(magiccolorskris)
-                elif color_chance == 13:
-                    self.pelt.name = choice(magiccolorsheta)
-                elif color_chance == 14:
-                    self.pelt.name = choice(magiccolorspastel)
-                elif color_chance == 15:
-                    self.pelt.name = choice(magiccolorssparkle)
+                self.pelt.name = choice(magic_weighted)
+        
+        if self.pelt.name not in allmagic:
+            sparkle_chance = game.config["cat_generation"]["sparkle_chance"]
+            if randint(1,sparkle_chance) == 1:
+                self.pelt.name = choice(magic_weighted)
                 
         # Private Sprite
         self._sprite = None
@@ -2956,7 +2955,7 @@ class Cat:
                 "seizure prone": [
                     "confused body", "curved spine", "face blindness", "parrot chatter"
                 ],
-                "starwalker": [
+                "prismatic mind": [
                     "comet spirit", "burning light", "jumbled noise", "disrupted senses", "confused body",
                     "jumbled mind", "counting fog", "spirited heart", "puzzled heart", "face blindness",
                     "parrot chatter", "selective mutism", "thought blind"
@@ -2968,7 +2967,7 @@ class Cat:
                     "shattered soul", "budding spirit"
                 ],
                 "comet spirit": [
-                    "starwalker", "burning light", "jumbled noise", "disrupted senses", "confused body",
+                    "prismatic mind", "burning light", "jumbled noise", "disrupted senses", "confused body",
                     "jumbled mind", "counting fog", "spirited heart", "parrot chatter"
                 ],
                 "antisocial": [
@@ -2996,16 +2995,16 @@ class Cat:
                     "constant roaming pain", "irritable bowels", "jellyfish joints"
                 ],
                 "burning light": [
-                    "starwalker", "comet spirit", "jumbled noise", "disrupted senses"
+                    "prismatic mind", "comet spirit", "jumbled noise", "disrupted senses"
                 ],
                 "jumbled noise": [
-                    "starwalker", "comet spirit", "burning light", "disrupted senses"
+                    "prismatic mind", "comet spirit", "burning light", "disrupted senses"
                 ],
                 "disrupted senses": [
-                    "starwalker", "comet spirit", "burning light", "jumbled noise"
+                    "prismatic mind", "comet spirit", "burning light", "jumbled noise"
                 ],
                 "confused body": [
-                    "seizure prone", "starwalker", "comet spirit", "parrot chatter"
+                    "seizure prone", "prismatic mind", "comet spirit", "parrot chatter"
                 ],
                 "shattered soul": [
                     "weighted heart", "antisocial", "anxiety", "thunderous spirit", "otherworldly mind"
@@ -3035,28 +3034,28 @@ class Cat:
                     "paralyzed", "constant joint pain", "seizure prone", "constant roaming pain"
                 ],
                 "jumbled mind": [
-                    "starwalker", "comet spirit", "counting fog"
+                    "prismatic mind", "comet spirit", "counting fog"
                 ],
                 "counting fog": [
-                    "starwalker", "comet spirit", "jumbled mind"
+                    "prismatic mind", "comet spirit", "jumbled mind"
                 ],
                 "spirited heart": [
-                    "starwalker", "obsessive mind", "comet spirit", "thunderous spirit"
+                    "prismatic mind", "obsessive mind", "comet spirit", "thunderous spirit"
                 ],
                 "puzzled heart": [
-                    "starwalker", "antisocial", "thunderous spirit"
+                    "prismatic mind", "antisocial", "thunderous spirit"
                 ],
                 "face blindness": [
-                    "seizure prone", "starwalker", "thought blind"
+                    "seizure prone", "prismatic mind", "thought blind"
                 ],
                 "parrot chatter": [
-                    "seizure prone", "starwalker", "comet spirit", "confused body"
+                    "seizure prone", "prismatic mind", "comet spirit", "confused body"
                 ],
                 "selective mutism": [
-                    "starwalker", "anxiety"
+                    "prismatic mind", "anxiety"
                 ],
                 "thought blind": [
-                    "starwalker", "face blindness"
+                    "prismatic mind", "face blindness"
                 ]
             }
 
@@ -3327,7 +3326,7 @@ class Cat:
                 moons_until = randint(moons_until - 1, moons_until + 12)
             if name == "shattered soul":
                 moons_until = randint(moons_until - 1, moons_until + 12)
-            if name == "starwalker":
+            if name == "prismatic mind":
                 moons_until = randint(moons_until - 1, moons_until + 10)
             if name == "comet spirit":
                 moons_until = randint(moons_until - 1, moons_until + 10)
@@ -3609,6 +3608,10 @@ class Cat:
                 self.pelt.blep = True
             else:
                 self.pelt.blep = False
+                
+            if "starwalker" in self.permanent_condition:
+                del self.permanent_condition["starwalker"]
+                self.get_permanent_condition("prismatic mind", born_with=True)
 
         except Exception as e:
             print(

@@ -126,7 +126,7 @@ class CustomizeStatsScreen(Screens):
             "persistent headaches", "testosterone deficiency", "excess testosterone", "aneuploidy", "mosaicism", "chimerism",
             "comet spirit",
             "weighted heart",
-            "starwalker",
+            "prismatic mind",
             "obsessive mind",
             "antisocial",
             "anxiety",

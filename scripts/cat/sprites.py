@@ -126,14 +126,14 @@ class Sprites:
             'lineart', 'lineartdf', 'lineartdead', 'flutter_lineart', 'flutter_lineartdf', 'flutter_lineartdead', 'lamp_lineart', 'lamp_lineartdf', 'lamp_lineartdead',
             'blep', 'booties', 'wheels', 'disabilityaccs', 'disabilityscars',
             'eyes', 'eyes2', 'skin', 'skin_magic' , 'skin_elemental', 'skin_bingle', 'skin_bingle2', 'skin_mathkangaroo', 'eyesdark', 'dark2', 'eyesvivid', 'vivid2', 'towheeeyes', 'towheeeyes2',
-            'scars', 'missingscars', 'wild', 'eyes_wing', 'eyes2_halo', 'colorsplash_neckerchief', 'colorsplash_witchhat',
+            'scars', 'missingscars', 'wild', 'eyes_wing', 'eyes2_halo', 'colorsplash_neckerchief', 'colorsplash_witchhat', 'skin_stain', 'skin_turtle', 'eyes_snail',
             'medcatherbs', 'beetleeyes', 'beetleeyes2', 'beetlemore', 'beetlemore2', 'neos_eyes', 'neos_eyes2', 'lamp_eyes', 'flutter_eyes', 'flutter_eyes2',
             'collars', 'bellcollars', 'bowcollars', 'nyloncollars', 'colorsplash_horn', 'colorsplash_kitsune', 'colorsplash_mermaid',
             'singlecolours', 'speckledcolours', 'tabbycolours', 'bengalcolours', 'marbledcolours',
             'rosettecolours', 'smokecolours', 'tickedcolours', 'mackerelcolours', 'classiccolours',
             'sokokecolours', 'agouticolours', 'singlestripecolours', 'maskedcolours',
             'manedcolours',  'ocelotcolours', 'lynxcolours', 'abyssiniancolours', 'cloudedcolours', 'dobermancolours', 'ghosttabbycolours', 'merlecolours', 'monarchcolours', 'oceloidcolours', 'pinstripetabbycolours', 'snowflakecolours', 'royalcolours', 'bobcatcolours', 'cheetahcolours',
-            'shadersnewwhite', 'lightingnew',
+            'shadersnewwhite', 'lightingnew', 'pokemon',
             'whitepatches', 'minkswhite', 'voithexpatches', 'exoticwhitepatches','tortiepatchesmasks', 'minkstorties',
             'fademask', 'fadestarclan', 'fadedarkforest','bandanas', 'stainvoithex',
             'symbols', 'plant2_accessories', 'flower_accessories', 'snake_accessories', 'eragonatorite', 'eragonawp', 'eragonaeyes', 'eragonaeyes2',
@@ -174,7 +174,11 @@ class Sprites:
             'pastelsinglecolours', 'pastelsinglestripecolours', 'pastelsmokecolours', 'pastelsokokecolours', 'pastelspeckledcolours', 'pasteltabbycolours','pasteltickedcolours',
             'sparkleagouticolours', 'sparklebengalcolours', 'sparkleclassiccolours', 'sparklemackerelcolours', 'sparklemarbledcolours', 'sparklemaskedcolours', 'sparklerosettecolours',
             'sparklesinglecolours', 'sparklesinglestripecolours', 'sparklesmokecolours', 'sparklesokokecolours', 'sparklespeckledcolours', 'sparkletabbycolours','sparkletickedcolours',
-            'prideagouticolours', 'pridebengalcolours', 'prideclassiccolours', 'pridemackerelcolours'
+            'prideagouticolours', 'pridebengalcolours', 'prideclassiccolours', 'pridemackerelcolours',
+            'minecraftagouticolours', 'minecraftbengalcolours', 'minecraftclassiccolours', 'minecraftmackerelcolours', 'minecraftmarbledcolours', 'minecraftrosettecolours',
+            'minecraftsinglecolours', 'minecraftsmokecolours','minecraftsokokecolours', 'minecraftspeckledcolours', 'minecrafttabbycolours', 'minecrafttickedcolours',
+            'anjuagouticolours', 'anjubengalcolours', 'anjuclassiccolours', 'anjumackerelcolours', 'anjumarbledcolours', 'anjurosettecolours',
+            'anjusinglecolours', 'anjusmokecolours','anjusokokecolours', 'anjuspeckledcolours', 'anjutabbycolours', 'anjutickedcolours'
         ]:
             if "lineart" in x and (game.config["fun"]["april_fools"] or is_today(SpecialDate.APRIL_FOOLS)):
                 self.spritesheet(f"sprites/aprilfools{x}.png", x)
@@ -239,6 +243,10 @@ class Sprites:
         angel_eyes = [['ANGEL YELLOW', 'ANGEL ORANGE', 'ANGEL HAZEL', 'ANGEL YELLOWGREEN', 'ANGEL GREEN', 'ANGEL BLUE', 'ANGEL DARKBLUE', 'ANGEL GRAY', 'ANGEL CYAN', 'ANGEL TURQUOISE', 'ANGEL PURPLE', 'ANGEL GOLD'],
                  ['ANGEL COPPER', 'ANGEL MINT', 'ANGEL DARKBLUE2', 'ANGEL BLUE2', 'ANGEL BROWN', 'ANGEL SILVER', 'ANGEL LIGHTYELLOW', 'ANGEL DARKYELLOW', 'ANGEL GOLDENGREEN']]
 
+        snail_eyes = [['SNAIL YELLOW', 'SNAIL ORANGE', 'SNAIL HAZEL', 'SNAIL YELLOWGREEN', 'SNAIL GREEN', 'SNAIL BLUE', 'SNAIL DARKBLUE', 'SNAIL GRAY', 'SNAIL CYAN', 'SNAIL TURQUOISE', 'SNAIL PURPLE', 'SNAIL GOLD'],
+                 ['SNAIL COPPER', 'SNAIL MINT', 'SNAIL DARKBLUE2', 'SNAIL BLUE2', 'SNAIL BROWN', 'SNAIL SILVER', 'SNAIL LIGHTYELLOW', 'SNAIL DARKYELLOW', 'SNAIL GOLDENGREEN']]
+
+        
         # Define era eye colors
         era_eye_colors = [
             ['DARK HAZEL', 'ROSE GOLD', 'DARK ROSE', 'REVERSE SUNLITICE', 'ICY', 'SUNSET', 'LAVENDER', 'ECLIPSE', 'BLACK',
@@ -302,6 +310,10 @@ class Sprites:
             for col, color in enumerate(colors):
                 self.make_group('eyes_wing', (col, row), f'angel_eyes{color}')
                 self.make_group('eyes2_halo', (col, row), f'angel_eyes2{color}')
+                
+        for row, colors in enumerate(snail_eyes):
+            for col, color in enumerate(colors):
+                self.make_group('eyes_snail', (col, row), f'eyes_snail{color}')
 
         # Define white patches
         white_patches = [
@@ -390,6 +402,16 @@ class Sprites:
             ['CREAM', 'PALEGINGER', 'GOLDEN', 'GINGER', 'DARKGINGER', 'SIENNA'],
             ['LIGHTBROWN', 'LILAC', 'BROWN', 'GOLDEN-BROWN', 'DARKBROWN', 'CHOCOLATE']
         ]
+        
+        minecraft_color_categories = [
+            ['ACACIALOG', 'BAMBOO', 'BIRCHLOG', 'CHERRYLOG', 'CRIMSONSTEM', 'DARKOAKLOG', 'JUNGLELOG', 'MANGROVELOG', 'OAKLOG', 'SPRUCELOG', 'WARPEDSTEM'],
+            ['ACACIAPLANKS', 'BAMBOOPLANKS', 'BIRCHPLANKS', 'CHERRYPLANKS', 'CRIMSONPLANKS', 'DARKOAKPLANKS', 'JUNGLEPLANKS', 'MANGROVEPLANKS', 'OAKPLANKS', 'SPRUCEPLANKS', 'WARPEDPLANKS'],
+            ['AMETHYST', 'BLACKGLAZEDTERRACOTTA', 'BLUEGLAZEDTERRACOTTA', 'BROWNGLAZEDTERRACOTTA', 'BROWN MUSHROOM', 'COPPER', 'CRYING OBSIDIAN', 'CYANGLAZEDTERRACOTTA', 'EXPOSEDCOPPER', 'GRAYGLAZEDTERRACOTTA', 'GREENGLAZEDTERRACOTTA'],
+            ['LIGHTBLUEGLAZED TERRACOTTA', 'LIGHTGRAYGLAZEDTERRACOTTA', 'LIMEGLAZEDTERRACOTTA', 'MAGENTAGLAZEDTERRACOTTA', 'MUSHROOMINSIDE', 'MUSHROOMSTEM', 'OBSIDIAN', 'ORANGEGLAZEDTERRACOTTA', 'OXIDIZEDCOPPER', 'PINKGLAZEDTERRACOTTA', 'PURPLEGLAZEDTERRACOTTA'],
+            ['PURPUR', 'QUARTZ', 'REDGLAZEDTERRACOTTA', 'REDMUSHROOM', 'WEATHEREDCOPPER', 'WHITEGLAZEDTERRACOTTA', 'YELLOWGLAZEDTERRACOTTA']
+        ]
+        
+        anju_color_categories = [['PINK', 'RED', 'LIGHTGREEN', 'GREEN', 'CYAN', 'BLUE', 'PURPLE']]
 
         color_types = [
             'singlecolours', 'tabbycolours', 'marbledcolours', 'rosettecolours',
@@ -445,7 +467,24 @@ class Sprites:
             for col, color in enumerate(colors):
                 for color_type in color_types:
                     self.make_group(color_type, (col, row), f'{color_type[:-7]}{color}')
-
+                    
+        minecraft_color_types = ['minecraftagouticolours', 'minecraftbengalcolours', 'minecraftclassiccolours', 'minecraftmackerelcolours', 'minecraftmarbledcolours', 'minecraftrosettecolours',
+            'minecraftsinglecolours', 'minecraftsokokecolours', 'minecraftspeckledcolours', 'minecrafttabbycolours', 'minecrafttickedcolours', 'minecraftsmokecolours']
+        anju_color_types = ['anjuagouticolours', 'anjubengalcolours', 'anjuclassiccolours', 'anjumackerelcolours', 'anjumarbledcolours', 'anjurosettecolours',
+            'anjusinglecolours', 'anjusokokecolours', 'anjuspeckledcolours', 'anjutabbycolours', 'anjutickedcolours', 'anjusmokecolours']
+        
+        for row, colors in enumerate(minecraft_color_categories):
+            for col, color in enumerate(colors):
+                for color_type in minecraft_color_types:
+                    category = color_type[9:]
+                    self.make_group(color_type, (col, row), f'{category[:-7]}{color}')
+        
+        for row, colors in enumerate(anju_color_categories):
+            for col, color in enumerate(colors):
+                for color_type in anju_color_types:
+                    category = color_type[4:]
+                    self.make_group(color_type, (col, row), f'{category[:-7]}{color}')
+        
         # tortiepatchesmasks
         tortiepatchesmasks = [
             ['ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'HALF', 'STREAK', 'MASK', 'SMOKE'],
@@ -563,6 +602,16 @@ class Sprites:
             ['BRIGHTPINK', 'BRIGHTORANGE','MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE'],
             ['WHITE', 'BLACK2', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW', 'NULL1']
         ]
+        
+        skin_colors_turtle = [
+            ['BLACKTURTLE', 'REDTURTLE','PINKTURTLE', 'DARKBROWNTURTLE', 'BROWNTURTLE', 'LIGHTBROWNTURTLE'],
+            ['DARKTURTLE', 'DARKGREYTURTLE', 'GREYTURTLE', 'DARKSALMONTURTLE','SALMONTURTLE', 'PEACHTURTLE'],
+            ['DARKMARBLEDTURTLE', 'MARBLEDTURTLE', 'LIGHTMARBLEDTURTLE', 'DARKBLUETURTLE', 'BLUETURTLE', 'LIGHTBLUETURTLE']]
+
+        skin_colors_stain = [
+            ['STAINDUST', 'STAINICEBLUE', 'STAININDIGO', 'STAINBLUE', 'STAINPURPLE', 'STAINDARKBLUE'],
+            ['STAINLIGHTPINK', 'STAINYELLOW', 'STAINPINK', 'STAINGOLD', 'STAINHOTPINK', 'STRAINDIRT'],
+            ['STAINCYAN', 'STAINLIME', 'STAINTURQUOISE', 'STAINGREEN', 'STAINBLUEGREEN', 'STAINPEACOCK']]
 
         for row, colors in enumerate(skin_colors):
             for col, color in enumerate(colors):
@@ -587,6 +636,14 @@ class Sprites:
         for row, colors in enumerate(skin_colors_math):
             for col, color in enumerate(colors):
                 self.make_group('skin_mathkangaroo', (col, row), f"skin_mathkangaroo{color}")
+                
+        for row, colors in enumerate(skin_colors_turtle):
+            for col, color in enumerate(colors):
+                self.make_group('skin_turtle', (col, row), f"skin_turtle{color}")
+                
+        for row, colors in enumerate(skin_colors_stain):
+            for col, color in enumerate(colors):
+                self.make_group('skin_stain', (col, row), f"skin_stain{color}")
 
         self.load_scars()
         self.load_symbols()
@@ -832,6 +889,10 @@ class Sprites:
         witchhat_data = [["WHITE WITCHHAT", "BABYBLUE WITCHHAT", "LIGHTPURPLE WITCHHAT", "BLUE WITCHHAT", "PURPLE WITCHHAT", "DARKPURPLE WITCHHAT"],
                     ["LIGHTPINK WITCHHAT", "LIGHTYELLOW WITCHHAT", "PINK WITCHHAT", "ORANGE WITCHHAT", "RED WITCHHAT"],
                     ["CYAN WITCHHAT", "YELLOWGREEN WITCHHAT", "TURQUOISE WITCHHAT", "GREEN WITCHHAT"]]
+        
+        pokemon_data = [["PIKACHU", "SQUIRTLE", "CHARMANDER", "SPHEAL", "GROWLITHE", "BULBASAUR"],
+                    ["SENTRET", "SHAYMIN", "EMOLGA", "HISUI GROWLITHE", "ALOLAN VULPIX"],
+                    ["VULPIX", "LUXRAY", "ALTARIA", "AZUMARILL"]]
 
 
         # medcatherbs
@@ -1017,6 +1078,10 @@ class Sprites:
         for row, hats in enumerate(witchhat_data):
             for col, hat in enumerate(hats):
                 self.make_group("colorsplash_witchhat", (col, row), f"acc_witchhat{hat}")
+                
+        for row, mons in enumerate(pokemon_data):
+            for col, mon in enumerate(mons):
+                self.make_group("pokemon", (col, row), f"acc_pokemon{mon}")
 
 
     def load_symbols(self):

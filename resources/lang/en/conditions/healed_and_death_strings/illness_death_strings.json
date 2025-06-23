@@ -220,12 +220,18 @@
     "The medicine cat knows psychosis can lead to an increase in mortality, but finding m_c dead was unexpected.",
     "The stresses of psychosis were too much for m_c."
   ],
-  "rampaging": [
-    "Without a guide to stop {PRONOUN/m_c/poss} rampage, m_c's abilities imploded, leaving {PRONOUN/m_c/object} dead.",
-    "m_c was too far gone for any guiding, and died during {PRONOUN/m_c/poss} rampage."
-  ],
   "deer tick fever": [
     "m_c died of deer tick fever.",
     "Deer tick fever has taken m_c's life."
-  ]
+  ],
+  "emotionally numb": [
+    "this should not appear! m_c died from being emotionally numb?"
+  ],
+  "double tongue": [
+    "this should not appear! m_c died from double tongue?"
+  ],
+	"rampaging": [
+		"Without a guide to stop {PRONOUN/m_c/poss} rampage, m_c's abilities imploded, leaving {PRONOUN/m_c/object} dead.",
+		"m_c was too far gone for any guiding, and died during {PRONOUN/m_c/poss} rampage."
+	]
 }

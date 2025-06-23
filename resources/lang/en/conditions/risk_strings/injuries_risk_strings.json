@@ -279,7 +279,7 @@
         "deer tick fever": [
             "r_c anxiously informs m_c of an unusual rash {PRONOUN/r_c/subject} found hidden within {PRONOUN/m_c/poss} fur. Some ticks can transmit diseases, r_c explains, and m_c seems to be showing symptoms.",
             "The tick on m_c was left for far too long - {PRONOUN/m_c/subject} {VERB/m_c/have/has} started to develop an unusual rash.",
-            "It's a struggle for m_c to drag {PRONOUN/m_c/self} out of {PRONOUN/m_c/poss} nest. {PRONOUN/m_c/poss/CAP} tick bite may have been left untreated for too long."
+            "It's a struggle for m_c to drag {PRONOUN/m_c/self} out of {PRONOUN/m_c/poss} nest. One of {PRONOUN/m_c/poss} tick bites may have been left untreated for too long."
         ]
     }
 }

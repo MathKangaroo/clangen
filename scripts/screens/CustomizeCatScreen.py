@@ -114,6 +114,24 @@ class CustomizeCatScreen(Screens):
         self.pelt_names.sort()
         self.pelt_name_label = None
         self.pelt_name_dropdown = None
+        
+        self.base_game_pelts = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti", "Speckled",
+                           "Rosette", "SingleColour", "Smoke", "Singlestripe", "Bengal", "Marbled"]
+        self.base_game_colors = ['WHITE', 'PALEGREY', 'SILVER', 'GREY', 'DARKGREY', 'GHOST', 'BLACK', 'CREAM', 'PALEGINGER',
+                            'GOLDEN', 'GINGER', 'DARKGINGER', 'SIENNA', 'LIGHTBROWN', 'LILAC', 'BROWN', 'GOLDEN-BROWN', 'DARKBROWN',
+                            'CHOCOLATE']
+        self.base_game_patterns = ["tabby", "ticked", "mackerel", "classic", "sokoke", "agouti", "speckled",
+                           "rosette", "single", "smoke", "singlestripe", "bengal", "marbled"]
+        
+        self.minecraft_colors = [
+            'ACACIALOG', 'BAMBOO', 'BIRCHLOG', 'CHERRYLOG', 'CRIMSONSTEM', 'DARKOAKLOG', 'JUNGLELOG', 'MANGROVELOG', 'OAKLOG', 'SPRUCELOG', 'WARPEDSTEM',
+            'ACACIAPLANKS', 'BAMBOOPLANKS', 'BIRCHPLANKS', 'CHERRYPLANKS', 'CRIMSONPLANKS', 'DARKOAKPLANKS', 'JUNGLEPLANKS', 'MANGROVEPLANKS', 'OAKPLANKS', 'SPRUCEPLANKS', 'WARPEDPLANKS',
+            'AMETHYST', 'BLACKGLAZEDTERRACOTTA', 'BLUEGLAZEDTERRACOTTA', 'BROWNGLAZEDTERRACOTTA', 'BROWN MUSHROOM', 'COPPER', 'CRYING OBSIDIAN', 'CYANGLAZEDTERRACOTTA', 'EXPOSEDCOPPER', 'GRAYGLAZEDTERRACOTTA', 'GREENGLAZEDTERRACOTTA',
+            'LIGHTBLUEGLAZED TERRACOTTA', 'LIGHTGRAYGLAZEDTERRACOTTA', 'LIMEGLAZEDTERRACOTTA', 'MAGENTAGLAZEDTERRACOTTA', 'MUSHROOMINSIDE', 'MUSHROOMSTEM', 'OBSIDIAN', 'ORANGEGLAZEDTERRACOTTA', 'OXIDIZEDCOPPER', 'PINKGLAZEDTERRACOTTA', 'PURPLEGLAZEDTERRACOTTA',
+            'PURPUR', 'QUARTZ', 'REDGLAZEDTERRACOTTA', 'REDMUSHROOM', 'WEATHEREDCOPPER', 'WHITEGLAZEDTERRACOTTA', 'YELLOWGLAZEDTERRACOTTA'
+        ]
+        
+        self.anju_colors = ['PINK', 'RED', 'LIGHTGREEN', 'GREEN', 'CYAN', 'BLUE', 'PURPLE']
 
         self.pelt_colours = copy(Pelt.pelt_colours)
         self.white_patches = copy(Pelt.little_white + Pelt.mid_white + Pelt.high_white + Pelt.mostly_white)
@@ -181,7 +199,7 @@ class CustomizeCatScreen(Screens):
         self.tint_dropdown = None
 
         self.skins = copy(Pelt.skin_sprites)
-        magic_skins = copy(Pelt.skin_sprites_magic) + copy(Pelt.skin_sprites_elemental) + copy(Pelt.skin_sprites_math) + copy(Pelt.skin_sprites_bingle) + ['SHADOWSELF', 'FIRETAIL', 'BLUEFIRETAIL', 'SCORPION', 'SNOWFOX', 'KITSUNE', 'FENNECKITSUNE']
+        magic_skins = copy(Pelt.skin_sprites_magic) + copy(Pelt.skin_sprites_elemental) + copy(Pelt.skin_sprites_math) + copy(Pelt.skin_sprites_bingle) + copy(Pelt.skin_sprites_stain) + ['SHADOWSELF', 'FIRETAIL', 'BLUEFIRETAIL', 'SCORPION', 'SNOWFOX', 'KITSUNE', 'FENNECKITSUNE']
         magic_skins.sort()
         self.skins.sort()
         self.skins += magic_skins
@@ -197,6 +215,7 @@ class CustomizeCatScreen(Screens):
         self.eye_colours += [colour.capitalize() for colour in copy(Pelt.lamp_eyes)]
         self.eye_colours += [colour.capitalize() for colour in copy(Pelt.neos_eyes)]
         self.eye_colours += [colour.capitalize() for colour in copy(Pelt.angel_eyes)]
+        self.eye_colours += [colour.capitalize() for colour in copy(Pelt.snail_eyes)]
         self.eye_colour1_label = None
         self.eye_colour1_dropdown = None
         self.heterochromia_text = None
@@ -217,7 +236,7 @@ class CustomizeCatScreen(Screens):
         self.pose_left_button = None
 
         self.accessories = list(
-            dict.fromkeys(Pelt.plant_accessories + Pelt.flower_accessories + Pelt.bows_accessories + Pelt.plant2_accessories + Pelt.ster_accessories + Pelt.wild_accessories + Pelt.tail_accessories + Pelt.collars + Pelt.snake_accessories + Pelt.smallAnimal_accessories + Pelt.deadInsect_accessories + Pelt.aliveInsect_accessories + Pelt.fruit_accessories + Pelt.crafted_accessories + Pelt.tail2_accessories + Pelt.bone_accessories + Pelt.butterflies_accessories + Pelt.stuff_accessories + Pelt.toy_accessories + Pelt.blankie_accessories + Pelt.flag_accessories + Pelt.wheels + Pelt.booties + Pelt.randomaccessories + Pelt.sailormoon + Pelt.beetle_feathers + Pelt.beetle_accessories + Pelt.chime_accessories+ Pelt.lantern_accessories + Pelt.neckerchiefs +  Pelt.witchhats))
+            dict.fromkeys(Pelt.plant_accessories + Pelt.flower_accessories + Pelt.bows_accessories + Pelt.plant2_accessories + Pelt.ster_accessories + Pelt.wild_accessories + Pelt.tail_accessories + Pelt.collars + Pelt.snake_accessories + Pelt.smallAnimal_accessories + Pelt.deadInsect_accessories + Pelt.aliveInsect_accessories + Pelt.fruit_accessories + Pelt.crafted_accessories + Pelt.tail2_accessories + Pelt.bone_accessories + Pelt.butterflies_accessories + Pelt.stuff_accessories + Pelt.toy_accessories + Pelt.blankie_accessories + Pelt.flag_accessories + Pelt.wheels + Pelt.booties + Pelt.randomaccessories + Pelt.sailormoon + Pelt.beetle_feathers + Pelt.beetle_accessories + Pelt.chime_accessories+ Pelt.lantern_accessories + Pelt.neckerchiefs +  Pelt.witchhats + Pelt.pokemon_accessories))
         self.accessories.sort()
         self.accessories.insert(0, "None")
         self.accessories += copy(Pelt.colorsplash_accessories)
@@ -329,6 +348,13 @@ class CustomizeCatScreen(Screens):
         self.pelt_name_dropdown = create_dropdown((320, 125), (135, 40),
                                                   create_options_list(self.pelt_names, "capitalize"),
                                                   get_selected_option(self.the_cat.pelt.name, "capitalize"))
+        if self.the_cat.pelt.name in self.base_game_pelts or self.the_cat.pelt.tortiebase in self.base_game_patterns:
+            if 'GREEN' not in self.pelt_colours:
+                self.pelt_colours += self.anju_colors
+                self.pelt_colours += self.minecraft_colors
+        elif 'GREEN' in self.pelt_colours:
+            self.pelt_colours = copy(Pelt.pelt_colours)
+        self.pelt_colours.sort()
         self.pelt_colour_dropdown = create_dropdown((480, 125), (135, 40),
                                                     create_options_list(self.pelt_colours, "upper"),
                                                     get_selected_option(self.the_cat.pelt.colour, "upper"))
@@ -337,6 +363,14 @@ class CustomizeCatScreen(Screens):
         self.tortie_base_dropdown = create_dropdown((320, 200), (135, 40),
                                                     create_options_list(self.tortie_bases, "lower"),
                                                     get_selected_option(self.the_cat.pelt.tortiebase, "lower"))
+        
+        if self.the_cat.pelt.tortiepattern in self.base_game_patterns:
+            if 'GREEN' not in self.tortie_colours:
+                self.tortie_colours += self.anju_colors
+                self.tortie_colours += self.minecraft_colors
+        elif 'GREEN' in self.tortie_colours:
+            self.tortie_colours = copy(Pelt.pelt_colours)
+            
         self.tortie_colour_dropdown = create_dropdown((480, 200), (135, 40),
                                                       create_options_list(self.tortie_colours, "upper"),
                                                       get_selected_option(self.the_cat.pelt.tortiecolour, "upper"))
@@ -616,10 +650,34 @@ class CustomizeCatScreen(Screens):
                 self.the_cat.pelt.pattern.append(selected_option)
             else:
                 self.the_cat.pelt.pattern = [selected_option]
+        elif attribute == "tortiepattern":
+            if self.the_cat.pelt.tortiepattern in self.base_game_patterns:
+                if selected_option not in self.base_game_patterns:
+                    self.tortie_colours = copy(Pelt.pelt_colours)
+                    if self.the_cat.pelt.tortiecolour not in self.base_game_colors:
+                        self.the_cat.pelt.tortiecolour = 'BLACK'
+            elif selected_option in self.base_game_patterns:
+                if 'GREEN' not in self.tortie_colours:
+                    self.tortie_colours += self.anju_colors
+                    self.tortie_colours += self.minecraft_colors
+            setattr(self.the_cat.pelt, attribute, selected_option)
+        elif attribute == "tortiebase":
+            if self.the_cat.pelt.tortiebase in self.base_game_patterns:
+                if selected_option not in self.base_game_patterns:
+                    self.pelt_colours = copy(Pelt.pelt_colours)
+                    if self.the_cat.pelt.colour not in self.base_game_colors:
+                        self.the_cat.pelt.colour = 'BLACK'
+            elif selected_option in self.base_game_patterns:
+                if 'GREEN' not in self.pelt_colours:
+                    self.pelt_colours += self.anju_colors
+                    self.pelt_colours += self.minecraft_colors
+                    self.update_ui_elements()
+            setattr(self.the_cat.pelt, attribute, selected_option)
         else:
             setattr(self.the_cat.pelt, attribute, selected_option)
 
         self.make_cat_sprite()
+        self.update_ui_elements()
 
     def handle_back_button(self):
         if self.the_cat.pelt.eye_colour2 == self.the_cat.pelt.eye_colour: # remove second eye colour if same as first
@@ -632,9 +690,19 @@ class CustomizeCatScreen(Screens):
     def handle_pelt_name_dropdown(self):
         new_pelt_name = self.pelt_name_dropdown.selected_option[1]
         self.check_if_tortie(new_pelt_name, self.previous_pelt_name)
+        redo_dropdowns = False
+        if new_pelt_name in self.base_game_pelts:
+            if self.the_cat.pelt.name not in self.base_game_pelts:
+                redo_dropdowns = True
+        else:
+            if self.the_cat.pelt.name in self.base_game_pelts:
+                redo_dropdowns = True
+                self.the_cat.pelt.colour = 'BLACK'
         self.the_cat.pelt.name = new_pelt_name
         self.previous_pelt_name = new_pelt_name
         self.make_cat_sprite()
+        if redo_dropdowns:
+            self.update_ui_elements()
 
     def handle_pelt_length_buttons(self, button):
         direction = -1 if button == self.pelt_length_left_button else 1
@@ -763,13 +831,8 @@ class CustomizeCatScreen(Screens):
                     dropdown.kill()
 
                 self.the_cat.pelt.pattern = None
-                magiccolors = ["CSSingle", "CSTabby", "CSTicked", "CSMackerel", "CSClassic",
-                       "CSSpeckled", "CSAgouti", "CSSokoke", "CSRosette", "CSSmoke",
-                       "CSSinglestripe", "CSMarbled", "CSBengal", "CSMasked","CS2Single", "CS2Tabby", "CS2Ticked", "CS2Mackerel", "CS2Classic",
-                       "CS2Speckled", "CS2Agouti", "CS2Sokoke", "CS2Rosette", "CS2Smoke",
-                       "CS2Singlestripe", "CS2Marbled", "CS2Bengal", "CS2Masked"]
 
-                if previous_pelt_name in ['SingleColour', 'TwoColour'] or previous_pelt_name in magiccolors:
+                if previous_pelt_name in ['SingleColour', 'TwoColour']:
                     self.the_cat.pelt.tortiebase = "single"
                 else:
                     self.the_cat.pelt.tortiebase = previous_pelt_name.lower()
