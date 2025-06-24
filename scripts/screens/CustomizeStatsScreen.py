@@ -470,17 +470,6 @@ class CustomizeStatsScreen(Screens):
         self.physical_trait2_label = create_text_box("physical trait 2", (320, 420), (135, 40), "#text_box_22_horizleft")
         self.physical_trait3_label = create_text_box("physical trait 3", (480, 420), (135, 40), "#text_box_22_horizleft")
         self.physical_trait4_label = create_text_box("physical trait 4", (640, 420), (135, 40), "#text_box_22_horizleft")
-        #self.accessory_label = create_text_box("accessory", (568, 500), (135, 40), "#text_box_22_horizleft")
-        #self.pose_label = create_text_box("pose", (406, 500), (110, 40), "#text_box_22_horizleft")
-        #self.reverse_label = create_text_box("reverse", (52, 500), (135, 40), "#text_box_22_horizleft")
-        #self.scar_message = create_text_box("Adding/removing scars will not affect a cat's conditions or history.",
-                                            #(52, 650), (500, 40), "#text_box_26_horizleft")
-        #self.scar1_label = create_text_box("scar 1", (46, 580), (135, 40), "#text_box_22_horizleft")
-        #self.scar2_label = create_text_box("scar 2", (196, 580), (135, 40), "#text_box_22_horizleft")
-        #self.scar3_label = create_text_box("scar 3", (346, 580), (135, 40), "#text_box_22_horizleft")
-        #self.scar4_label = create_text_box("scar 4", (496, 580), (135, 40), "#text_box_22_horizleft")
-        
-        #self.powers_label = create_text_box("powers", (646, 580), (135, 40), "#text_box_22_horizleft")
         
         self.powers_label = create_text_box("powers", (480, 500), (135, 40), "#text_box_22_horizleft")
         self.ability2_label = create_text_box("ability2", (640, 580), (135, 40), "#text_box_22_horizleft")
