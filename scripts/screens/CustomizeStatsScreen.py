@@ -612,11 +612,12 @@ class CustomizeStatsScreen(Screens):
 
         self.ability1_dropdown.disable()
         self.ability2_dropdown.disable()
-        if self.the_cat.awakened["type"] == "enhanced esper":
-            self.ability1_dropdown.enable()
-            self.ability2_dropdown.enable()
-        elif self.the_cat.awakened["type"] == "esper":
-            self.ability1_dropdown.enable()
+        if self.the_cat.awakened:
+            if self.the_cat.awakened["type"] == "enhanced esper":
+                self.ability1_dropdown.enable()
+                self.ability2_dropdown.enable()
+            elif self.the_cat.awakened["type"] == "esper":
+                self.ability1_dropdown.enable()
 
         fave_status = "None"
         if self.the_cat.favourite:
