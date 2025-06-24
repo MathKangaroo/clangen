@@ -610,11 +610,13 @@ class CustomizeStatsScreen(Screens):
         self.ability2_dropdown = create_dropdown((640, 605), (135, 40), create_options_list(self.abilities, "upper"),
                                               get_selected_option(ability2, "upper"), "dropup")
 
-        if not self.the_cat.awakened or self.the_cat.awakened["type"] == "guide":
-            self.ability1_dropdown.disable()
-            self.ability2_dropdown.disable()
+        self.ability1_dropdown.disable()
+        self.ability2_dropdown.disable()
+        if self.the_cat.awakened["type"] == "enhanced esper":
+            self.ability1_dropdown.enable()
+            self.ability2_dropdown.enable()
         elif self.the_cat.awakened["type"] == "esper":
-            self.ability2_dropdown.disable()
+            self.ability1_dropdown.enable()
 
         fave_status = "None"
         if self.the_cat.favourite:
@@ -699,7 +701,7 @@ class CustomizeStatsScreen(Screens):
             self.the_cat.awakened = None
         if selected_option != "none":
             self.generate_ability(power_type = selected_option)
-        self.make_cat_sprite()
+        self.update_ui_elements()
 
     # store state for reset
     # TODO: append values to a list with identifier to retain values between cat pages
@@ -792,12 +794,13 @@ class CustomizeStatsScreen(Screens):
                 self.handle_powers_dropdown(event.ui_element)
             elif event.ui_element == self.ability1_dropdown:
                 selected_option = self.ability1_dropdown.selected_option[1].lower()
-                if self.the_cat.awakened["type"] == "esper":
-                    self.the_cat.awakened["ability"] = selected_option
-                    self.the_cat.awakened["desc"] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])
-                elif self.the_cat.awakened["type"] == "enhanced esper":
-                    self.the_cat.awakened["ability"][0] = selected_option
-                    self.the_cat.awakened["desc"][0] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])
+                if self.the_cat.awakened["type"] in ["esper", "enhanced esper"]:
+                    if isinstance(the_cat.awakened["ability"], list):
+                            self.the_cat.awakened["ability"][0] = selected_option
+                            self.the_cat.awakened["desc"][0] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])
+                    else:
+                            self.the_cat.awakened["ability"] = selected_option
+                            self.the_cat.awakened["desc"] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])      
                 self.update_ui_elements()
             elif event.ui_element == self.ability2_dropdown:
                 selected_option = self.ability1_dropdown.selected_option[1].lower()
