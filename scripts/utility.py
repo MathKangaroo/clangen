@@ -2917,6 +2917,7 @@ def generate_sprite(
         snail_eyes = ['SNAIL YELLOW', 'SNAIL ORANGE', 'SNAIL HAZEL', 'SNAIL YELLOWGREEN', 'SNAIL GREEN', 'SNAIL BLUE', 'SNAIL DARKBLUE', 'SNAIL GRAY', 'SNAIL CYAN', 'SNAIL TURQUOISE', 'SNAIL PURPLE', 'SNAIL GOLD',
                  'SNAIL COPPER', 'SNAIL MINT', 'SNAIL DARKBLUE2', 'SNAIL BLUE2', 'SNAIL BROWN', 'SNAIL SILVER', 'SNAIL LIGHTYELLOW', 'SNAIL DARKYELLOW', 'SNAIL GOLDENGREEN']
 
+        cs_eyes = angel_eyes + snail_eyes
         
         if cat.pelt.eye_colour in neos_eyes:
             eyes = sprites.sprites["neos_eyes" + cat.pelt.eye_colour + cat_sprite].copy()
@@ -2946,7 +2947,8 @@ def generate_sprite(
                 eyes.blit(
                     sprites.sprites["eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0)
                 )
-        new_sprite.blit(eyes, (0, 0))
+        if age != "newborn" or cat.pelt.eye_colour not in cs_eyes:
+            new_sprite.blit(eyes, (0, 0))
 
         if not scars_hidden:
             for scar in cat.pelt.scars:
