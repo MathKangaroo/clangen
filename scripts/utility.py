@@ -3023,7 +3023,8 @@ def generate_sprite(
             new_sprite.blit(sprites.sprites["skin_stain" + cat.pelt.skin + cat_sprite], (0, 0))
         elif cat.pelt.skin in skin_sprites_turtle:
             new_sprite.blit(sprites.sprites["skin_turtle" + cat.pelt.skin + cat_sprite], (0, 0))
-        else:
+        elif cat.pelt.skin in ['FLAMES2', 'BUBBLES2', 'VINES', 'WIND', 'LIGHTNING', 'BLUEFLAMES', 'FROZEN', 'STONE', 'TREE',
+                    'PURPLESPARKS', 'PURPLEGLOW', 'SHADOW', 'YELLOWGLOW', 'FAEMANE', 'GREENGLOW', 'SHADOWBEAST', 'SPARKLES2', 'ROOTS']:
             new_sprite.blit(sprites.sprites["skin_elemental" + cat.pelt.skin + cat_sprite], (0, 0))
        
         if not scars_hidden:
