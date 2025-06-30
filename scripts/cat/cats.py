@@ -480,13 +480,13 @@ class Cat:
             neon_eyes_chance = 4
         if self.awakened and randint(1,neon_eyes_chance) == 1:
             self.pelt.eye_colour = choice(neos_eyes)
-        elif self.awakened and randint(1,20) == 1:
+        elif self.awakened and randint(1,25) == 1:
             self.pelt.eye_colour = choice(angel_eyes)
-        elif self.awakened and randint(1,20) == 1:
+        elif self.awakened and randint(1,25) == 1:
             self.pelt.eye_colour = choice(flutter_eyes)
-        elif self.awakened and randint(1,20) == 1:
+        elif self.awakened and randint(1,25) == 1:
             self.pelt.eye_colour = choice(lamp_eyes)
-        elif self.awakened and randint(1,20) == 1:
+        elif self.awakened and randint(1,25) == 1:
             self.pelt.eye_colour = choice(snail_eyes)
         
         magiccolorspride = ["PrideAgouti", "PrideBengal", 'PrideClassic', 'PrideMackerel']
