@@ -2410,10 +2410,11 @@ class Pelt:
         else:
             self.tint = "none"
         '''
+        self.tint = "none"
         weighted_tints = sprites.cat_tints["weighted_tints"]
-        all_tints = []
-        for tint_category in weighted_tints:
-            all_tints += tint_category
+        all_tints = weighted_tints["dilute"] + weighted_tints["light_cool"] + weighted_tints["cool"] + weighted_tints["dark_cool"] + weighted_tints["light_warm"] + weighted_tints["warm"] + weighted_tints["dark_warm"] + weighted_tints["black"]
+            
+        print(all_tints)
             
         self.tint = choice([choice(weighted_tints["dilute"]),choice(weighted_tints["light_cool"]),choice(weighted_tints["light_warm"]),choice(all_tints)])
         # TORTIE TINT
