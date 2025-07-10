@@ -229,7 +229,7 @@ class ClanScreen(Screens):
         )
         nursery_enable = False
         for cat in Cat.all_cats_list:
-            if cat.status in ["caretaker", "caretaker apprentice"]:
+            if cat.status in ["caretaker", "caretaker apprentice"] and not (cat.dead or cat.outside):
                 nursery_enable = True
                 break
         if not nursery_enable:
