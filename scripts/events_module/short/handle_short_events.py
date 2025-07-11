@@ -149,9 +149,7 @@ class HandleShortEvents:
             ignore_subtyping=ignore_subtyping,
         )
 
-        if isinstance(
-            constants.CONFIG["event_generation"]["debug_ensure_event_id"], str
-        ):
+        if constants.CONFIG["event_generation"]["debug_ensure_event_id"] != "":
             found = False
             for _event in final_events:
                 if (
