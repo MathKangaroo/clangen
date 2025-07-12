@@ -9,6 +9,7 @@ TODO: Docs
 import logging
 import os
 import re
+from copy import copy
 from itertools import combinations
 from math import floor
 from random import choice, choices, randint, random, sample, randrange, getrandbits
@@ -2924,8 +2925,20 @@ def generate_sprite(
         if not scars_hidden:
             for scar in cat.pelt.scars:
                 if scar in cat.pelt.scars2:
+                    scar = copy(sprites.sprites["scars" + scar + cat_sprite])
+                    # handle recolouring based on afterlife
+                    if dead:
+                        color = (
+                            constants.CONFIG["cat_sprites"]["lineart_color_df"]
+                            if cat.status.group == CatGroup.DARK_FOREST
+                            else constants.CONFIG["cat_sprites"]["lineart_color_sc"]
+                        )
+                        pixel_array = pygame.PixelArray(scar)
+                        pixel_array.replace((0, 0, 0), pygame.Color(color), distance=0)
+                        del pixel_array
+
                     new_sprite.blit(
-                        sprites.sprites["scars" + scar + cat_sprite],
+                        scar,
                         (0, 0),
                         special_flags=blendmode,
                     )
