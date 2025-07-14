@@ -7,13 +7,9 @@ import ujson
 
 from scripts.game_structure import constants
 from scripts.game_structure.game.settings import game_setting_get
-from scripts.housekeeping.datadir import get_saved_images_dir
 from scripts.special_dates import SpecialDate, is_today
 
 logger = logging.getLogger(__name__)
-
-pygame.display.init()
-pygame.display.set_mode((800, 700))
 
 
 class Sprites:
