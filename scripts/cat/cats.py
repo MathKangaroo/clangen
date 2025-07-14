@@ -4955,7 +4955,7 @@ class Cat:
     # ---------------------------------------------------------------------------- #
     @staticmethod
     def change_condition_name(condition):
-        if notgame_setting_get("warriorified names"):
+        if not game_setting_get("warriorified names"):
             if condition in Cat.dad_names:
                 condition = condition.replace(condition, Cat.dad_names.get(condition))
 
