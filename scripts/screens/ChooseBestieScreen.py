@@ -26,6 +26,7 @@ from .Screens import Screens
 from ..game_structure.screen_settings import MANAGER
 from ..ui.generate_box import BoxStyles, get_box
 from ..ui.generate_button import get_button_dict, ButtonStyles
+from ..game_structure.game.switches import switch_set_value, switch_get_value, Switch
 from ..ui.icon import Icon
 
 
@@ -635,7 +636,7 @@ class ChooseBestieScreen(Screens):
     def update_current_cat_info(self, reset_selected_cat=True):
         """Updates all elements with the current cat, as well as the selected cat.
         Called when the screen switched, and whenever the focused cat is switched"""
-        self.the_cat = Cat.all_cats[game.switches["cat"]]
+        self.the_cat = Cat.all_cats[switch_get_value(Switch.cat)]
         if not self.the_cat.inheritance:
             self.the_cat.create_inheritance_new_cat()
 

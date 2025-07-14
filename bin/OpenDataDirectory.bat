@@ -1,1 +1,1 @@
-start %LocalAppData%\MegaMerge\MegaMergeBeta
+start %LocalAppData%\ClanGen\ClanGen

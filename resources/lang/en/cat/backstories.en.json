@@ -92,6 +92,7 @@
         "tribe_backstories": "formally a Tribe member",
         "animal_backstories": "raised by animals",
         "tribe_roots_backstories": "tribe roots",
+        "stolenkit1": "{PRONOUN/m_c/subject/CAP} was a victim of war, stolen from a rival Clan at a young age.",
         "tribe_roots1": "m_c was born into the Clan, but one of {PRONOUN/m_c/poss} parents is from a Tribe.",
         "tribe_roots2": "m_c was born into a Tribe, but came to live in the Clan with {PRONOUN/m_c/poss} parent at a young age."
     }

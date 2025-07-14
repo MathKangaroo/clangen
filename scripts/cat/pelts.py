@@ -4,10 +4,13 @@ from re import sub
 
 import i18n
 
+import scripts.game_structure.screen_settings
 from scripts.cat.sprites import sprites
+from scripts.game_structure import constants
 from scripts.game_structure.game_essentials import game
 from scripts.game_structure.localization import get_lang_config
 from scripts.utility import adjust_list_text
+from scripts.game_structure.game.settings import game_setting_get
 
 
 class Pelt:
@@ -171,14 +174,42 @@ class Pelt:
     no_masked = heta_colors + minecraft_colors + anju_colors + pastel_colors + pepper_colors
     
     pelt_c_no_white = [
-        'PALEGREY', 'SILVER', 'GREY', 'DARKGREY', 'GHOST', 'BLACK', 'CREAM', 'PALEGINGER',
-        'GOLDEN', 'GINGER', 'DARKGINGER', 'SIENNA', 'LIGHTBROWN', 'LILAC', 'BROWN', 'GOLDEN-BROWN', 'DARKBROWN',
-        'CHOCOLATE'
+        "PALEGREY",
+        "SILVER",
+        "GREY",
+        "DARKGREY",
+        "GHOST",
+        "BLACK",
+        "CREAM",
+        "PALEGINGER",
+        "GOLDEN",
+        "GINGER",
+        "DARKGINGER",
+        "SIENNA",
+        "LIGHTBROWN",
+        "LILAC",
+        "BROWN",
+        "GOLDEN-BROWN",
+        "DARKBROWN",
+        "CHOCOLATE",
     ]
     pelt_c_no_bw = [
-        'PALEGREY', 'SILVER', 'GREY', 'DARKGREY', 'CREAM', 'PALEGINGER',
-        'GOLDEN', 'GINGER', 'DARKGINGER', 'SIENNA', 'LIGHTBROWN', 'LILAC', 'BROWN', 'GOLDEN-BROWN', 'DARKBROWN',
-        'CHOCOLATE'
+        "PALEGREY",
+        "SILVER",
+        "GREY",
+        "DARKGREY",
+        "CREAM",
+        "PALEGINGER",
+        "GOLDEN",
+        "GINGER",
+        "DARKGINGER",
+        "SIENNA",
+        "LIGHTBROWN",
+        "LILAC",
+        "BROWN",
+        "GOLDEN-BROWN",
+        "DARKBROWN",
+        "CHOCOLATE",
     ]
 
     tortiepatterns = ['ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'MINIMALONE', 'MINIMALTWO', 'MINIMALTHREE', 'MINIMALFOUR', 'HALF',
@@ -1009,6 +1040,12 @@ class Pelt:
                           'STAINLIGHTPINK', 'STAINYELLOW', 'STAINPINK', 'STAINGOLD', 'STAINHOTPINK', 'STRAINDIRT',
                           'STAINCYAN', 'STAINLIME', 'STAINTURQUOISE', 'STAINGREEN', 'STAINBLUEGREEN', 'STAINPEACOCK']
     
+    acc_categories = {
+        "PLANT": plant_accessories,
+        "WILD": wild_accessories,
+        "COLLAR": collars,
+    }
+    
     """Holds all appearance information for a cat. """
 
     def __init__(self,
@@ -1063,8 +1100,9 @@ class Pelt:
         self.vitiligo = vitiligo
         self.length = length
         self.points = points
-        self.accessory = accessory
-        self.paralyzed = paralyzed
+        self.rebuild_sprite = True
+        self._accessory = accessory
+        self._paralyzed = paralyzed
         self.opacity = opacity
         self.scars = scars if isinstance(scars, list) else []
         self.tint = tint
@@ -1077,6 +1115,7 @@ class Pelt:
         self.physical_trait_hidden_3 = physical_trait_hidden_3
         self.physical_trait_hidden_4 = physical_trait_hidden_4
         self.white_patches_tint = white_patches_tint
+        self.screen_scale = scripts.game_structure.screen_settings.screen_scale
         self.cat_sprites = {
             "kitten": kitten_sprite if kitten_sprite is not None else 0,
             "adolescent": adol_sprite if adol_sprite is not None else 0,
@@ -1096,9 +1135,29 @@ class Pelt:
         self.fur_texture = fur_texture if fur_texture is not None else choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse", "tangled", "fuzzy", "spiky"])
         self.build = build if build is not None else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate", "hunched", "hefty", "burly", "bulky", "plump", "brawny", "stout", "broad", "chubby", "fat", "stocky", "chunky", "big-boned"])
         self.height = height if height is not None else choice(["petite", "short", "average", "average", "tall", "towering"])
+
+    @property
+    def accessory(self):
+        return self._accessory
+
+    @accessory.setter
+    def accessory(self, val):
+        self.rebuild_sprite = True
+        self._accessory = val
+
+    @property
+    def paralyzed(self):
+        return self._paralyzed
+
+    @paralyzed.setter
+    def paralyzed(self, val):
+        self.rebuild_sprite = True
+        self._paralyzed = val
+
     @staticmethod
     def generate_new_pelt(gender: str, parents: tuple = (), age: str = "adult"):
         new_pelt = Pelt()
+
         pelt_white = new_pelt.init_pattern_color(parents, gender)
         new_pelt.init_white_patches(pelt_white, parents)
         new_pelt.init_sprite()
@@ -1108,6 +1167,7 @@ class Pelt:
         new_pelt.init_pattern()
         new_pelt.init_tint()
         new_pelt.init_physical_traits(parents)
+
         return new_pelt
 
     def check_and_convert(self, convert_dict):
@@ -1551,17 +1611,17 @@ class Pelt:
         # First, convert from some old names that may be in white_patches. 
         if self.white_patches == 'POINTMARK':
             self.white_patches = "SEALPOINT"
-        elif self.white_patches == 'PANTS2':
-            self.white_patches = 'PANTSTWO'
-        elif self.white_patches == 'ANY2':
-            self.white_patches = 'ANYTWO'
+        elif self.white_patches == "PANTS2":
+            self.white_patches = "PANTSTWO"
+        elif self.white_patches == "ANY2":
+            self.white_patches = "ANYTWO"
         elif self.white_patches == "VITILIGO2":
             self.white_patches = "VITILIGOTWO"
-            
+
         if self.vitiligo == "VITILIGO2":
             self.vitiligo = "VITILIGOTWO"
 
-        # Move white_patches that should be in vit or points. 
+        # Move white_patches that should be in vit or points.
         if self.white_patches in Pelt.vit:
             self.vitiligo = self.white_patches
             self.white_patches = None
@@ -1573,6 +1633,14 @@ class Pelt:
             self.tortiepattern = sub("tortie", "", self.tortiepattern.lower())
             if self.tortiepattern == "solid":
                 self.tortiepattern = "single"
+        
+        '''
+        if self.white_patches in convert_dict["old_creamy_patches"]:
+            self.white_patches = convert_dict["old_creamy_patches"][self.white_patches]
+            self.white_patches_tint = "darkcream"
+        elif self.white_patches in ("SEPIAPOINT", "MINKPOINT", "SEALPOINT"):
+            self.white_patches_tint = "none"
+        '''
 
         # Eye Color Convert Stuff
         if self.eye_colour == "BLUE2":
@@ -1609,7 +1677,7 @@ class Pelt:
                 self.cat_sprites['para_adult'] = 16
         else:
             self.cat_sprites["para_adult"] = 15
-        if self.cat_sprites["senior"] not in [12, 13, 14]:
+        if self.cat_sprites["senior"] not in (12, 13, 14):
             if self.cat_sprites["senior"] == 3:
                 self.cat_sprites["senior"] = 12
             elif self.cat_sprites["senior"] == 4:
@@ -1659,7 +1727,7 @@ class Pelt:
             self.eye_colour = choice([i.pelt.eye_colour for i in parents] +[choice(similar_colors)] +[choice(similar_colors)] + [choice(Pelt.eye_colours)])
 
         # White patches must be initalized before eye color.
-        num = game.config["cat_generation"]["base_heterochromia"]
+        num = constants.CONFIG["cat_generation"]["base_heterochromia"]
         if (
             self.white_patches in Pelt.high_white
             or self.white_patches in Pelt.mostly_white
@@ -1667,7 +1735,7 @@ class Pelt:
             or self.colour == "WHITE"
         ):
             num = num - 90
-        if self.white_patches == 'FULLWHITE' or self.colour == 'WHITE':
+        if self.white_patches == "FULLWHITE" or self.colour == "WHITE":
             num -= 10
         for _par in parents:
             if _par.pelt.eye_colour2:
@@ -1728,7 +1796,9 @@ class Pelt:
             return self.randomize_pattern_color(gender)
 
         # There is a 1/10 chance for kits to have the exact same pelt as one of their parents
-        if game.config["cat_generation"]["direct_inheritance"] != 0 and not random.randint(0, game.config["cat_generation"]["direct_inheritance"]):  # 1/10 chance
+        if not random.randint(
+            0, constants.CONFIG["cat_generation"]["direct_inheritance"]
+        ):  # 1/10 chance
             selected = choice(par_pelts)
             self.name = selected.name
             self.length = selected.length
@@ -1790,7 +1860,7 @@ class Pelt:
         if torbie:
             # If it is tortie, the chosen pelt above becomes the base pelt.
             chosen_tortie_base = chosen_pelt
-            if chosen_tortie_base in ["TwoColour", "SingleColour"]:
+            if chosen_tortie_base in ("TwoColour", "SingleColour"):
                 chosen_tortie_base = "Single"
             chosen_tortie_base = chosen_tortie_base.lower()
             chosen_pelt = random.choice(Pelt.torties)
@@ -1911,9 +1981,10 @@ class Pelt:
         # SET THE PELT
         self.name = chosen_pelt
         self.colour = chosen_pelt_color
-        #print("setting pelt to " + self.colour)
         self.length = chosen_pelt_length
-        self.tortiebase = chosen_tortie_base  # This will be none if the cat isn't a tortie.
+        self.tortiebase = (
+            chosen_tortie_base  # This will be none if the cat isn't a tortie.
+        )
         return chosen_white
 
     def randomize_pattern_color(self, gender):
@@ -1941,7 +2012,7 @@ class Pelt:
         if torbie:
             # If it is tortie, the chosen pelt above becomes the base pelt.
             chosen_tortie_base = chosen_pelt
-            if chosen_tortie_base in ["TwoColour", "SingleColour"]:
+            if chosen_tortie_base in ("TwoColour", "SingleColour"):
                 chosen_tortie_base = "Single"
             chosen_tortie_base = chosen_tortie_base.lower()
             chosen_pelt = random.choice(Pelt.torties)
@@ -1998,7 +2069,7 @@ class Pelt:
         chosen_white = random.randint(1, 100) <= 40
 
         # Adjustments to pelt chosen based on if the pelt has white in it or not.
-        if chosen_pelt in ["TwoColour", "SingleColour"]:
+        if chosen_pelt in ("TwoColour", "SingleColour"):
             if chosen_white:
                 chosen_pelt = "TwoColour"
             else:
@@ -2010,66 +2081,64 @@ class Pelt:
         self.name = chosen_pelt
         self.colour = chosen_pelt_color
         self.length = chosen_pelt_length
-        self.tortiebase = chosen_tortie_base  # This will be none if the cat isn't a tortie.
+        self.tortiebase = (
+            chosen_tortie_base  # This will be none if the cat isn't a tortie.
+        )
         return chosen_white
 
     def init_pattern_color(self, parents, gender) -> bool:
-        """Inits self.name, self.colour, self.length, 
-            self.tortiebase and determines if the cat 
-            will have white patche or not. 
-            Return TRUE is the cat should have white patches, 
-            false is not. """
+        """Inits self.name, self.colour, self.length,
+        self.tortiebase and determines if the cat
+        will have white patche or not.
+        Return TRUE is the cat should have white patches,
+        false is not."""
 
         if parents:
             # If the cat has parents, use inheritance to decide pelt.
             chosen_white = self.pattern_color_inheritance(parents, gender)
         else:
             chosen_white = self.randomize_pattern_color(gender)
-        
-        #print("init as " + self.colour)
+
         return chosen_white
 
     def init_sprite(self):
         self.cat_sprites = {
-            'newborn': 20,
-            'kitten': random.randint(0, 2),
-            'adolescent': random.randint(3, 5),
-            'senior': random.randint(12, 14),
-            'sick_young': 19,
-            'sick_adult': 18
+            "newborn": 20,
+            "kitten": random.randint(0, 2),
+            "adolescent": random.randint(3, 5),
+            "senior": random.randint(12, 14),
+            "sick_young": 19,
+            "sick_adult": 18,
         }
         self.reverse = bool(random.getrandbits(1))
         # skin chances
         self.skin = choice(Pelt.skin_sprites)
 
-        if self.length != 'long':
-            self.cat_sprites['adult'] = random.randint(6, 8)
-            self.cat_sprites['para_adult'] = 16
+        if self.length != "long":
+            self.cat_sprites["adult"] = random.randint(6, 8)
+            self.cat_sprites["para_adult"] = 16
         else:
-            self.cat_sprites['adult'] = random.randint(9, 11)
-            self.cat_sprites['para_adult'] = 15
-        self.cat_sprites['young adult'] = self.cat_sprites['adult']
-        self.cat_sprites['senior adult'] = self.cat_sprites['adult']
+            self.cat_sprites["adult"] = random.randint(9, 11)
+            self.cat_sprites["para_adult"] = 15
+        self.cat_sprites["young adult"] = self.cat_sprites["adult"]
+        self.cat_sprites["senior adult"] = self.cat_sprites["adult"]
 
     def init_scars(self, age):
         if age == "newborn":
             return
 
-        if age in ['kitten', 'adolescent']:
+        if age in ("kitten", "adolescent"):
             scar_choice = random.randint(0, 50)  # 2%
-        elif age in ['young adult', 'adult']:
+        elif age in ("young adult", "adult"):
             scar_choice = random.randint(0, 20)  # 5%
         else:
             scar_choice = random.randint(0, 15)  # 6.67%
 
         if scar_choice == 1:
-            self.scars.append(choice([
-                choice(Pelt.scars1),
-                choice(Pelt.scars3)
-            ]))
+            self.scars.append(choice([choice(Pelt.scars1), choice(Pelt.scars3)]))
 
-        if 'NOTAIL' in self.scars and 'HALFTAIL' in self.scars:
-            self.scars.remove('HALFTAIL')
+        if "NOTAIL" in self.scars and "HALFTAIL" in self.scars:
+            self.scars.remove("HALFTAIL")
 
     def init_accessories(self, age):
         if age == "newborn":
@@ -2077,9 +2146,9 @@ class Pelt:
             return
 
         acc_display_choice = random.randint(0, 80)
-        if age in ['kitten', 'adolescent']:
+        if age in ("kitten", "adolescent"):
             acc_display_choice = random.randint(0, 180)
-        elif age in ['young adult', 'adult']:
+        elif age in ("young adult", "adult"):
             acc_display_choice = random.randint(0, 100)
 
         if acc_display_choice == 1:
@@ -2145,10 +2214,22 @@ class Pelt:
 
                 else:
                     # Normal generation
-                    if self.tortiebase in ["singlestripe","smoke","single", "smokepoint"]:
-                        self.tortiepattern = choice(['tabby','mackerel', 'classic', 'single', 'smoke', 'agouti','ticked','brindle', 'spots'])
+                    if self.tortiebase in ("singlestripe", "smoke", "single"):
+                        self.tortiepattern = choice(
+                            [
+                                "tabby",
+                                "mackerel",
+                                "classic",
+                                "single",
+                                "smoke",
+                                "agouti",
+                                "ticked",
+                            ]
+                        )
                     else:
-                        self.tortiepattern = random.choices([self.tortiebase, 'single'], weights=[97, 3], k=1)[0]
+                        self.tortiepattern = random.choices(
+                            [self.tortiebase, "single"], weights=[97, 3], k=1
+                        )[0]
 
                     if self.colour == "WHITE":
                         possible_colors = Pelt.white_colours.copy()
@@ -2156,14 +2237,22 @@ class Pelt:
                         self.colour = choice(possible_colors)
 
                     # Ginger is often duplicated to increase its chances
-                    if (self.colour in Pelt.black_colours) or (self.colour in Pelt.white_colours):
-                        self.tortiecolour = choice((Pelt.ginger_colours * 2) + Pelt.brown_colours)
+                    if (self.colour in Pelt.black_colours) or (
+                        self.colour in Pelt.white_colours
+                    ):
+                        self.tortiecolour = choice(
+                            (Pelt.ginger_colours * 2) + Pelt.brown_colours
+                        )
                     elif self.colour in Pelt.ginger_colours:
-                        self.tortiecolour = choice(Pelt.brown_colours + Pelt.black_colours * 2)
+                        self.tortiecolour = choice(
+                            Pelt.brown_colours + Pelt.black_colours * 2
+                        )
                     elif self.colour in Pelt.brown_colours:
                         possible_colors = Pelt.brown_colours.copy()
                         possible_colors.remove(self.colour)
-                        possible_colors.extend(Pelt.black_colours + (Pelt.ginger_colours * 2))
+                        possible_colors.extend(
+                            Pelt.black_colours + (Pelt.ginger_colours * 2)
+                        )
                         self.tortiecolour = choice(possible_colors)
                     else:
                         self.tortiecolour = "GOLDEN"
@@ -2187,7 +2276,6 @@ class Pelt:
                 self.tortiecolour = choice(Pelt.pelt_colours)
 
     def white_patches_inheritance(self, parents: tuple):
-
         par_whitepatches = set()
         par_points = []
         for p in parents:
@@ -2247,7 +2335,13 @@ class Pelt:
         else:
             self.points = None
 
-        white_list = [Pelt.little_white, Pelt.mid_white, Pelt.high_white, Pelt.mostly_white, ['FULLWHITE']]
+        white_list = [
+            Pelt.little_white,
+            Pelt.mid_white,
+            Pelt.high_white,
+            Pelt.mostly_white,
+            ["FULLWHITE"],
+        ]
 
         weights = [0, 0, 0, 0, 0]  # Same order as white_list
         for p_ in par_whitepatches:
@@ -2269,7 +2363,9 @@ class Pelt:
 
         # If all the weights are still 0, that means none of the parents have white patches.
         if not any(weights):
-            if not all(parents):  # If any of the parents are None (unknown), use the following distribution:
+            if not all(
+                parents
+            ):  # If any of the parents are None (unknown), use the following distribution:
                 weights = [20, 10, 10, 5, 0]
             else:
                 # Otherwise, all parents are known and don't have any white patches. Focus distribution on little_white.
@@ -2326,9 +2422,10 @@ class Pelt:
             self.points = None
 
     def randomize_white_patches(self):
-
         # Points determination. Tortie can't be pointed
-        if self.name != "Tortie" and not random.getrandbits(game.config["cat_generation"]["random_point_chance"]):
+        if self.name != "Tortie" and not random.getrandbits(
+            constants.CONFIG["cat_generation"]["random_point_chance"]
+        ):
             # Cat has colorpoint!
             self.points = choice(Pelt.point_markings)
         else:
@@ -2371,15 +2468,17 @@ class Pelt:
         if self.points and self.white_patches in [Pelt.high_white, Pelt.mostly_white, 'FULLWHITE']:
             self.points = None
 
-    def init_white_patches(self, pelt_white, parents:tuple):
-        # Vit can roll for anyone, not just cats who rolled to have white in their pelt. 
+    def init_white_patches(self, pelt_white, parents: tuple):
+        # Vit can roll for anyone, not just cats who rolled to have white in their pelt.
         par_vit = []
         for p in parents:
             if p:
                 if p.pelt.vitiligo:
                     par_vit.append(p.pelt.vitiligo)
 
-        vit_chance = max(game.config["cat_generation"]["vit_chance"] - len(par_vit), 0)
+        vit_chance = max(
+            constants.CONFIG["cat_generation"]["vit_chance"] - len(par_vit), 0
+        )
         if not random.getrandbits(vit_chance):
             self.vitiligo = choice(Pelt.vit)
 
@@ -2399,20 +2498,18 @@ class Pelt:
 
         # PELT TINT
         # Basic tints as possible for all colors.
-
         base_tints = sprites.cat_tints["possible_tints"]["basic"]
         if self.colour in sprites.cat_tints["colour_groups"]:
             color_group = sprites.cat_tints["colour_groups"].get(self.colour, "warm")
             color_tints = sprites.cat_tints["possible_tints"][color_group]
         else:
             color_tints = []
-        
-        '''
+
         if base_tints or color_tints:
             self.tint = choice(base_tints + color_tints)
         else:
             self.tint = "none"
-        '''
+
         self.tint = "none"
         weighted_tints = sprites.cat_tints["weighted_tints"]
         all_tints = weighted_tints["dilute"] + weighted_tints["light_cool"] + weighted_tints["cool"] + weighted_tints["dark_cool"] + weighted_tints["light_warm"] + weighted_tints["warm"] + weighted_tints["dark_warm"] + weighted_tints["black"]
@@ -2445,11 +2542,13 @@ class Pelt:
             self.tortie_tint = "none"
 
         # WHITE PATCHES TINT
-        if self.white_patches or self.points or (game.settings["vit tint"] and self.vitiligo):
+        if self.white_patches or self.points or (game_setting_get("vit tint") and self.vitiligo):
             # Now for white patches
             base_tints = sprites.white_patches_tints["possible_tints"]["basic"]
             if self.colour in sprites.cat_tints["colour_groups"]:
-                color_group = sprites.white_patches_tints["colour_groups"].get(self.colour, "white")
+                color_group = sprites.white_patches_tints["colour_groups"].get(
+                    self.colour, "white"
+                )
                 color_tints = sprites.white_patches_tints["possible_tints"][color_group]
             else:
                 color_tints = []
@@ -2630,14 +2729,7 @@ class Pelt:
             if self.eye_colour2
             else i18n.t(f"cat.eyes.{self.eye_colour}")
         )
-    def describe_skin(self):
-        return (
-            adjust_list_text(
-                [
-                    i18n.t(f"cat.skin.{self.skin}"),
-                ]
-            )
-        )
+
     @staticmethod
     def describe_appearance(cat, short=False):
         """Return a description of a cat
@@ -2758,11 +2850,11 @@ def _describe_torties(cat, color_name, short=False) -> [str, str]:
     ):
         return "cat.pelts.mottled_long", color_name
     else:
-        if base in [tabby.lower() for tabby in Pelt.tabbies] + [
+        if base in tuple(tabby.lower() for tabby in Pelt.tabbies) + (
             "bengal",
             "rosette",
             "speckled",
-        ]:
+        ):
             base = f"cat.pelts.{cat.pelt.tortiebase.capitalize()}_long"  # the extra space is intentional
         else:
             base = ""
@@ -2791,9 +2883,9 @@ def unpack_appearance_ruleset(cat, rule, short, pelt, color):
     elif rule == "color":
         return color
     elif rule == "cat":
-        if cat.genderalign in ["female", "trans female"]:
+        if cat.genderalign in ("female", "trans female"):
             return "general.she-cat"
-        elif cat.genderalign in ["male", "trans male"]:
+        elif cat.genderalign in ("male", "trans male"):
             return "general.tom"
         else:
             return "general.cat"

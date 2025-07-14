@@ -6,6 +6,7 @@ import i18n.translations
 import ujson
 from random import choice, randint
 
+from scripts.game_structure.game.settings import game_setting_get
 from scripts.game_structure.game_essentials import game
 
 lang_config: Optional[Dict] = None
@@ -26,7 +27,7 @@ def get_new_pronouns(genderalign: str) -> List[Dict[str, Union[str, int]]]:
     queer_list = ["intersex", "intergender", "trans male", "trans female","nonbinary", "genderfluid", "demigirl", "demiboy", "genderfae", "genderfaun", "bigender", "genderqueer", "agender", "???", "deminonbinary", "trigender", "genderflux", "polygender"]
     if genderalign in queer_list:
         neo_chance = 5
-    if game.settings["they them default"]:
+    if game_setting_get("they them default"):
         pronouns = config["sets"].get("default")
     else:
         neos = randint(1,neo_chance)

@@ -2668,6 +2668,31 @@
             "zero": "green witch hat",
             "many": "green witch hats",
             "one": "a green witch hat"
+        },
+                "DESERT WILLOW": {
+            "zero": "desert willow",
+            "many": "desert willows",
+            "one": "desert willow"
+        },
+        "CACTUS FLOWER": {
+            "zero": "cactus flower",
+            "many": "cactus flowers",
+            "one": "cactus flower"
+        },
+        "PRAIRIE FIRE": {
+            "zero": "prairie-fire",
+            "many": "prairie-fires",
+            "one": "prairie-fire"
+        },
+        "VERBENA EAR": {
+            "zero": "verbena",
+            "many": "verbenas",
+            "one": "verbena"
+        },
+        "VERBENA PELT": {
+            "zero": "verbena-covered pelt",
+            "many": "verbenas",
+            "one": "bunch of verbenas"
         }
       
     }

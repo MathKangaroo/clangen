@@ -4,7 +4,6 @@ from scripts.game_structure.localization import load_lang_resource
 
 
 class SingleInteraction:
-
     def __init__(
         self,
         interact_id,
@@ -67,7 +66,6 @@ class SingleInteraction:
 
 
 class GroupInteraction:
-
     def __init__(
         self,
         interact_id,
@@ -236,11 +234,11 @@ def cats_fulfill_single_interaction_constraints(
 ) -> bool:
     """Check if the two cats fulfills the interaction constraints."""
     if len(interaction.main_status_constraint) >= 1:
-        if main_cat.status not in interaction.main_status_constraint:
+        if main_cat.status.rank not in interaction.main_status_constraint:
             return False
 
     if len(interaction.random_status_constraint) >= 1:
-        if random_cat.status not in interaction.random_status_constraint:
+        if random_cat.status.rank not in interaction.random_status_constraint:
             return False
 
     if len(interaction.main_trait_constraint) >= 1:
@@ -252,16 +250,38 @@ def cats_fulfill_single_interaction_constraints(
             return False
 
     if len(interaction.main_skill_constraint) >= 1:
-        if (
-            main_cat.skills.primary.skill or main_cat.skills.secondary.skill
-        ) not in interaction.main_skill_constraint:
-            return False
+        if main_cat.skills.secondary:
+            if main_cat.skills.tertiary:
+                if (
+                    main_cat.skills.primary.skill or main_cat.skills.secondary.skill or main_cat.skills.tertiary.skill
+                ) not in interaction.main_skill_constraint:
+                    return False
+            else:
+                if main_cat.skills.tertiary:
+                    if (
+                        main_cat.skills.primary.skill or main_cat.skills.secondary.skill
+                    ) not in interaction.main_skill_constraint:
+                        return False
+        elif main_cat.skills.primary:
+                if main_cat.skills.primary.skill not in interaction.main_skill_constraint:
+                    return False
 
     if len(interaction.random_skill_constraint) >= 1:
-        if (
-            random_cat.skills.primary.skill or random_cat.skills.secondary.skill
-        ) not in interaction.random_skill_constraint:
-            return False
+        if random_cat.skills.secondary:
+            if random_cat.skills.tertiary:
+                if (
+                    random_cat.skills.primary.skill or random_cat.skills.secondary.skill or random_cat.skills.tertiary.skill
+                ) not in interaction.random_skill_constraint:
+                    return False
+            else:
+                if random_cat.skills.tertiary:
+                    if (
+                        random_cat.skills.primary.skill or random_cat.skills.secondary.skill
+                    ) not in interaction.random_skill_constraint:
+                        return False
+        else:
+            if random_cat.skills.primary.skill not in interaction.random_skill_constraint:
+                    return False
 
     if len(interaction.backstory_constraint) >= 1:
         if "m_c" in interaction.backstory_constraint:

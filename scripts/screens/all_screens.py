@@ -11,6 +11,7 @@ from .ChooseMentorScreen import ChooseMentorScreen
 from .ClanScreen import ClanScreen
 from .ClanSettingsScreen import ClanSettingsScreen
 from .ClearingScreen import ClearingScreen
+from .EventEditScreen import EventEditScreen
 from .EventsScreen import EventsScreen
 from .FamilyTreeScreen import FamilyTreeScreen
 from .LeaderDenScreen import LeaderDenScreen
@@ -78,13 +79,14 @@ class AllScreens:
     settings_screen = SettingsScreen("settings screen")
     clan_settings_screen = ClanSettingsScreen("clan settings screen")
     start_screen = StartScreen("start screen")
+    event_edit_screen = EventEditScreen("event edit screen")
     switch_clan_screen = SwitchClanScreen("switch clan screen")
 
     patrol_screen = PatrolScreen("patrol screen")
 
     choose_mate_screen = ChooseMateScreen("choose mate screen")
     choose_bestie_screen = ChooseBestieScreen("choose bestie screen")
-    choose_bestie_screen = ChooseEnemyScreen("choose enemy screen")
+    choose_enemy_screen = ChooseEnemyScreen("choose enemy screen")
     choose_mentor_screen = ChooseMentorScreen("choose mentor screen")
     choose_adoptive_parent_screen = ChooseAdoptiveParentScreen(
         "choose adoptive parent screen"

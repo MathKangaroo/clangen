@@ -17,11 +17,14 @@ from scripts.cat.sprites import sprites
 from scripts.game_structure.game_essentials import game
 from scripts.game_structure.screen_settings import MANAGER
 from scripts.game_structure.ui_elements import UISurfaceImageButton, UIImageButton
+from scripts.game_structure.game.switches import switch_set_value, switch_get_value, Switch
 from scripts.screens.Screens import Screens
 from scripts.ui.generate_box import get_box, BoxStyles
 from scripts.ui.generate_button import get_button_dict, ButtonStyles
 from scripts.ui.get_arrow import get_arrow
-from scripts.utility import ui_scale, generate_sprite, ui_scale_dimensions, get_text_box_theme
+from scripts.utility import ui_scale, generate_sprite, ui_scale_dimensions, get_text_box_theme, update_sprite
+
+from scripts.game_structure.game.settings import game_setting_get
 
 """ Cat customization UI """
 
@@ -355,7 +358,7 @@ class CustomizeCatScreen(Screens):
         self.build_cat_page()
 
     def build_cat_page(self):
-        self.the_cat = Cat.fetch_cat(game.switches["cat"])
+        self.the_cat = Cat.all_cats.get(switch_get_value(Switch.cat))
         (self.next_cat, self.previous_cat) = self.the_cat.determine_next_and_previous_cats()
         self.cat_elements["cat_name"] = create_text_box("customize " + str(self.the_cat.name), (0, 40), (400, 40),
                                                         "#text_box_34_horizcenter", {"centerx": "centerx"})
@@ -594,7 +597,7 @@ class CustomizeCatScreen(Screens):
             self.tortie_tint_dropdown.disable()
 
     def setup_white_patches_tint(self):
-        if game.settings["vit tint"]:
+        if game_setting_get("vit tint"):
             if self.the_cat.pelt.white_patches is None and self.the_cat.pelt.points is None and self.the_cat.pelt.vitiligo is None:
                 self.white_patches_tint_dropdown.disable()
         else:
@@ -693,6 +696,7 @@ class CustomizeCatScreen(Screens):
             pygame.transform.scale(self.cat_image, ui_scale_dimensions((250, 250))),
             manager=MANAGER
         )
+        update_sprite(self.the_cat)
 
     # TODO: create a subclass for dropdowns, create a function to regenerate dropdowns with specific data
     def handle_event(self, event):

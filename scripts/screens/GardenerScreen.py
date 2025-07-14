@@ -7,6 +7,7 @@ from pygame import Rect
 import pygame_gui.elements
 
 from scripts.cat.cats import Cat
+from ..cat.enums import CatAge, CatRank, CatGroup
 from scripts.cat.pelts import Pelt
 from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import game
@@ -23,12 +24,15 @@ from scripts.utility import (
     shorten_text_to_fit,
     ui_scale_dimensions,
     adjust_list_text,
+    update_sprite
 )
 from .Screens import Screens
 from ..game_structure.screen_settings import MANAGER
 from ..ui.generate_box import get_box, BoxStyles
 from ..ui.generate_button import get_button_dict, ButtonStyles
 from ..ui.icon import Icon
+from ..game_structure.game.switches import switch_get_value, Switch
+from ..clan_package.settings import get_clan_setting
 
 """ Cat customization UI """
 
@@ -291,6 +295,7 @@ class GardenerScreen(Screens):
                         ui_scale(pygame.Rect((592, 167), (100, 100))),
                         pygame.transform.scale(self.selected_cat.sprite, ui_scale_dimensions((100, 100))),
                     )
+                    update_sprite(self.selected_cat)
 
     def screen_switches(self):
         super().screen_switches()
@@ -298,17 +303,15 @@ class GardenerScreen(Screens):
         # Gather the gardeners:
         self.gardeners = []
         for cat in Cat.all_cats_list:
-            if cat.status in ["gardener", "gardener apprentice"] and not (
-                cat.dead or cat.outside
-            ):
+            if (cat.status.rank in [CatRank.GARDENER, CatRank.GARDENER_APPRENTICE] and cat.status.alive_in_player_clan):
                 self.gardeners.append(cat)
 
         self.page = 1
 
         if self.gardeners:
-            if Cat.fetch_cat(game.switches["cat"]) in self.gardeners:
+            if Cat.fetch_cat(switch_get_value(Switch.cat)) in self.gardeners:
                 self.selected_gardener = self.gardeners.index(
-                    Cat.fetch_cat(game.switches["cat"])
+                    Cat.fetch_cat(switch_get_value(Switch.cat))
                 )
             else:
                 self.selected_gardener = 0
@@ -460,6 +463,7 @@ class GardenerScreen(Screens):
         self.init_acc = self.selected_cat.pelt.accessory
         self.new_acc = choice(self.accessories)
         self.selected_cat.pelt.accessory.append(self.new_acc)
+        update_sprite(self.selected_cat)
         
         self.accessory_dropdown = create_dropdown((560, 125), (180, 40), create_options_list(self.accessories, "upper"),
                                                   get_selected_option(self.new_acc, "upper"), "dropdown")
@@ -606,7 +610,7 @@ class GardenerScreen(Screens):
         chunked_cats = self.chunks(self.current_listed_cats, 24)
         if chunked_cats:
             for cat in chunked_cats[self.page - 1]:
-                if game.clan.clan_settings["show fav"] and cat.favourite:
+                if get_clan_setting("show fav") and cat.favourite:
                     _temp = pygame.transform.scale(
                         pygame.image.load(
                             f"resources/images/fav_marker.png"
@@ -710,7 +714,7 @@ class GardenerScreen(Screens):
             pygame.transform.scale(gender_icon, ui_scale_dimensions((25, 25))),
         )
         
-        col1 = i18n.t(f"general.{cat.status.lower()}", count=1) + "\n" + i18n.t("general.moons_age", count=cat.moons)
+        col1 = i18n.t(f"general.{cat.status.rank}", count=1) + "\n" + i18n.t("general.moons_age", count=cat.moons)
         trait_text = i18n.t(f"cat.personality.{cat.personality.trait}")
         if cat.personality.trait != cat.personality.trait2:
             trait_text += " & " + i18n.t(f"cat.personality.{cat.personality.trait2}")    

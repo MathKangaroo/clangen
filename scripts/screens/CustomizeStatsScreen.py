@@ -19,6 +19,7 @@ from scripts.cat.skills import SkillPath, Skill
 from scripts.game_structure.game_essentials import game
 from scripts.game_structure.screen_settings import MANAGER
 from scripts.game_structure.ui_elements import UISurfaceImageButton, UIImageButton
+from scripts.game_structure.game.switches import switch_set_value, switch_get_value, Switch
 from scripts.screens.Screens import Screens
 from scripts.ui.generate_box import get_box, BoxStyles
 from scripts.ui.generate_button import get_button_dict, ButtonStyles
@@ -428,7 +429,7 @@ class CustomizeStatsScreen(Screens):
         self.build_cat_page()
 
     def build_cat_page(self):
-        self.the_cat = Cat.fetch_cat(game.switches["cat"])
+        self.the_cat = Cat.all_cats.get(switch_get_value(Switch.cat))
         (self.next_cat, self.previous_cat) = self.the_cat.determine_next_and_previous_cats()
         self.cat_elements["cat_name"] = create_text_box("customize " + str(self.the_cat.name), (0, 40), (400, 40),
                                                         "#text_box_34_horizcenter", {"centerx": "centerx"})

@@ -322,6 +322,8 @@
 	},
 	"event_generation": {
 		"debug_ensure_event_id": null,
+		"debug_type_override": null,
+		"debug_override_requirements": false,
 		"max_illnesses": 3,
 		"max_perm_conditions": -1,
 		"comment": [
@@ -571,5 +573,6 @@
 				"leaf-bare": [5, 2, 1]
 			}
 		}
-	}
+	},
+	"dev_tools": false
 }
