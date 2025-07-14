@@ -598,7 +598,7 @@ class Events:
         if get_clan_setting("become_caretaker"):
             # Note: These chances are large since it triggers every moon.
             # Checking every moon has the effect giving older cats more chances to become a mediator
-            _ = constands.CONFIG["roles"]["become_caretaker_chances"]
+            _ = constants.CONFIG["roles"]["become_caretaker_chances"]
             if cat.status.rank in _ and not int(random.random() * _[cat.status.rank]):
                 game.cur_events_list.append(
                     Single_Event(

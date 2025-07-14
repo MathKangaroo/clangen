@@ -73,6 +73,7 @@ class ClearingScreen(Screens):
         self.tactic_boxes = {}
         self.additional_text = {}
         self.checkboxes = {}
+        self.denkeeper= None
 
         self.cat_tab_open = self.hungry_tab
         self.tab_list = self.hungry_cats
@@ -622,10 +623,9 @@ class ClearingScreen(Screens):
 
         information_display = []
 
-        current_denkeepers = []
-        for cat in Cat.all_cats_list:
-            if cat.status.rank in [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE]:
-                current_denkeepers.append(cat)
+        current_denkeepers = find_alive_cats_with_rank(
+                Cat, [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE], sort=True
+            )
         current_prey_amount = game.clan.freshkill_pile.total_amount
         needed_amount = game.clan.freshkill_pile.amount_food_needed()
         warrior_need = game.prey_config["prey_requirement"][CatRank.WARRIOR]
@@ -658,19 +658,19 @@ class ClearingScreen(Screens):
         
         if len(current_denkeepers) > 0:
             keepers = find_alive_cats_with_rank(
-            Cat, [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE], sort=True
+                Cat, [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE], sort=True
             )
-            if len(current_denkeepers) == 1:
+            if len(keepers) == 1:
                 denkeeper_text = str(keepers[0].name) + " is managing the prey pile."
-            elif len(current_denkeepers) == 2:
+            elif len(keepers) == 2:
                 denkeeper_text = str(keepers[0].name) + " and " + str(keepers[1].name) +" are managing the prey pile."
             else:
                 denkeeper_text = str(keepers[0].name) + " and the other denkeepers are managing the prey pile."
             
             self.denkeeper = UISpriteButton(
                 ui_scale(pygame.Rect((35, 135), (150, 150))),
-                current_denkeepers[0].sprite,
-                cat_object=cat,
+                keepers[0].sprite,
+                cat_object=keepers[0],
                 manager=MANAGER,
             )
         information_display.append(general_text)

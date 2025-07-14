@@ -165,7 +165,7 @@ class PatrolScreen(Screens):
                     ]
                 else:
                     able_temp = self.able_cats
-                if not game.clan.clan_settings["random med cat"]:
+                if not get_clan_setting("random med cat"):
                     able_no_med = [
                         cat
                         for cat in self.able_cats
