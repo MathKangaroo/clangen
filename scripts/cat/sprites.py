@@ -875,13 +875,3 @@ def subtract_lineart(surface, mask_surf, bg_color):
     surface.unlock()
     overlay.unlock()
     return overlay
-
-
-pygame.image.save(
-    subtract_lineart(
-        pygame.image.load("sprites/lineartdead.png").convert_alpha(),
-        pygame.image.load("sprites/lineart.png").convert_alpha(),
-        pygame.Color(47, 51, 64),
-    ),
-    get_saved_images_dir() + "/line_sc_overlay.png",
-)
