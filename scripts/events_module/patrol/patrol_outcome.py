@@ -399,7 +399,7 @@ class PatrolOutcome:
 
             if (
                 "healer" in self.can_have_stat
-                and not kitty.status.rank.is_any_medicine_rank()
+                and not kitty.status.rank.is_any_herb_gatherer_rank()
             ):
                 continue
 

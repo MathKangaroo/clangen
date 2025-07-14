@@ -89,6 +89,18 @@ class Patrol:
         # Add cats
 
         print("PATROL START ---------------------------------------------------")
+        
+        chosen_biome = game.clan.biome
+        if game.clan.secondary_biome != game.clan.biome:
+            if game.clan.biome_weights == "Equal":
+                chosen_biome = random.choice([game.clan.biome, game.clan.secondary_biome])
+            elif game.clan.biome_weights == "Third":
+                chosen_biome = random.choice([game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+            elif game.clan.biome_weights == "Fourth":
+                chosen_biome = random.choice(
+                    [game.clan.biome, game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+            else:
+                chosen_biome = game.clan.biome
 
         self.add_patrol_cats(patrol_cats, game.clan)
 
@@ -100,11 +112,7 @@ class Patrol:
 
         final_patrols, final_romance_patrols = self.get_possible_patrols(
             str(game.clan.current_season).casefold(),
-            str(
-                game.clan.biome
-                if not game.clan.override_biome
-                else game.clan.override_biome
-            ).casefold(),
+            str(chosen_biome).casefold(),
             str(game.clan.camp_bg).casefold(),
             patrol_type,
             get_clan_setting("disasters"),
@@ -507,7 +515,8 @@ class Patrol:
 
         if (
             patrol.pl_trait_constraints
-            and self.patrol_leader.personality.trait not in patrol.pl_trait_constraints
+            and (self.patrol_leader.personality.trait not in patrol.pl_trait_constraints
+            or self.patrol_leader.personality.trait2 not in patrol.pl_trait_constraints)
         ):
             if self.debug_patrol and self.debug_patrol == patrol.patrol_id:
                 print("DEBUG: requested patrol does not meet constraints (pl_trait)")
@@ -864,6 +873,26 @@ class Patrol:
             if kitty.personality.trait in fail_outcome.stat_trait:
                 success_chance += constants.CONFIG["patrol_generation"][
                     "fail_stat_cat_modifier"
+                ]
+            
+            if kitty.personality.trait2 in success_outcome.stat_trait:
+                success_chance += constants.CONFIG["patrol_generation"][
+                    "win_stat_cat_modifier"
+                ]
+
+            if kitty.personality.trait2 in fail_outcome.stat_trait:
+                success_chance += constants.CONFIG["patrol_generation"][
+                    "fail_stat_cat_modifier"
+                ]
+            
+            if kitty.status in ["messenger", "messenger apprentice"]:
+                success_chance += constants.CONFIG["patrol_generation"][
+                    "win_stat_cat_modifier"
+                ]
+            
+            if kitty.status in ["denkeeper", "denkeeper apprentice"]:
+                success_chance += constants.CONFIG["patrol_generation"][
+                    "win_stat_cat_modifier"
                 ]
 
             skill_updates += f"{kitty.name} updated chance to {success_chance} | "

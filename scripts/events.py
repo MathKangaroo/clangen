@@ -535,13 +535,107 @@ class Events:
                     )
                 )
                 cat.rank_change(CatRank.MEDIATOR)
+                
+    def denkeeper_events(self, cat):
+        """Check for denkeeper events"""
+
+        if get_clan_setting("become_denkeeper"):
+            # Note: These chances are large since it triggers every moon.
+            # Checking every moon has the effect giving older cats more chances to become a mediator
+            _ = constants.CONFIG["roles"]["become_denkeeper_chances"]
+            if cat.status.rank in _ and not int(random.random() * _[cat.status.rank]):
+                game.cur_events_list.append(
+                    Single_Event(
+                        event_text_adjust(
+                            Cat, i18n.t("hardcoded.event_denkeeper_app"), main_cat=cat
+                        ),
+                        "ceremony",
+                        cat.ID,
+                    )
+                )
+                cat.rank_change(CatRank.DENKEEPER)
+    def gardener_events(self, cat):
+        """Check for gardener events"""
+
+        if get_clan_setting("become_gardener"):
+            # Note: These chances are large since it triggers every moon.
+            # Checking every moon has the effect giving older cats more chances to become a mediator
+            _ = constants.CONFIG["roles"]["become_gardener_chances"]
+            if cat.status.rank in _ and not int(random.random() * _[cat.status.rank]):
+                game.cur_events_list.append(
+                    Single_Event(
+                        event_text_adjust(
+                            Cat, i18n.t("hardcoded.event_gardener_app"), main_cat=cat
+                        ),
+                        "ceremony",
+                        cat.ID,
+                    )
+                )
+                cat.rank_change(CatRank.GARDENER)
+
+    def storyteller_events(self, cat):
+        """Check for storyteller events"""
+
+        if get_clan_setting("become_storyteller"):
+            # Note: These chances are large since it triggers every moon.
+            # Checking every moon has the effect giving older cats more chances to become a mediator
+            _ = constants.CONFIG["roles"]["become_storyteller_chances"]
+            if cat.status.rank in _ and not int(random.random() * _[cat.status.rank]):
+                game.cur_events_list.append(
+                    Single_Event(
+                        event_text_adjust(
+                            Cat, i18n.t("hardcoded.event_storyteller_app"), main_cat=cat
+                        ),
+                        "ceremony",
+                        cat.ID,
+                    )
+                )
+                cat.rank_change(CatRank.STORYTELLER)
+
+    def caretaker_events(self, cat):
+        """Check for caretaker events"""
+
+        if get_clan_setting("become_caretaker"):
+            # Note: These chances are large since it triggers every moon.
+            # Checking every moon has the effect giving older cats more chances to become a mediator
+            _ = constands.CONFIG["roles"]["become_caretaker_chances"]
+            if cat.status.rank in _ and not int(random.random() * _[cat.status.rank]):
+                game.cur_events_list.append(
+                    Single_Event(
+                        event_text_adjust(
+                            Cat, i18n.t("hardcoded.event_caretaker_app"), main_cat=cat
+                        ),
+                        "ceremony",
+                        cat.ID,
+                    )
+                )
+                cat.rank_change(CatRank.CARETAKER)
+    
+    def messenger_events(self, cat):
+        """Check for messenger events"""
+
+        if get_clan_setting("become_messenger"):
+            # Note: These chances are large since it triggers every moon.
+            # Checking every moon has the effect giving older cats more chances to become a mediator
+            _ = constants.CONFIG["roles"]["become_messenger_chances"]
+            if cat.status.rank in _ and not int(random.random() * _[cat.status.rank]):
+                game.cur_events_list.append(
+                    Single_Event(
+                        event_text_adjust(
+                            Cat, i18n.t("hardcoded.event_messenger_app"), main_cat=cat
+                        ),
+                        "ceremony",
+                        cat.ID,
+                    )
+                )
+                cat.rank_change(CatRank.MESSENGER)
 
     def get_moon_freshkill(self):
         """Adding auto freshkill for the current moon."""
         healthy_hunter = list(
             filter(
                 lambda c: c.status.rank
-                in (CatRank.WARRIOR, CatRank.APPRENTICE, CatRank.LEADER, CatRank.DEPUTY)
+                in (CatRank.WARRIOR, CatRank.APPRENTICE, CatRank.LEADER, CatRank.DEPUTY, CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE)
                 and c.status.alive_in_player_clan
                 and not c.not_working(),
                 Cat.all_cats.values(),
@@ -552,7 +646,7 @@ class Events:
         for cat in healthy_hunter:
             lower_value = game.prey_config["auto_warrior_prey"][0]
             upper_value = game.prey_config["auto_warrior_prey"][1]
-            if cat.status.rank == CatRank.APPRENTICE:
+            if cat.status.rank == CatRank.APPRENTICE or cat.status.rank == CatRank.DENKEEPER_APPRENTICE:
                 lower_value = game.prey_config["auto_apprentice_prey"][0]
                 upper_value = game.prey_config["auto_apprentice_prey"][1]
 
@@ -606,7 +700,7 @@ class Events:
             healthy_apprentices = [
                 cat
                 for cat in Cat.all_cats.values()
-                if cat.status.rank == CatRank.APPRENTICE and cat.available_to_work()
+                if (cat.status.rank == CatRank.APPRENTICE or cat.status.rank == CatRank.DENKEEPER_APPRENTICE )and cat.available_to_work()
             ]
 
             app_amount = (
@@ -624,13 +718,13 @@ class Events:
             # get medicine cats
             healthy_meds = find_alive_cats_with_rank(
                 Cat,
-                ranks=[CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE],
+                ranks=[CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE, CatRank.GARDENER, CatRank.GARDENER_APPRENTICE, CatRank.CARETAKER, CatRank.CARETAKER_APPRENTICE],
                 working=True,
             )
             # get warriors to help
             healthy_warriors = find_alive_cats_with_rank(
                 Cat,
-                ranks=[CatRank.WARRIOR, CatRank.DEPUTY, CatRank.LEADER],
+                ranks=[CatRank.WARRIOR, CatRank.DEPUTY, CatRank.LEADER, CatRank.DENKEEPER, CatRank.MESSENGER],
                 working=True,
             )
 
@@ -810,12 +904,27 @@ class Events:
                 CatRank.MEDIATOR_APPRENTICE,
                 CatRank.KITTEN,
                 CatRank.NEWBORN,
+                CatRank.CARETAKER_APPRENTICE,
+                CatRank.DENKEEPER_APPRENTICE,
+                CatRank.GARDENER_APPRENTICE,
+                CatRank.MESSENGER_APPRENTICE,
+                CatRank.STORYTELLER_APPRENTICE
             ]:
                 if x.moons >= 15:
                     if x.status.rank == CatRank.MEDICINE_APPRENTICE:
                         self.ceremony(x, CatRank.MEDICINE_CAT)
                     elif x.status.rank == CatRank.MEDIATOR_APPRENTICE:
                         self.ceremony(x, CatRank.MEDIATOR)
+                    elif x.status.rank == CatRank.CARETAKER_APPRENTICE:
+                        self.ceremony(x, CatRank.CARETAKER)
+                    elif x.status.rank == CatRank.DENKEEPER_APPRENTICE:
+                        self.ceremony(x, CatRank.DENKEEPER)
+                    elif x.status.rank == CatRank.GARDENER_APPRENTICE:
+                        self.ceremony(x, CatRank.GARDENER)
+                    elif x.status.rank == CatRank.MESSENGER_APPRENTICE:
+                        self.ceremony(x, CatRank.MESSENGER)
+                    elif x.status.rank == CatRank.STORYTELLER_APPRENTICE:
+                        self.ceremony(x, CatRank.STORYTELLER)
                     else:
                         self.ceremony(x, CatRank.WARRIOR)
                 elif not x.status.rank.is_any_apprentice_rank() and x.moons >= 6:
@@ -939,6 +1048,11 @@ class Events:
 
         # Handle Mediator Events
         self.mediator_events(cat)
+        self.caretaker_events(cat)
+        self.denkeeper_events(cat)
+        self.gardener_events(cat)
+        self.messenger_events(cat)
+        self.storyteller_events(cat)
 
         # handle nutrition amount
         # (CARE: the cats have to be fed before this happens - should be handled in "one_moon" function)
@@ -1275,10 +1389,38 @@ class Events:
                         "loving",
                         "wise",
                         "faithful",
+                        #more traits
+                        "dedicated",
+                        "forgiving",
+                        "nurturing",
+                        "gentle",
+                        "warm",
+                        "patient",
+                        "scholarly",
+                        "nerdy",
+                        "methodical",
+                        "teacherly"
                     ]:
                         chance = int(chance / 1.3)
-                    if cat.is_disabled():
-                        chance = int(chance / 2)
+                    elif cat.personality.trait in [
+                        "bloodthirsty",
+                        "absent-minded",
+                        "distracted",
+                        "destructive"
+                        
+                    ]:
+                        chance = int(chance * 1.5)
+                    if cat.is_disabled() and get_clan_setting("higher_disabled_med_rates"):
+                        chance = int(chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
+                        
+                    skills_string = str(cat.skills)
+                    med_skills = ["TEACHER", "CLEVER", "STAR", "DELIVERER", "HERBALIST", "HISTORIAN",
+                                  "PRODIGY", "VET", "SCHOLAR", "THINKER", "MEMORY", "GARDENER",
+                                  "HEALER", "LORE"]
+                    
+                    for skill in med_skills:
+                        if skill in skills_string:
+                            chance = int(chance/1.5)
 
                     if chance == 0:
                         chance = 1
@@ -1288,7 +1430,7 @@ class Events:
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
                     else:
-                        # Chance for mediator apprentice
+                        # Chance for specialized apprentice
                         mediator_list = list(
                             filter(
                                 lambda x: x.status.rank == CatRank.MEDIATOR
@@ -1296,36 +1438,209 @@ class Events:
                                 Cat.all_cats_list,
                             )
                         )
+                        
+                        caretaker_list = list(
+                            filter(
+                                lambda x: x.status.rank == CatRank.CARETAKER
+                                and x.status.alive_in_player_clan,
+                                Cat.all_cats_list,
+                            )
+                        )
+                        
+                        denkeeper_list = list(
+                            filter(
+                                lambda x: x.status.rank == CatRank.DENKEEPER
+                                and x.status.alive_in_player_clan,
+                                Cat.all_cats_list,
+                            )
+                        )
+                        
+                        gardener_list = list(
+                            filter(
+                                lambda x: x.status.rank == CatRank.GARDENER
+                                and x.status.alive_in_player_clan,
+                                Cat.all_cats_list,
+                            )
+                        )
+                        
+                        messenger_list = list(
+                            filter(
+                                lambda x: x.status.rank == CatRank.MESSENGER
+                                and x.status.alive_in_player_clan,
+                                Cat.all_cats_list,
+                            )
+                        )
+                        
+                        storyteller_list = list(
+                            filter(
+                                lambda x: x.status.rank == CatRank.STORYTELLER
+                                and x.status.alive_in_player_clan,
+                                Cat.all_cats_list,
+                            )
+                        )
 
-                        # This checks if at least one mediator already has an apprentice.
+                        # This checks if at least one specialized already has an apprentice.
                         has_mediator_apprentice = False
                         for c in mediator_list:
                             if c.apprentice:
                                 has_mediator_apprentice = True
                                 break
+                            
+                        has_caretaker_apprentice = False
+                        for c in caretaker_list:
+                            if c.apprentice:
+                                has_caretaker_apprentice = True
+                                break
+                        
+                        has_denkeeper_apprentice = False
+                        for c in denkeeper_list:
+                            if c.apprentice:
+                                has_denkeeper_apprentice = True
+                                break
+                            
+                        has_gardener_apprentice = False
+                        for c in gardener_list:
+                            if c.apprentice:
+                                has_gardener_apprentice = True
+                                break
+                        
+                        has_messenger_apprentice = False
+                        for c in messenger_list:
+                            if c.apprentice:
+                                has_messenger_apprentice = True
+                                break
+                            
+                        has_storyteller_apprentice = False
+                        for c in storyteller_list:
+                            if c.apprentice:
+                                has_storyteller_apprentice = True
+                                break
 
-                        chance = constants.CONFIG["roles"]["mediator_app_chance"]
+                        mediator_chance = constants.CONFIG["roles"]["mediator_app_chance"]
+                        caretaker_chance = constants.CONFIG["roles"]["caretaker_app_chance"]
+                        denkeeper_chance = constants.CONFIG["roles"]["denkeeper_app_chance"]
+                        gardener_chance = constants.CONFIG["roles"]["gardener_app_chance"]
+                        messenger_chance = constants.CONFIG["roles"]["messenger_app_chance"]
+                        storyteller_chance = constants.CONFIG["roles"]["storyteller_app_chance"]
+                        
+                        skills_string = str(cat.skills)
+                        media_skills = ["TEACHER", "CLEVER", "SPEAKER", "MEDIATOR", "INSIGHTFUL", "KIT", "HISTORIAN",
+                                        "PATIENT", "INNOVATOR", "MATCHMAKER", "COOPERATIVE", "MUSICVIBES", "AURAVIBES",
+                                        "GIFTGIVER", "LANGUAGE", "THINKER", "SONG"]
+                        care_skills = ["MEDTIATOR", "INSIGHTFUL", "STORY", "KIT", "DELIVERER", "ASSIST", "PATIENT", "GRACE"]
+                        den_skills = ["HUNTER", "CAMP", "GARDENER", "DECORATOR", "MEMORY", "ASSIST", "HISTORIAN",
+                                      "BOOKMAKER", "CHEF", "CLEAN", "IMMUNE", "TUNNELER"]
+                        mess_skills = ["RUNNER", "SENSE", "WAKEFUL", "AGILE", "STEALTHY", "TRACKER", "LANGUAGE", "MESSENGER"]
+                        garden_skills =["GARDENER", "DECORATOR", "MEMORY", "HERBALIST", "BUG", "BONES", "GIFTGIVER", "CHEF"]
+                        story_skills = ["HISTORIAN", "MUSICVIBES", "MEMORY", "STORY", "SPEAKER", "LANGUAGE", "LORE", "SONG"]
+                        
+                        
                         if cat.personality.trait in [
                             "charismatic",
                             "loving",
                             "responsible",
                             "wise",
                             "thoughtful",
+                            #more traits
+                            "scheming",
+                            "calculating",
+                            "teacherly",
+                            "civil",
+                            "sympathetic",
+                            "polite",
+                            "flirty",
+                            "manipulative",
+                            "talkative",
+                            "cooperative",
+                            "philosophical"
                         ]:
-                            chance = int(chance / 1.5)
-                        if cat.is_disabled():
-                            chance = int(chance / 2)
+                            mediator_chance = int(mediator_chance / 1.5)
+                            
+                        if cat.personality.trait in ["stable", "tidy","blunt", "polished", "perfectionist", "dry", "organized"]:
+                            denkeeper_chance = int(denkeeper_chance/1.5)
+                        
+                        if cat.personality.trait in ["loving", "nurturing","polite","thoughtful", "cooperative", "sentimental", "delicate"]:
+                            caretaker_chance = int(caretaker_chance/1.5)
+                        
+                        if cat.personality.trait in ["sneaky", "reliable", "punctual", "escapist", "persuasive", "methodical", "alert"]:
+                            messenger_chance = int(messenger_chance/1.5)
+                        
+                        if cat.personality.trait in ["nurturing", "methodical", "nerdy", "strange"]:
+                            gardener_chance = int(gardener_chance/1.5)
 
-                        if chance == 0:
-                            chance = 1
+                        if cat.personality.trait in ["goofy", "flamboyant", "dynamic", "playful", "folksy", "hearty"]:
+                            storyteller_chance = int(storyteller_chance/1.5)    
+                            
+                        if cat.is_disabled() and get_clan_setting("higher_disabled_med_rates"):
+                            mediator_chance = int(mediator_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
+                            caretaker_chance = int(caretaker_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
+                            messenger_chance = int(messenger_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
+                            denkeeper_chance = int(denkeeper_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
+                            gardener_chance = int(gardener_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
+                            storyteller_chance = int(storyteller_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
+                        
+                        if mediator_chance == 0:
+                            mediator_chance = 1
+                        if caretaker_chance == 0:
+                            caretaker_chance = 1
+                        if messenger_chance == 0:
+                            messenger_chance = 1
+                        if denkeeper_chance == 0:
+                            denkeeper_chance = 1
+                        if gardener_chance == 0:
+                            gardener_chance = 1
+                        if storyteller_chance == 0:
+                            storyteller_chance = 1
 
                         # Only become a mediator if there is already one in the clan.
+                        #prioritize most developped roles to least developped:
+                        #denkeeper > caretaker > storyteller > messenger > gardener
                         if (
                             mediator_list
                             and not has_mediator_apprentice
-                            and not int(random.random() * chance)
+                            and not int(random.random() * mediator_chance)
                         ):
                             self.ceremony(cat, CatRank.MEDIATOR_APPRENTICE)
+                            self.ceremony_accessory = True
+                            self.gain_accessories(cat)
+                        elif (
+                            denkeeper_list
+                            and not has_denkeeper_apprentice
+                            and not int(random.random() * denkeeper_chance)
+                        ):
+                            self.ceremony(cat, CatRank.DENKEEPER_APPRENTICE)
+                            self.ceremony_accessory = True
+                            self.gain_accessories(cat)
+                        elif (
+                            caretaker_list
+                            and not has_caretaker_apprentice
+                            and not int(random.random() * caretaker_chance)
+                        ):
+                            self.ceremony(cat, CatRank.CARETAKER_APPRENTICE)
+                            self.ceremony_accessory = True
+                            self.gain_accessories(cat)
+                        if (
+                            storyteller_list
+                            and not has_storyteller_apprentice
+                            and not int(random.random() * storyteller_chance)
+                        ):
+                            self.ceremony(cat, CatRank.STORYTELLER_APPRENTICE)
+                            self.ceremony_accessory = True
+                            self.gain_accessories(cat)
+                        if (
+                            messenger_list
+                            and not has_messenger_apprentice
+                            and not int(random.random() * messenger_chance)
+                        ):
+                            self.ceremony(cat, CatRank.MESSENGER_APPRENTICE)
+                            self.ceremony_accessory = True
+                            self.gain_accessories(cat)
+                        if (
+                            gardener_list
+                            and not has_gardener_apprentice
+                            and not int(random.random() * gardener_chance)
+                        ):
+                            self.ceremony(cat, CatRank.GARDENER_APPRENTICE)
                             self.ceremony_accessory = True
                             self.gain_accessories(cat)
                         else:
@@ -1375,6 +1690,31 @@ class Events:
 
                     elif cat.status.rank == CatRank.MEDIATOR_APPRENTICE:
                         self.ceremony(cat, CatRank.MEDIATOR, preparedness)
+                        self.ceremony_accessory = True
+                        self.gain_accessories(cat)
+                    
+                    elif cat.status.rank == CatRank.CARETAKER_APPRENTICE:
+                        self.ceremony(cat, CatRank.CARETAKER, preparedness)
+                        self.ceremony_accessory = True
+                        self.gain_accessories(cat)
+                    
+                    elif cat.status.rank == CatRank.DENKEEPER_APPRENTICE:
+                        self.ceremony(cat, CatRank.DENKEEPER, preparedness)
+                        self.ceremony_accessory = True
+                        self.gain_accessories(cat)
+                    
+                    elif cat.status.rank == CatRank.MESSENGER_APPRENTICE:
+                        self.ceremony(cat, CatRank.MESSENGER, preparedness)
+                        self.ceremony_accessory = True
+                        self.gain_accessories(cat)
+                        
+                    elif cat.status.rank == CatRank.GARDENER_APPRENTICE:
+                        self.ceremony(cat, CatRank.GARDENER, preparedness)
+                        self.ceremony_accessory = True
+                        self.gain_accessories(cat)
+                        
+                    elif cat.status.rank == CatRank.STORYTELLER_APPRENTICE:
+                        self.ceremony(cat, CatRank.STORYTELLER, preparedness)
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
 
@@ -1433,6 +1773,11 @@ class Events:
                 CatRank.ELDER,
             ],
             CatRank.MEDIATOR: [CatRank.MEDIATOR],
+            CatRank.CARETAKER: [CatRank.CARETAKER],
+            CatRank.DENKEEPER: [CatRank.DENKEEPER],
+            CatRank.GARDENER: [CatRank.GARDENER],
+            CatRank.MESSENGER: [CatRank.MESSENGER],
+            CatRank.STORYTELLER: [CatRank.STORYTELLER],
         }
 
         try:
@@ -1440,7 +1785,7 @@ class Events:
             possible_ceremonies.update(self.ceremony_id_by_tag[promoted_to])
 
             # Get ones for prepared status ----------------------------------------------
-            if promoted_to in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR):
+            if promoted_to in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR, CatRank.CARETAKER, CatRank.DENKEEPER, CatRank.GARDENER, CatRank.MESSENGER, CatRank.STORYTELLER):
                 possible_ceremonies = possible_ceremonies.intersection(
                     self.ceremony_id_by_tag[preparedness]
                 )
@@ -1600,7 +1945,7 @@ class Events:
             except KeyError:
                 random_honor = i18n.t("defaults.ceremony_honor")
 
-        if cat.status.rank in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR):
+        if cat.status.rank in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR, CatRank.CARETAKER, CatRank.DENKEEPER, CatRank.GARDENER, CatRank.MESSENGER, CatRank.STORYTELLER):
             cat.history.add_app_ceremony(random_honor)
 
         ceremony_tags, ceremony_text = self.CEREMONY_TXT[
@@ -1702,6 +2047,9 @@ class Events:
             "inquisitive",
             "strange",
             "shameless",
+            "energetic",
+            "cheerful",
+            "creative"
         ]:
             chance += acc_chances["happy_trait_modifier"]
         elif cat.personality.trait in [
@@ -1711,12 +2059,26 @@ class Events:
             "bullying",
             "insecure",
             "nervous",
+            "blunt",
+            "scheming",
+            "envious",
+            "venomous",
+            "argumentative"
         ]:
             chance += acc_chances["grumpy_trait_modifier"]
         if cat.pelt.accessory and len(cat.pelt.accessory) >= 1:
             chance += acc_chances["multiple_acc_modifier"]
         if self.ceremony_accessory:
             chance += acc_chances["ceremony_modifier"]
+        skills_string = str(cat.skills)
+        acc_skills = ["BONES", "BUG", "LUCK", "GARDENER", "TREASURE", "EXPLORER", "ARTISAN", "DECORATOR"]
+        skill_present = False
+        for skill in acc_skills:
+            if skill in skills_string:
+                skill_present = True
+                break
+        if skill_present:
+            chance += acc_chances["skill_acc_modifier"]
 
         # increase chance of acc if the cat had a ceremony
         if chance <= 0:
@@ -1782,7 +2144,7 @@ class Events:
             if cat.experience > cat.experience_levels_range["trainee"][1]:
                 return
 
-            if cat.status.rank == CatRank.MEDICINE_APPRENTICE:
+            if cat.status.rank in [CatRank.MEDICINE_APPRENTICE, CatRank.CARETAKER_APPRENTICE, CatRank.GARDENER_APPRENTICE]:
                 ran = constants.CONFIG["graduation"]["base_med_app_timeskip_ex"]
             else:
                 ran = constants.CONFIG["graduation"]["base_app_timeskip_ex"]
