@@ -35,7 +35,7 @@ def event_for_location(locations: list) -> bool:
         elif req_biome == game.clan.biome.lower():
             if "any" in req_camps or game.clan.camp_bg in req_camps:
                 return True
-        return False
+    return False
 
 
 def event_for_season(seasons: list) -> bool:
@@ -316,11 +316,12 @@ def _check_cat_trait(cat, traits: list, not_traits: list) -> bool:
         return True
 
     cat_trait = cat.personality.trait
+    cat_trait2 = cat.personality.trait2
     allowed = False
 
-    if traits and cat_trait not in traits:
+    if traits and (cat_trait not in traits and cat_trait2 not in traits):
         return False
-    if not_traits and cat_trait in not_traits:
+    if not_traits and (cat_trait in not_traits or cat_trait2 in not_traits):
         return False
     return True
 
@@ -515,7 +516,7 @@ def _get_cats_with_trait(cat_list: list, traits: tuple) -> list:
     if not traits:
         return cat_list
 
-    return [kitty for kitty in cat_list if kitty.trait in traits]
+    return [kitty for kitty in cat_list if (kitty.trait in traits or kitty.trait2 in traits)]
 
 
 def _get_cats_without_trait(cat_list: list, traits: tuple) -> list:
@@ -525,7 +526,7 @@ def _get_cats_without_trait(cat_list: list, traits: tuple) -> list:
     if not traits:
         return cat_list
 
-    return [kitty for kitty in cat_list if kitty.trait not in traits]
+    return [kitty for kitty in cat_list if (kitty.trait not in traits and kitty.trait2 not in traits)]
 
 
 def _get_cats_with_backstory(cat_list: list, backstories: tuple) -> list:
