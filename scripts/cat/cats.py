@@ -404,14 +404,26 @@ class Cat:
         # In camp status
         self.in_camp = 1
         secondary_biome = None
-        biome_weights = None
+        tertiary_biome = None
+        secondary_biome_weight = None
+        tertiary_biome_weight = None
         if "biome" in kwargs:
             biome = kwargs["biome"]
-            # ^ idk what these are. Hopefully not putting 2nd biome stuff here won't mess things up ^
+            # ^ idk what these are. Hopefully not putting other biome stuff here won't mess things up ^
         elif game.clan is not None:
+            old_to_new = {
+                "Equal": 2,
+                "Third": 3,
+                "Fourth": 4
+            }
             biome = game.clan.biome
             secondary_biome = game.clan.secondary_biome if game.clan.secondary_biome else game.clan.biome
-            biome_weights = game.clan.biome_weights if game.clan.biome_weights else "Equal"
+            tertiary_biome = game.clan.tertiary_biome if game.clan.tertiary_biome else game.clan.biome
+            if "biome_weights" in game.clan:
+                secondary_biome_weight = old_to_new.get(game.clan.biome_weights)
+            else:
+                secondary_biome_weight = game.clan.secondary_biome_weight if game.clan.secondary_biome_weight else 2
+            tertiary_biome_weight = game.clan.tertiary_biome_weight if game.clan.tertiary_biome_weight else 2
         else:
             biome = None
         # NAME
@@ -422,7 +434,9 @@ class Cat:
                 suffix,
                 biome=biome,
                 secondary_biome=secondary_biome,
-                biome_weights=biome_weights,
+                tertiary_biome=tertiary_biome,
+                secondary_biome_weight=secondary_biome_weight,
+                tertiary_biome_weight=tertiary_biome_weight,
                 specsuffix_hidden=self.specsuffix_hidden,
                 load_existing_name=loading_cat,
                 cat=self,
@@ -969,7 +983,9 @@ class Cat:
 
         self.status.exile_from_group()
 
-        if self.personality.trait == "vengeful":
+        bitter_traits = ["vengeful", "bloodthirsty", "cunning", "intense", "destructive", "spiteful",
+                         "remorseless", "antagonistic", "malicious", "sadistic"]
+        if self.personality.trait in bitter_traits or self.personality.trait2 in bitter_traits:
             self.thought = "Swears their revenge for being exiled"
         else:
             self.thought = "Is shocked that they have been exiled"
@@ -1328,6 +1344,10 @@ class Cat:
             prefix=new_prefix,
             suffix=new_suffix,
             biome=game.clan.biome,
+            secondary_biome=game.clan.secondary_biome,
+            tertiary_biome=game.clan.tertiary_biome,
+            secondary_biome_weight=game.clan.secondary_biome_weight,
+            tertiary_biome_weight=game.clan.tertiary_biome_weight,
             specsuffix_hidden=self.specsuffix_hidden,
             cat=self,
         )
@@ -1928,8 +1948,11 @@ class Cat:
         game_mode = switch_get_value(Switch.game_mode)
         biome = switch_get_value(Switch.biome)
         camp = switch_get_value(Switch.camp_bg)
-        secondary_biome = switch_get_value("secondary_biome")
-        biome_weights =switch_get_value("biome_weights")
+        secondary_biome = switch_get_value(Switch.secondary_biome)
+        tertiary_biome = switch_get_value(Switch.tertiary_biome)
+        secondary_biome_weight = switch_get_value(Switch.secondary_biome_weight)
+        tertiary_biome_weight = switch_get_value(Switch.tertiary_biome_weight)
+
         try:
             season = game.clan.current_season
         except Exception:
@@ -1992,7 +2015,7 @@ class Cat:
 
         # get chosen thought
         chosen_thought = Thoughts.get_chosen_thought(
-            self, other_cat, game_mode, biome, secondary_biome, biome_weights, season, camp
+            self, other_cat, game_mode, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight, season, camp
         )
 
         chosen_thought = event_text_adjust(
@@ -2710,10 +2733,10 @@ class Cat:
             if len(self.illnesses) == constants.CONFIG["event_generation"]["max_illnesses"]:
                 return
         
-        eating_disorders = [ "anorexia", "ARFID", "bulimia", "binge-eating disorder", "food hoarding", "pica"]
+        eating_disorders = ["anorexia", "ARFID", "bulimia", "binge-eating disorder", "food hoarding", "pica"]
         self_harm = ["harmful stims"]
-        dissociation = ["derealization", "depersonalization" , "amnesia"]
-        psychosis = ["delusions" , "psychotic episode", "hostile hallucinations","paranoia", "ongoing psychosis"]
+        dissociation = ["derealization", "depersonalization", "amnesia"]
+        psychosis = ["delusions", "psychotic episode", "hostile hallucinations", "paranoia", "ongoing psychosis"]
         all_triggers = eating_disorders + self_harm + dissociation + psychosis
         if not game_setting_get("allow_triggers") and name in all_triggers:
             return
@@ -3154,9 +3177,14 @@ class Cat:
                     alter["origin"] = "core"
                     alter["splits"] = []
                 if "personality" not in alter:
-                    alter["personality"] = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
-
-        self.get_permanent_condition(new_condition, born_with=True)
+                    # TODO: no personality mod personalities here
+                    alter["personality"] = choice(["troublesome", "rebellious", "lonesome", "fierce", "bloodthirsty",
+                                                   "cold", "childish", "playful", "charismatic", "bold", "daring",
+                                                   "nervous", "righteous", "insecure", "strict", "compassionate",
+                                                   "thoughtful", "ambitious", "confident", "adventurous", "calm",
+                                                   "careful", "faithful", "loving", "loyal", "responsible", "shameless",
+                                                   "sneaky", "strange", "vengeful", "wise", "arrogant", "competitive",
+                                                   "grumpy", "cunning", "oblivious", "gloomy", "sincere", "flamboyant"])
 
     def get_permanent_condition(self, name, born_with=False, event_triggered=False,starting_moon=0):
         if name not in PERMANENT:
@@ -3170,6 +3198,10 @@ class Cat:
             return
         if "deaf" in self.permanent_condition and name == "partial hearing loss":
             return
+
+        if constants.CONFIG["event_generation"]["max_perm_conditions"] > 2:
+            if len(self.permanent_condition) >= constants.CONFIG["event_generation"]["max_perm_conditions"]:
+                return
 
         # remove accessories if need be
         if "NOTAIL" in self.pelt.scars or "HALFTAIL" in self.pelt.scars:
@@ -3505,9 +3537,7 @@ class Cat:
         condition_file_path = condition_directory + "/" + self.ID + "_conditions.json"
 
         if (
-            (not self.is_ill() and not self.is_injured() and not self.is_disabled()and not self.is_awakened())
-            or self.dead
-            or self.status.is_outsider
+            (not self.is_ill() and not self.is_injured() and not self.is_disabled() and not self.is_awakened())
         ):
             if os.path.exists(condition_file_path):
                 os.remove(condition_file_path)
@@ -3606,6 +3636,31 @@ class Cat:
         if (
             self.status.rank == CatRank.MEDIATOR_APPRENTICE
             and potential_mentor.status.rank != CatRank.MEDIATOR
+        ):
+            return False
+        if (
+            self.status.rank == CatRank.CARETAKER_APPRENTICE
+            and potential_mentor.status.rank != CatRank.CARETAKER
+        ):
+            return False
+        if (
+            self.status.rank == CatRank.DENKEEPER_APPRENTICE
+            and potential_mentor.status.rank != CatRank.DENKEEPER
+        ):
+            return False
+        if (
+            self.status.rank == CatRank.GARDENER_APPRENTICE
+            and potential_mentor.status.rank != CatRank.GARDENER
+        ):
+            return False
+        if (
+            self.status.rank == CatRank.MESSENGER_APPRENTICE
+            and potential_mentor.status.rank != CatRank.MESSENGER
+        ):
+            return False
+        if (
+            self.status.rank == CatRank.STORYTELLER_APPRENTICE
+            and potential_mentor.status.rank != CatRank.STORYTELLER
         ):
             return False
 
@@ -3754,7 +3809,7 @@ class Cat:
         if other_cat.ID in self.apprentice or self.ID in other_cat.apprentice:
             return False
         
-        #Current bestie
+        # Current bestie
         if other_cat.ID in self.bestie or self.ID in other_cat.bestie:
             return False
         
@@ -4268,6 +4323,8 @@ class Cat:
                 "cat_from_id": r.cat_from.ID,
                 "cat_to_id": r.cat_to.ID,
                 "mates": r.mates,
+                "besties": r.besties,
+                "enemies": r.enemies,
                 "family": r.family,
                 "romantic_love": r.romantic_love,
                 "platonic_like": r.platonic_like,
@@ -5105,7 +5162,11 @@ class Cat:
                 ),
                 "patrol_with_mentor": (self.patrol_with_mentor or 0),
                 "mate": self.mate,
+                "bestie": self.bestie,
+                "enemy": self.enemy,
                 "previous_mates": self.previous_mates,
+                "previous_besties": self.previous_besties,
+                "previous_enemies": self.previous_enemies,
                 "dead": self.dead,
                 "paralyzed": self.pelt.paralyzed,
                 "no_kits": self.no_kits,
@@ -5125,14 +5186,19 @@ class Cat:
                 "white_patches": self.pelt.white_patches,
                 "vitiligo": self.pelt.vitiligo,
                 "points": self.pelt.points,
-                "white_patches_tint": self.pelt.white_patches_tint,
+                "white_patches_tint": self.pelt.white_patches_tint if (type(self.pelt.white_patches_tint) == list) else [self.pelt.white_patches_tint],
                 "pattern": self.pelt.pattern,
                 "tortie_base": self.pelt.tortiebase,
                 "tortie_color": self.pelt.tortiecolour,
                 "tortie_pattern": self.pelt.tortiepattern,
-                "tortie_tint": self.pelt.tortie_tint,
+                "tortie_tint": self.pelt.tortie_tint if (type(self.pelt.tortie_tint) == list) else [self.pelt.tortie_tint],
+                "displays_2nd_tortie": self.pelt.displays_2nd_tortie,
+                "pattern_2": self.pelt.pattern2,
+                "tortie_color_2": self.pelt.tortiecolour2,
+                "tortie_pattern_2": self.pelt.tortiepattern2,
+                "tortie_tint_2": self.pelt.tortie_tint2 if (type(self.pelt.tortie_tint2) == list) else [self.pelt.tortie_tint2],
                 "skin": self.pelt.skin,
-                "tint": self.pelt.tint,
+                "tint": self.pelt.tint if (type(self.pelt.tint) == list) else [self.pelt.tint],
                 "skill_dict": self.skills.get_skill_dict(),
                 "physical_trait_1": self.pelt.physical_trait_1,
                 "physical_trait_2": self.pelt.physical_trait_2,
@@ -5207,17 +5273,17 @@ class Cat:
 
 
 # Creates a random cat
-def create_cat(rank, moons=None, biome=None):
+def create_cat(rank, moons=None, biome=None, secondary_biome=None, tertiary_biome=None, secondary_biome_weight=None, tertiary_biome_weight=None):
     status_dict = {"rank": rank}
 
-    new_cat = Cat(status_dict=status_dict, biome=biome)
+    new_cat = Cat(status_dict=status_dict, biome=biome, secondary_biome=secondary_biome, tertiary_biome=tertiary_biome, secondary_biome_weight=secondary_biome_weight, tertiary_biome_weight=tertiary_biome_weight)
 
     if moons is not None:
         new_cat.moons = moons
     elif new_cat.moons >= 160:
         new_cat.moons = randint(120, 155)
-    elif new_cat.moons == 0:
-        new_cat.moons = randint(1, 5)
+    elif new_cat.moons == 0 and randint(1, 20) != 1:
+        new_cat.moons = randint(1, 2)
 
     not_allowed_scars = [
         "NOPAW",
@@ -5237,7 +5303,7 @@ def create_cat(rank, moons=None, biome=None):
         if scar in not_allowed_scars:
             new_cat.pelt.scars.remove(scar)
     
-    if (game.clan and game.clan.game_mode != "classic") and not int(random() * constants.CONFIG["cat_generation"]["base_permanent_condition"]):
+    if randint(1, constants.CONFIG["cat_generation"]["base_permanent_condition_two"]) <= constants.CONFIG["cat_generation"]["base_permanent_condition_one"]:
         new_cat.congenital_condition(new_cat)
 
     return new_cat
@@ -5271,22 +5337,32 @@ def create_option_preview_cat(scar: str = None, acc: str = None):
         loading_cat=True,
         pelt=Pelt(
             name="SingleColour",
+            length="short",
             colour="WHITE",
-            length="medium",
-            eye_color="SAGE",
-            reverse=False,
             white_patches=None,
+            eye_color="GREY",
+            eye_colour2=None,
+            tortiebase=None,
+            tortiecolour=None,
+            pattern=None,
+            tortiepattern=None,
+            tortie_tint=["none"],
+            displays_2nd_tortie=False,
             vitiligo=None,
             points=None,
-            pattern=None,
-            tortiebase=None,
-            tortiepattern=None,
-            tortiecolour=None,
-            tint="gray",
-            skin="BLUE",
-            scars=[scar] if scar else [],
-            adult_sprite=8,
+            physical_trait_1=None,
+            physical_trait_2=None,
+            physical_trait_3=None,
+            physical_trait_4=None,
             accessory=[acc] if acc else [],
+            paralyzed=False,
+            opacity=100,
+            scars=[scar] if scar else [],
+            tint=["none"],
+            skin="BLACK",
+            white_patches_tint=["none"],
+            adult_sprite=8,
+            reverse=False,
         ),
     )
     new_cat.age = CatAge.ADULT
