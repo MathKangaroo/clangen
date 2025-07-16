@@ -5,7 +5,7 @@ from typing import Dict, List, Union, Optional
 import i18n
 
 from scripts.cat.cats import Cat
-from scripts.cat.enums import CatAge, CatGroup, CatRank
+from scripts.cat.enums import CatAge, CatGroup, CatRank, CatSocial
 from scripts.cat.history import History
 from scripts.cat.names import names, Name
 from scripts.cat_relations.relationship import Relationship
@@ -428,7 +428,7 @@ class Pregnancy_Events:
         Pregnancy_Events.rebuild_strings()
         events = Pregnancy_Events.PREGNANT_STRINGS
         event_list = []
-        if not cat.status.is_outsider and other_cat is None:
+        if not cat.status.is_outsider and (other_cat is None or (other_cat.ID in cat.mate and other_cat.status.is_outsider)):
             event_list.append(choice(events["birth"]["unmated_parent"]))
         elif cat.status.is_outsider:
             adding_text = choice(events["birth"]["outside_alone"])
@@ -439,12 +439,9 @@ class Pregnancy_Events:
             involved_cats.append(other_cat.ID)
             cat_dict["r_c"] = other_cat
             event_list.append(choice(events["birth"]["two_parents"]))
-        elif (
-            other_cat.ID in cat.mate and other_cat.dead or other_cat.status.is_outsider
-        ):
+        elif other_cat.ID in cat.mate and other_cat.dead:
             involved_cats.append(other_cat.ID)
             cat_dict["r_c"] = other_cat
-            # TODO: this seems odd, outsider mates are also treated as dead?
             event_list.append(choice(events["birth"]["dead_mate"]))
         elif len(cat.mate) < 1 and len(other_cat.mate) < 1 and not other_cat.dead:
             involved_cats.append(other_cat.ID)
@@ -814,13 +811,15 @@ class Pregnancy_Events:
                 if not blood_parent:
                     # Generate a blood parent if we haven't already.
                     thought = i18n.t(
-                        "conditions.pregnancy.halfblood_kitting_thought",
+                        "conditions.pregnancy.half_blood_kitting_thought",
                         count=kits_amount,
                     )
 
                     blood_parent = create_new_cat(
                         Cat,
-                        rank=random.choice((CatRank.LONER, CatRank.KITTYPET)),
+                        original_social=random.choice(
+                            (CatSocial.LONER, CatSocial.KITTYPET)
+                        ),
                         alive=False,
                         thought=thought,
                         moons=randint(15, 120),
@@ -854,10 +853,7 @@ class Pregnancy_Events:
 
             # try to give them a permanent condition. 1/90 chance
             # don't delete the game.clan condition, this is needed for a test
-            if game.clan and not int(
-                random.random()
-                * constants.CONFIG["cat_generation"]["base_permanent_condition"]
-            ):
+            if game.clan and randint(1, constants.CONFIG["cat_generation"]["base_permanent_condition_two"]) <= constants.CONFIG["cat_generation"]["base_permanent_condition_one"]:
                 kit.congenital_condition(kit)
                 for condition in kit.permanent_condition:
                     if kit.permanent_condition[condition] == "born without a leg":
@@ -942,24 +938,26 @@ class Pregnancy_Events:
                     parent_to_kit = constants.CONFIG["new_cat"]["parent_buff"][
                         "parent_to_kit"
                     ]
+                    # I've removed the dislike and jealousy thingies - I don't THINK adoptions can result in postpartum
+                    # but hopefully this doesn't mess stuff up
                     change_relationship_values(
                         cats_from=[kit],
                         cats_to=[parent],
                         platonic_like=kit_to_parent["platonic"],
-                        dislike=kit_to_parent["dislike"],
+                        dislike=0,
                         admiration=kit_to_parent["admiration"],
                         comfortable=kit_to_parent["comfortable"],
-                        jealousy=kit_to_parent["jealousy"],
+                        jealousy=0,
                         trust=kit_to_parent["trust"],
                     )
                     change_relationship_values(
                         cats_from=[parent],
                         cats_to=[kit],
                         platonic_like=parent_to_kit["platonic"],
-                        dislike=parent_to_kit["dislike"],
+                        dislike=0,
                         admiration=parent_to_kit["admiration"],
                         comfortable=parent_to_kit["comfortable"],
-                        jealousy=parent_to_kit["jealousy"],
+                        jealousy=0,
                         trust=parent_to_kit["trust"],
                     )
 
@@ -1005,17 +1003,8 @@ class Pregnancy_Events:
         max_kits = [game.config["pregnancy"]["max_kits"]] * game.config["pregnancy"][
             "max_kit_possibility"
         ][cat.age.value]
-        four_kits = [min_kits + 3] * constants.CONFIG["pregnancy"][
-            "four_kit_possibility"
-        ][cat.age.value]
-        five_kits = [min_kits + 4] * constants.CONFIG["pregnancy"][
-            "five_kit_possibility"
-        ][cat.age.value]
-        max_kits = [constants.CONFIG["pregnancy"]["max_kits"]] * constants.CONFIG[
-            "pregnancy"
-        ]["max_kit_possibility"][cat.age.value]
         amount = choice(
-            min_kit + two_kits + three_kits + four_kits + five_kits + max_kits
+            min_kit + two_kits + three_kits + four_kits + five_kits + six_kits + seven_kits + eight_kits + nine_kits + ten_kits + eleven_kits + max_kits
         )
 
         return amount
