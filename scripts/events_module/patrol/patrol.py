@@ -88,19 +88,18 @@ class Patrol:
     def setup_patrol(self, patrol_cats: List[Cat], patrol_type: str) -> str:
         # Add cats
 
-        print("PATROL START ---------------------------------------------------")
-        
         chosen_biome = game.clan.biome
         if game.clan.secondary_biome != game.clan.biome:
-            if game.clan.biome_weights == "Equal":
-                chosen_biome = random.choice([game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Third":
-                chosen_biome = random.choice([game.clan.biome, game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Fourth":
-                chosen_biome = random.choice(
-                    [game.clan.biome, game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+            if random.randint(1, game.clan.secondary_biome_weight) == 1:
+                chosen_biome = game.clan.secondary_biome
             else:
-                chosen_biome = game.clan.biome
+                if game.clan.tertiary_biome != game.clan.biome:
+                    if random.randint(1, game.clan.tertiary_biome_weight) == 1:
+                        chosen_biome = game.clan.tertiary_biome
+
+        print("PATROL START ---------------------------------------------------")
+        if game.clan.secondary_biome != game.clan.biome or game.clan.tertiary_biome != game.clan.biome:
+            print("Chosen Biome: " + str(chosen_biome))
 
         self.add_patrol_cats(patrol_cats, game.clan)
 
@@ -689,7 +688,7 @@ class Patrol:
 
         # make sure the hunting patrols are balanced
         if patrol_type == "hunting":
-            filtered_patrols = self.balance_hunting(filtered_patrols)
+            filtered_patrols = self.balance_hunting(filtered_patrols, biome)
 
         return filtered_patrols, romantic_patrols
 
@@ -949,7 +948,7 @@ class Patrol:
             except:
                 raise Exception("Something went wrong loading patrols!")
 
-    def balance_hunting(self, possible_patrols: list):
+    def balance_hunting(self, possible_patrols: list, biome: str):
         """Filter the incoming hunting patrol list to balance the different kinds of hunting patrols.
         With this filtering, there should be more prey possible patrols.
 
@@ -957,7 +956,7 @@ class Patrol:
             ----------
             possible_patrols : list
                 list of patrols which should be filtered
-
+            biome : str
             Returns
             ----------
             filtered_patrols : list
@@ -966,8 +965,8 @@ class Patrol:
         filtered_patrols = []
 
         # get first what kind of prey size which will be chosen
-        biome = (
-            game.clan.biome
+        biome2 = (
+            biome
             if not game.clan.override_biome
             else game.clan.override_biome
         )
@@ -975,7 +974,7 @@ class Patrol:
         possible_prey_size = []
         idx = 0
         prey_size = ["very_small", "small", "medium", "large", "huge"]
-        for amount in PATROL_BALANCE[biome][season]:
+        for amount in PATROL_BALANCE[biome2.capitalize()][season]:
             possible_prey_size.extend(repeat(prey_size[idx], amount))
             idx += 1
         chosen_prey_size = choice(possible_prey_size)
