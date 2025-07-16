@@ -129,7 +129,17 @@
             "Saw a kittypet with the fluffiest fur imaginable today",
             "Saw a big scary dog today",
             "Is drinking water from a nearby stream",
-            "Thought {PRONOUN/m_c/subject} saw a cat, but turns out it's a Twoleg object that just looks like one"
+            "Thought {PRONOUN/m_c/subject} saw a cat, but turns out it's a Twoleg object that just looks like one",
+            "Saw a pair of Twolegs near camp today!",
+            "Saw a Twoleg petting a loner",
+            "Saw a kittypet with no fur at all!",
+            "Saw some kittypets playing with colorful moss balls",
+            "Saw a kittypet sitting calmly next to a dog!",
+            "Almost got lost near some Twoleg nests",
+            "Saw some wandering Twolegs today",
+            "Saw a Twoleg kit playing with a dog",
+            "Saw a Twoleg kit playing with a kittypet",
+            "Saw a kittypet rolling around a Twoleg garden"
         ],
         "main_status_constraint": [
             "apprentice",
