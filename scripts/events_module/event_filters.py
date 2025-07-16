@@ -12,7 +12,7 @@ from scripts.utility import (
 )
 
 
-def event_for_location(locations: list) -> bool:
+def event_for_location(locations: list, biome: str) -> bool:
     """
     checks if the clan is within the given locations
     """
@@ -32,8 +32,8 @@ def event_for_location(locations: list) -> bool:
             if req_biome == game.clan.override_biome:
                 if "any" in req_camps or game.clan.camp_bg in req_camps:
                     return True
-        elif req_biome == game.clan.biome.lower():
-            if "any" in req_camps or game.clan.camp_bg in req_camps:
+        elif req_biome == biome.lower():
+            if "any" in req_camps or (game.clan.camp_bg in req_camps and biome == game.clan.biome):
                 return True
     return False
 
