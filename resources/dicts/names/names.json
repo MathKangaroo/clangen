@@ -29,15 +29,15 @@
     "chill", "chirp", "chomp", "cinder", "clash", "cloud", "clover", "crackle", "crash", "crawl", "creek", "crest",
     "cry", "curl", "current", "daisy", "dance", "dapple", "dart", "dash", "dawn", "daze", "dazzle", "dew", "dream",
     "drift", "drizzle", "drop", "dusk", "dust", "eagle", "ear", "ears", "echo", "egg", "ember", "eye", "eyes", "face",
-    "falcon", "fall", "fang", "feather", "fern", "fin", "fire", "fish", "flake", "flame", "flare", "flash", "fleck",
-    "flick", "flicker", "flight", "flip", "flit", "flood", "flop", "flow", "flower", "fluff", "fog", "fox", "freeze",
-    "frill", "frog", "frost", "fruit", "fuzz", "gale", "gaze", "ghost", "glare", "gleam", "glide", "glint", "glow",
-    "goose", "gorse", "grass", "growl", "hail", "hare", "haven", "hawk", "haze", "heather", "hiss", "hollow", "holly",
-    "honey", "hope", "howl", "husk", "ice", "iris", "ivy", "jaw", "jay", "joy", "jumble", "jump", "kestrel", "kick",
-    "kite", "knoll", "lake", "larch", "laurel", "leaf", "leap", "leg", "leopard", "light", "lightning", "lilac", "lily",
-    "lion", "lotus", "mallow", "mane", "mark", "mask", "meadow", "mimic", "minnow", "mist", "moon", "moor", "moss",
-    "moth", "mouse", "munch", "murk", "muzzle", "needle", "nest", "nettle", "newt", "nibble", "night", "nip", "noise",
-    "nose", "nudge", "nut", "pad", "patch", "path", "peak", "petal", "plume", "pod", "pond", "pool", "poppy", "pounce",
+    "falcon", "fall", "feather", "fern", "fin", "fire", "fish", "flake", "flame", "flare", "flash", "fleck", "flick",
+    "flicker", "flight", "flip", "flit", "flood", "flop", "flow", "flower", "fluff", "fog", "fox", "freeze", "frill",
+    "frog", "frost", "fruit", "fuzz", "gale", "gaze", "ghost", "glare", "gleam", "glide", "glint", "glow", "goose",
+    "gorse", "grass", "growl", "hail", "hare", "haven", "hawk", "haze", "heather", "hiss", "hollow", "holly", "honey",
+    "hope", "howl", "husk", "ice", "iris", "ivy", "jaw", "jay", "joy", "jumble", "jump", "kestrel", "kick", "kite",
+    "knoll", "lake", "larch", "laurel", "leaf", "leap", "leg", "leopard", "light", "lightning", "lilac", "lily", "lion",
+    "lotus", "mallow", "mane", "mark", "mask", "meadow", "mimic", "minnow", "mist", "moon", "moor", "moss", "moth",
+    "mouse", "munch", "murk", "muzzle", "needle", "nest", "nettle", "newt", "nibble", "night", "nip", "noise", "nose",
+    "nudge", "nut", "pad", "patch", "path", "peak", "petal", "plume", "pod", "pond", "pool", "poppy", "pounce",
     "prance", "prickle", "puddle", "purr", "quill", "quiver", "rain", "rapid", "raven", "reed", "rip", "ripple", "rise",
     "river", "roach", "roar", "rock", "root", "rose", "ruff", "rumble", "rump", "run", "runner", "rush", "rustle",
     "scar", "scratch", "screech", "scut", "seed", "seeker", "shade", "shadow", "shard", "shell", "shimmer", "shine",
@@ -847,12 +847,20 @@
     "Woodpecker", "Worm", "Wren", "Yorkie", "Zebu"
   ],
   "inappropriate_names": [
-    "blackface", "bleaksight", "brokeneye", "brokeneyes", "brokenfeet", "brokenfoot", "brokenjaw", "brokenspirit",
-    "brokentail", "brokenteeth", "brokentooth", "brownface", "burneye", "burneyes", "burnface", "burnfeet", "burnfoot",
-    "burnleg", "burnlegs", "burntail", "cameltoe", "crookedarch", "crookedeye", "crookedeyes", "crookedfeet",
-    "crookedfoot", "crookedjaw", "deadfeet", "deadfoot", "deepthroat", "littlecatcher", "lostface", "molesting",
-    "pancakeface", "quicknut", "redface", "smokeweed", "tornface", "weedsmoke", "wetback", "wetdream", "yellowbone",
+    "blackface", "brownface", "cameltoe", "cloudbrain", "cloudeye", "cloudeyes", "cloudybrain", "cloudyeye",
+    "cloudyeyes", "deepthroat", "fogbrain", "fogeye", "fogeyes", "foggybrain", "foggyeye", "foggyeyes", "foxheart",
+    "littlecatcher", "mistbrain", "misteye", "misteyes", "mistybrain", "mistyeye", "mistyeyes", "molesting",
+    "mouseheart", "pancakeface", "quicknut", "redface", "smokeweed", "weedsmoke", "wetback", "wetdream", "yellowbone",
     "yellowface"
+  ],
+  "disabled_adjectives": [
+    "bleak", "broken", "burn", "crooked", "dead", "frozen", "lost", "torn"
+  ],
+  "physical_suffixes": [
+    "arch", "back", "belly", "bone", "brain", "brow", "brows", "chest", "claw", "claws", "ear", "ears", "eye", "eyes",
+    "face", "fang", "feet", "foot", "glare", "heart", "jaw", "leg", "legs", "muzzle", "nose", "patch", "rump", "scar",
+    "shoulder", "shoulders", "sight", "snout", "soul", "spirit", "spot", "spots", "step", "tail", "talon", "teeth",
+    "throat", "toe", "toes", "tooth"
   ],
   "normal_plural_suffixes": [
     " Band", " Charm", " Cloud", " Clutter", " Collective", " Colony", " Conspiracy", " Family", " Flock", " Herd",
