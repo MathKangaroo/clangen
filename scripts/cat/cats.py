@@ -419,10 +419,13 @@ class Cat:
             biome = game.clan.biome
             secondary_biome = game.clan.secondary_biome if game.clan.secondary_biome else game.clan.biome
             tertiary_biome = game.clan.tertiary_biome if game.clan.tertiary_biome else game.clan.biome
+            """
+            comenting this out for now since it isn't working :/
             if "biome_weights" in game.clan:
                 secondary_biome_weight = old_to_new.get(game.clan.biome_weights)
             else:
-                secondary_biome_weight = game.clan.secondary_biome_weight if game.clan.secondary_biome_weight else 2
+            """
+            secondary_biome_weight = game.clan.secondary_biome_weight if game.clan.secondary_biome_weight else 2
             tertiary_biome_weight = game.clan.tertiary_biome_weight if game.clan.tertiary_biome_weight else 2
         else:
             biome = None
