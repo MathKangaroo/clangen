@@ -1,6 +1,6 @@
 import os
 from copy import deepcopy
-from random import choice, shuffle
+from random import choice, shuffle, randint
 
 import i18n.config
 
@@ -91,7 +91,17 @@ class GroupEvents:
         ]
 
         # get some filters premisses
-        biome = str(game.clan.biome).casefold()
+
+        chosen_biome = game.clan.biome
+        if game.clan.secondary_biome != game.clan.biome:
+            if randint(1, game.clan.secondary_biome_weight) == 1:
+                chosen_biome = game.clan.secondary_biome
+            else:
+                if game.clan.tertiary_biome != game.clan.biome:
+                    if randint(1, game.clan.tertiary_biome_weight) == 1:
+                        chosen_biome = game.clan.tertiary_biome
+
+        biome = str(chosen_biome).casefold()
         season = str(game.clan.current_season).casefold()
 
         # start filter for main cat / basic checks
