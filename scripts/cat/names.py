@@ -70,6 +70,11 @@ class Name:
                             _tmp = new_name.split(":")
                             names_dict["special_suffixes"][_tmp[0]] = _tmp[1]
 
+    disabled_names = []
+    for prefix in names_dict["disabled_adjectives"]:
+        for suffix in names_dict["physical_suffixes"]:
+            disabled_names.append(f"{prefix}{suffix}")
+
     def __init__(
         self,
         prefix=None,
@@ -139,6 +144,7 @@ class Name:
             i = 0
             while (
                 nono_name.lower() in self.names_dict["inappropriate_names"]
+                or nono_name.lower() in self.disabled_names
                 or triple_letter
                 or double_animal
                 or (
