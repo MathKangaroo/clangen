@@ -67,7 +67,9 @@ class Clan:
         medicine_cat=None,
         biome="Forest",
         secondary_biome="Forest",
-        biome_weights="Equal",
+        tertiary_biome="Forest",
+        secondary_biome_weight=2,
+        tertiary_biome_weight=2,
         camp_bg=None,
         symbol=None,
         game_mode="classic",
@@ -102,7 +104,9 @@ class Clan:
         self.clan_cats = []
         self.biome = biome
         self.secondary_biome = secondary_biome
-        self.biome_weights = biome_weights
+        self.tertiary_biome = tertiary_biome
+        self.secondary_biome_weight = secondary_biome_weight
+        self.tertiary_biome_weight = tertiary_biome_weight
         self.override_biome = None
         self.camp_bg = camp_bg
         self.chosen_symbol = symbol
@@ -112,6 +116,10 @@ class Clan:
         self.custom_pronouns = {}
 
         switch_set_value(Switch.biome, biome)
+        switch_set_value(Switch.secondary_biome, secondary_biome)
+        switch_set_value(Switch.tertiary_biome, tertiary_biome)
+        switch_set_value(Switch.secondary_biome_weight, secondary_biome_weight)
+        switch_set_value(Switch.tertiary_biome_weight, tertiary_biome_weight)
         switch_set_value(Switch.camp_bg, camp_bg)
         switch_set_value(Switch.game_mode, game_mode)
 
@@ -183,6 +191,7 @@ class Clan:
         created in the 'clan created' screen, not every time
         the program starts
         """
+        # creating the clan guide. boosted chance for common roles (warrior, deputy, leader, medicine cat, apprentice)
         switch_set_value(Switch.clan_name, self.name)
         reset_loaded_clan_settings()
         instructor_rank = choice(
@@ -190,11 +199,32 @@ class Clan:
                 CatRank.APPRENTICE,
                 CatRank.MEDIATOR_APPRENTICE,
                 CatRank.MEDICINE_APPRENTICE,
+                CatRank.CARETAKER_APPRENTICE,
+                CatRank.CARETAKER,
+                CatRank.DENKEEPER_APPRENTICE,
+                CatRank.DENKEEPER,
+                CatRank.GARDENER,
+                CatRank.GARDENER_APPRENTICE,
+                CatRank.MESSENGER,
+                CatRank.MESSENGER_APPRENTICE,
+                CatRank.STORYTELLER,
+                CatRank.STORYTELLER_APPRENTICE,
+                CatRank.WARRIOR,
+                CatRank.WARRIOR,
                 CatRank.WARRIOR,
                 CatRank.MEDICINE_CAT,
+                CatRank.MEDICINE_CAT,
+                CatRank.MEDICINE_CAT,
+                CatRank.LEADER,
+                CatRank.LEADER,
                 CatRank.LEADER,
                 CatRank.MEDIATOR,
+                CatRank.MEDIATOR,
+                CatRank.MEDIATOR,
                 CatRank.DEPUTY,
+                CatRank.DEPUTY,
+                CatRank.DEPUTY,
+                CatRank.ELDER,
                 CatRank.ELDER,
             )
         )
@@ -388,7 +418,9 @@ class Clan:
             "clanage": self.age,
             "biome": self.biome,
             "secondary_biome": self.secondary_biome,
-            "biome_weights": self.biome_weights,
+            "tertiary_biome": self.tertiary_biome,
+            "secondary_biome_weight": self.secondary_biome_weight,
+            "tertiary_biome_weight": self.tertiary_biome_weight,
             "camp_bg": self.camp_bg,
             "clan_symbol": self.chosen_symbol,
             "gamemode": self.game_mode,
@@ -761,15 +793,33 @@ class Clan:
         else:
             game.clan.chosen_symbol = clan_symbol_sprite(game.clan, return_string=True)
 
-        # check for secondary biome values
+        # check for other biome values
         if "secondary_biome" in clan_data:
             game.clan.secondary_biome = clan_data["secondary_biome"]
         else:
             game.clan.secondary_biome = clan_data["biome"]
-        if "biome_weights" in clan_data:
-            game.clan.biome_weights = clan_data["biome_weights"]
+        if "tertiary_biome" in clan_data:
+            game.clan.tertiary_biome = clan_data["tertiary_biome"]
         else:
-            game.clan.biome_weights = "Equal"
+            game.clan.tertiary_biome = clan_data["biome"]
+
+        if "biome_weights" in clan_data:
+            old_to_new = {
+                "Equal": 2,
+                "Third": 3,
+                "Fourth": 4
+            }
+            game.clan.secondary_biome_weight = old_to_new.get(clan_data["biome_weights"])
+            game.clan.tertiary_biome_weight = 2
+        else:
+            if "secondary_biome_weight" in clan_data:
+                game.clan.secondary_biome_weight = clan_data["secondary_biome_weight"]
+            else:
+                game.clan.secondary_biome_weight = 2
+            if "tertiary_biome_weight" in clan_data:
+                game.clan.tertiary_biome_weight = clan_data["tertiary_biome_weight"]
+            else:
+                game.clan.tertiary_biome_weight = 2
 
         other_clan_enums = (
             CatGroup.OTHER_CLAN1,
