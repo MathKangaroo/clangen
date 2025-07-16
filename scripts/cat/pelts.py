@@ -143,8 +143,7 @@ class Pelt:
         'PINKREDS', 'RUSTYS','GREENORANGES', 'REDCYANS', 'MINTBLUES', 'BLACKBLUES',
         'BANANAS', 'WHITEGREENS', 'BROWNREDS', 'RAINBOW', 'GREENDARKREDS','SUNNYS'
     ]
-    
-    
+
     #mega colors mod
     
     dance_colours = [
@@ -212,42 +211,55 @@ class Pelt:
         "CHOCOLATE",
     ]
 
-    tortiepatterns = ['ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'MINIMALONE', 'MINIMALTWO', 'MINIMALTHREE', 'MINIMALFOUR', 'HALF',
-                    'OREO', 'SWOOP', 'MOTTLED', 'SIDEMASK', 'EYEDOT', 'BANDANA', 'PACMAN', 'STREAMSTRIKE', 'ORIOLE', 'CHIMERA', 'DAUB', 'EMBER', 'BLANKET',
-                    'ROBIN', 'BRINDLE', 'PAIGE', 'ROSETAIL', 'SAFI', 'SMUDGED', 'DAPPLENIGHT', 'STREAK', 'MASK', 'CHEST', 'ARMTAIL', 'SMOKE', 'GRUMPYFACE',
-                    'BRIE', 'BELOVED', 'BODY', 'SHILOH', 'FRECKLED', 'HEARTBEAT', 'MINKFULLWHITE', 'MINKANY', 'MINKTUXEDO', 'MINKLITTLE', 'MINKCOLOURPOINT', 'MINKVAN', 'MINKANYTWO',
-                    'MINKMOON', 'MINKPHANTOM', 'MINKPOWDER', 'MINKBLEACHED', 'MINKSAVANNAH', 'MINKFADESPOTS', 'MINKPEBBLESHINE', 'MINKEXTRA', 'MINKONEEAR', 'MINKBROKEN', 'MINKLIGHTTUXEDO', 'MINKBUZZARDFANG', 'MINKRAGDOLL', 
-                    'MINKLIGHTSONG', 'MINKVITILIGO', 'MINKBLACKSTAR', 'MINKPIEBALD', 'MINKCURVED', 'MINKPETAL', 'MINKSHIBAINU', 'MINKOWL', 'MINKTIP', 'MINKFANCY', 'MINKFRECKLES', 'MINKRINGTAIL', 'MINKHALFFACE', 'MINKPANTSTWO', 'MINKGOATEE', 'MINKVITILIGOTWO',
-                    'MINKPAWS', 'MINKMITAINE', 'MINKBROKENBLAZE', 'MINKSCOURGE', 'MINKDIVA', 'MINKBEARD', 'MINKTAIL', 'MINKBLAZE', 'MINKPRINCE', 'MINKBIB', 'MINKVEE', 'MINKUNDERS', 'MINKHONEY',
-                    'MINKFAROFA', 'MINKDAMIEN', 'MINKMISTER', 'MINKBELLY', 'MINKTAILTIP', 'MINKTOES', 'MINKTOPCOVER', 'MINKAPRON', 'MINKCAPSADDLE', 'MINKMASKMANTLE', 'MINKSQUEAKS', 'MINKSTAR', 'MINKTOESTAIL', 'MINKRAVENPAW',
-                        'MINKPANTS', 'MINKREVERSEPANTS', 'MINKSKUNK', 'MINKKARPATI', 'MINKHALFWHITE', 'MINKAPPALOOSA', 'MINKDAPPLEPAW', 'MINKHEART', 'MINKLILTWO', 'MINKGLASS', 'MINKMOORISH', 'MINKSEPIAPOINT', 'MINKMINKPOINT', 'MINKSEALPOINT',
-                    'MINKMAO', 'MINKLUNA', 'MINKCHESTSPECK', 'MINKWINGS', 'MINKPAINTED', 'MINKHEARTTWO', 'MINKWOODPECKER', 'MINKBOOTS', 'MINKMISS', 'MINKCOW', 'MINKCOWTWO', 'MINKBUB', 'MINKBOWTIE', 'MINKMUSTACHE', 'MINKREVERSEHEART',
-                    'MINKSPARROW', 'MINKVEST', 'MINKLOVEBUG', 'MINKTRIXIE', 'MINKSAMMY', 'MINKSPARKLE', 'MINKRIGHTEAR', 'MINKLEFTEAR', 'MINKESTRELLA', 'MINKSHOOTINGSTAR', 'MINKEYESPOT', 'MINKREVERSEEYE',
-                    'MINKFADEBELLY', 'MINKFRONT', 'MINKBLOSSOMSTEP', 'MINKPEBBLE', 'MINKTAILTWO', 'MINKBUDDY', 'MINKBACKSPOT', 'MINKEYEBAGS', 'MINKBULLSEYE', 'MINKFINN', 'MINKDIGIT', 'MINKKROPKA', 'MINKFCTWO', 'MINKFCONE', 'MINKMIA', 'MINKSCAR',
-                    'MINKBUSTER', 'MINKSMOKEY', 'MINKHAWKBLAZE', 'MINKCAKE', 'MINKROSINA', 'MINKPRINCESS', 'MINKLOCKET', 'MINKBLAZEMASK', 'MINKTEARS', 'MINKDOUGIE', 'CHAOSONE', 'CHAOSTWO', 'CHAOSTHREE', 'CHAOSFOUR', 'ERROR', 'WAVE', 'PONINTTORITE', 'MASKTORITE', 'LITTLESTAR',
-                      'TANBUNNY', 'STRIPES', 'PINITO',  'SKULL', 'SIGHT', 'BRINDLETORITE', 'SNOW', 'ROSETTESTORITE', 'AMBERONE',
-                      'KINTSUGIONE', 'BENGALMASK', 'SHADOW', 'RAIN', 'MGLA', 'MOONLIGHT', 'MOUSE', 'SATURN', 'MARBLETORINE', 'AMBERTWO',
-                      'PATTERN', 'MOSS',
-                      'MONKEY', 'BUMBLEBEE', 'KINTSUGITWO', 'STORM', 'CLASSICTORNIE', 'STRIPEONETORITE', 'MACKERELTORITE',
-                      'AMBERTHREE', 'SHADE', 'GRAFFITI', 'AGOUTITORIE', 'BENGALTORITE', 'TABBYTORITE', 'SOKKOKETORITE',
-                      'SPECKLEDTORITE', 'TICKEDTORIE', 'MORRO',
-                      'AMBERFOUR', 'DOG', 'ONESPOT', 'INK','WOLF','EYEV','GEM','FOX','ORCA','PINTO','FRECKLESTWO','SOLDIER',
-                      'AKITA', 'CHESSBORAD','ANT','CREAMV','BUNNY','MOJO','STAINSONE','STAINST',
-                      'HALFHEART','FRECKLESTHREE','KITTY', 'SUNRISE','HUSKY','STATNTHREE','ERAMASK', 'S','PAW','SWIFTPAW',
-                      'BOOMSTAR','MIST','LEON', 'LADY','LEGS','MEADOW', 'SALT','BAMBI','PRIMITVE','SKUNKSTRIPE','NEPTUNE','KARAPATITWO',
-                      'CHAOS', 'MOSCOW','ERAHALF','CAPETOWN','SUN','BANAN','PANDA','DOVE','PINTOTWO', 'SNOWSHOE','SKY', 'MOONSTONE', 'DRIP',
-                      'CRESCENT', 'ETERNAL', 'WINGTWO', 'STARBORN',  'SPIDERLEGS', 'APPEL', 'RUG', 'LUCKY',
-                      'SOCKS', 'BRAMBLEBERRY', 'LATKA', 'ASTRONAUT', 'STORK',]
+    tortiepatterns = [
+        'ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'MINIMALONE', 'MINIMALTWO', 'MINIMALTHREE', 'MINIMALFOUR',
+        'HALF', 'OREO', 'SWOOP', 'MOTTLED', 'SIDEMASK', 'EYEDOT', 'BANDANA', 'PACMAN', 'STREAMSTRIKE', 'ORIOLE',
+        'CHIMERA', 'DAUB', 'EMBER', 'BLANKET', 'ROBIN', 'BRINDLE', 'PAIGE', 'ROSETAIL', 'SAFI', 'SMUDGED',
+        'DAPPLENIGHT', 'STREAK', 'MASK', 'CHEST', 'ARMTAIL', 'SMOKE', 'GRUMPYFACE', 'BRIE', 'BELOVED', 'BODY', 'SHILOH',
+        'FRECKLED', 'HEARTBEAT',
+
+        'MINKLITTLE', 'MINKLIGHTTUXEDO', 'MINKBUZZARDFANG', 'MINKTIP', 'MINKBLAZE', 'MINKBIB', 'MINKVEE', 'MINKPAWS',
+        'MINKBELLY', 'MINKTAILTIP', 'MINKTOES', 'MINKBROKENBLAZE', 'MINKLILTWO', 'MINKSCOURGE', 'MINKTOESTAIL',
+        'MINKRAVENPAW', 'MINKHONEY', 'MINKLUNA', 'MINKEXTRA', 'MINKMUSTACHE', 'MINKREVERSEHEART', 'MINKSPARKLE',
+        'MINKRIGHTEAR', 'MINKLEFTEAR', 'MINKESTRELLA', 'MINKREVERSEEYE', 'MINKBACKSPOT', 'MINKEYEBAGS', 'MINKLOCKET',
+        'MINKBLAZEMASK', 'MINKTEARS', 'MINKTUXEDO', 'MINKFANCY', 'MINKUNDERS', 'MINKDAMIEN', 'MINKSKUNK', 'MINKMITAINE',
+        'MINKSQUEAKS', 'MINKSTAR', 'MINKWINGS', 'MINKDIVA', 'MINKSAVANNAH', 'MINKFADESPOTS', 'MINKBEARD',
+        'MINKDAPPLEPAW', 'MINKTOPCOVER', 'MINKWOODPECKER', 'MINKMISS', 'MINKBOWTIE', 'MINKVEST', 'MINKFADEBELLY',
+        'MINKDIGIT', 'MINKFCTWO', 'MINKFCONE', 'MINKMIA', 'MINKROSINA', 'MINKPRINCESS', 'MINKDOUGIE', 'MINKANY',
+        'MINKANYTWO', 'MINKBROKEN', 'MINKFRECKLES', 'MINKRINGTAIL', 'MINKHALFFACE', 'MINKPANTSTWO', 'MINKGOATEE',
+        'MINKPRINCE', 'MINKFAROFA', 'MINKMISTER', 'MINKPANTS', 'MINKREVERSEPANTS', 'MINKHALFWHITE', 'MINKAPPALOOSA',
+        'MINKPIEBALD', 'MINKCURVED', 'MINKGLASS', 'MINKMASKMANTLE', 'MINKMAO', 'MINKPAINTED', 'MINKSHIBAINU', 'MINKOWL',
+        'MINKBUB', 'MINKSPARROW', 'MINKTRIXIE', 'MINKSAMMY', 'MINKFRONT', 'MINKBLOSSOMSTEP', 'MINKBULLSEYE', 'MINKFINN',
+        'MINKSCAR', 'MINKBUSTER', 'MINKHAWKBLAZE', 'MINKCAKE', 'MINKVAN', 'MINKONEEAR', 'MINKLIGHTSONG', 'MINKTAIL',
+        'MINKHEART', 'MINKMOORISH', 'MINKAPRON', 'MINKCAPSADDLE', 'CHESTSPECK', 'MINKBLACKSTAR', 'MINKPETAL',
+        'MINKHEARTTWO', 'MINKPEBBLESHINE', 'MINKBOOTS', 'MINKCOW', 'MINKCOWTWO', 'MINKLOVEBUG', 'MINKSHOOTINGSTAR',
+        'MINKEYESPOT', 'MINKPEBBLE', 'MINKTAILTWO', 'MINKBUDDY', 'MINKKROPKA', 'MINKCOLOURPOINT', 'MINKRAGDOLL',
+        'MINKSEPIAPOINT', 'MINKMINKPOINT', 'MINKSEALPOINT', 'MINKVITILIGO', 'MINKVITILIGOTWO', 'MINKMOON',
+        'MINKPHANTOM', 'MINKKARPATI', 'MINKPOWDER', 'MINKBLEACHED', 'MINKSMOKEY', 'MINKFULLWHITE',
+
+        'CHAOSONE', 'CHAOSTWO', 'CHAOSTHREE', 'CHAOSFOUR', 'ERROR', 'WAVE', 'PONINTTORITE', 'MASKTORITE', 'LITTLESTAR',
+        'TANBUNNY', 'STRIPES', 'PINITO', 'SKULL', 'SIGHT', 'BRINDLETORITE', 'SNOW', 'ROSETTESTORITE', 'AMBERONE',
+        'KINTSUGIONE', 'BENGALMASK', 'SHADOW', 'RAIN', 'MGLA', 'MOONLIGHT', 'MOUSE', 'SATURN', 'MARBLETORINE',
+        'AMBERTWO', 'PATTERN', 'MOSS', 'MONKEY', 'BUMBLEBEE', 'KINTSUGITWO', 'STORM', 'CLASSICTORNIE',
+        'STRIPEONETORITE', 'MACKERELTORITE', 'AMBERTHREE', 'SHADE', 'GRAFFITI', 'AGOUTITORIE', 'BENGALTORITE',
+        'TABBYTORITE', 'SOKKOKETORITE', 'SPECKLEDTORITE', 'TICKEDTORIE', 'MORRO', 'AMBERFOUR', 'DOG', 'ONESPOT', 'INK',
+        'WOLF', 'EYEV', 'GEM', 'FOX', 'ORCA', 'PINTO', 'FRECKLESTWO', 'SOLDIER', 'AKITA', 'CHESSBORAD', 'ANT', 'CREAMV',
+        'BUNNY', 'MOJO', 'STAINSONE', 'STAINST', 'HALFHEART', 'FRECKLESTHREE', 'KITTY', 'SUNRISE', 'HUSKY',
+        'STATNTHREE', 'ERAMASK', 'S', 'PAW', 'SWIFTPAW', 'BOOMSTAR', 'MIST', 'LEON', 'LADY', 'LEGS', 'MEADOW', 'SALT',
+        'BAMBI', 'PRIMITVE', 'SKUNKSTRIPE', 'NEPTUNE', 'KARAPATITWO', 'CHAOS', 'MOSCOW', 'ERAHALF', 'CAPETOWN', 'SUN',
+        'BANAN', 'PANDA', 'DOVE', 'PINTOTWO', 'SNOWSHOE', 'SKY', 'MOONSTONE', 'DRIP', 'CRESCENT', 'ETERNAL', 'WINGTWO',
+        'STARBORN', 'SPIDERLEGS', 'APPEL', 'RUG', 'LUCKY', 'SOCKS', 'BRAMBLEBERRY', 'LATKA', 'ASTRONAUT', 'STORK'
+    ]
     
     tortiebases = ['single', 'tabby', 'bengal', 'marbled', 'ticked', 'smoke', 'rosette', 'speckled', 'mackerel',
-                   'classic', 'sokoke', 'agouti', 'singlestripe', 'masked','maned', 'ocelot', 'lynx', 'royal',
+                   'classic', 'sokoke', 'agouti', 'singlestripe', 'masked', 'maned', 'ocelot', 'lynx', 'royal',
                    'bobcat', 'cheetah', 'dalmatian',
                    'wolf', 'brindle', 'spots', 'smokepoint',
                    'finleappatches', 'wildcat',
                    'abyssinian', 'clouded', 'doberman', 'ghosttabby', 'merle',
                    'monarch', 'oceloid', 'pinstripetabby', 'snowflake',
                    'caliisokoke', 'caliispeckled', 'circletabby', 'birchtabby', 'dot', 'dotfade', 'kintsugi', 'colourpoint', 'lynxpoint', 'ncrestedcaracara',
-                   'prideagouti','pridebengal', 'prideclassic', 'pridemackerel'
+                   'prideagouti', 'pridebengal', 'prideclassic', 'pridemackerel'
                    ]
 
     pelt_length = ["short", "medium", "long"]
@@ -290,8 +302,7 @@ class Pelt:
     
     purple_eyes = ['ALBINISTIC', 'BLACKBERRY', 'DUSKY', 'HALLOWEEN', 'HEATHERBLUE', 'LAVENDER', 'LILAC', 'LOBELIA',
                    'PARADOX', 'PASTEL', 'PASTEL LAVENDER', 'PERIWINKLE', 'SEASHELL', 'TWILIGHT SKY', 'VIOLET']
-    
-    
+
     neos_eyes = ['NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW', 'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN',
                  'NEO YELLOWRED', 'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK', 'NEO MINT', 'NEO BLACKBLUE']
     
@@ -353,7 +364,7 @@ class Pelt:
                          "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY", "BLUEBELLS", "LILY OF THE VALLEY", 
                          "SNAPDRAGON", "HERBS", "PETALS", "NETTLE", "HEATHER", "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER", 
                          "OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", 
-                         "BULB BLUE", "CLOVERTAIL", "DAISYTAIL", "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS", "WISTERIA2", 
+                         "BULB BLUE", "CLOVERTAIL", "DAISYTAIL", "DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS", "WISTERIA2",
                          "ROSE MALLOW", "PICKLEWEED", "GOLDEN CREEPING JENNY"]
     wild_accessories = ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY1", "CICADA WINGS", "BLACK CICADA"]
   
@@ -618,10 +629,25 @@ class Pelt:
         "DANDELION PUFFS",
         "DICE",
         "GOLDEN EARRINGS",
-        "SILVER MOON","GOLD STAR", "GOLD MOON", "MOON AND STARS",
-        "WHITE WITCHHAT", "BABYBLUE WITCHHAT", "LIGHTPURPLE WITCHHAT", "BLUE WITCHHAT", "PURPLE WITCHHAT", "DARKPURPLE WITCHHAT",
-        "LIGHTPINK WITCHHAT", "LIGHTYELLOW WITCHHAT", "PINK WITCHHAT", "ORANGE WITCHHAT", "RED WITCHHAT",
-        "CYAN WITCHHAT", "YELLOWGREEN WITCHHAT", "TURQUOISE WITCHHAT", "GREEN WITCHHAT"
+        "SILVER MOON",
+        "GOLD STAR",
+        "GOLD MOON",
+        "MOON AND STARS",
+        "WHITE WITCHHAT",
+        "BABYBLUE WITCHHAT",
+        "LIGHTPURPLE WITCHHAT",
+        "BLUE WITCHHAT",
+        "PURPLE WITCHHAT",
+        "DARKPURPLE WITCHHAT",
+        "LIGHTPINK WITCHHAT",
+        "LIGHTYELLOW WITCHHAT",
+        "PINK WITCHHAT",
+        "ORANGE WITCHHAT",
+        "RED WITCHHAT",
+        "CYAN WITCHHAT",
+        "YELLOWGREEN WITCHHAT",
+        "TURQUOISE WITCHHAT",
+        "GREEN WITCHHAT"
     ]
 
     body_accessories = [
@@ -710,16 +736,59 @@ class Pelt:
         "RACCOON LEAF",
         "WHITE RACCOON LEAF",
         "LANTERN",
-        "WHEELS", "BALL", "MOUSE", "BONE", "MOSSBLANKIE", "AUTISMFLAG", "DISFLAG", "ZEBFLAG",
-        "CRIMSONBOOT", "BLUEBOOT", "YELLOWBOOT", "CYANBOOT", "REDBOOT", "LIMEBOOT", "GREENBOOT",
-        "RAINBOWBOOT", "BLACKBOOT", "BROWNBOOT", "WHITEBOOT", "PINKBOOT", "PURPLEBOOT", "MULTIBOOT", "INDIGOBOOT",
-        "WHITE NECKERCHIEF", "BABYBLUE NECKERCHIEF", "LIGHTPURPLE NECKERCHIEF", "BLUE NECKERCHIEF", "PURPLE NECKERCHIEF", "DARKPURPLE NECKERCHIEF",
-        "LIGHTPINK NECKERCHIEF", "LIGHTYELLOW NECKERCHIEF", "PINK NECKERCHIEF", "ORANGE NECKERCHIEF", "RED NECKERCHIEF",
-        "CYAN NECKERCHIEF", "YELLOWGREEN NECKERCHIEF", "TURQUOISE NECKERCHIEF", "GREEN NECKERCHIEF",
-        "PIKACHU", "SQUIRTLE", "CHARMANDER", "SPHEAL", "GROWLITHE", "BULBASAUR",
-        "SENTRET", "SHAYMIN", "EMOLGA", "HISUI GROWLITHE", "ALOLAN VULPIX",
-        "VULPIX", "LUXRAY", "ALTARIA", "AZUMARILL"
-    
+        "WHEELS",
+        "BALL",
+        "MOUSE",
+        "BONE",
+        "MOSSBLANKIE",
+        "AUTISMFLAG",
+        "DISFLAG",
+        "ZEBFLAG",
+        "CRIMSONBOOT",
+        "BLUEBOOT",
+        "YELLOWBOOT",
+        "CYANBOOT",
+        "REDBOOT",
+        "LIMEBOOT",
+        "GREENBOOT",
+        "RAINBOWBOOT",
+        "BLACKBOOT",
+        "BROWNBOOT",
+        "WHITEBOOT",
+        "PINKBOOT",
+        "PURPLEBOOT",
+        "MULTIBOOT",
+        "INDIGOBOOT",
+        "WHITE NECKERCHIEF",
+        "BABYBLUE NECKERCHIEF",
+        "LIGHTPURPLE NECKERCHIEF",
+        "BLUE NECKERCHIEF",
+        "PURPLE NECKERCHIEF",
+        "DARKPURPLE NECKERCHIEF",
+        "LIGHTPINK NECKERCHIEF",
+        "LIGHTYELLOW NECKERCHIEF",
+        "PINK NECKERCHIEF",
+        "ORANGE NECKERCHIEF",
+        "RED NECKERCHIEF",
+        "CYAN NECKERCHIEF",
+        "YELLOWGREEN NECKERCHIEF",
+        "TURQUOISE NECKERCHIEF",
+        "GREEN NECKERCHIEF",
+        "PIKACHU",
+        "SQUIRTLE",
+        "CHARMANDER",
+        "SPHEAL",
+        "GROWLITHE",
+        "BULBASAUR",
+        "SENTRET",
+        "SHAYMIN",
+        "EMOLGA",
+        "HISUI GROWLITHE",
+        "ALOLAN VULPIX",
+        "VULPIX",
+        "LUXRAY",
+        "ALTARIA",
+        "AZUMARILL"
     ]
 
     tail_accessories = [
@@ -764,12 +833,14 @@ class Pelt:
         "SUNSET FEATHERS",
         "SILVER FEATHERS",
         "WISTERIA2", 
-        "ROSE MALLOW", "PICKLEWEED", "GOLDEN CREEPING JENNY"
+        "ROSE MALLOW",
+        "PICKLEWEED",
+        "GOLDEN CREEPING JENNY"
     ]
 
     tabbies = [
         "Tabby","Ticked","Mackerel","Classic","Sokoke","Agouti",
-        "Tabby","Ticked","Mackerel","Classic","Sokoke","Agouti", #double base game pelts bc more colors 
+        "Tabby","Ticked","Mackerel","Classic","Sokoke","Agouti", #double base game pelts bc more colors
         "Royal", "Brindle", "GhostTabby", "PinstripeTabby", "Caliisokoke", "Circletabby", "Birchtabby"
     ]
     spotted = [
@@ -777,11 +848,11 @@ class Pelt:
         "Lynx", "Bobcat", "Spots", "Merle", "Dot", "Caliispeckled", "Dotfade"
     ]
     plain = [
-        "SingleColour", "Smoke", "Singlestripe", "SingleColour", "Smoke", "Singlestripe", 
+        "SingleColour", "Smoke", "Singlestripe", "SingleColour", "Smoke", "Singlestripe",
         "Smokepoint", "Doberman", "Stain", "Colourpoint"
     ]
     exotic = [
-        "Bengal","Marbled","Masked", "Bengal","Marbled","Masked", 
+        "Bengal","Marbled","Masked", "Bengal","Marbled","Masked",
         "Maned", "Ocelot", "Cheetah", "Wildcat", "Wolf", "Finleappatches", "Dalmatian", "Abyssinian", "Clouded",
         "Snowflake", "Oceloid", "Monarch", "Kintsugi", "Lynxpoint", "Ncrestedcaracara"
     ]
@@ -984,37 +1055,79 @@ class Pelt:
              'AUTUMN LEAF', 'RUBY', 'PHANTOM', 'RIVER MOSS', 'WICKED', 'NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW', 'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN',
                  'NEO YELLOWRED', 'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK', 'NEO MINT', 'NEO BLACKBLUE'
     ]
-    little_white = ['LITTLE', 'LIGHTTUXEDO', 'BUZZARDFANG', 'TIP', 'BLAZE', 'BIB', 'VEE', 'PAWS',
-                    'BELLY', 'TAILTIP', 'TOES', 'BROKENBLAZE', 'LILTWO', 'SCOURGE', 'TOESTAIL', 'RAVENPAW', 'HONEY', 'LUNA',
-                    'EXTRA', 'MUSTACHE', 'REVERSEHEART', 'SPARKLE', 'RIGHTEAR', 'LEFTEAR', 'ESTRELLA', 'REVERSEEYE', 'BACKSPOT',
-                    'EYEBAGS', 'LOCKET', 'BLAZEMASK', 'TEARS', 'MINKMINIMALONE', 'MINKMINIMALTWO', 'MINKMINIMALTHREE',
-                    'MINKMINIMALFOUR', 'MINKMASK', 'MINKCHEST', 'MINKSIDEMASK', 'MINKEMBER', 'MINKORIOLE', 'MINKONE', 'MINKDAPPLENIGHT', 'MINKSAFI', 'SOLDIER', 'AKITA', 'FRECKLESTHREE','KITTY',
-                    'ERAMASK', 'PAW', 'BOOMSTAR', 'LEGS', 'DOVE', 'CRESCENT', 'SPIDERLEGS', 'APPEL', 'BODYSTRIPE', 'BLACKBODYSTRIPE', 'BROWNBODYSTRIPE', 'GINGERBODYSTRIPE', 'SPRAYEDBODYSTRIPE', 'BLACKSPRAYEDBODYSTRIPE',
-                    'BROWNSPRAYEDBODYSTRIPE', 'GINGERSPRAYEDBODYSTRIPE']
-    mid_white = ['TUXEDO', 'FANCY', 'UNDERS', 'DAMIEN', 'SKUNK', 'MITAINE', 'SQUEAKS', 'STAR', 'WINGS',
-                'DIVA', 'SAVANNAH', 'FADESPOTS', 'BEARD', 'DAPPLEPAW', 'TOPCOVER', 'WOODPECKER', 'MISS', 'BOWTIE', 'VEST',
-                'FADEBELLY', 'DIGIT', 'FCTWO', 'FCONE', 'MIA', 'ROSINA', 'PRINCESS', 'DOUGIE', 'MINKROSETAIL', 'MINKTWO',
-                'MINKFOUR', 'MINKREDTAIL', 'MINKSTREAK', 'MINKARMTAIL', 'MINKSTREAMSTRIKE', 'MINKDAUB', 'MINKBRIE', 'MINKROBIN',
-                'MINKBLANKET', 'MINKBELOVED', 'MINKHEARTBEAT', 'MINKCHIMERA', 'MINKEYEDOT', 'MINKSHILOH', 'INK', 'GEM', 'FOX','ORCA', 'MOJO', 'HALFHEART', 'LEON', 'MEADOW', 'BAMBI', 'SKUNKSTRIPE', 'BANAN',
-                 'MOONSTONE', 'WINGTWO', 'STARBORN', 'RUG']
-    high_white = ['ANY', 'ANYTWO', 'BROKEN', 'FRECKLES', 'RINGTAIL', 'HALFFACE', 'PANTSTWO',
-                'GOATEE', 'PRINCE', 'FAROFA', 'MISTER', 'PANTS', 'REVERSEPANTS', 'HALFWHITE', 'APPALOOSA', 'PIEBALD',
-                'CURVED', 'GLASS', 'MASKMANTLE', 'MAO', 'PAINTED', 'SHIBAINU', 'OWL', 'BUB', 'SPARROW', 'TRIXIE',
-                'SAMMY', 'FRONT', 'BLOSSOMSTEP', 'BULLSEYE', 'FINN', 'SCAR', 'BUSTER', 'HAWKBLAZE', 'CAKE', 'CHITAL',
-                'MINKTHREE', 'MINKOREO', 'WOLF', 'PINTO', 'CHESSBORAD', 'SUNRISE','HUSKY', 'S', 'STATNTHREE', 'MIST', 'LADY', 'ERAHALF', 'SUN',
-                  'PINTOTWO', 'SKY', 'MINKGRUMPYFACE', 'MINKPACMAN', 'MINKPAIGE', 'MINKMOTTLED', 'MINKDELILAH', 'TIGERBODYSTRIPE', 'BLACKTIGERBODYSTRIPE', 'BROWNTIGERBODYSTRIPE', 'GINGERTIGERBODYSTRIPE']
-    mostly_white = ['VAN', 'ONEEAR', 'LIGHTSONG', 'TAIL', 'HEART', 'MOORISH', 'APRON', 'CAPSADDLE',
-                    'CHESTSPECK', 'BLACKSTAR', 'PETAL', 'HEARTTWO','PEBBLESHINE', 'BOOTS', 'COW', 'COWTWO', 'LOVEBUG',
-                    'SHOOTINGSTAR', 'BUNNY', 'STAINSONE',
-                    'STAINST', 'SWIFTPAW', 'DRIP',  'PRIMITVE', 'KARAPATITWO','CHAOS',
-                    'MOSCOW', 'PANDA', 'LUCKY', 'EYESPOT', 'PEBBLE', 'TAILTWO', 'BUDDY', 'KROPKA', 'MINKHALF', 'MINKBANDANA','MINKSWOOP', 'REVERSEBODYSPRITE', 'BLACKREVERSEBODYSPRITE', 'BROWNREVERSEBODYSPRITE', 'GINGERREVERSEBODYSPRITE',
-                    'REVERSETIGERBODYSPRITE', 'BLACKREVERSETIGERBODYSPRITE', 'BROWNREVERSETIGERBODYSPRITE', 'GINGERREVERSETIGERBODYSPRITE',
-                    'REVERSELEOPARDBODYSPRITE', 'BLACKREVERSELEOPARDBODYSPRITE', 'BROWNREVERSELEOPARDBODYSPRITE', 'GINGERREVERSELEOPARDBODYSPRITE']
-    point_markings = ['COLOURPOINT', 'ANT', 'CAPETOWN',
-                      'SNOWSHOE', 'ETERNAL', 'RAGDOLL', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT', 'MINKSMOKE', 'MINKBODY']
-    vit = ['VITILIGO', 'VITILIGOTWO', 'MOON', 'PHANTOM', 'KARPATI', 'POWDER', 'BLEACHED', 'SMOKEY', 'MINKBRINDLE', 'MINKFRECKLED', 'MINKSMUDGED','JACKAL', 'EYEV', 'FRECKLESTWO', 'CREAMV', 'SALT', 'NEPTUNE']
+    little_white = [
+        'LITTLE', 'LIGHTTUXEDO', 'BUZZARDFANG', 'TIP', 'BLAZE', 'BIB', 'VEE', 'PAWS', 'BELLY', 'TAILTIP', 'TOES',
+        'BROKENBLAZE', 'LILTWO', 'SCOURGE', 'TOESTAIL', 'RAVENPAW', 'HONEY', 'LUNA', 'EXTRA', 'MUSTACHE',
+        'REVERSEHEART', 'SPARKLE', 'RIGHTEAR', 'LEFTEAR', 'ESTRELLA', 'REVERSEEYE', 'BACKSPOT', 'EYEBAGS', 'LOCKET',
+        'BLAZEMASK', 'TEARS',
+
+        'MINKMINIMALONE', 'MINKMINIMALTWO', 'MINKMINIMALTHREE', 'MINKMINIMALFOUR', 'MINKMASK', 'MINKCHEST',
+        'MINKSIDEMASK', 'MINKEMBER', 'MINKORIOLE', 'MINKONE', 'MINKDAPPLENIGHT', 'MINKSAFI',
+
+        'SOLDIER', 'AKITA', 'FRECKLESTHREE', 'KITTY', 'ERAMASK', 'PAW', 'BOOMSTAR', 'LEGS', 'DOVE', 'CRESCENT',
+        'SPIDERLEGS', 'APPEL', 'BODYSTRIPE', 'BLACKBODYSTRIPE', 'BROWNBODYSTRIPE', 'GINGERBODYSTRIPE',
+        'SPRAYEDBODYSTRIPE', 'BLACKSPRAYEDBODYSTRIPE', 'BROWNSPRAYEDBODYSTRIPE', 'GINGERSPRAYEDBODYSTRIPE',
+        'LITTLESTAR', 'SKULL', 'SIGHT', 'SHADOW', 'MOUSE', 'MOSS', 'BUMBLEBEE'
+    ]
+    mid_white = [
+        'TUXEDO', 'FANCY', 'UNDERS', 'DAMIEN', 'SKUNK', 'MITAINE', 'SQUEAKS', 'STAR', 'WINGS', 'DIVA', 'SAVANNAH',
+        'FADESPOTS', 'BEARD', 'DAPPLEPAW', 'TOPCOVER', 'WOODPECKER', 'MISS', 'BOWTIE', 'VEST', 'FADEBELLY', 'DIGIT',
+        'FCTWO', 'FCONE', 'MIA', 'ROSINA', 'PRINCESS', 'DOUGIE',
+
+        'MINKROSETAIL', 'MINKTWO', 'MINKFOUR', 'MINKREDTAIL', 'MINKSTREAK', 'MINKARMTAIL', 'MINKSTREAMSTRIKE',
+        'MINKDAUB', 'MINKBRIE', 'MINKROBIN', 'MINKBLANKET', 'MINKBELOVED', 'MINKHEARTBEAT', 'MINKCHIMERA', 'MINKEYEDOT',
+        'MINKSHILOH',
+
+        'INK', 'GEM', 'FOX', 'ORCA', 'MOJO', 'HALFHEART', 'LEON', 'MEADOW', 'BAMBI', 'SKUNKSTRIPE', 'BANAN',
+        'MOONSTONE', 'WINGTWO', 'STARBORN', 'RUG', 'CHAOSONE', 'STRIPES', 'PINITO', 'SNOW', 'KINTSUGIONE', 'RAIN',
+        'MGLA', 'SATURN', 'PATTERN', 'MONKEY', 'CLASSICTORNIE', 'GRAFFITI', 'AGOUTITORIE', 'MORRO', 'DOG', 'ONESPOT'
+    ]
+    high_white = [
+        'ANY', 'ANYTWO', 'BROKEN', 'FRECKLES', 'RINGTAIL', 'HALFFACE', 'PANTSTWO', 'GOATEE', 'PRINCE', 'FAROFA',
+        'MISTER', 'PANTS', 'REVERSEPANTS', 'HALFWHITE', 'APPALOOSA', 'PIEBALD', 'CURVED', 'GLASS', 'MASKMANTLE', 'MAO',
+        'PAINTED', 'SHIBAINU', 'OWL', 'BUB', 'SPARROW', 'TRIXIE', 'SAMMY', 'FRONT', 'BLOSSOMSTEP', 'BULLSEYE', 'FINN',
+        'SCAR', 'BUSTER', 'HAWKBLAZE', 'CAKE',
+
+        'MINKTHREE', 'MINKOREO', 'MINKGRUMPYFACE', 'MINKPACMAN', 'MINKPAIGE', 'MINKMOTTLED', 'MINKDELILAH',
+
+        'CHITAL', 'WOLF', 'PINTO', 'CHESSBORAD', 'SUNRISE', 'HUSKY', 'S', 'STATNTHREE', 'MIST', 'LADY', 'ERAHALF',
+        'SUN', 'PINTOTWO', 'SKY', 'TIGERBODYSTRIPE', 'BLACKTIGERBODYSTRIPE', 'BROWNTIGERBODYSTRIPE',
+        'GINGERTIGERBODYSTRIPE', 'CHAOSTWO', 'CHAOSFOUR', 'MASKTORITE', 'TANBUNNY', 'ROSETTESTORITE', 'BENGALMASK',
+        'MOONLIGHT', 'MARBLETORINE', 'KINTSUGITWO', 'STORM', 'BENGALTORITE', 'TABBYTORITE', 'SOKKOKETORITE',
+        'SPECKLEDTORITE'
+    ]
+    mostly_white = [
+        'VAN', 'ONEEAR', 'LIGHTSONG', 'TAIL', 'HEART', 'MOORISH', 'APRON', 'CAPSADDLE', 'CHESTSPECK', 'BLACKSTAR',
+        'PETAL', 'HEARTTWO', 'PEBBLESHINE', 'BOOTS', 'COW', 'COWTWO', 'LOVEBUG', 'SHOOTINGSTAR', 'EYESPOT', 'PEBBLE',
+        'TAILTWO', 'BUDDY', 'KROPKA',
+
+        'MINKHALF', 'MINKBANDANA', 'MINKSWOOP',
+
+        'BUNNY', 'STAINSONE', 'STAINST', 'SWIFTPAW', 'DRIP', 'PRIMITVE', 'KARAPATITWO', 'CHAOS', 'MOSCOW', 'PANDA',
+        'LUCKY',  'REVERSEBODYSPRITE', 'BLACKREVERSEBODYSPRITE', 'BROWNREVERSEBODYSPRITE', 'GINGERREVERSEBODYSPRITE',
+        'REVERSETIGERBODYSPRITE', 'BLACKREVERSETIGERBODYSPRITE', 'BROWNREVERSETIGERBODYSPRITE',
+        'GINGERREVERSETIGERBODYSPRITE', 'REVERSELEOPARDBODYSPRITE', 'BLACKREVERSELEOPARDBODYSPRITE',
+        'BROWNREVERSELEOPARDBODYSPRITE', 'GINGERREVERSELEOPARDBODYSPRITE', 'CHAOSTHREE', 'ERROR', 'WAVE',
+        'BRINDLETORITE', 'PONINTTORITE', 'MACKERELTORITE'
+    ]
+    point_markings = [
+        'COLOURPOINT', 'RAGDOLL', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT',
+
+        'MINKSMOKE', 'MINKBODY',
+
+        'ANT', 'CAPETOWN', 'SNOWSHOE', 'ETERNAL'
+    ]
+    vit = [
+        'VITILIGO', 'VITILIGOTWO', 'MOON', 'PHANTOM', 'KARPATI', 'POWDER', 'BLEACHED', 'SMOKEY',
+
+        'MINKBRINDLE', 'MINKFRECKLED', 'MINKSMUDGED',
+
+        'JACKAL', 'EYEV', 'FRECKLESTWO', 'CREAMV', 'SALT', 'NEPTUNE', 'AMBERONE', 'AMBERTWO', 'STRIPEONETORITE',
+        'AMBERTHREE', 'SHADE', 'TICKEDTORIE', 'AMBERFOUR'
+    ]
     white_sprites = [
-        little_white, mid_white, high_white, mostly_white, point_markings, vit, 'FULLWHITE']
+        little_white, mid_white, high_white, mostly_white, point_markings, vit, 'FULLWHITE'
+    ]
 
     skin_sprites = ['BLACK', 'PINK', 'DARKBROWN', 'BROWN', 'LIGHTBROWN', 'DARK', 'DARKGREY', 'GREY', 'DARKSALMON',
                     'SALMON', 'PEACH', 'DARKMARBLED', 'MARBLED', 'LIGHTMARBLED', 'DARKBLUE', 'BLUE', 'LIGHTBLUE', 'RED']
@@ -1057,11 +1170,16 @@ class Pelt:
         eye_colour2: str = None,
         tortiebase: str = None,
         tortiecolour: str = None,
-        pattern:list=None,
+        pattern: list = None,
         tortiepattern: str = None,
-        tortie_tint: str = "none",
+        tortie_tint: list = None,
+        displays_2nd_tortie: bool = False,
+        tortiecolour2: str = None,
+        pattern2: list = None,
+        tortiepattern2: str = None,
+        tortie_tint2: list = None,
         vitiligo: str = None,
-        points:str=None,
+        points: str = None,
         physical_trait_1:str=None,
         physical_trait_2:str=None,
         physical_trait_3:str=None,
@@ -1074,9 +1192,9 @@ class Pelt:
         paralyzed: bool = False,
         opacity: int = 100,
         scars: list = None,
-        tint: str = "none",
+        tint: list = None,
         skin: str = "BLACK",
-        white_patches_tint: str = "none",
+        white_patches_tint: list = None,
         kitten_sprite: int = None,
         adol_sprite: int = None,
         adult_sprite: int = None,
@@ -1097,6 +1215,11 @@ class Pelt:
         self.tortiepattern = tortiepattern
         self.tortiecolour = tortiecolour
         self.tortie_tint = tortie_tint
+        self.displays_2nd_tortie = displays_2nd_tortie
+        self.pattern2 = pattern2
+        self.tortiepattern2 = tortiepattern2
+        self.tortiecolour2 = tortiecolour2
+        self.tortie_tint2 = tortie_tint2
         self.vitiligo = vitiligo
         self.length = length
         self.points = points
@@ -1164,7 +1287,7 @@ class Pelt:
         new_pelt.init_scars(age)
         new_pelt.init_accessories(age)
         new_pelt.init_eyes(parents)
-        new_pelt.init_pattern()
+        new_pelt.init_pattern(parents, gender)
         new_pelt.init_tint()
         new_pelt.init_physical_traits(parents)
 
@@ -1501,8 +1624,7 @@ class Pelt:
             self.name = self.name[7:]
             self.name = self.name.capitalize()
             self.colour = sparkle_dict[self.colour]
-        
-        
+
         if self.name == "Stripe":
             self.name = "Singlestripe"
         if self.name == "Single":
@@ -1606,8 +1728,25 @@ class Pelt:
                 self.tortiepattern = "singlestripe"
             if self.tortiebase == "stripe":
                 self.tortiebase = "singlestripe"
-        
-        
+
+        if type(self.tint) != list:
+            self.tint = [self.tint]
+        if type(self.tortie_tint) != list:
+            self.tortie_tint = [self.tortie_tint]
+        if type(self.tortie_tint2) != list:
+            self.tortie_tint2 = [self.tortie_tint2]
+        if type(self.white_patches_tint) != list:
+            self.white_patches_tint = [self.white_patches_tint]
+
+        if "none" in self.tint:
+            self.tint = ["none"]
+        if "none" in self.tortie_tint:
+            self.tortie_tint = ["none"]
+        if "none" in self.tortie_tint2:
+            self.tortie_tint2 = ["none"]
+        if "none" in self.white_patches_tint:
+            self.white_patches_tint = ["none"]
+
         # First, convert from some old names that may be in white_patches. 
         if self.white_patches == 'POINTMARK':
             self.white_patches = "SEALPOINT"
@@ -1713,6 +1852,21 @@ class Pelt:
 
         :return: None
         """
+        highest_white = ""
+        if self.white_patches:
+            for patch in self.white_patches:
+                if patch in Pelt.little_white and highest_white not in ["little", "mid", "high", "mostly", "full"]:
+                    highest_white = "little"
+                if patch in Pelt.mid_white and highest_white not in ["mid", "high", "mostly", "full"]:
+                    highest_white = "mid"
+                if patch in Pelt.high_white and highest_white not in ["high", "mostly", "full"]:
+                    highest_white = "high"
+                if patch in Pelt.mostly_white and highest_white not in ["mostly", "full"]:
+                    highest_white = "mostly"
+                if patch == "FULLWHITE" and highest_white != "full":
+                    highest_white = "full"
+                    break
+
         if not parents:
             self.eye_colour = choice(Pelt.eye_colours)
         else:
@@ -1729,13 +1883,11 @@ class Pelt:
         # White patches must be initalized before eye color.
         num = constants.CONFIG["cat_generation"]["base_heterochromia"]
         if (
-            self.white_patches in Pelt.high_white
-            or self.white_patches in Pelt.mostly_white
-            or self.white_patches == "FULLWHITE"
+            highest_white in ["high", "mostly", "full"]
             or self.colour == "WHITE"
         ):
             num = num - 90
-        if self.white_patches == "FULLWHITE" or self.colour == "WHITE":
+        if highest_white == "full" or self.colour == "WHITE":
             num -= 10
         for _par in parents:
             if _par.pelt.eye_colour2:
@@ -1796,8 +1948,8 @@ class Pelt:
             return self.randomize_pattern_color(gender)
 
         # There is a 1/10 chance for kits to have the exact same pelt as one of their parents
-        if not random.randint(
-            0, constants.CONFIG["cat_generation"]["direct_inheritance"]
+        if constants.CONFIG["cat_generation"]["direct_inheritance"] != 0 and not random.randint(
+                0, constants.CONFIG["cat_generation"]["direct_inheritance"]
         ):  # 1/10 chance
             selected = choice(par_pelts)
             self.name = selected.name
@@ -1841,17 +1993,21 @@ class Pelt:
         )
 
         # Tortie chance
-        tortie_chance_f = game.config["cat_generation"][
+        tortie_chance_f = constants.CONFIG["cat_generation"][
             "base_female_tortie"]  # There is a default chance for female tortie
-        tortie_chance_m = game.config["cat_generation"]["base_male_tortie"]
+        tortie_chance_m = constants.CONFIG["cat_generation"]["base_male_tortie"]
         for p_ in par_pelts:
             if p_.name in Pelt.torties:
                 tortie_chance_f = int(tortie_chance_f / 2)
                 tortie_chance_m = tortie_chance_m - 1
                 break
+        if tortie_chance_f <= 1:
+            tortie_chance_f = 2
+        if tortie_chance_m <= 1:
+            tortie_chance_m = 2
 
         # Determine tortie:
-        if gender == "female" or gender == "intersex":
+        if gender == "female" or (gender == "intersex" and random.randint(1, 2) == 1):
             torbie = random.getrandbits(tortie_chance_f) == 1
         else:
             torbie = random.getrandbits(tortie_chance_m) == 1
@@ -1922,7 +2078,7 @@ class Pelt:
             chosen_pelt_color = choice(Pelt.pelt_colours)
         elif chosen_pelt == "Masked":
             if chosen_pelt_color in Pelt.no_masked:
-               chosen_pelt_color = choice(Pelt.pelt_colours) 
+               chosen_pelt_color = choice(Pelt.pelt_colours)
         
         #print('FINAL COLOR: ' + chosen_pelt_color)
             
@@ -2001,12 +2157,12 @@ class Pelt:
 
         # Tortie chance
         # There is a default chance for female tortie, slightly increased for completely random generation.
-        tortie_chance_f = game.config["cat_generation"]["base_female_tortie"] - 1
-        tortie_chance_m = game.config["cat_generation"]["base_male_tortie"]
-        if gender == "male":
-            torbie = random.getrandbits(tortie_chance_m) == 1
-        else:
+        tortie_chance_f = constants.CONFIG["cat_generation"]["base_female_tortie"] - 1
+        tortie_chance_m = constants.CONFIG["cat_generation"]["base_male_tortie"]
+        if gender == "female" or (gender == "intersex" and random.randint(1, 2) == 1):
             torbie = random.getrandbits(tortie_chance_f) == 1
+        else:
+            torbie = random.getrandbits(tortie_chance_m) == 1
 
         chosen_tortie_base = None
         if torbie:
@@ -2020,7 +2176,7 @@ class Pelt:
         # ------------------------------------------------------------------------------------------------------------#
         #   PELT COLOUR
         # ------------------------------------------------------------------------------------------------------------#
-        sparkle_chance = game.config["cat_generation"]["sparkle_chance"]
+        sparkle_chance = constants.CONFIG["cat_generation"]["sparkle_chance"]
         if randint(1,sparkle_chance) == 1:
             chosen_pelt_color = choice(
                 random.choices(Pelt.colour_categories, k=1)[0]
@@ -2039,7 +2195,7 @@ class Pelt:
                     random.choices(Pelt.colour_categories, k=1)[0]
                 )
            
-        #if somehow it escapes the while loop
+        # if somehow it escapes the while loop
         base_and_masked = base_game_pelts + ['Masked']
         if chosen_pelt not in base_and_masked and chosen_pelt_color not in Pelt.pelt_colours:
             chosen_pelt_color = 'GOLDEN'
@@ -2173,10 +2329,12 @@ class Pelt:
         else:
             self.accessory = []
 
-    def init_pattern(self):
-        base_game_patterns = ["tabby", "ticked", "mackerel", "classic", "sokoke", "agouti", "speckled",
-                           "rosette", "single", "smoke", "singlestripe", "bengal", "marbled"]
-        
+    def init_pattern(self, parents, gender):
+        base_game_patterns = [
+            "tabby", "ticked", "mackerel", "classic", "sokoke", "agouti", "speckled", "rosette", "single", "smoke",
+            "singlestripe", "bengal", "marbled"
+        ]
+
         if self.name in Pelt.torties:
             if not self.tortiebase:
                 self.tortiebase = choice(Pelt.tortiebases)
@@ -2184,37 +2342,76 @@ class Pelt:
                 chosen_pattern = set()
                 chosen_pattern.add(choice(Pelt.tortiepatterns))
 
-                num = game.config["cat_generation"]["base_extra_tortie"]
+                num = constants.CONFIG["cat_generation"]["base_extra_tortie"]
 
-                for x in range(game.config["cat_generation"]["max_tortie_amount"] - 1):
+                for x in range(constants.CONFIG["cat_generation"]["max_tortie_amount"] - 1):
                     if not random.randint(0, num):
 
                         chosen_pattern.add(choice(Pelt.tortiepatterns))
                         num += 3
 
-
                 self.pattern = list(chosen_pattern)
 
-            wildcard_chance = game.config["cat_generation"]["wildcard_tortie"]
+            self.displays_2nd_tortie = True if randint(1, 40) == 1 else False
+            if not self.pattern2:
+                chosen_pattern = set()
+                chosen_pattern.add(choice(Pelt.tortiepatterns))
+
+                num = constants.CONFIG["cat_generation"]["base_extra_tortie"] - int(constants.CONFIG["cat_generation"]["base_extra_tortie"] / 3)
+
+                for x in range(constants.CONFIG["cat_generation"]["max_tortie_amount"] - 1):
+                    if not random.randint(0, num):
+                        chosen_pattern.add(choice(Pelt.tortiepatterns))
+                        num += 3
+
+                self.pattern2 = list(chosen_pattern)
+
+            wildcard_chance = constants.CONFIG["cat_generation"]["wildcard_tortie"]
+            # TODO: update the check_wildcard function
+            """
+            if parents:
+                for p in parents:
+                    if Pelt.check_wildcard(p.pelt.name, p.pelt.colour, p.pelt.tortiebase, p.pelt.tortiecolour, p.pelt.tortiepattern) is True:
+                        wildcard_chance -= 147
+            """
+            if gender == "male":
+                print("Male tortie!")
+                wildcard_chance /= 3
+                wildcard_chance = int(wildcard_chance)
+            # lowest chance is 1/3 (both parents are wildcards + he's male)
+            if wildcard_chance <= 1:
+                wildcard_chance = 2
+
             if self.colour:
-                # The "not wildcard_chance" allows users to set wildcard_tortie to 0
+                # This is the "wildcard" chance, where you can get funky combinations.
+                # The "not wildcard_chance" allows users to set wildcard_tortie to 0,
                 # and always get wildcard torties.
                 if not wildcard_chance or random.getrandbits(wildcard_chance) == 1:
-                    # This is the "wildcard" chance, where you can get funky combinations.
+                    self.tortiecolour = choice(Pelt.pelt_colours)
+                    if self.colour == self.tortiecolour:
+                        possible_patterns = Pelt.tortiebases.copy()
+                        possible_patterns.remove(self.tortiebase)
+                        self.tortiepattern = choice(possible_patterns)
+                    else:
+                        self.tortiepattern = choice(Pelt.tortiebases)
+
+                    self.tortiecolour2 = choice(Pelt.pelt_colours)
+                    if self.colour == self.tortiecolour2:
+                        possible_patterns = Pelt.tortiebases.copy()
+                        possible_patterns.remove(self.tortiebase)
+                        self.tortiepattern2 = choice(possible_patterns)
+                    elif self.tortiecolour == self.tortiecolour2:
+                        possible_patterns = Pelt.tortiebases.copy()
+                        possible_patterns.remove(self.tortiepattern)
+                        self.tortiepattern2 = choice(possible_patterns)
+                    else:
+                        self.tortiepattern2 = choice(Pelt.tortiebases)
+
                     # people are fans of the print message, so I'm putting it back
-                    print("Wildcard tortie!")
-
-                    # Allow any pattern:
-                    self.tortiepattern = choice(Pelt.tortiebases)
-
-                    # Allow any colors that aren't the base color.
-                    possible_colors = Pelt.pelt_colours.copy()
-                    possible_colors.remove(self.colour)
-                    self.tortiecolour = choice(possible_colors)
-
+                    print(f"Wildcard tortie!\n\ncolor: {self.colour}\ntortie_base: {self.tortiebase}\n\n\nFIRST:\n\npattern(s): {str(self.pattern)}\ntortie_color: {self.tortiecolour}\ntortie_pattern: {self.tortiepattern}\n\n\nSECOND:\n\npattern(s): {str(self.pattern2)}\ntortie_color: {self.tortiecolour2}\ntortie_pattern: {self.tortiepattern2}")
                 else:
                     # Normal generation
-                    if self.tortiebase in ("singlestripe", "smoke", "single"):
+                    if self.tortiebase in ("singlestripe", "smoke", "single", "smokepoint"):
                         self.tortiepattern = choice(
                             [
                                 "tabby",
@@ -2224,10 +2421,28 @@ class Pelt:
                                 "smoke",
                                 "agouti",
                                 "ticked",
+                                "brindle",
+                                "spots"
+                            ]
+                        )
+                        self.tortiepattern2 = choice(
+                            [
+                                "tabby",
+                                "mackerel",
+                                "classic",
+                                "single",
+                                "smoke",
+                                "agouti",
+                                "ticked",
+                                "brindle",
+                                "spots"
                             ]
                         )
                     else:
                         self.tortiepattern = random.choices(
+                            [self.tortiebase, "single"], weights=[97, 3], k=1
+                        )[0]
+                        self.tortiepattern2 = random.choices(
                             [self.tortiebase, "single"], weights=[97, 3], k=1
                         )[0]
 
@@ -2257,16 +2472,40 @@ class Pelt:
                     else:
                         self.tortiecolour = "GOLDEN"
 
+                    if (self.colour in Pelt.black_colours) or (
+                            self.colour in Pelt.white_colours
+                    ):
+                        self.tortiecolour2 = choice(
+                            (Pelt.ginger_colours * 2) + Pelt.brown_colours
+                        )
+                    elif self.colour in Pelt.ginger_colours:
+                        self.tortiecolour2 = choice(
+                            Pelt.brown_colours + Pelt.black_colours * 2
+                        )
+                    elif self.colour in Pelt.brown_colours:
+                        possible_colors = Pelt.brown_colours.copy()
+                        possible_colors.remove(self.colour)
+                        possible_colors.extend(
+                            Pelt.black_colours + (Pelt.ginger_colours * 2)
+                        )
+                        self.tortiecolour2 = choice(possible_colors)
+                    else:
+                        self.tortiecolour2 = "GOLDEN"
+
             else:
                 self.tortiecolour = "GOLDEN"
+                self.tortiecolour2 = "GOLDEN"
         else:
             self.tortiebase = None
             self.tortiepattern = None
             self.tortiecolour = None
             self.pattern = None
+            self.displays_2nd_tortie = False
+            self.tortiepattern2 = None
+            self.tortiecolour2 = None
+            self.pattern2 = None
             return
             
-        
         if self.tortiebase not in base_game_patterns:
             if self.colour not in Pelt.pelt_colours:
                 self.colour = choice(Pelt.pelt_colours)
@@ -2291,7 +2530,7 @@ class Pelt:
             return
 
         # Direct inheritance. Will only work if at least one parent has white patches, otherwise continue on.
-        if par_whitepatches and game.config["cat_generation"]["direct_inheritance"] != 0 and not random.randint(0, game.config["cat_generation"]["direct_inheritance"]):
+        if par_whitepatches and constants.CONFIG["cat_generation"]["direct_inheritance"] != 0 and not random.randint(0, constants.CONFIG["cat_generation"]["direct_inheritance"]):
             # This ensures Torties and Calicos won't get direct inheritance of incorrect white patch types
             _temp = par_whitepatches.copy()
             if self.name == "Tortie":
@@ -2307,8 +2546,8 @@ class Pelt:
             # Only proceed with the direct inheritance if there are white patches that match the pelt.
             if _temp:
                 chosen_white_patches.add(choice(list(_temp)))
-                for x in range(game.config["cat_generation"]["max_white_amount"] - 1):
-                    if not random.randint(0, game.config["cat_generation"]["base_extra_white"]):
+                for x in range(constants.CONFIG["cat_generation"]["max_white_amount"] - 1):
+                    if not random.randint(0, constants.CONFIG["cat_generation"]["base_extra_white"]):
                         for p in chosen_white_patches:
                             if p in _temp:
                                 _temp.remove(p)
@@ -2317,7 +2556,7 @@ class Pelt:
 
                 self.white_patches = list(chosen_white_patches)
                 # Direct inheritance also effect the point marking.
-                if par_points and self.name != "Tortie":
+                if par_points:
                     self.points = choice(par_points)
                 else:
                     self.points = None
@@ -2330,7 +2569,7 @@ class Pelt:
         else:
             chance = 40
         # Chance of point is 1 / chance.
-        if self.name != "Tortie" and not int(random.random() * chance):
+        if not int(random.random() * chance):
             self.points = choice(Pelt.point_markings)
         else:
             self.points = None
@@ -2390,7 +2629,7 @@ class Pelt:
             random.choices(white_list, weights=weights, k=1)[0]
         ))
 
-        num = game.config["cat_generation"]["base_extra_white"]
+        num = constants.CONFIG["cat_generation"]["base_extra_white"]
 
         if any(white in Pelt.high_white for white in chosen_white_patches):
             num -= 2
@@ -2407,7 +2646,7 @@ class Pelt:
         if num < 0:
             num = 1
 
-        for x in range(game.config["cat_generation"]["max_white_amount"] - 1):
+        for x in range(constants.CONFIG["cat_generation"]["max_white_amount"] - 1):
             if not random.randint(0, num):
 
                 weights = (12, 10, 3, 0, 0)
@@ -2418,12 +2657,10 @@ class Pelt:
 
 
         self.white_patches = list(chosen_white_patches)
-        if self.points and self.white_patches in [Pelt.high_white, Pelt.mostly_white, 'FULLWHITE']:
-            self.points = None
 
     def randomize_white_patches(self):
         # Points determination. Tortie can't be pointed
-        if self.name != "Tortie" and not random.getrandbits(
+        if not random.getrandbits(
             constants.CONFIG["cat_generation"]["random_point_chance"]
         ):
             # Cat has colorpoint!
@@ -2445,28 +2682,43 @@ class Pelt:
             random.choices(white_list, weights=weights, k=1)[0]
         ))
 
-        num = game.config["cat_generation"]["base_extra_white"]
-        
-        if any(white in Pelt.high_white for white in chosen_white_patches):
+        num = constants.CONFIG["cat_generation"]["base_extra_white"]
+        highest_white = ""
+        if chosen_white_patches:
+            for patch in chosen_white_patches:
+                if patch in Pelt.little_white and highest_white not in ["little", "mid", "high", "mostly", "full"]:
+                    highest_white = "little"
+                if patch in Pelt.mid_white and highest_white not in ["mid", "high", "mostly", "full"]:
+                    highest_white = "mid"
+                if patch in Pelt.high_white and highest_white not in ["high", "mostly", "full"]:
+                    highest_white = "high"
+                if patch in Pelt.mostly_white and highest_white not in ["mostly", "full"]:
+                    highest_white = "mostly"
+                if patch == "FULLWHITE" and highest_white != "full":
+                    highest_white = "full"
+                    break
+
+        if highest_white == "high":
             num -= 2
-        elif any(white in Pelt.little_white for white in chosen_white_patches) or any(white in Pelt.mid_white for white in chosen_white_patches):
+        elif highest_white in ["little", "mid"]:
             num -= 5
 
         if num < 0:
             num = 1
 
-        for x in range(game.config["cat_generation"]["max_white_amount"] - 1):
-            if not random.randint(0, num):
+        if highest_white != "full":
+            for x in range(constants.CONFIG["cat_generation"]["max_white_amount"] - 1):
+                if not random.randint(0, num):
 
-                weights = (12, 10, 3, 0, 0)
-                chosen_white_patches.add(choice(
-                    random.choices(white_list, weights=weights, k=1)[0]
-                ))
-                num += 1
+                    weights = (12, 10, 3, 0, 0)
+                    chosen_white_patches.add(choice(
+                        random.choices(white_list, weights=weights, k=1)[0]
+                    ))
+                    num += 1
 
         self.white_patches = list(chosen_white_patches)
-        if self.points and self.white_patches in [Pelt.high_white, Pelt.mostly_white, 'FULLWHITE']:
-            self.points = None
+        if len(self.white_patches) > 1 and "FULLWHITE" in self.white_patches:
+            self.white_patches = ["FULLWHITE"]
 
     def init_white_patches(self, pelt_white, parents: tuple):
         # Vit can roll for anyone, not just cats who rolled to have white in their pelt.
@@ -2505,16 +2757,19 @@ class Pelt:
         else:
             color_tints = []
 
+        '''
         if base_tints or color_tints:
             self.tint = choice(base_tints + color_tints)
         else:
             self.tint = "none"
+        '''
 
         self.tint = "none"
         weighted_tints = sprites.cat_tints["weighted_tints"]
         all_tints = weighted_tints["dilute"] + weighted_tints["light_cool"] + weighted_tints["cool"] + weighted_tints["dark_cool"] + weighted_tints["light_warm"] + weighted_tints["warm"] + weighted_tints["dark_warm"] + weighted_tints["black"]
-            
-        self.tint = choice([choice(weighted_tints["dilute"]),choice(weighted_tints["light_cool"]),choice(weighted_tints["light_warm"]),choice(all_tints)])
+
+        self.tint = choice([choice(weighted_tints["dilute"]), choice(weighted_tints["light_cool"]), choice(weighted_tints["light_warm"]), choice(all_tints)])
+
         # TORTIE TINT
         # Basic tints as possible for all colors.
         if self.name in ["Tortie", "Calico"]:
@@ -2541,8 +2796,32 @@ class Pelt:
         else:
             self.tortie_tint = "none"
 
+        if self.name in ["Tortie", "Calico"]:
+            base_tints = sprites.cat_tints["possible_tints"]["basic"]
+            if self.tortiecolour2 in sprites.cat_tints["colour_groups"]:
+                color_group = sprites.cat_tints["colour_groups"].get(self.tortiecolour2, "warm")
+                color_tints = sprites.cat_tints["possible_tints"][color_group]
+            else:
+                color_tints = []
+
+            while self.tint in base_tints:
+                if self.tint not in base_tints:
+                    break
+                base_tints.remove(self.tint)
+            while self.tint in color_tints:
+                if self.tint not in color_tints:
+                    break
+                color_tints.remove(self.tint)
+
+            if (base_tints or color_tints) and random.randint(1, 10) == 1:
+                self.tortie_tint2 = choice(base_tints + color_tints)
+            else:
+                self.tortie_tint2 = self.tint
+        else:
+            self.tortie_tint2 = "none"
+
         # WHITE PATCHES TINT
-        if self.white_patches or self.points or (game_setting_get("vit tint") and self.vitiligo):
+        if self.white_patches or self.points or self.vitiligo:
             # Now for white patches
             base_tints = sprites.white_patches_tints["possible_tints"]["basic"]
             if self.colour in sprites.cat_tints["colour_groups"]:
@@ -2560,6 +2839,15 @@ class Pelt:
                 self.white_patches_tint = "none"
         else:
             self.white_patches_tint = "none"
+
+        if type(self.tint) != list:
+            self.tint = [self.tint]
+        if type(self.tortie_tint) != list:
+            self.tortie_tint = [self.tortie_tint]
+        if type(self.tortie_tint2) != list:
+            self.tortie_tint2 = [self.tortie_tint2]
+        if type(self.white_patches_tint) != list:
+            self.white_patches_tint = [self.white_patches_tint]
 
     def init_physical_traits(self, parents: tuple=()):
         
@@ -2602,64 +2890,64 @@ class Pelt:
                     par_traits = par_traits.difference(clash_traits)
                     par_traits.add(chosen_trait)
             inherit_trait_chance = int(random.random() * 100)
-            if inherit_trait_chance <= game.config["cat_generation"]["physical_trait_inherit_chance"]:
-                #Roll to inherit first trait, and if so, remove it from the list
+            if inherit_trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_inherit_chance"]:
+                # Roll to inherit first trait, and if so, remove it from the list
                 self.physical_trait_1 = random.choice(list(par_traits))
                 par_traits.remove(self.physical_trait_1)
                 if len(par_traits) > 0:
-                    #If we have a first trait, roll to inherit a second, and if we do, remove it from the list
+                    # If we have a first trait, roll to inherit a second, and if we do, remove it from the list
                     inherit_trait_chance = int(random.random() * 100)
-                    if inherit_trait_chance <= game.config["cat_generation"]["physical_trait_inherit_chance"]:
+                    if inherit_trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_inherit_chance"]:
                         self.physical_trait_2 = random.choice(list(par_traits))
                         par_traits.remove(self.physical_trait_2)
                         if len(par_traits) > 0:
-                            #If we have a second trait, roll to inherit a third, and if we do, remove it from the list
+                            # If we have a second trait, roll to inherit a third, and if we do, remove it from the list
                             inherit_trait_chance = int(random.random() * 100)
-                            if inherit_trait_chance <= game.config["cat_generation"]["physical_trait_inherit_chance"]:
+                            if inherit_trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_inherit_chance"]:
                                 self.physical_trait_3 = random.choice(list(par_traits))
                                 par_traits.remove(self.physical_trait_3)
                                 if len(par_traits) > 0:
-                                    #If we have a third trait, roll to inherit a fourth, and if we do, remove it from the list
+                                    # If we have a third trait, roll to inherit a fourth, and if we do, remove it from the list
                                     inherit_trait_chance = int(random.random() * 100)
-                                    if inherit_trait_chance <= game.config["cat_generation"]["physical_trait_inherit_chance"]:
+                                    if inherit_trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_inherit_chance"]:
                                         self.physical_trait_4 = random.choice(list(par_traits))
                                         par_traits.remove(self.physical_trait_4)
             if len(par_traits) > 0:
-                #If there are still leftover traits, roll to inherit as hidden with a +50% chance
+                # If there are still leftover traits, roll to inherit as hidden with a +50% chance
                 inherit_trait_chance = int((random.random() * 100) - 50)
-                if inherit_trait_chance <= game.config["cat_generation"]["physical_trait_inherit_chance"]:
+                if inherit_trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_inherit_chance"]:
                     self.physical_trait_hidden = random.choice(list(par_traits))
                     par_traits.remove(self.physical_trait_hidden)
                     if len(par_traits) > 0:
-                        #If there are still leftover traits, roll to inherit as hidden with a +50% chance
+                        # If there are still leftover traits, roll to inherit as hidden with a +50% chance
                         inherit_trait_chance = int((random.random() * 100) - 50)
-                        if inherit_trait_chance <= game.config["cat_generation"]["physical_trait_inherit_chance"]:
+                        if inherit_trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_inherit_chance"]:
                             self.physical_trait_hidden_2 = random.choice(list(par_traits))
                             par_traits.remove(self.physical_trait_hidden_2)
                             if len(par_traits) > 0:
-                                #If there are still leftover traits, roll to inherit as hidden with a +50% chance
+                                # If there are still leftover traits, roll to inherit as hidden with a +50% chance
                                 inherit_trait_chance = int((random.random() * 100) - 50)
-                                if inherit_trait_chance <= game.config["cat_generation"]["physical_trait_inherit_chance"]:
+                                if inherit_trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_inherit_chance"]:
                                     self.physical_trait_hidden_3 = random.choice(list(par_traits))
                                     par_traits.remove(self.physical_trait_hidden_3)
                                     if len(par_traits) > 0:
-                                        #If there are still leftover traits, roll to inherit as hidden with a +50% chance
+                                        # If there are still leftover traits, roll to inherit as hidden with a +50% chance
                                         inherit_trait_chance = int((random.random() * 100) - 50)
-                                        if inherit_trait_chance <= game.config["cat_generation"]["physical_trait_inherit_chance"]:
+                                        if inherit_trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_inherit_chance"]:
                                             self.physical_trait_hidden_4 = random.choice(list(par_traits))
                                             par_traits.remove(self.physical_trait_hidden_4)
             
         # Giving cats that inherited nothing a 50% of base chance roll for new traits
         if not self.physical_trait_1:
             trait_chance = int(random.random() * 100)
-            if trait_chance <= game.config["cat_generation"]["physical_trait_chance"]:
-                if trait_chance <= (0.5 * game.config["cat_generation"]["physical_trait_chance"]):
+            if trait_chance <= constants.CONFIG["cat_generation"]["physical_trait_chance"]:
+                if trait_chance <= (0.5 * constants.CONFIG["cat_generation"]["physical_trait_chance"]):
                     traitcount = 2
                     trait_chance = int(random.random() * 100)
-                    if trait_chance <= (0.5 * game.config["cat_generation"]["physical_trait_chance"]):
+                    if trait_chance <= (0.5 * constants.CONFIG["cat_generation"]["physical_trait_chance"]):
                         traitcount = 3
                         trait_chance = int(random.random() * 100)
-                        if trait_chance <= (0.5 * game.config["cat_generation"]["physical_trait_chance"]):
+                        if trait_chance <= (0.5 * constants.CONFIG["cat_generation"]["physical_trait_chance"]):
                             traitcount = 4
                 else:
                     traitcount = 1
@@ -2708,6 +2996,48 @@ class Pelt:
                 self.physical_trait_2 = None
                 self.physical_trait_3 = None
                 self.physical_trait_4 = None
+
+    @staticmethod
+    def check_wildcard(pelt_type, base_color, base_pattern, tortie_color, tortie_pattern):
+        if pelt_type not in Pelt.torties:
+            return False
+
+        # Pattern
+        if not (base_pattern in ["singlestripe", "sterstripe", "sillystripe", "dancestripe", "mimistripe", "smoke",
+                                 "stersmoke", "sillysmoke", "dancesmoke", "mimismoke", "mimisingle", "single",
+                                 "smokepoint"]
+                and tortie_pattern in ['tabby', 'stertabby', 'sillytabby', 'dancetabby', 'mimitabby', 'mackerel',
+                                       'stermackerel', 'sillymackerel', 'dancemackerel', 'mimimackerel', 'classic',
+                                       'sterclassic', 'sillyclassic', 'danceclassic', 'mimiclassic', 'single', 'smoke',
+                                       'stersmoke', 'sillysmoke', 'dancesmoke', 'mimismoke', "mimisingle", 'agouti',
+                                       'steragouti', 'sillyagouti', 'danceagouti', 'mimiagouti', 'ticked', 'sterticked',
+                                       'sillyticked', 'danceticked', 'mimiticked', 'brindle', 'spots']):
+            return True
+        elif not (tortie_pattern in [f"{base_pattern}", 'single', 'stersingle', 'sillysingle', 'dancesingle',
+                                     'mimisingle']):
+            return True
+
+        # Color
+        if base_color == "WHITE":
+            return True
+        elif not (
+                (base_color in Pelt.black_colours or base_color in Pelt.white_colours)
+                and (tortie_color in Pelt.ginger_colours or tortie_color in Pelt.brown_colours)
+        ):
+            return True
+        elif not (
+                base_color in Pelt.ginger_colours
+                and (tortie_color in Pelt.brown_colours or tortie_color in Pelt.black_colours)
+        ):
+            return True
+        elif not (
+                base_color in Pelt.brown_colours
+                and (tortie_color in Pelt.brown_colours or tortie_color in Pelt.black_colours
+                     or tortie_color in Pelt.ginger_colours) and base_color != tortie_color
+        ):
+            return True
+
+        return False
 
     @property
     def white(self):
