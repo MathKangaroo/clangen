@@ -20,7 +20,9 @@ class Switch(StrEnum):
     traceback = auto()
     biome = auto()
     secondary_biome = auto()
-    biome_weights = auto()
+    tertiary_biome = auto()
+    secondary_biome_weight = auto()
+    tertiary_biome_weight = auto()
     camp_bg = auto()
     game_mode = auto()
     favorite_sub_tab = auto()
@@ -48,7 +50,9 @@ _switches: Dict[str, Union[str, int, bool, list, dict, None]] = {
     "traceback": None,
     "biome": "",
     "secondary_biome": "",
-    "biome_weights": "Equal",
+    "tertiary_biome": "",
+    "secondary_biome_weight": "2",
+    "tertiary_biome_weight": "2",
     "camp_bg": "",
     "game_mode": "",
     "favorite_sub_tab": None,
