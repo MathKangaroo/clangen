@@ -75,7 +75,7 @@ class Thoughts:
         main_cat: "Cat", random_cat: "Cat", thought, game_mode, biome, season, camp
     ) -> bool:
         """Check if the two cats fulfills the thought constraints."""
-         # This is for checking triggering content. Checks once for general triggers and once for specific triggers.
+        # This is for checking triggering content. Checks once for general triggers and once for specific triggers.
         if "trigger" in thought:
             if not game_setting_get("allow_triggers"):
                 return False
@@ -83,8 +83,7 @@ class Thoughts:
                 toggle = thought["trigger"]
                 if not game_setting_get(toggle):
                     return False
-                #print("Warning. Thoughts with " + toggle + " are currently enabled.")
-
+                # print("Warning. Thoughts with " + toggle + " are currently enabled.")
 
         # This is for checking biome
         if "biome" in thought:
@@ -435,7 +434,7 @@ class Thoughts:
             print("ERROR: loading thoughts")
 
     @staticmethod
-    def get_chosen_thought(main_cat, other_cat, game_mode, biome, secondary_biome, biome_weights, season, camp):
+    def get_chosen_thought(main_cat, other_cat, game_mode, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight, season, camp):
         # get possible thoughts
         try:
             # checks if the cat is Rick Astley to give the rickroll thought, otherwise proceed as usual
@@ -444,9 +443,18 @@ class Thoughts:
             ).lower() == "rickastley":
                 return i18n.t("defaults.rickroll")
             else:
+                chosen_biome = biome
+                if secondary_biome != biome:
+                    if random.randint(1, secondary_biome_weight) == 1:
+                        chosen_biome = secondary_biome
+                    else:
+                        if tertiary_biome != biome:
+                            if random.randint(1, tertiary_biome_weight) == 1:
+                                chosen_biome = tertiary_biome
+
                 chosen_thought_group = choice(
                     Thoughts.load_thoughts(
-                        main_cat, other_cat, game_mode, biome, season, camp
+                        main_cat, other_cat, game_mode, chosen_biome, season, camp
                     )
                 )
                 chosen_thought = choice(chosen_thought_group["thoughts"])
