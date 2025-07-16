@@ -186,7 +186,8 @@
 		]
 	},
 	"cat_generation": {
-		"base_permanent_condition": 15,
+		"base_permanent_condition_one": 6,
+		"base_permanent_condition_two": 100,
 		"esper_chance": 6,
 		"sparkle_chance": 50,
 		"multiple_permanent_conditions": 20,
@@ -205,7 +206,7 @@
 		"max_white_amount": 2,
 		"base_extra_tortie": 3,
 		"max_tortie_amount": 2,
-		"multiple_pronouns_chance": 20, 
+		"multiple_pronouns_chance": 20,
 		"neopronoun_chance": 30,
 		"comment": [
 			"max_white_amount is the max amount of white patches one cat can generate with - 2 by default",
