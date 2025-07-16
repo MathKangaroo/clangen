@@ -5,12 +5,16 @@
             "many": "%{count} moons"
         },
         "moons_age_in_death": {
-            "one": "1 moon (in death)",
-            "many": "%{count} moons (in death)"
+            "one": "1 moon in death",
+            "many": "%{count} moons in death"
         },
         "moons_age_in_life": {
-            "one": "1 moon (in life)",
-            "many": "%{count} moons (in life)"
+            "one": "1 moon in life",
+            "many": "%{count} moons in life"
+        },
+        "years_age": {
+            "one": " (1 year)",
+            "many": " (%{count} years)"
         },
         "moon_date": "moon %{moon}",
         "leader": {
