@@ -226,29 +226,23 @@ class GenerateEvents:
 
         chosen_biome = game.clan.biome
         if game.clan.secondary_biome != game.clan.biome:
-            if game.clan.biome_weights == "Equal":
-                chosen_biome = random.choice([game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Third":
-                chosen_biome = random.choice([game.clan.biome, game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Fourth":
-                chosen_biome = random.choice(
-                    [game.clan.biome, game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+            if random.randint(1, game.clan.secondary_biome_weight) == 1:
+                chosen_biome = game.clan.secondary_biome
             else:
-                chosen_biome = game.clan.biome
+                if game.clan.tertiary_biome != game.clan.biome:
+                    if random.randint(1, game.clan.tertiary_biome_weight) == 1:
+                        chosen_biome = game.clan.tertiary_biome
 
         # skip the rest of the loading if there is an unrecognised biome
         if chosen_biome not in constants.BIOME_TYPES:
             print(
-                f"WARNING: unrecognised biome {game.clan.biome} in generate_events. Have you added it to BIOME_TYPES "
+                f"WARNING: unrecognised biome {chosen_biome} in generate_events. Have you added it to BIOME_TYPES "
                 f"in clan.py?"
             )
 
         biome = chosen_biome.lower()
 
-        """
-        if game.clan.secondary_biome != game.clan.biome:
-            print("Chosen biome: " + str(biome))
-        """
+        # print("Chosen biome: " + str(biome))
 
         # biome specific events
         event_list.extend(GenerateEvents.generate_short_events(event_type, biome))
@@ -268,6 +262,7 @@ class GenerateEvents:
         freshkill_active,
         freshkill_trigger_factor,
         sub_types=None,
+        biome="Error",
         allowed_events=None,
         excluded_events=None,
         ignore_subtyping=False,
@@ -318,7 +313,7 @@ class GenerateEvents:
                 if set(event.sub_type) != set(sub_types):
                     continue
 
-            if not event_for_location(event.location):
+            if not event_for_location(event.location, biome):
                 continue
 
             if not event_for_season(event.season):
@@ -517,15 +512,12 @@ class GenerateEvents:
 
         chosen_biome = game.clan.biome
         if game.clan.secondary_biome != game.clan.biome:
-            if game.clan.biome_weights == "Equal":
-                chosen_biome = random.choice([game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Third":
-                chosen_biome = random.choice([game.clan.biome, game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Fourth":
-                chosen_biome = random.choice(
-                    [game.clan.biome, game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+            if random.randint(1, game.clan.secondary_biome_weight) == 1:
+                chosen_biome = game.clan.secondary_biome
             else:
-                chosen_biome = game.clan.biome
+                if game.clan.tertiary_biome != game.clan.biome:
+                    if random.randint(1, game.clan.tertiary_biome_weight) == 1:
+                        chosen_biome = game.clan.tertiary_biome
 
         if chosen_biome not in game.clan.BIOME_TYPES:
             print(
@@ -534,10 +526,9 @@ class GenerateEvents:
 
         else:
             biome = chosen_biome.lower()
-            """
-            if game.clan.secondary_biome != game.clan.biome:
-                print("Chosen biome: " + str(biome))
-            """
+
+            # print("Chosen biome: " + str(biome))
+
             if not specific_event:
                 event_list.extend(
                     GenerateEvents.generate_ongoing_events(event_type, biome)
