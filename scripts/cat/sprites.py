@@ -128,7 +128,7 @@ class Sprites:
         for x in [
             'lineart', 'lineartdf', 'lineartdead', 'flutter_lineart', 'flutter_lineartdf', 'flutter_lineartdead', 'lamp_lineart', 'lamp_lineartdf', 'lamp_lineartdead',
             'blep', 'booties', 'wheels', 'disabilityaccs', 'disabilityscars',
-            'eyes', 'eyes2', 'skin', 'skin_magic' , 'skin_elemental', 'skin_bingle', 'skin_bingle2', 'skin_mathkangaroo', 'eyesdark', 'dark2', 'eyesvivid', 'vivid2', 'towheeeyes', 'towheeeyes2',
+            'eyes', 'eyes2', 'skin', 'skin_magic', 'skin_elemental', 'skin_bingle', 'skin_bingle2', 'skin_mathkangaroo', 'eyesdark', 'dark2', 'eyesvivid', 'vivid2', 'towheeeyes', 'towheeeyes2',
             'scars', 'missingscars', 'wild', 'eyes_wing', 'eyes2_halo', 'colorsplash_neckerchief', 'colorsplash_witchhat', 'skin_stain', 'skin_turtle', 'eyes_snail',
             'medcatherbs', 'beetleeyes', 'beetleeyes2', 'beetlemore', 'beetlemore2', 'neos_eyes', 'neos_eyes2', 'lamp_eyes', 'flutter_eyes', 'flutter_eyes2',
             'collars', 'bellcollars', 'bowcollars', 'nyloncollars', 'colorsplash_horn', 'colorsplash_kitsune', 'colorsplash_mermaid',
@@ -318,6 +318,16 @@ class Sprites:
             for col, color in enumerate(colors):
                 self.make_group('eyes_snail', (col, row), f'eyes_snail{color}')
 
+        # toritemasktwo
+        torite_mask_two = [
+            ['CHAOSONE', 'CHAOSTWO', 'CHAOSTHREE', 'CHAOSFOUR', 'ERROR', 'WAVE', 'PONINTTORITE', 'MASKTORITE', 'LITTLESTAR', 'TANBUNNY'],
+            ['STRIPES', 'PINITO',  'SKULL', 'SIGHT', 'BRINDLETORITE', 'SNOW', 'ROSETTESTORITE', 'AMBERONE', 'KINTSUGIONE', 'BENGALMASK'],
+            ['SHADOW', 'RAIN', 'MGLA', 'MOONLIGHT', 'MOUSE', 'SATURN', 'MARBLETORINE', 'AMBERTWO', 'PATTERN', 'MOSS'],
+            ['MONKEY', 'BUMBLEBEE', 'KINTSUGITWO', 'STORM', 'CLASSICTORNIE', 'STRIPEONETORITE', 'MACKERELTORITE', 'AMBERTHREE', 'SHADE', 'GRAFFITI'],
+            ['AGOUTITORIE', 'BENGALTORITE', 'TABBYTORITE', 'SOKKOKETORITE', 'SPECKLEDTORITE', 'TICKEDTORIE', 'MORRO', 'AMBERFOUR', 'DOG', 'ONESPOT'],
+
+           ]
+
         # Define white patches
         white_patches = [
             ['FULLWHITE', 'ANY', 'TUXEDO', 'LITTLE', 'COLOURPOINT', 'VAN', 'ANYTWO', 'MOON', 'PHANTOM', 'POWDER',
@@ -387,6 +397,10 @@ class Sprites:
         for row, wps in enumerate(era_white_patches):
             for col, wp in enumerate(wps):
                 self.make_group('eragonawp', (col, row), f'white{wp}')
+
+        for row, wps in enumerate(torite_mask_two):
+            for col, wp in enumerate(wps):
+                self.make_group('eragonatorite', (col, row), f'white{wp}')
 
         voithex_patches = [
             ['BODYSTRIPE', 'BLACKBODYSTRIPE', 'BROWNBODYSTRIPE', 'GINGERBODYSTRIPE', 'TIGERBODYSTRIPE', 'BLACKTIGERBODYSTRIPE', 'BROWNTIGERBODYSTRIPE',
@@ -534,9 +548,9 @@ class Sprites:
         dance_color_types = ['danceagouticolours', 'dancebengalcolours', 'danceclassiccolours', 'dancemackerelcolours', 'dancemarbledcolours', 'dancemaskedcolours', 'dancerosettecolours',
          'dancesinglecolours', 'dancesmokecolours', 'dancesokokecolours', 'dancespeckledcolours', 'dancesinglestripecolours', 'dancetabbycolours', 'dancetickedcolours']
         mimi_color_types = ['mimiagouticolours', 'mimibengalcolours', 'mimiclassiccolours', 'mimimackerelcolours', 'mimimarbledcolours', 'mimimaskedcolours', 'mimirosettecolours',
-         'mimisinglecolours', 'mimismokecolours', 'mimisokokecolours', 'mimispeckledcolours', 'mimisinglestripecolours', 'mimitabbycolours', 'mimitickedcolours']        
+         'mimisinglecolours', 'mimismokecolours', 'mimisokokecolours', 'mimispeckledcolours', 'mimisinglestripecolours', 'mimitabbycolours', 'mimitickedcolours']
         silly_color_types = ['sillyagouticolours', 'sillybengalcolours', 'sillyclassiccolours', 'sillymackerelcolours', 'sillymarbledcolours', 'sillymaskedcolours', 'sillyrosettecolours',
-         'sillysinglecolours', 'sillysmokecolours', 'sillysokokecolours', 'sillyspeckledcolours', 'sillysinglestripecolours', 'sillytabbycolours', 'sillytickedcolours']        
+         'sillysinglecolours', 'sillysmokecolours', 'sillysokokecolours', 'sillyspeckledcolours', 'sillysinglestripecolours', 'sillytabbycolours', 'sillytickedcolours']
         ster_color_types = ['steragouticolours', 'sterbengalcolours', 'sterclassiccolours', 'stermackerelcolours', 'stermarbledcolours', 'stermaskedcolours', 'sterrosettecolours',
          'stersinglecolours', 'stersmokecolours', 'stersokokecolours', 'sterspeckledcolours', 'stersinglestripecolours', 'stertabbycolours', 'stertickedcolours']
         hive_color_types = ['hiveagouticolours', 'hivebengalcolours', 'hiveclassiccolours', 'hivemackerelcolours', 'hivemarbledcolours', 'hivemaskedcolours', 'hiverosettecolours',
@@ -648,8 +662,7 @@ class Sprites:
             ['SHILOH', 'FRECKLED', 'HEARTBEAT']
         ]
 
-
-# Define mink's tortie patches
+        # Define mink's tortie patches
         minks_tortie_patches = [
             ['MINKFULLWHITE', 'MINKANY', 'MINKTUXEDO', 'MINKLITTLE', 'MINKCOLOURPOINT', 'MINKVAN', 'MINKANYTWO',
              'MINKMOON', 'MINKPHANTOM', 'MINKPOWDER',
@@ -681,16 +694,7 @@ class Sprites:
             ['MINKLOCKET', 'MINKBLAZEMASK', 'MINKTEARS', 'MINKDOUGIE']
         ]
 
-        # toritemasktwo
-        torite_mask_two = [
-            ['CHAOSONE', 'CHAOSTWO', 'CHAOSTHREE', 'CHAOSFOUR', 'ERROR', 'WAVE', 'PONINTTORITE', 'MASKTORITE', 'LITTLESTAR', 'TANBUNNY'],
-            ['STRIPES', 'PINITO',  'SKULL', 'SIGHT', 'BRINDLETORITE', 'SNOW', 'ROSETTESTORITE', 'AMBERONE', 'KINTSUGIONE', 'BENGALMASK'],
-            ['SHADOW', 'RAIN', 'MGLA', 'MOONLIGHT', 'MOUSE', 'SATURN', 'MARBLETORINE', 'AMBERTWO', 'PATTERN', 'MOSS'],
-            ['MONKEY', 'BUMBLEBEE', 'KINTSUGITWO', 'STORM', 'CLASSICTORNIE', 'STRIPEONETORITE', 'MACKERELTORITE', 'AMBERTHREE', 'SHADE', 'GRAFFITI'],
-            ['AGOUTITORIE', 'BENGALTORITE', 'TABBYTORITE', 'SOKKOKETORITE', 'SPECKLEDTORITE', 'TICKEDTORIE', 'MORRO', 'AMBERFOUR', 'DOG', 'ONESPOT'],
-
-           ]
-       # toritemaskthree
+        # toritemaskthree
         torite_mask_two2 = [
             ['INK','WOLF','EYEV','GEM','FOX','ORCA','PINTO','FRECKLESTWO','SOLDIER',
              'AKITA'],
@@ -1047,7 +1051,6 @@ class Sprites:
                     ["SENTRET", "SHAYMIN", "EMOLGA", "HISUI GROWLITHE", "ALOLAN VULPIX"],
                     ["VULPIX", "LUXRAY", "ALTARIA", "AZUMARILL"]]
 
-
         # medcatherbs
         for row, herbs in enumerate(medcatherbs_data):
             for col, herb in enumerate(herbs):
@@ -1235,7 +1238,6 @@ class Sprites:
         for row, mons in enumerate(pokemon_data):
             for col, mon in enumerate(mons):
                 self.make_group("pokemon", (col, row), f"acc_pokemon{mon}")
-
 
     def load_symbols(self):
         """
