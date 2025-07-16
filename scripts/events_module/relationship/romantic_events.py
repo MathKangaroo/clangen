@@ -187,15 +187,12 @@ class RomanticEvents:
 
         chosen_biome = game.clan.biome
         if game.clan.secondary_biome != game.clan.biome:
-            if game.clan.biome_weights == "Equal":
-                chosen_biome = random.choice([game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Third":
-                chosen_biome = random.choice([game.clan.biome, game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Fourth":
-                chosen_biome = random.choice(
-                    [game.clan.biome, game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+            if random.randint(1, game.clan.secondary_biome_weight) == 1:
+                chosen_biome = game.clan.secondary_biome
             else:
-                chosen_biome = game.clan.biome
+                if game.clan.tertiary_biome != game.clan.biome:
+                    if random.randint(1, game.clan.tertiary_biome_weight) == 1:
+                        chosen_biome = game.clan.tertiary_biome
 
         _biome = [str(chosen_biome).casefold(), "Any", "any"]
         for interaction in possible_interactions:
