@@ -429,6 +429,18 @@ def create_new_cat_block(
             CatRank.MEDIATOR,
             CatRank.MEDICINE_APPRENTICE,
             CatRank.MEDICINE_CAT,
+            CatRank.CARETAKER_APPRENTICE,
+            CatRank.DENKEEPER_APPRENTICE,
+            CatRank.GARDENER_APPRENTICE,
+            CatRank.MESSENGER_APPRENTICE,
+            CatRank.STORYTELLER_APPRENTICE,
+            CatRank.CARETAKER,
+            CatRank.DENKEEPER,
+            CatRank.GARDENER,
+            CatRank.MESSENGER,
+            CatRank.STORYTELLER,
+            CatRank.DEPUTY,
+            CatRank.LEADER,
         ]:
             rank = match.group(1)
             break
@@ -463,12 +475,18 @@ def create_new_cat_block(
             CatRank.APPRENTICE,
             CatRank.MEDIATOR_APPRENTICE,
             CatRank.MEDICINE_APPRENTICE,
+            CatRank.CARETAKER_APPRENTICE,
+            CatRank.DENKEEPER_APPRENTICE,
+            CatRank.GARDENER_APPRENTICE,
+            CatRank.MESSENGER_APPRENTICE,
+            CatRank.STORYTELLER_APPRENTICE,
         ]:
             age = randint(
                 Cat.age_moons[CatAge.ADOLESCENT][0],
                 Cat.age_moons[CatAge.ADOLESCENT][1],
             )
-        elif rank in [CatRank.WARRIOR, CatRank.MEDIATOR, CatRank.MEDICINE_CAT]:
+        elif rank in [CatRank.WARRIOR, CatRank.MEDIATOR, CatRank.MEDICINE_CAT, CatRank.CARETAKER, CatRank.DENKEEPER,
+                      CatRank.GARDENER, CatRank.MESSENGER, CatRank.STORYTELLER]:
             age = randint(
                 Cat.age_moons["young adult"][0], Cat.age_moons["senior adult"][1]
             )
@@ -625,6 +643,10 @@ def create_new_cat_block(
                     chosen_cat.name.give_suffix(
                         pelt=chosen_cat.pelt,
                         biome=game.clan.biome,
+                        secondary_biome=game.clan.secondary_biome,
+                        tertiary_biome=game.clan.tertiary_biome,
+                        secondary_biome_weight=game.clan.secondary_biome_weight,
+                        tertiary_biome_weight=game.clan.tertiary_biome_weight,
                         tortiepattern=chosen_cat.pelt.tortiepattern,
                     )
                 else:  # completely new name
@@ -632,10 +654,18 @@ def create_new_cat_block(
                         eyes=chosen_cat.pelt.eye_colour,
                         colour=chosen_cat.pelt.colour,
                         biome=game.clan.biome,
+                        secondary_biome=game.clan.secondary_biome,
+                        tertiary_biome=game.clan.tertiary_biome,
+                        secondary_biome_weight=game.clan.secondary_biome_weight,
+                        tertiary_biome_weight=game.clan.tertiary_biome_weight
                     )
                     chosen_cat.name.give_suffix(
                         pelt=chosen_cat.pelt.colour,
                         biome=game.clan.biome,
+                        secondary_biome=game.clan.secondary_biome,
+                        tertiary_biome=game.clan.tertiary_biome,
+                        secondary_biome_weight=game.clan.secondary_biome_weight,
+                        tertiary_biome_weight=game.clan.tertiary_biome_weight,
                         tortiepattern=chosen_cat.pelt.tortiepattern,
                     )
 
@@ -823,6 +853,11 @@ def create_new_cat(
             CatRank.APPRENTICE,
             CatRank.MEDICINE_APPRENTICE,
             CatRank.MEDIATOR_APPRENTICE,
+            CatRank.CARETAKER_APPRENTICE,
+            CatRank.DENKEEPER_APPRENTICE,
+            CatRank.GARDENER_APPRENTICE,
+            CatRank.MESSENGER_APPRENTICE,
+            CatRank.STORYTELLER_APPRENTICE,
         ):
             moons = randint(6, 11)
         elif rank == CatRank.WARRIOR:
@@ -891,6 +926,11 @@ def create_new_cat(
                 CatRank.APPRENTICE,
                 CatRank.MEDICINE_APPRENTICE,
                 CatRank.MEDIATOR_APPRENTICE,
+                CatRank.CARETAKER_APPRENTICE,
+                CatRank.DENKEEPER_APPRENTICE,
+                CatRank.GARDENER_APPRENTICE,
+                CatRank.MESSENGER_APPRENTICE,
+                CatRank.STORYTELLER_APPRENTICE,
             ):
                 new_cat.update_mentor()
 
@@ -960,41 +1000,48 @@ def create_new_cat(
                 new_cat.pelt.scars.remove(scar)
 
         # chance to give the new cat a permanent condition, higher chance for found kits and litters
+        chance_one = constants.CONFIG["cat_generation"]["base_permanent_condition_one"]
+        chance_two = constants.CONFIG["cat_generation"]["base_permanent_condition_two"]
         if kit or litter:
-            chance = int(
-                constants.CONFIG["cat_generation"]["base_permanent_condition"] / 11.25
-            )
-        else:
-            chance = constants.CONFIG["cat_generation"]["base_permanent_condition"] + 10
-        if not int(random() * chance):
+            chance_two -= int(chance_two / 3)
+            if chance_two <= chance_one:
+                chance_two = chance_one + 1
+        if randint(1, chance_two) <= chance_one:
             possible_conditions = []
             for condition in PERMANENT:
-                if (kit or litter) and PERMANENT[condition]["congenital"] not in [
-                    "always",
-                    "sometimes",
-                ]:
+                if (kit or litter) and PERMANENT[condition]["congenital"] not in ["always", "sometimes"]:
                     continue
-                # next part ensures that a kit won't get a condition that takes too long to reveal
-                moons = new_cat.moons
-                leeway = 5 - (PERMANENT[condition]["moons_until"] + 1)
-                if moons > leeway:
-                    continue
+                # No leeway testing, because a LOT of DaD conditions have later reveals
                 possible_conditions.append(condition)
+            if "excess testosterone" in possible_conditions:
+                possible_conditions.remove("excess testosterone")
+            if "testosterone deficiency" in possible_conditions:
+                possible_conditions.remove("testosterone deficiency")
+            if "chimerism" in possible_conditions:
+                possible_conditions.remove("chimerism")
+            if "mosaicism" in possible_conditions:
+                possible_conditions.remove("mosaicism")
+            if "aneuploidy" in possible_conditions:
+                possible_conditions.remove("aneuploidy")
 
             if possible_conditions:
                 chosen_condition = choice(possible_conditions)
-                if PERMANENT[chosen_condition]["congenital"] in [
-                    "always",
-                    "sometimes",
-                ]:
-                    new_cat.get_permanent_condition(chosen_condition, True)
-                    if (
-                        new_cat.permanent_condition[chosen_condition]["moons_until"]
-                        == 0
-                    ):
-                        new_cat.permanent_condition[chosen_condition][
-                            "moons_until"
-                        ] = -2
+                born_with = False
+                if PERMANENT[chosen_condition]["congenital"] == "always":
+                    born_with = True
+                elif PERMANENT[chosen_condition]["congenital"] == "sometimes":
+                    if kit or litter:
+                        born_with = True
+                    elif randint(1, 2) == 1:
+                        born_with = True
+
+                if born_with:
+                    new_cat.get_permanent_condition(chosen_condition, born_with)
+                    if new_cat.permanent_condition[chosen_condition]["moons_until"] <= 0:
+                        new_cat.permanent_condition[chosen_condition]["moons_until"] = -2
+                else:
+                    # Older cats can have non-congenital conditions
+                    new_cat.get_permanent_condition(chosen_condition, born_with)
 
                 # assign scars
                 if chosen_condition in ("lost a leg", "born without a leg"):
@@ -1942,9 +1989,17 @@ def get_special_snippet_list(
     (i.e. ["hate", "fear", "dread"] becomes "hate, fear, and dread") - Default is True
     :return: a list of the chosen items from chosen_list or a formatted string if format is True
     """
-    biome = (
-        game.clan.biome if not game.clan.override_biome else game.clan.override_biome
-    ).casefold()
+
+    chosen_biome = game.clan.biome
+    if game.clan.secondary_biome != game.clan.biome:
+        if random.randint(1, game.clan.secondary_biome_weight) == 1:
+            chosen_biome = game.clan.secondary_biome
+        else:
+            if game.clan.tertiary_biome != game.clan.biome:
+                if random.randint(1, game.clan.tertiary_biome_weight) == 1:
+                    chosen_biome = game.clan.tertiary_biome
+
+    biome = (chosen_biome if not game.clan.override_biome else game.clan.override_biome).casefold()
     global SNIPPETS
     if langs["snippet"] != i18n.config.get("locale"):
         langs["snippet"] = i18n.config.get("locale")
@@ -2444,9 +2499,19 @@ def ceremony_text_adjust(
 
     adjust_text = text
 
+    cat_name = ""
+    if cat:
+        cat_name = str(cat.name)
+        if cat.is_plural():
+            if cat.front:
+                name = str(cat.front)
+                if len(cat.alters) > 0:
+                    if name != cat_name:
+                        cat_name = name + " (" + str(cat.name) + ")"
+
     cat_dict = {
         "m_c": (
-            (str(cat.name), choice(cat.pronouns)) if cat else ("cat_placeholder", None)
+            (str(cat_name), choice(cat.pronouns)) if cat else ("cat_placeholder", None)
         ),
         "(mentor)": (
             (str(mentor.name), choice(mentor.pronouns))
@@ -2801,23 +2866,29 @@ def generate_sprite(
             )
 
             # TINTS
-            if (
-                    cat.pelt.tint != "none"
-                    and cat.pelt.tint in sprites.cat_tints["tint_colours"]
-            ):
-                # Multiply with alpha does not work as you would expect - it just lowers the alpha of the
-                # entire surface. To get around this, we first blit the tint onto a white background to dull it,
-                # then blit the surface onto the sprite with pygame.BLEND_RGB_MULT
-                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                tint.fill(tuple(sprites.cat_tints["tint_colours"][cat.pelt.tint]))
-                new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-            if (
-                    cat.pelt.tint != "none"
-                    and cat.pelt.tint in sprites.cat_tints["dilute_tint_colours"]
-            ):
-                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][cat.pelt.tint]))
-                new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+            base_none = False
+            for tint in cat.pelt.tint:
+                if tint == "none":
+                    base_none = True
+            something = False
+            if something:
+                base_tints = [cat.pelt.tint[0]]
+            else:
+                base_tints = cat.pelt.tint
+
+            if not base_none:
+                for pelt_tint in base_tints:
+                    if pelt_tint in sprites.cat_tints["tint_colours"]:
+                        # Multiply with alpha does not work as you would expect - it just lowers the alpha of the
+                        # entire surface. To get around this, we first blit the tint onto a white background to dull it,
+                        # then blit the surface onto the sprite with pygame.BLEND_RGB_MULT
+                        tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                        tint.fill(tuple(sprites.cat_tints["tint_colours"][pelt_tint]))
+                        new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                    elif pelt_tint in sprites.cat_tints["dilute_tint_colours"]:
+                        tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                        tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][pelt_tint]))
+                        new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
         else:
             # Base Coat
             new_sprite.blit(
@@ -2825,55 +2896,129 @@ def generate_sprite(
                 (0, 0),
             )
 
-            # Create the patch image
+            # TINTS
+            base_none = False
+            for tint in cat.pelt.tint:
+                if tint == "none":
+                    base_none = True
+            tortie_1_none = False
+            for tint in cat.pelt.tortie_tint:
+                if tint == "none":
+                    tortie_1_none = True
+            tortie_2_none = False
+            for tint in cat.pelt.tortie_tint:
+                if tint == "none":
+                    tortie_2_none = True
+            something = False
+            if something:
+                base_tints = [cat.pelt.tint[0]]
+            else:
+                base_tints = cat.pelt.tint
+            if something:
+                tortie_1_tints = [cat.pelt.tortie_tint[0]]
+            else:
+                tortie_1_tints = cat.pelt.tortie_tint
+            if something:
+                tortie_2_tints = [cat.pelt.tortie_tint2[0]]
+            else:
+                tortie_2_tints = cat.pelt.tortie_tint2
+
+            if not base_none:
+                for pelt_tint in base_tints:
+                    if pelt_tint in sprites.cat_tints["tint_colours"]:
+                        # Multiply with alpha does not work as you would expect - it just lowers the alpha of the
+                        # entire surface. To get around this, we first blit the tint onto a white background to dull it,
+                        # then blit the surface onto the sprite with pygame.BLEND_RGB_MULT
+                        tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                        tint.fill(tuple(sprites.cat_tints["tint_colours"][pelt_tint]))
+                        new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                    elif pelt_tint in sprites.cat_tints["dilute_tint_colours"]:
+                        tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                        tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][pelt_tint]))
+                        new_sprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+
+            # normal tortie
             if cat.pelt.tortiepattern == "Single":
                 tortie_pattern = "SingleColour"
             else:
                 tortie_pattern = cat.pelt.tortiepattern
 
             for pattern in cat.pelt.pattern:
-                if cat.pelt.tortie_tint != "none":
-                    if cat.pelt.tortie_tint in sprites.cat_tints["tint_colours"]:
-                        patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour + cat_sprite].copy()
+                if not tortie_1_none:
+                    patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour + cat_sprite].copy()
 
-                        tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        tint.fill(tuple(sprites.cat_tints["tint_colours"][cat.pelt.tortie_tint]))
-                        patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                    for pelt_tint in tortie_1_tints:
+                        if pelt_tint in sprites.cat_tints["tint_colours"]:
+                            tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                            tint.fill(tuple(sprites.cat_tints["tint_colours"][pelt_tint]))
+                            patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                        elif pelt_tint in sprites.cat_tints["dilute_tint_colours"]:
+                            tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                            tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][pelt_tint]))
+                            patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
 
-                        patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                    patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
 
-                        # Add patches onto cat.
-                        new_sprite.blit(patches, (0, 0))
-                    elif cat.pelt.tortie_tint in sprites.cat_tints["dilute_tint_colours"]:
-                        patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour + cat_sprite].copy()
-
-                        tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                        tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][cat.pelt.tortie_tint]))
-                        patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
-
-                        patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-
-                        # Add patches onto cat.
-                        new_sprite.blit(patches, (0, 0))
-                    else:
-                        patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour + cat_sprite].copy()
-                        patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-                        # Add patches onto cat.
-                        new_sprite.blit(patches, (0, 0))
+                    # Add patches onto cat.
+                    new_sprite.blit(patches, (0, 0))
                 else:
                     patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour + cat_sprite].copy()
                     patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                     # Add patches onto cat.
                     new_sprite.blit(patches, (0, 0))
 
-         # draw white patches
+            # double tortie
+            if cat.pelt.tortiepattern2 == "Single":
+                tortie_pattern = "SingleColour"
+            else:
+                tortie_pattern = cat.pelt.tortiepattern2
+
+            if cat.pelt.displays_2nd_tortie and something:
+                for pattern in cat.pelt.pattern2:
+                    if not tortie_2_none:
+                        patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour2 + cat_sprite].copy()
+
+                        for pelt_tint in tortie_2_tints:
+                            if pelt_tint in sprites.cat_tints["tint_colours"]:
+                                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                                tint.fill(tuple(sprites.cat_tints["tint_colours"][pelt_tint]))
+                                patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                            elif pelt_tint in sprites.cat_tints["dilute_tint_colours"]:
+                                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                                tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][pelt_tint]))
+                                patches.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+
+                        patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+
+                        # Add patches onto cat.
+                        new_sprite.blit(patches, (0, 0))
+                    else:
+                        patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour2 + cat_sprite].copy()
+                        patches.blit(sprites.sprites["tortiemask" + pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                        # Add patches onto cat.
+                        new_sprite.blit(patches, (0, 0))
+
+        # draw white patches
+        white_none = False
+        for tint in cat.pelt.white_patches_tint:
+            if tint == "none":
+                white_none = True
+        if something:
+            white_tints = [cat.pelt.white_patches_tint[0]]
+        else:
+            white_tints = cat.pelt.white_patches_tint
+
         if cat.pelt.white_patches:
             for white in cat.pelt.white_patches:
-                if cat.pelt.white_patches_tint != "none" and cat.pelt.white_patches_tint in sprites.white_patches_tints["tint_colours"]:
+                if not white_none:
                     white_patch = sprites.sprites['white' + white + cat_sprite].copy()
-                    tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    tint.fill(tuple(sprites.white_patches_tints["tint_colours"][cat.pelt.white_patches_tint]))
-                    white_patch.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    for pelt_tint in white_tints:
+                        if pelt_tint in sprites.white_patches_tints["tint_colours"]:
+                            tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                            tint.fill(tuple(sprites.white_patches_tints["tint_colours"][pelt_tint]))
+                            white_patch.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
                     new_sprite.blit(white_patch, (0, 0))
                 else:
                     new_sprite.blit(sprites.sprites['white' + white + cat_sprite], (0, 0))
@@ -2882,63 +3027,57 @@ def generate_sprite(
 
         if cat.pelt.points:
             points = sprites.sprites["white" + cat.pelt.points + cat_sprite].copy()
-            if (
-                    cat.pelt.white_patches_tint != "none"
-                    and cat.pelt.white_patches_tint
-                    in sprites.white_patches_tints["tint_colours"]
-            ):
-                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                tint.fill(
-                    tuple(
-                        sprites.white_patches_tints["tint_colours"][
-                            cat.pelt.white_patches_tint
-                        ]
-                    )
-                )
-                points.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            if not white_none:
+                for pelt_tint in white_tints:
+                    if pelt_tint in sprites.white_patches_tints["tint_colours"]:
+                        tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                        tint.fill(tuple(sprites.white_patches_tints["tint_colours"][pelt_tint]))
+                        points.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
             new_sprite.blit(points, (0, 0))
 
         if cat.pelt.vitiligo:
-            if game_setting_get("vit tint"):
-                vitiligo = sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite].copy()
-                if (
-                        cat.pelt.white_patches_tint != "none"
-                        and cat.pelt.white_patches_tint
-                        in sprites.white_patches_tints["tint_colours"]
-                ):
-                    tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-                    tint.fill(
-                        tuple(
-                            sprites.white_patches_tints["tint_colours"][
-                                cat.pelt.white_patches_tint
-                            ]
-                        )
-                    )
-                    vitiligo.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                new_sprite.blit(vitiligo, (0, 0))
-            else:
-                new_sprite.blit(
-                    sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite], (0, 0)
-                )
+            vitiligo = sprites.sprites["white" + cat.pelt.vitiligo + cat_sprite].copy()
+
+            if game_setting_get("vit tint") and not white_none:
+                for pelt_tint in white_tints:
+                    if pelt_tint in sprites.white_patches_tints["tint_colours"]:
+                        tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                        tint.fill(tuple(sprites.white_patches_tints["tint_colours"][pelt_tint]))
+                        vitiligo.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            new_sprite.blit(vitiligo, (0, 0))
 
         # draw eyes & scars1
-        neos_eyes = ['NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW', 'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN',
-                 'NEO YELLOWRED', 'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK', 'NEO MINT', 'NEO BLACKBLUE']
-        
-        flutter_eyes = ['FLUTTER SUNSET', 'FLUTTER MONARCH', 'FLUTTER PEACOCK', 'FLUTTER LUNAR', 'FLUTTER GREENORANGE', 'FLUTTER BEACH', 'FLUTTER REDADMIRAL', 'FLUTTER DARK', 'FLUTTER RAINBOW', 'FLUTTER LIGHTBLUE', 'FLUTTER GALAXY', 'FLUTTER STAINEDGLASS',
-                 'FLUTTER GLASSWING', 'FLUTTER GREENSTRIPE', 'FLUTTER BLUEYELLOW', 'FLUTTER PASTELGALAXY', 'FLUTTER MOTH', 'FLUTTER SPARKLYDUST', 'FLUTTER IMPERIAL', 'FLUTTER PINKHEARTS', 'FLUTTER DUSTOX']
-    
-        lamp_eyes = ['LAMP YELLOW', 'LAMP ORANGE', 'LAMP HAZEL', 'LAMP YELLOWGREEN', 'LAMP GREEN', 'LAMP BLUE', 'LAMP DARKBLUE', 'LAMP GRAY', 'LAMP CYAN', 'LAMP TURQUOISE', 'LAMP PURPLE', 'LAMP GOLD',
-                 'LAMP ORANGE2', 'LAMP DARKHAZEL', 'LAMP DARKBLUE2', 'LAMP BLUE2', 'LAMP BROWN', 'LAMP PALEYELLOW', 'LAMP LIGHTYELLOW', 'LAMP DARKYELLOW', 'LAMP GOLDENGREEN']
-        
-        angel_eyes = ['ANGEL YELLOW', 'ANGEL ORANGE', 'ANGEL HAZEL', 'ANGEL YELLOWGREEN', 'ANGEL GREEN', 'ANGEL BLUE', 'ANGEL DARKBLUE', 'ANGEL GRAY', 'ANGEL CYAN', 'ANGEL TURQUOISE', 'ANGEL PURPLE', 'ANGEL GOLD',
-                 'ANGEL COPPER', 'ANGEL MINT', 'ANGEL DARKBLUE2', 'ANGEL BLUE2', 'ANGEL BROWN', 'ANGEL SILVER', 'ANGEL LIGHTYELLOW', 'ANGEL DARKYELLOW', 'ANGEL GOLDENGREEN']
-        
-        snail_eyes = ['SNAIL YELLOW', 'SNAIL ORANGE', 'SNAIL HAZEL', 'SNAIL YELLOWGREEN', 'SNAIL GREEN', 'SNAIL BLUE', 'SNAIL DARKBLUE', 'SNAIL GRAY', 'SNAIL CYAN', 'SNAIL TURQUOISE', 'SNAIL PURPLE', 'SNAIL GOLD',
-                 'SNAIL COPPER', 'SNAIL MINT', 'SNAIL DARKBLUE2', 'SNAIL BLUE2', 'SNAIL BROWN', 'SNAIL SILVER', 'SNAIL LIGHTYELLOW', 'SNAIL DARKYELLOW', 'SNAIL GOLDENGREEN']
+        neos_eyes = ['NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW',
+                     'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN', 'NEO YELLOWRED',
+                     'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK',
+                     'NEO MINT', 'NEO BLACKBLUE']
+
+        flutter_eyes = ['FLUTTER SUNSET', 'FLUTTER MONARCH', 'FLUTTER PEACOCK', 'FLUTTER LUNAR', 'FLUTTER GREENORANGE',
+                        'FLUTTER BEACH', 'FLUTTER REDADMIRAL', 'FLUTTER DARK', 'FLUTTER RAINBOW', 'FLUTTER LIGHTBLUE',
+                        'FLUTTER GALAXY', 'FLUTTER STAINEDGLASS', 'FLUTTER GLASSWING', 'FLUTTER GREENSTRIPE',
+                        'FLUTTER BLUEYELLOW', 'FLUTTER PASTELGALAXY', 'FLUTTER MOTH', 'FLUTTER SPARKLYDUST',
+                        'FLUTTER IMPERIAL', 'FLUTTER PINKHEARTS', 'FLUTTER DUSTOX']
+
+        lamp_eyes = ['LAMP YELLOW', 'LAMP ORANGE', 'LAMP HAZEL', 'LAMP YELLOWGREEN', 'LAMP GREEN', 'LAMP BLUE',
+                     'LAMP DARKBLUE', 'LAMP GRAY', 'LAMP CYAN', 'LAMP TURQUOISE', 'LAMP PURPLE', 'LAMP GOLD',
+                     'LAMP ORANGE2', 'LAMP DARKHAZEL', 'LAMP DARKBLUE2', 'LAMP BLUE2', 'LAMP BROWN', 'LAMP PALEYELLOW',
+                     'LAMP LIGHTYELLOW', 'LAMP DARKYELLOW', 'LAMP GOLDENGREEN']
+
+        angel_eyes = ['ANGEL YELLOW', 'ANGEL ORANGE', 'ANGEL HAZEL', 'ANGEL YELLOWGREEN', 'ANGEL GREEN', 'ANGEL BLUE',
+                      'ANGEL DARKBLUE', 'ANGEL GRAY', 'ANGEL CYAN', 'ANGEL TURQUOISE', 'ANGEL PURPLE', 'ANGEL GOLD',
+                      'ANGEL COPPER', 'ANGEL MINT', 'ANGEL DARKBLUE2', 'ANGEL BLUE2', 'ANGEL BROWN', 'ANGEL SILVER',
+                      'ANGEL LIGHTYELLOW', 'ANGEL DARKYELLOW', 'ANGEL GOLDENGREEN']
+
+        snail_eyes = ['SNAIL YELLOW', 'SNAIL ORANGE', 'SNAIL HAZEL', 'SNAIL YELLOWGREEN', 'SNAIL GREEN', 'SNAIL BLUE',
+                      'SNAIL DARKBLUE', 'SNAIL GRAY', 'SNAIL CYAN', 'SNAIL TURQUOISE', 'SNAIL PURPLE', 'SNAIL GOLD',
+                      'SNAIL COPPER', 'SNAIL MINT', 'SNAIL DARKBLUE2', 'SNAIL BLUE2', 'SNAIL BROWN', 'SNAIL SILVER',
+                      'SNAIL LIGHTYELLOW', 'SNAIL DARKYELLOW', 'SNAIL GOLDENGREEN']
 
         cs_eyes = angel_eyes + snail_eyes
-        
+
         if cat.pelt.eye_colour in neos_eyes:
             eyes = sprites.sprites["neos_eyes" + cat.pelt.eye_colour + cat_sprite].copy()
         elif cat.pelt.eye_colour in flutter_eyes:
@@ -2952,11 +3091,9 @@ def generate_sprite(
         else:
             eyes = sprites.sprites["eyes" + cat.pelt.eye_colour + cat_sprite].copy()
 
-        if cat.pelt.eye_colour2 != None:
+        if cat.pelt.eye_colour2 is not None:
             if cat.pelt.eye_colour2 in neos_eyes:
-                eyes.blit(
-                    sprites.sprites["neos_eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0)
-                )
+                eyes.blit(sprites.sprites["neos_eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0))
             elif cat.pelt.eye_colour2 in flutter_eyes:
                 eyes.blit(sprites.sprites["flutter_eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0))
             elif cat.pelt.eye_colour2 in lamp_eyes:
@@ -2964,9 +3101,7 @@ def generate_sprite(
             elif cat.pelt.eye_colour2 in angel_eyes:
                 eyes.blit(sprites.sprites["angel_eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0))
             else:
-                eyes.blit(
-                    sprites.sprites["eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0)
-                )
+                eyes.blit(sprites.sprites["eyes2" + cat.pelt.eye_colour2 + cat_sprite], (0, 0))
         if age != "newborn" or cat.pelt.eye_colour not in cs_eyes:
             new_sprite.blit(eyes, (0, 0))
 
@@ -2989,7 +3124,7 @@ def generate_sprite(
                 special_flags=pygame.BLEND_RGB_MULT,
             )
             new_sprite.blit(sprites.sprites["lighting" + cat_sprite], (0, 0))
-        
+
         if cat.pelt.eye_colour in flutter_eyes:
             if not dead:
                 new_sprite.blit(sprites.sprites["flutter_lines" + cat_sprite], (0, 0))
@@ -3017,7 +3152,7 @@ def generate_sprite(
                 new_sprite.blit(eyes, (0, 0))
         # draw skin and scars2
         blendmode = pygame.BLEND_RGBA_MIN
-        
+
         skin_sprites_turtle = ['BLACKTURTLE', 'PINKTURTLE', 'DARKBROWNTURTLE', 'BROWNTURTLE', 'LIGHTBROWNTURTLE', 'DARKTURTLE', 'DARKGREYTURTLE', 'GREYTURTLE', 'DARKSALMONTURTLE',
                     'SALMONTURTLE', 'PEACHTURTLE', 'DARKMARBLEDTURTLE', 'MARBLEDTURTLE', 'LIGHTMARBLEDTURTLE', 'DARKBLUETURTLE', 'BLUETURTLE', 'LIGHTBLUETURTLE', 'REDTURTLE']
 
@@ -3025,7 +3160,7 @@ def generate_sprite(
                           'STAINLIGHTPINK', 'STAINYELLOW', 'STAINPINK', 'STAINGOLD', 'STAINHOTPINK', 'STRAINDIRT',
                           'STAINCYAN', 'STAINLIME', 'STAINTURQUOISE', 'STAINGREEN', 'STAINBLUEGREEN', 'STAINPEACOCK']
 
-        
+
         if cat.pelt.skin in ['BLACK', 'PINK', 'DARKBROWN', 'BROWN', 'LIGHTBROWN', 'DARK', 'DARKGREY', 'GREY', 'DARKSALMON',
                     'SALMON', 'PEACH', 'DARKMARBLED', 'MARBLED', 'LIGHTMARBLED', 'DARKBLUE', 'BLUE', 'LIGHTBLUE', 'RED']:
             new_sprite.blit(sprites.sprites["skin" + cat.pelt.skin + cat_sprite], (0, 0))
