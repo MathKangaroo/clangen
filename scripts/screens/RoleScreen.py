@@ -523,7 +523,7 @@ class RoleScreen(Screens):
                 self.switch_caretaker_app.disable(),self.switch_caretaker.enable()
             elif self.the_cat.status.rank == CatRank.MESSENGER_APPRENTICE:
                 self.switch_messenger_app.disable(),self.switch_messenger.enable()
-            elif self.the_cat.statu.rank == CatRank.DENKEEPER_APPRENTICE:
+            elif self.the_cat.status.rank == CatRank.DENKEEPER_APPRENTICE:
                 self.switch_denkeeper_app.disable(),self.switch_denkeeper.enable()
             elif self.the_cat.status.rank == CatRank.GARDENER_APPRENTICE:
                 self.switch_gardener_app.disable(),self.switch_gardener.enable()
