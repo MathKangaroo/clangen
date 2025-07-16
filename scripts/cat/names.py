@@ -76,7 +76,9 @@ class Name:
         suffix=None,
         biome=None,
         secondary_biome=None,
-        biome_weights=None,
+        tertiary_biome=None,
+        secondary_biome_weight=None,
+        tertiary_biome_weight=None,
         specsuffix_hidden=False,
         load_existing_name=False,
         cat=None,
@@ -101,13 +103,13 @@ class Name:
         name_fixpref = False
         # Set prefix
         if prefix is None:
-            self.give_prefix(eyes, color, biome, secondary_biome, biome_weights)
+            self.give_prefix(eyes, color, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight)
             # needed for random dice when we're changing the Prefix
             name_fixpref = True
 
         # Set suffix
         if self.suffix is None:
-            self.give_suffix(pelt, biome, secondary_biome, biome_weights, tortiepattern)
+            self.give_suffix(pelt, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight, tortiepattern)
             if name_fixpref and self.prefix is None:
                 # needed for random dice when we're changing the Prefix
                 name_fixpref = False
@@ -150,9 +152,9 @@ class Name:
             ):
                 # check if random die was for prefix
                 if name_fixpref:
-                    self.give_prefix(eyes, color, biome, secondary_biome, biome_weights)
+                    self.give_prefix(eyes, color, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight)
                 else:
-                    self.give_suffix(pelt, biome, secondary_biome, biome_weights, tortiepattern)
+                    self.give_suffix(pelt, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight, tortiepattern)
 
                 nono_name = self.prefix + self.suffix
                 possible_three_letter = (
@@ -176,7 +178,7 @@ class Name:
         return self.__repr__()
 
     # Generate possible prefix
-    def give_prefix(self, eyes, colour, biome, secondary_biome, biome_weights):
+    def give_prefix(self, eyes, colour, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight):
         """Generate possible prefix."""
         # decided in constants.CONFIG: cat_name_controls
         if constants.CONFIG["cat_name_controls"]["always_name_after_appearance"]:
@@ -190,14 +192,12 @@ class Name:
 
         chosen_biome = biome
         if secondary_biome != biome:
-            if biome_weights == "Equal":
-                chosen_biome = random.choice([biome, secondary_biome])
-            elif biome_weights == "Third":
-                chosen_biome = random.choice([biome, biome, secondary_biome])
-            elif biome_weights == "Fourth":
-                chosen_biome = random.choice([biome, biome, biome, secondary_biome])
+            if random.randint(1, secondary_biome_weight) == 1:
+                chosen_biome = secondary_biome
             else:
-                chosen_biome = biome
+                if tertiary_biome != biome:
+                    if random.randint(1, tertiary_biome_weight) == 1:
+                        chosen_biome = tertiary_biome
 
         # Add possible prefix categories to list.
         possible_prefix_categories = []
@@ -231,7 +231,7 @@ class Name:
         with contextlib.suppress(NameError):
             if self.prefix in names.prefix_history:
                 # do this recursively until a name that isn't on the history list.
-                self.give_prefix(eyes, colour, biome, secondary_biome, biome_weights)
+                self.give_prefix(eyes, colour, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight)
                 # prevent infinite recursion
                 if len(names.prefix_history) > 0:
                     names.prefix_history.pop(0)
@@ -243,9 +243,9 @@ class Name:
                 names.prefix_history.pop(0)
 
     # Generate possible suffix
-    def give_suffix(self, pelt, biome, secondary_biome, biome_weights, tortiepattern):
+    def give_suffix(self, pelt, biome, secondary_biome, tertiary_biome, secondary_biome_weight, tertiary_biome_weight, tortiepattern):
         """Generate possible suffix."""
-        if pelt is None or pelt == "SingleColour":
+        if pelt is None:
             self.suffix = random.choice(self.names_dict["normal_suffixes"])
         else:
             named_after_pelt = not random.getrandbits(2)  # Chance for True is '1/8'.
@@ -253,14 +253,12 @@ class Name:
 
             chosen_biome = biome
             if secondary_biome != biome:
-                if biome_weights == "Equal":
-                    chosen_biome = random.choice([biome, secondary_biome])
-                elif biome_weights == "Third":
-                    chosen_biome = random.choice([biome, biome, secondary_biome])
-                elif biome_weights == "Fourth":
-                    chosen_biome = random.choice([biome, biome, biome, secondary_biome])
+                if random.randint(1, secondary_biome_weight) == 1:
+                    chosen_biome = secondary_biome
                 else:
-                    chosen_biome = biome
+                    if tertiary_biome != biome:
+                        if random.randint(1, tertiary_biome_weight) == 1:
+                            chosen_biome = tertiary_biome
 
             # Pelt name only gets used if there's an associated suffix.
             if named_after_pelt:
