@@ -125,14 +125,13 @@ class Relationship:
 
         biome = game.clan.biome
         if game.clan.secondary_biome != game.clan.biome:
-            if game.clan.biome_weights == "Equal":
-                biome = random.choice([game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Third":
-                biome = random.choice([game.clan.biome, game.clan.biome, game.clan.secondary_biome])
-            elif game.clan.biome_weights == "Fourth":
-                biome = random.choice([game.clan.biome, game.clan.biome, game.clan.biome, game.clan.secondary_biome])
+            if random.randint(1, game.clan.secondary_biome_weight) == 1:
+                biome = game.clan.secondary_biome
             else:
-                biome = game.clan.biome
+                if game.clan.tertiary_biome != game.clan.biome:
+                    if random.randint(1, game.clan.tertiary_biome_weight) == 1:
+                        biome = game.clan.tertiary_biome
+
         biome = str(biome).casefold()
 
         game_mode = game.clan.game_mode
