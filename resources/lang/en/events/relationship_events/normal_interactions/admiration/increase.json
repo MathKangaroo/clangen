@@ -97,9 +97,9 @@
 	{
 		"id": "admire_inc_medium0",
 		"interactions": [
-			"m_c cant help but appreciate r_c being who {PRONOUN/r_c/subject} {PRONOUN/r_c/are/is}.",
+			"m_c cant help but appreciate r_c being who {PRONOUN/r_c/subject} {VERB/r_c/are/is}.",
 			"m_c thinks r_c is being thoughtful of others.",
-			"m_c admits {PRONOUN/m_c/subject} really {PRONOUN/m_c/admire/admires} r_c's recent efforts.",
+			"m_c admits {PRONOUN/m_c/subject} really {VERB/m_c/admire/admires} r_c's recent efforts.",
 			"m_c is inspired by r_c's passion.",
 			"m_c didn't know that r_c was so talented.",
 			"m_c thinks that r_c is very creative.",
@@ -390,7 +390,7 @@
 			"m_c thinks the Clan's ancestors smile upon r_c.",
 			"m_c is proud to be in the same Clan as r_c.",
 			"m_c can't believe how talented r_c is!",
-			"m_c truly believes r_c has endless potential {PRONOUN/r_c/subject} {PRONOUN/r_c/keep/keeps} surpassing every day.",
+			"m_c truly believes r_c has endless potential {PRONOUN/r_c/subject} {VERB/r_c/keep/keeps} surpassing every day.",
 			"m_c is truly deeply touched hearing just how much r_c actually remembers about {PRONOUN/m_c/object}.",
 			"m_c asked r_c for {PRONOUN/r_c/poss} opinion on a topic and had a surprisingly insightful conversation."
 		]
