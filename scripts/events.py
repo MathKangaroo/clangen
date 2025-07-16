@@ -459,6 +459,10 @@ class Events:
                                         invited_cat.name.prefix,
                                         invited_cat.name.suffix,
                                         game.clan.biome,
+                                        game.clan.secondary_biome,
+                                        game.clan.tertiary_biome,
+                                        game.clan.secondary_biome_weight,
+                                        game.clan.tertiary_biome_weight,
                                         cat=invited_cat,
                                     )
                                     invited_cat.name.give_suffix(
@@ -466,6 +470,10 @@ class Events:
                                         biome=game.clan.biome
                                         if not game.clan.override_biome
                                         else game.clan.override_biome,
+                                        secondary_biome=game.clan.secondary_biome,
+                                        tertiary_biome=game.clan.tertiary_biome,
+                                        secondary_biome_weight=game.clan.secondary_biome_weight,
+                                        tertiary_biome_weight=game.clan.tertiary_biome_weight,
                                         tortiepattern=None,
                                     )
                                     invited_cat.specsuffix_hidden = False
@@ -1389,7 +1397,7 @@ class Events:
                         "loving",
                         "wise",
                         "faithful",
-                        #more traits
+                        # more traits
                         "dedicated",
                         "forgiving",
                         "nurturing",
@@ -1414,13 +1422,12 @@ class Events:
                         chance = int(chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
                         
                     skills_string = str(cat.skills)
-                    med_skills = ["TEACHER", "CLEVER", "STAR", "DELIVERER", "HERBALIST", "HISTORIAN",
-                                  "PRODIGY", "VET", "SCHOLAR", "THINKER", "MEMORY", "GARDENER",
-                                  "HEALER", "LORE"]
-                    
+                    med_skills = ["TEACHER", "CLEVER", "STAR", "DELIVERER", "HERBALIST", "HISTORIAN", "PRODIGY", "VET",
+                                  "SCHOLAR", "THINKER", "MEMORY", "GARDENER", "HEALER", "LORE"]
+
                     for skill in med_skills:
                         if skill in skills_string:
-                            chance = int(chance/1.5)
+                            chance = int(chance / 1.5)
 
                     if chance == 0:
                         chance = 1
@@ -1522,55 +1529,60 @@ class Events:
                         gardener_chance = constants.CONFIG["roles"]["gardener_app_chance"]
                         messenger_chance = constants.CONFIG["roles"]["messenger_app_chance"]
                         storyteller_chance = constants.CONFIG["roles"]["storyteller_app_chance"]
-                        
+
                         skills_string = str(cat.skills)
                         media_skills = ["TEACHER", "CLEVER", "SPEAKER", "MEDIATOR", "INSIGHTFUL", "KIT", "HISTORIAN",
                                         "PATIENT", "INNOVATOR", "MATCHMAKER", "COOPERATIVE", "MUSICVIBES", "AURAVIBES",
                                         "GIFTGIVER", "LANGUAGE", "THINKER", "SONG"]
-                        care_skills = ["MEDTIATOR", "INSIGHTFUL", "STORY", "KIT", "DELIVERER", "ASSIST", "PATIENT", "GRACE"]
+                        care_skills = ["MEDIATOR", "INSIGHTFUL", "STORY", "KIT", "DELIVERER", "ASSIST", "PATIENT",
+                                       "GRACE"]
                         den_skills = ["HUNTER", "CAMP", "GARDENER", "DECORATOR", "MEMORY", "ASSIST", "HISTORIAN",
                                       "BOOKMAKER", "CHEF", "CLEAN", "IMMUNE", "TUNNELER"]
-                        mess_skills = ["RUNNER", "SENSE", "WAKEFUL", "AGILE", "STEALTHY", "TRACKER", "LANGUAGE", "MESSENGER"]
-                        garden_skills =["GARDENER", "DECORATOR", "MEMORY", "HERBALIST", "BUG", "BONES", "GIFTGIVER", "CHEF"]
-                        story_skills = ["HISTORIAN", "MUSICVIBES", "MEMORY", "STORY", "SPEAKER", "LANGUAGE", "LORE", "SONG"]
-                        
-                        
-                        if cat.personality.trait in [
-                            "charismatic",
-                            "loving",
-                            "responsible",
-                            "wise",
-                            "thoughtful",
-                            #more traits
-                            "scheming",
-                            "calculating",
-                            "teacherly",
-                            "civil",
-                            "sympathetic",
-                            "polite",
-                            "flirty",
-                            "manipulative",
-                            "talkative",
-                            "cooperative",
-                            "philosophical"
-                        ]:
-                            mediator_chance = int(mediator_chance / 1.5)
-                            
-                        if cat.personality.trait in ["stable", "tidy","blunt", "polished", "perfectionist", "dry", "organized"]:
-                            denkeeper_chance = int(denkeeper_chance/1.5)
-                        
-                        if cat.personality.trait in ["loving", "nurturing","polite","thoughtful", "cooperative", "sentimental", "delicate"]:
-                            caretaker_chance = int(caretaker_chance/1.5)
-                        
-                        if cat.personality.trait in ["sneaky", "reliable", "punctual", "escapist", "persuasive", "methodical", "alert"]:
-                            messenger_chance = int(messenger_chance/1.5)
-                        
-                        if cat.personality.trait in ["nurturing", "methodical", "nerdy", "strange"]:
-                            gardener_chance = int(gardener_chance/1.5)
+                        mess_skills = ["RUNNER", "SENSE", "WAKEFUL", "AGILE", "STEALTHY", "TRACKER", "LANGUAGE",
+                                       "MESSENGER"]
+                        garden_skills = ["GARDENER", "DECORATOR", "MEMORY", "HERBALIST", "BUG", "BONES", "GIFTGIVER",
+                                         "CHEF"]
+                        story_skills = ["HISTORIAN", "MUSICVIBES", "MEMORY", "STORY", "SPEAKER", "LANGUAGE", "LORE",
+                                        "SONG"]
 
+                        for skill in media_skills:
+                            if skill in skills_string:
+                                mediator_chance = int(mediator_chance / 1.5)
+                        for skill in care_skills:
+                            if skill in skills_string:
+                                caretaker_chance = int(caretaker_chance / 1.5)
+                        for skill in den_skills:
+                            if skill in skills_string:
+                                denkeeper_chance = int(denkeeper_chance / 1.5)
+                        for skill in mess_skills:
+                            if skill in skills_string:
+                                messenger_chance = int(messenger_chance / 1.5)
+                        for skill in garden_skills:
+                            if skill in skills_string:
+                                gardener_chance = int(gardener_chance / 1.5)
+                        for skill in story_skills:
+                            if skill in skills_string:
+                                storyteller_chance = int(storyteller_chance / 1.5)
+
+                        if cat.personality.trait in ["charismatic", "loving", "responsible", "wise", "thoughtful",
+                                                     "scheming", "calculating", "teacherly", "civil", "sympathetic",
+                                                     "polite", "flirty", "manipulative", "talkative", "cooperative",
+                                                     "philosophical"]:
+                            mediator_chance = int(mediator_chance / 1.5)
+                        if cat.personality.trait in ["stable", "tidy","blunt", "polished", "perfectionist", "dry",
+                                                     "organized"]:
+                            denkeeper_chance = int(denkeeper_chance / 1.5)
+                        if cat.personality.trait in ["loving", "nurturing","polite","thoughtful", "cooperative",
+                                                     "sentimental", "delicate"]:
+                            caretaker_chance = int(caretaker_chance / 1.5)
+                        if cat.personality.trait in ["sneaky", "reliable", "punctual", "escapist", "persuasive",
+                                                     "methodical", "alert"]:
+                            messenger_chance = int(messenger_chance / 1.5)
+                        if cat.personality.trait in ["nurturing", "methodical", "nerdy", "strange"]:
+                            gardener_chance = int(gardener_chance / 1.5)
                         if cat.personality.trait in ["goofy", "flamboyant", "dynamic", "playful", "folksy", "hearty"]:
-                            storyteller_chance = int(storyteller_chance/1.5)    
-                            
+                            storyteller_chance = int(storyteller_chance / 1.5)
+
                         if cat.is_disabled() and get_clan_setting("higher_disabled_med_rates"):
                             mediator_chance = int(mediator_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
                             caretaker_chance = int(caretaker_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
@@ -1593,8 +1605,8 @@ class Events:
                             storyteller_chance = 1
 
                         # Only become a mediator if there is already one in the clan.
-                        #prioritize most developped roles to least developped:
-                        #denkeeper > caretaker > storyteller > messenger > gardener
+                        # prioritize most developed roles to least developed:
+                        # denkeeper > caretaker > storyteller > messenger > gardener
                         if (
                             mediator_list
                             and not has_mediator_apprentice
@@ -1619,7 +1631,7 @@ class Events:
                             self.ceremony(cat, CatRank.CARETAKER_APPRENTICE)
                             self.ceremony_accessory = True
                             self.gain_accessories(cat)
-                        if (
+                        elif (
                             storyteller_list
                             and not has_storyteller_apprentice
                             and not int(random.random() * storyteller_chance)
@@ -1627,7 +1639,7 @@ class Events:
                             self.ceremony(cat, CatRank.STORYTELLER_APPRENTICE)
                             self.ceremony_accessory = True
                             self.gain_accessories(cat)
-                        if (
+                        elif (
                             messenger_list
                             and not has_messenger_apprentice
                             and not int(random.random() * messenger_chance)
@@ -1635,7 +1647,7 @@ class Events:
                             self.ceremony(cat, CatRank.MESSENGER_APPRENTICE)
                             self.ceremony_accessory = True
                             self.gain_accessories(cat)
-                        if (
+                        elif (
                             gardener_list
                             and not has_gardener_apprentice
                             and not int(random.random() * gardener_chance)
