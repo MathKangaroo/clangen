@@ -1,5 +1,5 @@
 import traceback
-from random import choice
+from random import choice, randint
 from typing import TYPE_CHECKING
 
 import i18n
@@ -445,11 +445,11 @@ class Thoughts:
             else:
                 chosen_biome = biome
                 if secondary_biome != biome:
-                    if random.randint(1, secondary_biome_weight) == 1:
+                    if randint(1, secondary_biome_weight) == 1:
                         chosen_biome = secondary_biome
                     else:
                         if tertiary_biome != biome:
-                            if random.randint(1, tertiary_biome_weight) == 1:
+                            if randint(1, tertiary_biome_weight) == 1:
                                 chosen_biome = tertiary_biome
 
                 chosen_thought_group = choice(
