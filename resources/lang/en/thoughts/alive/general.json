@@ -5545,13 +5545,13 @@
         ],
         "has_injuries": {
             "m_c": [
-                "shock"
+                "shock",
+                "lingering shock"
             ]
         },
             "perm_conditions": {
             "m_c": [
-                "recurring shock",
-                "lingering shock"
+                "recurring shock"
             ]
         }
     },
