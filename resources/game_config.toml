@@ -18,7 +18,7 @@ dev_tools = false
 
   # Helps set a buff for interactions that increases other values other than the main value.
   # For example, if a cat has a positive romantic interaction with another cat,
-  # their platonic like and comfort levels will also increase, 
+  # their platonic like and comfort levels will also increase,
   # and their dislike will decrease. Increasing this setting's value will decrease the buff
   passive_influence_div = 1.5
 
@@ -215,6 +215,7 @@ dev_tools = false
   min_kits = 1
   max_kits = 6
 
+  # number / total for that age across all kit amounts = chance of having that many kits for that age
   [pregnancy.one_kit_possibility]
     "young adult" = 8
     adult = 9
@@ -252,13 +253,28 @@ dev_tools = false
     senior = 0
 
 [cat_generation]
+  # base 1/chance that a cat will generate with a permanent condition. gets modified further in code
   base_permanent_condition = 90
+
+  # 1/2^(chance - 1) that a male cat will be a tortie
   base_male_tortie = 13
+
+  # 1/2^(chance/2) that a female cat will be a tortie
   base_female_tortie = 4
+
+  # base 1/(chance + 1) that a cat will have heterochromia. gets modified further in code
   base_heterochromia = 120
+
+  # 1/(chance + 1) for a cat to have same pelt as one of their parents
   direct_inheritance = 15
+
+  # 1/2^(chance) that a cat will be a wildcard tortie
   wildcard_tortie = 9
+
+  # base 1/2^(chance) that a cat will have vitiligo
   vit_chance = 8
+
+  # 1/2^(chance) that a cat will have colourpoint
   random_point_chance = 5
 
 [cat_name_controls]
@@ -270,34 +286,72 @@ dev_tools = false
   allow_eye_names = true
 
 [accessory_generation]
+  # base 1/chance a cat generates with an accessory 
   base_acc_chance = 150
+
+  # modifiers for accessories add or subtract from chance IN THE DENOMINATOR 
+  #   i.e. 1/(chance + med_modifier + baby_modifier + elder_modifier + ...)
+  # so SUBTRACTING will INCREASE the chance an accessory is given
+
+  # modifies accessory chance based on if cat is a medicine cat
   med_modifier = -80
+
+  # modifies accessory chance based on if cat is a kitten or adolescent
   baby_modifier = -20
+
+  # modifies accessory chance based on if cat is a senior or senior adult
   elder_modifier = 20
+
+  # modifies accessory chance based on if cat has "happy" traits
   happy_trait_modifier = -30
+
+  # modifies accessory chance based on if cat has "grumpy" traits
   grumpy_trait_modifier = 30
+
+  # modifies accessory chance based on if cat had a ceremony
   ceremony_modifier = -20
+
+  # modifies accessory chance based on if cat already has at least one other accessory
   multiple_acc_modifier = 50
 
 [transition_related]
+  # base 1/chance that a cat will trans their gender
   base_trans_chance = 256
+
+  # modifiers for transitioning add or subtract from chance IN THE DENOMINATOR 
+  #   i.e. 1/(chance + adolescent_modifier + older_modifier)
+  # so SUBTRACTING will INCREASE the chance a cat transitions
+
+  # modifies transition chance based on if cat is an adolescent
   adolescent_modifier = -128
+
+  # modifies transition chance based on if cat is an adult or older
   older_modifier = 256
 
 [fading]
+  # age that a cat will complete fading
   age_to_fade = 202
+
+  # max opacity when a cat fades
   opacity_at_fade = 20
+
+  # affects curve of how fast a cat's sprite will fade
   visual_fading_speed = 5
 
 [roles]
+  # base 1/chance that a cat will be chosen as a mediator apprentice
   mediator_app_chance = 50
+
+  # base 1/chance that a cat will be chosen as a med cat apprentice
   base_medicine_app_chance = 41
 
 [roles.become_mediator_chances]
+  # 1/chance that a cat will switch to mediator. rolls every moon, so keep it high.
   warrior = 5000
   elder = 400
 
 [lost_cat]
+  # 1/chance that a lost cat will return on their own
   rejoin_chance = 20
 
 [cat_ages]
@@ -317,14 +371,15 @@ dev_tools = false
   sick_sprites = true
 
 [patrol_generation]
-  classic_difficulty_modifier = 1
-  expanded_difficulty_modifier = 2.5
-
+  # modifies success rate based on game mode. higher = more difficult.
   # the Cruel Season difficulty modifier needs to have a space rather than an underscore 
   # due to how it's written in the save files. So don't try to 'fix' it.
+  classic_difficulty_modifier = 1
+  expanded_difficulty_modifier = 2.5
   "cruel season_difficulty_modifier" = 3
 
   # amount to modify patrol success based on patrol stats
+  # increasing this value increases the NUMERATOR for success (denominator is fixed at 120)
   win_stat_cat_modifier = 10
   better_stat_modifier = 5
   best_stat_modifier = 10
@@ -344,19 +399,38 @@ dev_tools = false
   debug_ensure_patrol_outcome = ""
 
 [event_generation]
+  # forces event with this id to occur
   debug_ensure_event_id = ""
+
+  # forces events of this kind to occur. can be:
+  #   "new_cat" | "death" | "injury" | "misc"
   debug_type_override = ""
+
+  # forces specified event to occur regardless of if requirements are met
   debug_override_requirements = false
 
 [death_related]
+  # base 1/chance that leader will die
   leader_death_chance = 50
+
+  # base 1/chance a cat will die
   classic_death_chance = 500
   expanded_death_chance = 350
   "cruel season_death_chance" = 300
+
+  # modifiers for death chance based on if a war is going badly
+  # SUBTRACTS from the denominator so higher = more likely to die
   war_death_modifier_leader = 35
   war_death_modifier = 330
+
+  # base 1/2^(chance) a completely random murder occurs
+  # aggression and instability will make the denominator lower and increase chance of murder
   base_random_murder_chance = 25
+
+  # base 1/chance a disliked cat will be murdered
   base_murder_kill_chance = 80
+
+  # age cats will start dying of old age based on old_age_death_curve
   old_age_death_start = 150
 
   # multiplier that affects the chances of cats dying once they are over old_age_death_start moons
@@ -365,13 +439,21 @@ dev_tools = false
   old_age_death_curve = 4.5
 
 [condition_related]
+  # 10/chance an illness will occur
   expanded_illness_chance = 250
   "cruel season_illness_chance" = 200
   classic_illness_chance = 500
+
+  # 5/chance (for most personalities) or 15/chance (for some personalities) an injury will occur 
   classic_injury_chance = 450
   expanded_injury_chance = 250
   "cruel season_injury_chance" = 150
+
+  # 1/chance a cat will get a permanent condition from an event with that possibility 
   permanent_condition_chance = 15
+
+  # modifiers for injury chance based on if a war is going badly
+  # SUBTRACTS from the denominator so higher = more likely to get injured
   war_injury_modifier = 225
 
 [clan_creation]
@@ -379,16 +461,25 @@ dev_tools = false
   rerolls = 3
 
 [graduation]
+  # base possible experience gain for apprentices
+  # [[lowest_exp_gain, highest_exp_gain], [lowest_exp_gain2, highest_exp_gain2]]
+  # use the second range to slightly increase the probability that those values are used
   base_app_timeskip_ex = [[3, 12], [5, 6]]
   base_med_app_timeskip_ex = [[2, 7], [2, 3]]
+
+  # minimum age required for a cat to graduate
   min_graduating_age = 10
 
 [graduation.max_apprentice_age]
+  # max apprentice ages. after this, they're forcibly promoted
   "medicine cat apprentice" = 30
   apprentice = 25
   "mediator apprentice" = 25
 
 [outside_ex]
+  # base possible experience gain for cats outside the clan
+  # [[lowest_exp_gain, highest_exp_gain], [lowest_exp_gain2, highest_exp_gain2]]
+  # use the second range to slightly increase the probability that those values are used
   base_adolescent_timeskip_ex = [[2, 10], [4, 5]]
   base_adult_timeskip_ex = [[4, 12], [6, 7]]
   base_senior_timeskip_ex = [[3, 9], [3, 4]]
@@ -492,6 +583,8 @@ dev_tools = false
     moons_earlier_healed = 1
 
 [save_load]
+  # whether or not to perform integrity checks and attempt to fix issues with saves
+  # feature is still WIP - doesn't do anything yet
   load_integrity_checks = true
 
 [sorting]
@@ -515,6 +608,9 @@ dev_tools = false
   always_halloween = false
 
 [theme]
+  # colours are specified as [r, g, b] where r, g, b are numbers from 0 to 255
+  # alpha transparency is from 0 to 255, where 0 is fully transparent and 255 is fully opaque
+
   dark_mode_background = [57, 50, 36]
   light_mode_background = [206, 194, 168]
   dark_mode_clan_symbols = [239, 229, 206]
@@ -522,16 +618,16 @@ dev_tools = false
   dark_mode_event_alternate = [87, 76, 55]
   light_mode_event_alternate = [167, 148, 111]
 
-[theme.fullscreen_background.light]
-  vignette_alpha = 10
-  fade_color = [150, 150, 148]
-  dropshadow_alpha = 30
+  [theme.fullscreen_background.light]
+    vignette_alpha = 10
+    fade_color = [150, 150, 148]
+    dropshadow_alpha = 30
 
-[theme.fullscreen_background.dark]
-  vignette_alpha = 50
-  fade_color = [100, 100, 100]
-  dropshadow_alpha = 100
-  mainmenu_tint = [239, 229, 206]
+  [theme.fullscreen_background.dark]
+    vignette_alpha = 50
+    fade_color = [100, 100, 100]
+    dropshadow_alpha = 100
+    mainmenu_tint = [239, 229, 206]
 
 [clan_resources]
   [clan_resources.herbs]
@@ -557,6 +653,7 @@ dev_tools = false
     # herb bonus applied when cats should gather a boosted number of herbs
     general_amount_bonus = 2
 
+    # adjust weights for finding [1 herb type, 2 herb types, 3 herb types] for each season
     [clan_resources.herbs.forest]
       newleaf = [2, 3, 2]
       greenleaf = [1, 2, 3]
