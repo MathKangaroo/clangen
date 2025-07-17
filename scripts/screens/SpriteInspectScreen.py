@@ -250,11 +250,9 @@ class SpriteInspectScreen(Screens):
         self.valid_life_stages = []
         for life_stage in SpriteInspectScreen.cat_life_stages:
             self.valid_life_stages.append(life_stage)
-            if life_stage == current_life_stage:
-                break
 
         # Store the index of the currently displayed life stage.
-        self.displayed_life_stage = len(self.valid_life_stages) - 1
+        self.displayed_life_stage = self.valid_life_stages.index(current_life_stage)
 
         # Reset all the toggles
         self.lifestage = None
