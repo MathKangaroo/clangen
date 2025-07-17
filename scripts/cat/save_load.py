@@ -162,11 +162,6 @@ def add_cat_to_fade_id(cat_id):
     cat_to_fade.append(cat_id)
 
 
-def set_faded_cats(faded_cat_ids: List):
-    global faded_ids
-    faded_ids = faded_cat_ids
-
-
 def get_faded_ids():
     return faded_ids + cat_to_fade
 
