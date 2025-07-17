@@ -156,3 +156,17 @@ def add_faded_offspring_to_faded_cat(clanname, parent: str, offspring: str):
     safe_save(faded_parent_path, cat_info)
 
     return True
+
+
+def fade_cats():
+    global faded_ids, cat_to_fade
+    faded_ids = faded_ids + cat_to_fade
+    cat_to_fade.clear()
+
+
+def add_cat_to_fade_id(cat_id):
+    cat_to_fade.append(cat_id)
+
+
+def get_faded_ids():
+    return faded_ids
