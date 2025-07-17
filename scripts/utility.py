@@ -903,7 +903,6 @@ def create_new_cat(
             status_dict={
                 "social": original_social,
                 "age": age,
-                "rank": rank,
                 "group": original_group,
             },
             gender=_gender,
@@ -920,7 +919,7 @@ def create_new_cat(
             new_cat.add_to_clan()
             # check if cat is the correct rank
             if new_cat.status.rank != rank:
-                new_cat.status._change_rank(rank)
+                new_cat.status._change_rank(CatRank(rank))
             # give apprentice aged cat a mentor
             if new_cat.status.rank in (
                 CatRank.APPRENTICE,
