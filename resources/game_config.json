@@ -108,11 +108,16 @@
 			"parent_to_kit": {
 				"romantic": 0,
 				"platonic": 40,
-				"dislike": 0,
+				"dislike": 25,
 				"admiration": 30,
 				"comfortable": 40,
-				"jealousy": 0,
-				"trust": 30
+				"jealousy": 20,
+				"trust": 30,
+				"comment": [
+					"Dislike and jealousy are called for the turmoiled litter events.",
+					"While still having platonic value at least.",
+					"Only occurs with the turmoil right after a litter is born though."
+				]
 			}
 		},
 		"sib_buff": {
@@ -177,12 +182,14 @@
 		"max_kit_possibility": {"young adult": 1, "adult": 1, "senior adult": 0, "senior": 0},
 		"min_kits": 1,
 		"max_kits": 6,
+		"failed_adopt": {"intersex": 0.10, "female": 0.05, "male": 0.15},
 		"comment": [
 			"primary mated - 1/chance for kits, relationship and other factors will influence this chance",
 			"primary unmated - 1/chance for kits, relationship and other factors will influence this chance",
 			"The kit number is incremental. It is 1-6 as default so if you change these numbers, you should probably keep this in mind.",
 			"As in, your max kits number should probably be 5 more than the min kits number.",
-			"But that's not required - just makes more sense that way with how the litters are generated."
+			"But that's not required - just makes more sense that way with how the litters are generated.",
+			"Failed adoption in this case is how often a false pregnancy results in no kits, no end of adoption. Toggled with the pregnancy turmoil setting in game."
 		]
 	},
 	"cat_generation": {
@@ -209,6 +216,11 @@
 		"multiple_pronouns_chance": 20,
 		"neopronoun_chance": 30,
 		"comment": [
+			"multiple_permanent_conditions (20 by default) - 1/chance for a cat to be born with one extra permanent condition,",
+			"runs until it's tried to give a cat [max_conditions_born_with - 1] extra conditions.",
+			"max_conditions_born_with (3 by default) - the maximum amount of permanent conditions a cat can be born with.",
+			"comorbidity_chance (5 by default) - 1/chance for a cat that's being given an extra permanent condition to be given",
+			"a condition that is comorbid with any of their existing ones instead of a random one.",
 			"max_white_amount is the max amount of white patches one cat can generate with - 2 by default",
 			"max_tortie_amount is the max amount of tortie patches one cat can generate with - 2 by default",
 			"Note that extra patch chances decrease with each extra patch - chances base_extra_white 5 by default, base_extra_tortie 3 by default",
