@@ -1223,7 +1223,7 @@
     "season": ["any"],
     "sub_type": ["accessory"],
     "weight": 15,
-    "event_text": "m_c gives r_c a acc_singular to make up for a bad fight between them.",
+    "event_text": "r_c gives m_c a acc_singular to make up for a bad fight between them.",
     "new_accessory": ["PLANT", "FLOWER", "WILD", "PLANT2", "FRUIT","BUTTERFLIES"],
     "m_c": {
       "age": ["young adult", "adult", "senior adult","senior"],
