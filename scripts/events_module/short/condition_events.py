@@ -36,6 +36,8 @@ from scripts.utility import (
     get_leader_life_notice,
 )
 
+from scripts.game_structure.game.settings import game_setting_get
+
 
 # ---------------------------------------------------------------------------- #
 #                             Condition Event Class                            #
