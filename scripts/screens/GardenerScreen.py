@@ -127,6 +127,7 @@ class GardenerScreen(Screens):
         self.craft_button = None
         self.init_acc = None
         self.new_acc = None
+        self.acc_crafted = False
 
     def handle_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
@@ -179,6 +180,7 @@ class GardenerScreen(Screens):
                 self.selected_submenu = "accessory"
                 self.setup_accessory()
                 self.update_gardener_info()
+                self.acc_button.disable()
             elif event.ui_element == self.random:
                 if self.selected_submenu is not None:
                     self.acc_preview.kill()
@@ -196,6 +198,7 @@ class GardenerScreen(Screens):
                 if self.selected_submenu is not None:
                     self.acc_preview.kill()
                     self.selected_cat.pelt.accessory.remove(self.new_acc)
+                    update_sprite(self.selected_cat)
                     self.acc_bonus_label.kill()
                     self.acc_bonus_dropdown.kill()
                     self.accessory_label.kill()
@@ -207,6 +210,7 @@ class GardenerScreen(Screens):
                     self.setup_accessory()
             elif event.ui_element == self.craft_button:
                 game.patrolled.append(self.gardeners[self.selected_gardener].ID)
+                self.acc_crafted = True
                 game.mediated.append(self.selected_cat.ID)
                 output = str(self.selected_cat.name) + " recieved a new accessory!"
                 if len(self.acc_bonuses) > 1:
@@ -885,6 +889,7 @@ class GardenerScreen(Screens):
         else:
             self.acc_button.enable()
             self.farm_button.disable()
+            self.acc_crafted = False
 
 
     def update_search_cats(self, search_text):
@@ -910,6 +915,11 @@ class GardenerScreen(Screens):
         self.update_page()
 
     def exit_screen(self):
+        if self.selected_cat is not None:
+            if not self.acc_crafted:
+                self.selected_cat.pelt.accessory.remove(self.new_acc)
+                update_sprite(self.selected_cat)
+        
         self.selected_cat = None
 
         for ele in self.gardener_elements:
@@ -973,6 +983,7 @@ class GardenerScreen(Screens):
             del self.craft_button
             self.acc_preview.kill()
             del self.acc_preview
+        self.selected_submenu = None
 
     def chunks(self, L, n):
         return [L[x : x + n] for x in range(0, len(L), n)]
