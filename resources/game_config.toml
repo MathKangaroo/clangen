@@ -470,11 +470,11 @@ dev_tools = false
   # minimum age required for a cat to graduate
   min_graduating_age = 10
 
-[graduation.max_apprentice_age]
-  # max apprentice ages. after this, they're forcibly promoted
-  "medicine cat apprentice" = 30
-  apprentice = 25
-  "mediator apprentice" = 25
+  [graduation.max_apprentice_age]
+    # max apprentice ages. after this, they're forcibly promoted
+    "medicine cat apprentice" = 30
+    apprentice = 25
+    "mediator apprentice" = 25
 
 [outside_ex]
   # base possible experience gain for cats outside the clan
