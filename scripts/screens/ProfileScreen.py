@@ -835,9 +835,8 @@ class ProfileScreen(Screens):
         if the_cat.age == CatAge.NEWBORN:
             output += "???"
         else:
-            output += i18n.t(
-                "screens.profile.eyes_label", eyes=the_cat.pelt.describe_eyes()
-            )
+            #avoiding translation bc there are 500 eye colors and i dont hate myself
+            output += "eyes: " + str(the_cat.describe_eyes())
         # NEWLINE ----------
         output += "\n"
 
