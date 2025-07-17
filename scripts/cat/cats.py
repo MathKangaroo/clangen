@@ -228,7 +228,7 @@ class Cat:
             potential_id = str(next(Cat.id_iter))
 
             if game.clan:
-                faded_cats = save_load.faded_ids
+                faded_cats = save_load.get_faded_ids()
             else:
                 faded_cats = []
 

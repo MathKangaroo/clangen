@@ -18,7 +18,11 @@ import ujson
 from scripts.cat.cats import Cat, cat_class
 from scripts.cat.enums import CatRank, CatGroup
 from scripts.cat.names import names
-from scripts.cat.save_load import save_cats, add_cat_to_fade_id, get_faded_ids
+from scripts.cat.save_load import (
+    save_cats,
+    get_faded_ids,
+    load_faded_cat_ids,
+)
 from scripts.cat.sprites import sprites
 from scripts.clan_package.settings import save_clan_settings, load_clan_settings
 from scripts.clan_package.settings.clan_settings import reset_loaded_clan_settings
@@ -802,10 +806,7 @@ class Clan:
         if "war" in clan_data:
             game.clan.war = clan_data["war"]
 
-        if "faded_cats" in clan_data:
-            if clan_data["faded_cats"].strip():  # Check for empty string
-                for cat in clan_data["faded_cats"].split(","):
-                    add_cat_to_fade_id(cat)
+        load_faded_cat_ids(clan_data["clanname"])
 
         game.clan.last_focus_change = clan_data.get("last_focus_change")
         game.clan.clans_in_focus = clan_data.get("clans_in_focus", [])
