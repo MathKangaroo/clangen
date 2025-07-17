@@ -832,7 +832,12 @@ class ProfileScreen(Screens):
         output += "\n"
 
         # EYE COLOR
-        output += "eyes: " + str(the_cat.describe_eyes())
+        if the_cat.age == CatAge.NEWBORN:
+            output += "???"
+        else:
+            output += i18n.t(
+                "screens.profile.eyes_label", eyes=the_cat.pelt.describe_eyes()
+            )
         # NEWLINE ----------
         output += "\n"
 
@@ -905,7 +910,7 @@ class ProfileScreen(Screens):
         else:
             output += i18n.t("general.moons_age", count=the_cat.moons)
             output += i18n.t("general.years_age", count=years)
-        
+
         # TRAITS
         trait_descriptions = {
             'TEETHUPPER': 'long upper fangs',
