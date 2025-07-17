@@ -370,6 +370,10 @@ dev_tools = false
   # set to false to disable sick sprites
   sick_sprites = true
 
+  # This is used to recolor lineart to blend in better
+  lineart_color_sc = [47, 51, 64]
+  lineart_color_df = [30, 8, 11]
+
 [patrol_generation]
   # modifies success rate based on game mode. higher = more difficult.
   # the Cruel Season difficulty modifier needs to have a space rather than an underscore 
