@@ -831,6 +831,10 @@ class RelationshipScreen(Screens):
         )
 
         related = False
+        if get_clan_setting("first cousin mates"):
+            check_cousins = False
+        else:
+            check_cousins = the_relationship.cat_to.is_cousin(self.the_cat)
         # MATE
         if (
             len(self.the_cat.mate) > 0
@@ -871,11 +875,6 @@ class RelationshipScreen(Screens):
         else:
             # FAMILY DOT
             # Only show family dot on cousins if first cousin mates are disabled.
-            if get_clan_setting("first cousin mates"):
-                check_cousins = False
-            else:
-                check_cousins = the_relationship.cat_to.is_cousin(self.the_cat)
-
             if (
                 the_relationship.cat_to.is_uncle_aunt(self.the_cat)
                 or self.the_cat.is_uncle_aunt(the_relationship.cat_to)
