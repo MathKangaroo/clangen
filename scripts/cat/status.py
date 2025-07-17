@@ -525,11 +525,13 @@ class Status:
         if self.group_history:
             last_entry = self.group_history[-1]
             # remove 0 moons history to avoid save bloat
+            """
             if len(self.group_history) > 1 and last_entry["moons_as"] == 0:
                 if self.group == last_entry["group"]:
                     saved_group = last_entry["group"]
                 self.group_history.remove(last_entry)
                 last_entry = self.group_history[-1]
+            """
             if last_entry["group"] == self.group and last_entry["rank"] == new_rank:
                 return
         group = self.group if not saved_group else saved_group
