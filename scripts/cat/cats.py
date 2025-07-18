@@ -1893,7 +1893,6 @@ class Cat:
         old_age = self.age
         if not self.immortality:
             self.moons += 1
-        self.moons += 1
         if self.moons == 1 and self.status.rank == CatRank.NEWBORN:
             self.status._change_rank(CatRank.KITTEN)
         self.in_camp = 1
