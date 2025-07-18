@@ -27,6 +27,8 @@ from ..game_structure.screen_settings import MANAGER
 from ..ui.generate_box import BoxStyles, get_box
 from ..ui.generate_button import get_button_dict, ButtonStyles
 
+from ..game_structure.game.settings import game_setting_get
+
 
 class RoleScreen(Screens):
     the_cat = None
@@ -120,7 +122,7 @@ class RoleScreen(Screens):
                 self.the_cat.rank_change(CatRank.KITTEN, resort=True)
                 self.update_selected_cat()
 
-        elif event.type == pygame.KEYDOWN and game.settings["keybinds"]:
+        elif event.type == pygame.KEYDOWN and game_setting_get("keybinds"):
             if event.key == pygame.K_ESCAPE:
                 self.change_screen("profile screen")
             elif event.key == pygame.K_RIGHT:
