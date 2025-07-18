@@ -131,10 +131,10 @@ class Events:
 
         # Calling of "one_moon" functions.
         for cat in Cat.all_cats.copy().values():
-            if cat.status.alive_in_player_clan:
-                self.one_moon_cat(cat)
-            else:
+            if not cat.status.group:
                 self.one_moon_outside_cat(cat)
+            elif cat.status.alive_in_player_clan or cat.status.group.is_afterlife():
+                self.one_moon_cat(cat)
 
         # keeping this commented out till disasters are more polished
         # self.disaster_events.handle_disasters()
@@ -708,7 +708,7 @@ class Events:
             healthy_apprentices = [
                 cat
                 for cat in Cat.all_cats.values()
-                if (cat.status.rank == CatRank.APPRENTICE or cat.status.rank == CatRank.DENKEEPER_APPRENTICE )and cat.available_to_work()
+                if (cat.status.rank == CatRank.APPRENTICE or cat.status.rank == CatRank.DENKEEPER_APPRENTICE) and cat.available_to_work()
             ]
 
             app_amount = (
@@ -875,16 +875,11 @@ class Events:
             cat_IDs = predetermined_cat_IDs
 
         if not predetermined_cat_IDs:
-            eligible_cats = []
-            for cat in Cat.all_cats.values():
-                if not cat.status.is_outsider and not cat.dead:
-                    continue
-                if cat.ID not in Cat.outside_cats:
-                    # The outside-value must be set to True before the cat can go to cotc
-                    Cat.outside_cats.update({cat.ID: cat})
-
-                if cat.status.is_lost(CatGroup.PLAYER_CLAN):
-                    eligible_cats.append(cat)
+            eligible_cats = [
+                cat
+                for cat in Cat.all_cats.values()
+                if not cat.dead and cat.status.is_lost(CatGroup.PLAYER_CLAN)
+            ]
 
             if not eligible_cats:
                 return
@@ -2650,7 +2645,7 @@ class Events:
     def coming_out(self, cat):
         """turnin' the kitties trans..."""
 
-        if cat.age.is_baby():
+        if cat.age.is_baby() or cat.gender != cat.genderalign:
             return
 
         random_cat = get_random_moon_cat(Cat, main_cat=cat)
