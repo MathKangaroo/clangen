@@ -3189,21 +3189,21 @@ def generate_sprite(
         if cat.pelt.eye_colour in flutter_eyes:
             if not dead:
                 new_sprite.blit(sprites.sprites["flutter_lines" + cat_sprite], (0, 0))
-            elif cat.df:
+            elif cat.status.group == CatGroup.DARK_FOREST:
                 new_sprite.blit(sprites.sprites["flutter_lineartdf" + cat_sprite], (0, 0))
             elif dead:
                 new_sprite.blit(sprites.sprites["flutter_lineartdead" + cat_sprite], (0, 0))
         elif cat.pelt.eye_colour in lamp_eyes:
             if not dead:
                 new_sprite.blit(sprites.sprites["lamp_lines" + cat_sprite], (0, 0))
-            elif cat.df:
+            elif cat.status.group == CatGroup.DARK_FOREST:
                 new_sprite.blit(sprites.sprites["lamp_lineartdf" + cat_sprite], (0, 0))
             elif dead:
                 new_sprite.blit(sprites.sprites["lamp_lineartdead" + cat_sprite], (0, 0))
         else:
             if not dead:
                 new_sprite.blit(sprites.sprites["lines" + cat_sprite], (0, 0))
-            elif cat.df:
+            elif cat.status.group == CatGroup.DARK_FOREST:
                 new_sprite.blit(sprites.sprites["lineartdf" + cat_sprite], (0, 0))
             elif dead:
                 new_sprite.blit(sprites.sprites["lineartdead" + cat_sprite], (0, 0))
