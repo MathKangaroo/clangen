@@ -746,7 +746,7 @@ class CustomizeStatsScreen(Screens):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
             if event.ui_element == self.previous_cat_button:
                 if isinstance(Cat.fetch_cat(self.previous_cat), Cat):
-                    game.switches["cat"] = self.previous_cat
+                    switch_set_value(Switch.cat, self.previous_cat)
                     self.kill_cat_elements()
                     self.kill_buttons()
                     self.kill_dropdowns()
@@ -755,7 +755,7 @@ class CustomizeStatsScreen(Screens):
                     print("invalid previous cat", self.previous_cat)
             elif event.ui_element == self.next_cat_button:
                 if isinstance(Cat.fetch_cat(self.next_cat), Cat):
-                    game.switches["cat"] = self.next_cat
+                    switch_set_value(Switch.cat, self.next_cat)
                     self.kill_cat_elements()
                     self.kill_buttons()
                     self.kill_dropdowns()
@@ -791,7 +791,7 @@ class CustomizeStatsScreen(Screens):
                             self.the_cat.awakened["desc"][0] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])
                     else:
                             self.the_cat.awakened["ability"] = selected_option
-                            self.the_cat.awakened["desc"] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])      
+                            self.the_cat.awakened["desc"] = choice(powers_dict[selected_option][self.the_cat.awakened["class"]])
                 self.update_ui_elements()
             elif event.ui_element == self.ability2_dropdown:
                 selected_option = self.ability1_dropdown.selected_option[1].lower()
