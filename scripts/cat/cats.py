@@ -276,9 +276,6 @@ class Cat:
         self.placement = None
         self.example = example
         self.dead = False
-        self.exiled = False
-        self.outside = False
-        self.driven_out = False
         self.dead_for = 0  # moons
         self.thought = ""
         self.genderalign = None
@@ -293,7 +290,6 @@ class Cat:
         self.front = None
         self.awakened = None
         self.guided = False
-        self.df = False
         self.experience_level = None
 
         # Various behavior toggles
@@ -419,15 +415,17 @@ class Cat:
             biome = game.clan.biome
             secondary_biome = game.clan.secondary_biome if game.clan.secondary_biome else game.clan.biome
             tertiary_biome = game.clan.tertiary_biome if game.clan.tertiary_biome else game.clan.biome
-            
-            #comenting this out for now since it isn't working :/
-            '''
-            if game.clan.biome_weights:
+            """
+            commenting this out for now since it isn't working :/
+            if "biome_weights" in game.clan:
                 secondary_biome_weight = old_to_new.get(game.clan.biome_weights)
             else:
-            '''    
+            """
             secondary_biome_weight = game.clan.secondary_biome_weight if game.clan.secondary_biome_weight else 2
             tertiary_biome_weight = game.clan.tertiary_biome_weight if game.clan.tertiary_biome_weight else 2
+
+            if game.clan.override_biome:
+                biome = game.clan.override_biome
         else:
             biome = None
         # NAME
@@ -454,45 +452,61 @@ class Cat:
                 load_existing_name=loading_cat,
                 cat=self,
             )
-        #FOR TESTING CONDITIONS
-        #if not self.example:
-            #new_condition = choice(["fractured spirit", "budding spirit", "shattered soul"])
-            #self.get_permanent_condition(new_condition,born_with=True)
+        # FOR TESTING CONDITIONS
+        # if not self.example:
+            # new_condition = choice(["fractured spirit", "budding spirit", "shattered soul"])
+            # self.get_permanent_condition(new_condition,born_with=True)
         
         if self.awakened and self.pelt.skin in Pelt.skin_sprites:
             if os.path.exists('resources/dicts/esper.json'):
                 with open('resources/dicts/esper.json') as read_file:
                     powers_dict = ujson.loads(read_file.read())
             if self.awakened["type"] == "guide":
-                #powerless shows twice bc we want it to be twice as common. visible guides
+                # powerless shows twice bc we want it to be twice as common. visible guides
                 
-                self.pelt.skin = choice(['LIGHTPURPLE', 'BLUE2', 'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED', 'BRIGHTPINK', 'BRIGHTORANGE',
-                                        'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE', 'WHITE', 'BLACK2', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW',"MIST","LIGHT1", "SPARKLES", "SPARKLES2",
-                                        'STAINDUST', 'STAINICEBLUE', 'STAININDIGO', 'STAINBLUE', 'STAINPURPLE', 'STAINDARKBLUE',"MIST","LIGHT1", "SPARKLES", "SPARKLES2"
-                                        'STAINLIGHTPINK', 'STAINYELLOW', 'STAINPINK', 'STAINGOLD', 'STAINHOTPINK', 'STRAINDIRT',
-                                        'STAINCYAN', 'STAINLIME', 'STAINTURQUOISE', 'STAINGREEN', 'STAINBLUEGREEN', 'STAINPEACOCK',
-                                        'LIGHTPURPLE', 'BLUE2', 'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED', 'BRIGHTPINK', 'BRIGHTORANGE',
-                                        'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE', 'WHITE', 'BLACK2', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW',"MIST","LIGHT1", "SPARKLES", "SPARKLES2"])
+                self.pelt.skin = choice(['LIGHTPURPLE', 'BLUE2', 'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED',
+                                         'BRIGHTPINK', 'BRIGHTORANGE', 'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW',
+                                         'BLUEORANGE', 'WHITE', 'BLACK2', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW', 'MIST',
+                                         'LIGHT1', 'SPARKLES', 'SPARKLES2', 'STAINDUST', 'STAINICEBLUE', 'STAININDIGO',
+                                         'STAINBLUE', 'STAINPURPLE', 'STAINDARKBLUE', 'MIST', 'LIGHT1', 'SPARKLES',
+                                         'SPARKLES2', 'STAINLIGHTPINK', 'STAINYELLOW', 'STAINPINK', 'STAINGOLD',
+                                         'STAINHOTPINK', 'STRAINDIRT', 'STAINCYAN', 'STAINLIME', 'STAINTURQUOISE',
+                                         'STAINGREEN', 'STAINBLUEGREEN', 'STAINPEACOCK', 'LIGHTPURPLE', 'BLUE2',
+                                         'DARKPURPLE', 'DARKBLUE', 'NEONGREEN', 'BLUESPECKLED', 'BRIGHTPINK',
+                                         'BRIGHTORANGE', 'MAGENTA', 'PINKBLUE', 'PURPLEYELLOW', 'BLUEORANGE', 'WHITE',
+                                         'BLACK2', 'AQUA', 'DARKGREEN', 'BRIGHTYELLOW', 'MIST', 'LIGHT1', 'SPARKLES',
+                                         'SPARKLES2'])
             elif self.awakened["type"] == "esper":
                 self.pelt.skin = choice(powers_dict[self.awakened["ability"]]["skin"])
             elif self.awakened["type"] == "enhanced esper":
                 self.pelt.skin = choice(powers_dict[self.awakened["ability"][0]]["skin"])
 
-        neos_eyes = ['NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW', 'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN',
-                 'NEO YELLOWRED', 'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK', 'NEO MINT', 'NEO BLACKBLUE']
-        
-        flutter_eyes = ['FLUTTER SUNSET', 'FLUTTER MONARCH', 'FLUTTER PEACOCK', 'FLUTTER LUNAR', 'FLUTTER GREENORANGE', 'FLUTTER BEACH', 'FLUTTER REDADMIRAL', 'FLUTTER DARK', 'FLUTTER RAINBOW', 'FLUTTER LIGHTBLUE', 'FLUTTER GALAXY', 'FLUTTER STAINEDGLASS',
-                 'FLUTTER GLASSWING', 'FLUTTER GREENSTRIPE', 'FLUTTER BLUEYELLOW', 'FLUTTER PASTELGALAXY', 'FLUTTER MOTH', 'FLUTTER SPARKLYDUST', 'FLUTTER IMPERIAL', 'FLUTTER PINKHEARTS', 'FLUTTER DUSTOX']
-    
-        lamp_eyes = ['LAMP YELLOW', 'LAMP ORANGE', 'LAMP HAZEL', 'LAMP YELLOWGREEN', 'LAMP GREEN', 'LAMP BLUE', 'LAMP DARKBLUE', 'LAMP GRAY', 'LAMP CYAN', 'LAMP TURQUOISE', 'LAMP PURPLE', 'LAMP GOLD',
-                 'LAMP ORANGE2', 'LAMP DARKHAZEL', 'LAMP DARKBLUE2', 'LAMP BLUE2', 'LAMP BROWN', 'LAMP PALEYELLOW', 'LAMP LIGHTYELLOW', 'LAMP DARKYELLOW', 'LAMP GOLDENGREEN']
-        
-        angel_eyes = ['ANGEL YELLOW', 'ANGEL ORANGE', 'ANGEL HAZEL', 'ANGEL YELLOWGREEN', 'ANGEL GREEN', 'ANGEL BLUE', 'ANGEL DARKBLUE', 'ANGEL GRAY', 'ANGEL CYAN', 'ANGEL TURQUOISE', 'ANGEL PURPLE', 'ANGEL GOLD',
-                 'ANGEL COPPER', 'ANGEL MINT', 'ANGEL DARKBLUE2', 'ANGEL BLUE2', 'ANGEL BROWN', 'ANGEL SILVER', 'ANGEL LIGHTYELLOW', 'ANGEL DARKYELLOW', 'ANGEL GOLDENGREEN']
+        neos_eyes = ['NEO FIRE', 'NEO AMETHYST', 'NEO LIME', 'NEO VIOLET', 'NEO SUN', 'NEO TURQUOISE', 'NEO YELLOW',
+                     'NEO SCARLET', 'NEO PINKPURPLE', 'NEO LIGHTBLUE', 'NEO DARKBLUE', 'NEO CYAN', 'NEO YELLOWRED',
+                     'NEO PINK', 'NEO INDIGO', 'NEO PURPLE', 'NEO YELLOWGREEN', 'NEO ICEBLUE', 'NEO PALEPINK',
+                     'NEO MINT', 'NEO BLACKBLUE']
 
-        snail_eyes = ['SNAIL YELLOW', 'SNAIL ORANGE', 'SNAIL HAZEL', 'SNAIL YELLOWGREEN', 'SNAIL GREEN', 'SNAIL BLUE', 'SNAIL DARKBLUE', 'SNAIL GRAY', 'SNAIL CYAN', 'SNAIL TURQUOISE', 'SNAIL PURPLE', 'SNAIL GOLD',
-                 'SNAIL COPPER', 'SNAIL MINT', 'SNAIL DARKBLUE2', 'SNAIL BLUE2', 'SNAIL BROWN', 'SNAIL SILVER', 'SNAIL LIGHTYELLOW', 'SNAIL DARKYELLOW', 'SNAIL GOLDENGREEN']
-        
+        flutter_eyes = ['FLUTTER SUNSET', 'FLUTTER MONARCH', 'FLUTTER PEACOCK', 'FLUTTER LUNAR', 'FLUTTER GREENORANGE',
+                        'FLUTTER BEACH', 'FLUTTER REDADMIRAL', 'FLUTTER DARK', 'FLUTTER RAINBOW', 'FLUTTER LIGHTBLUE',
+                        'FLUTTER GALAXY', 'FLUTTER STAINEDGLASS', 'FLUTTER GLASSWING', 'FLUTTER GREENSTRIPE',
+                        'FLUTTER BLUEYELLOW', 'FLUTTER PASTELGALAXY', 'FLUTTER MOTH', 'FLUTTER SPARKLYDUST',
+                        'FLUTTER IMPERIAL', 'FLUTTER PINKHEARTS', 'FLUTTER DUSTOX']
+
+        lamp_eyes = ['LAMP YELLOW', 'LAMP ORANGE', 'LAMP HAZEL', 'LAMP YELLOWGREEN', 'LAMP GREEN', 'LAMP BLUE',
+                     'LAMP DARKBLUE', 'LAMP GRAY', 'LAMP CYAN', 'LAMP TURQUOISE', 'LAMP PURPLE', 'LAMP GOLD',
+                     'LAMP ORANGE2', 'LAMP DARKHAZEL', 'LAMP DARKBLUE2', 'LAMP BLUE2', 'LAMP BROWN', 'LAMP PALEYELLOW',
+                     'LAMP LIGHTYELLOW', 'LAMP DARKYELLOW', 'LAMP GOLDENGREEN']
+
+        angel_eyes = ['ANGEL YELLOW', 'ANGEL ORANGE', 'ANGEL HAZEL', 'ANGEL YELLOWGREEN', 'ANGEL GREEN', 'ANGEL BLUE',
+                      'ANGEL DARKBLUE', 'ANGEL GRAY', 'ANGEL CYAN', 'ANGEL TURQUOISE', 'ANGEL PURPLE', 'ANGEL GOLD',
+                      'ANGEL COPPER', 'ANGEL MINT', 'ANGEL DARKBLUE2', 'ANGEL BLUE2', 'ANGEL BROWN', 'ANGEL SILVER',
+                      'ANGEL LIGHTYELLOW', 'ANGEL DARKYELLOW', 'ANGEL GOLDENGREEN']
+
+        snail_eyes = ['SNAIL YELLOW', 'SNAIL ORANGE', 'SNAIL HAZEL', 'SNAIL YELLOWGREEN', 'SNAIL GREEN', 'SNAIL BLUE',
+                      'SNAIL DARKBLUE', 'SNAIL GRAY', 'SNAIL CYAN', 'SNAIL TURQUOISE', 'SNAIL PURPLE', 'SNAIL GOLD',
+                      'SNAIL COPPER', 'SNAIL MINT', 'SNAIL DARKBLUE2', 'SNAIL BLUE2', 'SNAIL BROWN', 'SNAIL SILVER',
+                      'SNAIL LIGHTYELLOW', 'SNAIL DARKYELLOW', 'SNAIL GOLDENGREEN']
+
         neon_eyes_chance = 16
         if self.awakened and self.awakened["type"] == "guide":
             neon_eyes_chance = 4
@@ -591,20 +605,24 @@ class Cat:
         if guide_or_esp == 1 and not self.awakened:
             template["type"] = "guide"
         else:
-            power = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
-                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
-                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
-                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"])
+            power = choice(["pyrokinesis", "hydrokinesis", "cyrokinesis", "geokinesis", "aerokinesis", "illusions",
+                            "shapeshifting", "super strength", "enhanced senses", "telekinesis", "chimera",
+                            "invisibility", "incorporeal", "mind control", "flight", "teleportation",
+                            "electromagnetic control", "light manipulation", "beast speak", "dendrokinesis",
+                            "electrokinesis", "telempathy", "astral projection", "flesh manipulation",
+                            "spatial manipulation"])
             template["desc"] = choice(powers_dict[power][template["class"]])
             template["ability"] = power
         
         if self.awakened:
             template["type"] = "enhanced esper"
             classes = [self.awakened["class"], template["class"]]
-            power2 = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
-                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
-                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
-                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"])
+            power2 = choice(["pyrokinesis", "hydrokinesis", "cyrokinesis", "geokinesis", "aerokinesis", "illusions",
+                             "shapeshifting", "super strength", "enhanced senses", "telekinesis", "chimera",
+                             "invisibility", "incorporeal", "mind control", "flight", "teleportation",
+                             "electromagnetic control", "light manipulation", "beast speak", "dendrokinesis",
+                             "electrokinesis", "telempathy", "astral projection", "flesh manipulation",
+                             "spatial manipulation"])
             abilities = [self.awakened["ability"], power2]
             template["desc"] = choice(powers_dict[power2][template["class"]])
             while template["desc"] == self.awakened["desc"]:
@@ -625,9 +643,10 @@ class Cat:
         :return: None
         """
         # trans cat chances
-        nonbiney_list = ["nonbinary", "genderfluid", "demigirl", "demiboy", "genderfae", "genderfaun", "bigender", "genderqueer", "agender", "???", "deminonbinary", "trigender", "genderflux", "polygender"]
-        enby_masc = ["trans male" , "demiboy", "genderfaun", "trans masc"]
-        enby_fem = ["trans female" , "demigirl", "genderfae", "trans femme"]
+        nonbiney_list = ["nonbinary", "genderfluid", "demigirl", "demiboy", "genderfae", "genderfaun", "bigender",
+                         "genderqueer", "agender", "???", "deminonbinary", "trigender", "genderflux", "polygender"]
+        enby_masc = ["trans male", "demiboy", "genderfaun", "trans masc"]
+        enby_fem = ["trans female", "demigirl", "genderfae", "trans femme"]
         theythemdefault = game_setting_get("they them default")
         self.genderalign = self.gender
         trans_chance = randint(0, 30)
@@ -638,12 +657,12 @@ class Cat:
         if self.parent1 is not None:
             par1 = Cat.fetch_cat(self.parent1)
             if par1.awakened:
-                prob_awake = int(prob_awake/2)
+                prob_awake = int(prob_awake / 2)
             
         if self.parent2 is not None:
             par2 = Cat.fetch_cat(self.parent2)
             if par2.awakened:
-                prob_awake = int(prob_awake/2)
+                prob_awake = int(prob_awake / 2)
         
         if prob_awake < 1:
             prob_awake = 1
@@ -651,11 +670,10 @@ class Cat:
         awakened_chance = randint(1,prob_awake)
         if awakened_chance == 1:
             self.generate_ability()
-            #self.generate_ability()
+            # self.generate_ability()
             double_powers = randint(1,prob_awake*3)
             if double_powers == 1 and self.awakened["type"] == "esper":
                 self.generate_ability()
-        
 
         # GENDER IDENTITY
         if self.gender == "female" and not self.status in ['newborn', 'kitten']:
@@ -801,16 +819,18 @@ class Cat:
         Loads the correct pronouns for the loaded language.
         :return: List of dicts for the cat's pronouns
         """
-        queer_list = ["intersex", "intergender", "trans male", "trans female","nonbinary", "genderfluid", "demigirl", "demiboy", "genderfae", "genderfaun", "bigender", "genderqueer", "agender", "???", "deminonbinary", "trigender", "genderflux", "polygender"]
-        enby_masc = [ "demiboy", "genderfaun", "trans masc"]
+        queer_list = ["intersex", "intergender", "trans male", "trans female", "nonbinary", "genderfluid", "demigirl",
+                      "demiboy", "genderfae", "genderfaun", "bigender", "genderqueer", "agender", "???",
+                      "deminonbinary", "trigender", "genderflux", "polygender"]
+        enby_masc = ["demiboy", "genderfaun", "trans masc"]
         enby_fem = ["demigirl", "genderfae", "trans femme"]
         
-        she_him = randint(1,5)
+        she_him = randint(1, 5)
         neo_chance = constants.CONFIG["cat_generation"]["neopronoun_chance"]
         second_set = constants.CONFIG["cat_generation"]["multiple_pronouns_chance"]
         if self.genderalign in queer_list:
-            neo_chance = int(neo_chance/2)
-            second_set = int(second_set/4)
+            neo_chance = int(neo_chance / 2)
+            second_set = int(second_set / 4)
         neos = randint(1,neo_chance)
         seconds = randint(1,second_set)
         
@@ -827,10 +847,10 @@ class Cat:
             if seconds == 1:
                 pronoun_gender = randint(1,10)
                 if pronoun_gender < 6:
-                    #add he, she or they
+                    # add he, she, or they
                     self._pronouns[locale] += pronouns.get_new_pronouns(choice(["male","female","nonbinary"]))
                 else:
-                    #add neos
+                    # add neos
                     self._pronouns[locale] += pronouns.get_new_pronouns("neos")
                 
             if len(self._pronouns[locale]) > 1:
@@ -1086,7 +1106,7 @@ class Cat:
                 for x in very_high_values:
                     possible_strings.extend(
                         self.generate_events.possible_death_reactions(
-                            family_relation, x, choice([cat.personality.trait,cat.personality.trait2]), body_status
+                            family_relation, x, choice([cat.personality.trait, cat.personality.trait2]), body_status
                         )
                     )
 
@@ -1179,7 +1199,7 @@ class Cat:
                 for x in high_values:
                     possible_strings.extend(
                         self.generate_events.possible_death_reactions(
-                            family_relation, x, choice([cat.personality.trait,cat.personality.trait2]), body_status
+                            family_relation, x, choice([cat.personality.trait, cat.personality.trait2]), body_status
                         )
                     )
 
@@ -1275,7 +1295,7 @@ class Cat:
             game.clan.remove_med_cat(self)
 
         # updates mentors
-        if self.status.rank.is_any_apprentice_rank():
+        if self.status.rank.is_any_apprentice_rank() or self.status.rank == CatRank.MEDIATOR:
             pass
 
         elif self.status.rank == CatRank.WARRIOR:
@@ -1663,9 +1683,9 @@ class Cat:
             self.fetch_cat(i)
             for i in game.clan.clan_cats
             if self.fetch_cat(i)
-               and i not in life_givers
-               and self.fetch_cat(i).status.group
-               == (CatGroup.STARCLAN if starclan else CatGroup.DARK_FOREST)
+            and i not in life_givers
+            and self.fetch_cat(i).status.group
+            == (CatGroup.STARCLAN if starclan else CatGroup.DARK_FOREST)
         ]
 
         # check amount of life givers, if we need more, then grab from the other dead cats
@@ -1693,16 +1713,15 @@ class Cat:
         if not life_giving_leader and leaders:
             # choosing if the life giving leader will be the oldest leader or previous leader
             coin_flip = randint(1, 2)
-            if leaders:
-                if coin_flip == 1:
-                    # pick the oldest leader
-                    leaders.sort(key=lambda x: -1 * int(x.dead_for))
-                    ancient_leader = True
-                    life_giving_leader = leaders[0]
-                else:
-                    # pick previous leader
-                    leaders.sort(key=lambda x: int(Cat.fetch_cat(x).dead_for))
-                    life_giving_leader = leaders[0]
+            if coin_flip == 1:
+                # pick the oldest leader
+                leaders.sort(key=lambda x: -1 * int(x.dead_for))
+                ancient_leader = True
+                life_giving_leader = leaders[0]
+            else:
+                # pick previous leader
+                leaders.sort(key=lambda x: int(Cat.fetch_cat(x).dead_for))
+                life_giving_leader = leaders[0]
 
         if life_giving_leader:
             life_givers.append(life_giving_leader)
@@ -1893,7 +1912,7 @@ class Cat:
         old_age = self.age
         if not self.immortality:
             self.moons += 1
-        if self.moons == 1 and self.status.rank == CatRank.NEWBORN:
+        if self.moons > 0 and self.status.rank == CatRank.NEWBORN:
             self.status._change_rank(CatRank.KITTEN)
         self.in_camp = 1
 
@@ -2040,7 +2059,7 @@ class Cat:
                 self.guided = False
                 self.healed_condition = True
                 return False
-            #COME BACK HERE
+            # COME BACK HERE
 
         if self.illnesses[illness]["event_triggered"]:
             self.illnesses[illness]["event_triggered"] = False
@@ -2144,7 +2163,6 @@ class Cat:
                 template["gender"] = self.genderalign
         self.alters.append(template)
 
-
     def add_split(self, new_alter, origin):
         if len(self.alters) > 0:
             if self.alters[new_alter]:
@@ -2164,18 +2182,24 @@ class Cat:
         # print(self.ID)
         template["ID"] = str(len(self.alters) + 1)
         template["role"] = choice(["co-host", "caregiver", "little", "protector", "trauma holder", "persecutor"])
-        alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
-        
-        
+        alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce", "bloodthirsty", "cold",
+                                    "childish", "playful", "charismatic", "bold", "daring", "nervous", "righteous",
+                                    "insecure", "strict", "compassionate", "thoughtful", "ambitious", "confident",
+                                    "adventurous", "calm", "careful", "faithful", "loving", "loyal", "responsible",
+                                    "shameless", "sneaky", "strange", "vengeful", "wise", "arrogant", "competitive",
+                                    "grumpy", "cunning", "oblivious", "gloomy", "sincere", "flamboyant"])
+
         if condition in ["budding spirit", "shattered soul"]:
             extra = randint(1, 5)
             if extra == 1:
-                template["other"] = choice(["noncat", "loner","rogue", "kittypet", "otherclan", "fictive", "factive", "fuzztive"])
+                template["other"] = choice(["noncat", "loner", "rogue", "kittypet", "otherclan", "fictive", "factive",
+                                            "fuzztive"])
             rng = randint(1, 10)
             gender = "???"
             if rng <= 2:
-                genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby",
-                                    "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"]
+                genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy",
+                                    "demienby", "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender",
+                                    "pangender", "???"]
                 gender = choice(genderqueer_list)
             elif rng <= 6:
                 gender = "male"
@@ -2188,14 +2212,14 @@ class Cat:
                 with open('resources/dicts/names/names.json') as read_file:
                     names_dict = ujson.loads(read_file.read())
             if template["other"] == "fictive" or template["other"] == "fuzztive":
-                canon_chance = randint(1,5)
+                canon_chance = randint(1, 5)
                 if canon_chance == 1:
                     alter_name = choice([
-                        "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf", "Jayfeather",
-                        "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost", "Ashfur",
-                        "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool", "Crowfeather",
-                        "Nightheart", "Willowpelt","Shadowsight", "Tigerheart", "Grey Wing", "River", "Night",
-                        "Violetshine", "Twigbranch",  "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
+                        "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf",
+                        "Jayfeather", "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost",
+                        "Ashfur", "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool",
+                        "Crowfeather", "Nightheart", "Willowpelt","Shadowsight", "Tigerheart", "Grey Wing", "River",
+                        "Night", "Violetshine", "Twigbranch",  "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
                         "Tall Shadow", "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart",
                         "Briarlight", "Cloudtail", "Thunder", "Feathertail", "Spottedleaf", "Bluefur", "Bumblestripe",
                         "Poppyfrost", "Stormfur", "Mistyfoot", "Star Flower", "Fallen Leaves", "Berrynose", "Tawnypelt",
@@ -2206,11 +2230,10 @@ class Cat:
                   
             else:
                 alter_name = choice(names_dict["normal_prefixes"])
-                
 
             if template["role"] == "little":
                 if template["other"] in ["fictive", "fuzztive"]:
-                    canon_chance = randint(1,5)
+                    canon_chance = randint(1, 5)
                     if canon_chance == 1:
                         alter_name = choice([
                             "Snowkit", "Mosskit", "Lynxkit", "Galekit", "Haze", "Stream", "Tadpole",  # category-less cats
@@ -2230,49 +2253,51 @@ class Cat:
                         ])
                     else:
                         alter_name = choice(names_dict["normal_prefixes"])
-                        rng = randint(1,2)
+                        rng = randint(1, 2)
                         if rng == 1:
                             alter_name += "paw"
                         else:
                             alter_name += "kit"
-                            alter_personality = choice(["unruly","shy","impulsive","bullying","attention-seeker","charming","fearless","noisy","skittish","quiet","self-conscious","daydreamer","sweet","polite","know-it-all","bossy"])
+                            alter_personality = choice(["unruly", "shy", "impulsive", "bullying", "attention-seeker",
+                                                        "charming", "fearless", "noisy", "skittish", "quiet",
+                                                        "self-conscious", "daydreamer", "sweet", "polite",
+                                                        "know-it-all", "bossy"])
         
                 else:
                     alter_name = choice(names_dict["normal_prefixes"])
-                    rng = randint(1,2)
+                    rng = randint(1, 2)
                     if rng == 1:
                         alter_name += "paw"
                     else:
                         alter_name += "kit"
-                        alter_personality = choice(["unruly","shy","impulsive","bullying","attention-seeker","charming","fearless","noisy","skittish","quiet","self-conscious","daydreamer","sweet","polite","know-it-all","bossy"])
-            
-              
-              
-        
+                        alter_personality = choice(["unruly", "shy", "impulsive", "bullying", "attention-seeker",
+                                                    "charming", "fearless", "noisy", "skittish", "quiet",
+                                                    "self-conscious", "daydreamer", "sweet", "polite", "know-it-all",
+                                                    "bossy"])
+
             elif template["other"] == "cat" or template["other"] == "otherclan" or template["other"] == "factive":
                 alter_name += choice(names_dict["normal_suffixes"])
                 
             if template["other"] == "rogue" or template["other"] == "loner" or template["other"] == "kittypet":
                 alter_name = choice(names_dict["loner_names"])
-                
-                
-            if template["other"] == "fuzztive" and randint(1,2) == 1: #feline addition
+
+            if template["other"] == "fuzztive" and randint(1, 2) == 1:  # feline addition
                 alter_name += choice(names_dict["normal_suffixes"])
-                
 
-
-        else: #fractured spirit alter
+        else:  # fractured spirit alter
             extra = randint(1, 20)
             if extra == 1:
-                template["other"] = choice(["noncat", "rogue","loner" "kittypet", "otherclan", "fictive", "factive", "fuzztive"])
-            different_gender = randint(1,5)
+                template["other"] = choice(["noncat", "rogue", "loner", "kittypet", "otherclan", "fictive", "factive",
+                                            "fuzztive"])
+            different_gender = randint(1, 5)
             gender = None
             if different_gender == 1:
                 rng = randint(1, 10)
                 gender = "???"
                 if rng <= 2:
-                    genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy", "demienby",
-                                    "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender", "pangender", "???"]
+                    genderqueer_list = ["nonbinary", "neutrois", "agender", "genderqueer", "demigirl", "demiboy",
+                                        "demienby", "genderfluid", "genderfae", "genderfaun", "genderflor", "bigender",
+                                        "pangender", "???"]
                     gender = choice(genderqueer_list)
                 elif rng <= 6:
                     gender = "male"
@@ -2284,46 +2309,60 @@ class Cat:
             else:
                 template["gender"] = str(self.genderalign)
 
-
             alter_name = ""
-        
+
             if os.path.exists('resources/dicts/names/names.json'):
                 with open('resources/dicts/names/names.json') as read_file:
                     names_dict = ujson.loads(read_file.read())
-            different_name = randint(1,5)
-            if different_name == 1: #different name entirely
+            different_name = randint(1, 5)
+            if different_name == 1:  # different name entirely
                 if template["other"] == "fictive" or template["other"] == "fuzztive":
-                    canon_chance = randint(1,5)
+                    canon_chance = randint(1, 5)
                     if canon_chance == 1:
                         alter_name = choice([
-                            "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf", "Jayfeather",
-                            "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost", "Ashfur",
-                            "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool", "Crowfeather",
-                            "Nightheart", "Willowpelt","Shadowsight", "Tigerheart", "Grey Wing", "River", "Night",
-                            "Violetshine", "Twigbranch",  "Sol", "Mapleshade", "Moth Flight", "Cinderheart",
-                            "Tall Shadow", "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge", "Brightheart",
-                            "Briarlight", "Cloudtail", "Thunder", "Feathertail", "Spottedleaf", "Bluefur", "Bumblestripe",
-                            "Poppyfrost", "Stormfur", "Mistyfoot", "Star Flower", "Fallen Leaves", "Berrynose", "Tawnypelt",
-                            "Webfoot", "Jake", "Sparkpelt", "Rootspring", "Nightcloud"
+                            "Fireheart", "Graystripe", "Sandstorm", "Squirrelflight", "Brambleclaw", "Hollyleaf",
+                            "Jayfeather", "Lionblaze", "Dovewing", "Ivypool", "Yellowfang", "Ravenpaw", "Bristlefrost",
+                            "Ashfur", "Cinderpelt", "Alderheart", "Needletail", "Hawkfrost", "Mothwing", "Leafpool",
+                            "Crowfeather", "Nightheart", "Willowpelt", "Shadowsight", "Tigerheart", "Grey Wing",
+                            "River", "Night", "Violetshine", "Twigbranch", "Sol", "Mapleshade", "Moth Flight",
+                            "Cinderheart", "Tall Shadow", "Talltail", "Onewhisker", "Darktail", "Tigerclaw", "Scourge",
+                            "Brightheart", "Briarlight", "Cloudtail", "Thunder", "Feathertail", "Spottedleaf",
+                            "Bluefur", "Bumblestripe", "Poppyfrost", "Stormfur", "Mistyfoot", "Star Flower",
+                            "Fallen Leaves", "Berrynose", "Tawnypelt", "Webfoot", "Jake", "Sparkpelt", "Rootspring",
+                            "Nightcloud"
                         ])
                     else:
                         alter_name = choice(names_dict["normal_prefixes"])
-                        different_personality = randint(1,5)
+                        different_personality = randint(1, 5)
                         if different_personality == 1:
-                            alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                            alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce",
+                                                        "bloodthirsty", "cold", "childish", "playful", "charismatic",
+                                                        "bold", "daring", "nervous", "righteous", "insecure", "strict",
+                                                        "compassionate", "thoughtful", "ambitious", "confident",
+                                                        "adventurous", "calm", "careful", "faithful", "loving", "loyal",
+                                                        "responsible", "shameless", "sneaky", "strange", "vengeful",
+                                                        "wise", "arrogant", "competitive", "grumpy", "cunning",
+                                                        "oblivious", "gloomy", "sincere", "flamboyant"])
                         else:
                             alter_personality = str(self.personality.trait)
                 else:
                     alter_name = choice(names_dict["normal_prefixes"])
-                    different_personality = randint(1,5)
+                    different_personality = randint(1, 5)
                     if different_personality == 1:
-                        alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                        alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce", "bloodthirsty",
+                                                    "cold", "childish", "playful", "charismatic", "bold", "daring",
+                                                    "nervous", "righteous", "insecure", "strict", "compassionate",
+                                                    "thoughtful", "ambitious", "confident", "adventurous", "calm",
+                                                    "careful", "faithful", "loving", "loyal", "responsible",
+                                                    "shameless", "sneaky", "strange", "vengeful", "wise", "arrogant",
+                                                    "competitive", "grumpy", "cunning", "oblivious", "gloomy",
+                                                    "sincere", "flamboyant"])
                     else:
                         alter_personality = str(self.personality.trait)
 
                 if template["role"] == "little":
                     if template["other"] in ["fictive", "fuzztive"]:
-                        canon_chance = randint(1,5)
+                        canon_chance = randint(1, 5)
                         if canon_chance == 1:
                             alter_name = choice([
                                 "Snowkit", "Mosskit", "Lynxkit", "Galekit", "Haze", "Stream", "Tadpole",  # category-less cats
@@ -2341,133 +2380,219 @@ class Cat:
 
                                 "Larchkit"  # names that belong to multiple cats
                             ])
-                            alter_personality = choice(["unruly","shy","impulsive","bullying","attention-seeker","charming","fearless","noisy","skittish","quiet","self-conscious","daydreamer","sweet","polite","know-it-all","bossy"])
+                            alter_personality = choice(["unruly", "shy", "impulsive", "bullying", "attention-seeker",
+                                                        "charming", "fearless", "noisy", "skittish", "quiet",
+                                                        "self-conscious", "daydreamer", "sweet", "polite",
+                                                        "know-it-all", "bossy"])
             
                         else:
                             alter_name = choice(names_dict["normal_prefixes"])
-                            rng = randint(1,2)
+                            rng = randint(1, 2)
                             if rng == 1:
                                 alter_name += "paw"
-                                different_personality = randint(1,5)
+                                different_personality = randint(1, 5)
                                 if different_personality == 1:
-                                    alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                                    alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce",
+                                                                "bloodthirsty", "cold", "childish", "playful",
+                                                                "charismatic", "bold", "daring", "nervous", "righteous",
+                                                                "insecure", "strict", "compassionate", "thoughtful",
+                                                                "ambitious", "confident", "adventurous", "calm",
+                                                                "careful", "faithful", "loving", "loyal", "responsible",
+                                                                "shameless", "sneaky", "strange", "vengeful", "wise",
+                                                                "arrogant", "competitive", "grumpy", "cunning",
+                                                                "oblivious", "gloomy", "sincere", "flamboyant"])
                                 else:
                                     alter_personality = str(self.personality.trait)
                             else:
                                 alter_name += "kit"
-                                alter_personality = choice(["unruly","shy","impulsive","bullying","attention-seeker","charming","fearless","noisy","skittish","quiet","self-conscious","daydreamer","sweet","polite","know-it-all","bossy"])
+                                alter_personality = choice(["unruly", "shy", "impulsive", "bullying",
+                                                            "attention-seeker", "charming", "fearless", "noisy",
+                                                            "skittish", "quiet", "self-conscious", "daydreamer",
+                                                            "sweet", "polite", "know-it-all", "bossy"])
             
                     else:
                         alter_name = choice(names_dict["normal_prefixes"])
-                        rng = randint(1,2)
+                        rng = randint(1, 2)
                         if rng == 1:
                             alter_name += "paw"
-                            different_personality = randint(1,5)
+                            different_personality = randint(1, 5)
                             if different_personality == 1:
-                                alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                                alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce",
+                                                            "bloodthirsty", "cold", "childish", "playful",
+                                                            "charismatic", "bold", "daring", "nervous", "righteous",
+                                                            "insecure", "strict", "compassionate", "thoughtful",
+                                                            "ambitious", "confident", "adventurous", "calm", "careful",
+                                                            "faithful", "loving", "loyal", "responsible", "shameless",
+                                                            "sneaky", "strange", "vengeful", "wise", "arrogant",
+                                                            "competitive", "grumpy", "cunning", "oblivious", "gloomy",
+                                                            "sincere", "flamboyant"])
                             else:
                                 alter_personality = str(self.personality.trait)
                         else:
                             alter_name += "kit"
-                            alter_personality = choice(["unruly","shy","impulsive","bullying","attention-seeker","charming","fearless","noisy","skittish","quiet","self-conscious","daydreamer","sweet","polite","know-it-all","bossy"])
-                
-                
-                
-                #if not little
+                            alter_personality = choice(["unruly", "shy", "impulsive", "bullying", "attention-seeker",
+                                                        "charming", "fearless", "noisy", "skittish", "quiet",
+                                                        "self-conscious", "daydreamer", "sweet", "polite",
+                                                        "know-it-all", "bossy"])
+
+                # if not little
                 elif template["other"] == "cat" or template["other"] == "otherclan" or template["other"] == "factive":
                     alter_name += choice(names_dict["normal_suffixes"])
-                    different_personality = randint(1,5)
+                    different_personality = randint(1, 5)
                     if different_personality == 1:
-                        alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                        alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce", "bloodthirsty",
+                                                    "cold", "childish", "playful", "charismatic", "bold", "daring",
+                                                    "nervous", "righteous", "insecure", "strict", "compassionate",
+                                                    "thoughtful", "ambitious", "confident", "adventurous", "calm",
+                                                    "careful", "faithful", "loving", "loyal", "responsible",
+                                                    "shameless", "sneaky", "strange", "vengeful", "wise", "arrogant",
+                                                    "competitive", "grumpy", "cunning", "oblivious", "gloomy",
+                                                    "sincere", "flamboyant"])
                     else:
                         alter_personality = str(self.personality.trait)
 
                 if template["other"] == "rogue" or template["other"] == "loner" or template["other"] == "kittypet":
                     alter_name = choice(names_dict["loner_names"])
-                    different_personality = randint(1,5)
+                    different_personality = randint(1, 5)
                     if different_personality == 1:
-                        alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                        alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce", "bloodthirsty",
+                                                    "cold", "childish", "playful", "charismatic", "bold", "daring",
+                                                    "nervous", "righteous", "insecure", "strict", "compassionate",
+                                                    "thoughtful", "ambitious", "confident", "adventurous", "calm",
+                                                    "careful", "faithful", "loving", "loyal", "responsible",
+                                                    "shameless", "sneaky", "strange", "vengeful", "wise", "arrogant",
+                                                    "competitive", "grumpy", "cunning", "oblivious", "gloomy",
+                                                    "sincere", "flamboyant"])
                     else:
                         alter_personality = str(self.personality.trait)
-                    
 
-            elif different_name == 2: #different prefix
+            elif different_name == 2:  # different prefix
                 alter_name = choice(names_dict["normal_prefixes"])
                 if template["role"] == "little":
-                    rng = randint(1,2)
+                    rng = randint(1, 2)
                     if rng == 1:
                         alter_name += "paw"
-                        different_personality = randint(1,5)
+                        different_personality = randint(1, 5)
                         if different_personality == 1:
-                            alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                            alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce",
+                                                        "bloodthirsty", "cold", "childish", "playful", "charismatic",
+                                                        "bold", "daring", "nervous", "righteous", "insecure", "strict",
+                                                        "compassionate", "thoughtful", "ambitious", "confident",
+                                                        "adventurous", "calm", "careful", "faithful", "loving", "loyal",
+                                                        "responsible", "shameless", "sneaky", "strange", "vengeful",
+                                                        "wise", "arrogant", "competitive", "grumpy", "cunning",
+                                                        "oblivious", "gloomy", "sincere", "flamboyant"])
                         else:
                             alter_personality = str(self.personality.trait)
                     else:
                         alter_name += "kit"
-                        alter_personality = choice(["unruly","shy","impulsive","bullying","attention-seeker","charming","fearless","noisy","skittish","quiet","self-conscious","daydreamer","sweet","polite","know-it-all","bossy"])
+                        alter_personality = choice(["unruly", "shy", "impulsive", "bullying", "attention-seeker",
+                                                    "charming", "fearless", "noisy", "skittish", "quiet",
+                                                    "self-conscious", "daydreamer", "sweet", "polite", "know-it-all",
+                                                    "bossy"])
             
                 else:
                     if template["other"] == "cat" or template["other"] == "otherclan":
                         alter_name += self.name.suffix
-                    different_personality = randint(1,5)
+                    different_personality = randint(1, 5)
                     if different_personality == 1:
-                        alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                        alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce", "bloodthirsty",
+                                                    "cold", "childish", "playful", "charismatic", "bold", "daring",
+                                                    "nervous", "righteous", "insecure", "strict", "compassionate",
+                                                    "thoughtful", "ambitious", "confident", "adventurous", "calm",
+                                                    "careful", "faithful", "loving", "loyal", "responsible",
+                                                    "shameless", "sneaky", "strange", "vengeful", "wise", "arrogant",
+                                                    "competitive", "grumpy", "cunning", "oblivious", "gloomy",
+                                                    "sincere", "flamboyant"])
                     else:
                         alter_personality = str(self.personality.trait)
 
-            elif different_name == 3 or different_name == 4: #different suffix
+            elif different_name == 3 or different_name == 4:  # different suffix
                 alter_name = self.name.prefix
                 if template["role"] == "little":
-                    rng = randint(1,2)
+                    rng = randint(1, 2)
                     if rng == 1:
                         alter_name += "paw"
-                        different_personality = randint(1,5)
+                        different_personality = randint(1, 5)
                         if different_personality == 1:
-                            alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                            alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce",
+                                                        "bloodthirsty", "cold", "childish", "playful", "charismatic",
+                                                        "bold", "daring", "nervous", "righteous", "insecure", "strict",
+                                                        "compassionate", "thoughtful", "ambitious", "confident",
+                                                        "adventurous", "calm", "careful", "faithful", "loving", "loyal",
+                                                        "responsible", "shameless", "sneaky", "strange", "vengeful",
+                                                        "wise", "arrogant", "competitive", "grumpy", "cunning",
+                                                        "oblivious", "gloomy", "sincere", "flamboyant"])
                         else:
                             alter_personality = str(self.personality.trait)
                     else:
                         alter_name += "kit"
-                        alter_personality = choice(["unruly","shy","impulsive","bullying","attention-seeker","charming","fearless","noisy","skittish","quiet","self-conscious","daydreamer","sweet","polite","know-it-all","bossy"])
+                        alter_personality = choice(["unruly", "shy", "impulsive", "bullying", "attention-seeker",
+                                                    "charming", "fearless", "noisy", "skittish", "quiet",
+                                                    "self-conscious", "daydreamer", "sweet", "polite", "know-it-all",
+                                                    "bossy"])
             
                 else:
                     if template["other"] == "cat" or template["other"] == "otherclan":
                         alter_name += choice(names_dict["normal_suffixes"])
-                    different_personality = randint(1,5)
+                    different_personality = randint(1, 5)
                     if different_personality == 1:
-                        alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                        alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce", "bloodthirsty",
+                                                    "cold", "childish", "playful", "charismatic", "bold", "daring",
+                                                    "nervous", "righteous", "insecure", "strict", "compassionate",
+                                                    "thoughtful", "ambitious", "confident", "adventurous", "calm",
+                                                    "careful", "faithful", "loving", "loyal", "responsible",
+                                                    "shameless", "sneaky", "strange", "vengeful", "wise", "arrogant",
+                                                    "competitive", "grumpy", "cunning", "oblivious", "gloomy",
+                                                    "sincere", "flamboyant"])
                     else:
                         alter_personality = str(self.personality.trait)
 
-            else: #same name
+            else:  # same name
                 alter_name = self.name.prefix
                 if template["role"] == "little":
-                    rng = randint(1,2)
+                    rng = randint(1, 2)
                     if rng == 1:
                         alter_name += "paw"
-                        different_personality = randint(1,5)
+                        different_personality = randint(1, 5)
                         if different_personality == 1:
-                            alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                            alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce",
+                                                        "bloodthirsty", "cold", "childish", "playful", "charismatic",
+                                                        "bold", "daring", "nervous", "righteous", "insecure", "strict",
+                                                        "compassionate", "thoughtful", "ambitious", "confident",
+                                                        "adventurous", "calm", "careful", "faithful", "loving", "loyal",
+                                                        "responsible", "shameless", "sneaky", "strange", "vengeful",
+                                                        "wise", "arrogant", "competitive", "grumpy", "cunning",
+                                                        "oblivious", "gloomy", "sincere", "flamboyant"])
                         else:
                             alter_personality = str(self.personality.trait)
                     else:
                         alter_name += "kit"
-                        alter_personality = choice(["unruly","shy","impulsive","bullying","attention-seeker","charming","fearless","noisy","skittish","quiet","self-conscious","daydreamer","sweet","polite","know-it-all","bossy"])
+                        alter_personality = choice(["unruly", "shy", "impulsive", "bullying", "attention-seeker",
+                                                    "charming", "fearless", "noisy", "skittish", "quiet",
+                                                    "self-conscious", "daydreamer", "sweet", "polite", "know-it-all",
+                                                    "bossy"])
             
                 else:
                     if template["other"] == "cat" or template["other"] == "otherclan":
                         alter_name += self.name.suffix
-                    different_personality = randint(1,5)
+                    different_personality = randint(1, 5)
                     if different_personality == 1:
-                        alter_personality = choice(["troublesome","rebellious","lonesome","fierce","bloodthirsty","cold","childish","playful","charismatic","bold","daring","nervous","righteous","insecure","strict","compassionate","thoughtful","ambitious","confident","adventurous","calm","careful","faithful","loving","loyal","responsible","shameless","sneaky","strange","vengeful","wise","arrogant","competitive","grumpy","cunning","oblivious","gloomy","sincere","flamboyant"])
+                        alter_personality = choice(["troublesome", "rebellious", "lonesome", "fierce", "bloodthirsty",
+                                                    "cold", "childish", "playful", "charismatic", "bold", "daring",
+                                                    "nervous", "righteous", "insecure", "strict", "compassionate",
+                                                    "thoughtful", "ambitious", "confident", "adventurous", "calm",
+                                                    "careful", "faithful", "loving", "loyal", "responsible",
+                                                    "shameless", "sneaky", "strange", "vengeful", "wise", "arrogant",
+                                                    "competitive", "grumpy", "cunning", "oblivious", "gloomy",
+                                                    "sincere", "flamboyant"])
                     else:
                         alter_personality = str(self.personality.trait)
 
-
-        template["personality"] = alter_personality    
+        template["personality"] = alter_personality
         template["name"] = alter_name
         if template["ID"] != "1":
-            splitrng = randint(1, (len(self.alters)+1))
+            splitrng = randint(1, (len(self.alters) + 1))
             if splitrng < (len(self.alters) + 1):
                 template["origin"] = self.alters[(splitrng - 1)]['name']
                 self.add_split((splitrng - 1), template["name"])
@@ -2489,10 +2614,10 @@ class Cat:
         born_with = self.permanent_condition[condition]["born_with"]
         
         if self.permanent_condition[condition]["moons_until"] == -2:
-            #correcting misdiagnoses
+            # correcting misdiagnoses
             if self.permanent_condition[condition]["misdiagnosis"] is not False:
                 exp_bonus = 0
-                meds = find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE],sort=True)
+                meds = find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE], sort=True)
                 if len(meds) > 0:
                     for med in meds:
                         if med._experience > 75:
@@ -2668,22 +2793,23 @@ class Cat:
     # ---------------------------------------------------------------------------- #
 
     def get_reincarnation(self):
-        backstory = "reincarnation_starclan"
-        if self.df:
+        if self.status.group == CatGroup.DARK_FOREST:
             backstory = "reincarnation_df"
-        elif self.outside or self.exiled:
+        elif self.status.group == CatGroup.UNKNOWN_RESIDENCE:
             backstory = "reincarnation_unknown"
-        reincarnation = Cat(parent1 = self.ID, parent2 = self.ID, prefix = self.name.prefix, status = "newborn", moons = 0, backstory=backstory, gender=self.gender, past_life = self.ID)
+        else:
+            backstory = "reincarnation_starclan"
+        reincarnation = Cat(parent1=self.ID, parent2=self.ID, prefix=self.name.prefix, status="newborn", moons=0, backstory=backstory, gender=self.gender, past_life=self.ID)
         game.clan.add_cat(reincarnation)
-        #we use self as both parents to increase similarity, but obviously
-        #we dont want that to stay as the parents LOL
+        # we use self as both parents to increase similarity, but obviously
+        # we dont want that to stay as the parents LOL
         reincarnation.parent1 = None
         reincarnation.parent2 = None
         reincarnation.history.add_beginning(clan_born=False)
         reincarnation.past_life = self.ID
         self.reincarnation = reincarnation.ID
-        #if game.clan.clan_settings["reincarnation_autofade"]:
-            #self.faded = True
+        # if game.clan.clan_settings["reincarnation_autofade"]:
+        # self.faded = True
         '''
         
         "reincarnation_autofade": [
@@ -2706,7 +2832,7 @@ class Cat:
             return
         if name == "kittencough" and self.status.rank != CatRank.KITTEN:
             return
-        
+
         if constants.CONFIG["event_generation"]["max_illnesses"] > 0:
             if len(self.illnesses) == constants.CONFIG["event_generation"]["max_illnesses"]:
                 return
@@ -3119,7 +3245,6 @@ class Cat:
                         if randint(1, comorbidity_chance) == 1 and possible_comorbidities:
                             new_condition = choice(choice(possible_comorbidities))
 
-
             if new_condition == "mute" and "selective mutism" in cat.permanent_condition:
                 while new_condition == "mute":
                     new_condition = choice(possible_conditions)
@@ -3164,7 +3289,7 @@ class Cat:
                                                    "sneaky", "strange", "vengeful", "wise", "arrogant", "competitive",
                                                    "grumpy", "cunning", "oblivious", "gloomy", "sincere", "flamboyant"])
 
-    def get_permanent_condition(self, name, born_with=False, event_triggered=False,starting_moon=0):
+    def get_permanent_condition(self, name, born_with=False, event_triggered=False, starting_moon=0):
         if name not in PERMANENT:
             print(
                 self.name,
@@ -3205,8 +3330,6 @@ class Cat:
                 )
             ]
 
-       
-           
         intersex_exclusive = ["excess testosterone", "aneuploidy", "testosterone deficiency", "chimerism", "mosaicism"]
         if self.gender != "intersex":
             if name in intersex_exclusive:
@@ -3224,7 +3347,6 @@ class Cat:
         
         if self.is_plural() and name in plural_conditions:
             return
-
 
         if name == "spirited heart" and "puzzled heart" in self.permanent_condition:
             return
@@ -3246,11 +3368,11 @@ class Cat:
                 e,
             )
         if game_setting_get("allow_triggers"):
-            #check for trigger toggle 
+            # check for trigger toggle
             if game_setting_get("misdiagnosis"):
-                #check for misdiagnosis
+                # check for misdiagnosis
                 exp_bonus = 0
-                meds = find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE],sort=True)
+                meds = find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE], sort=True)
                 if len(meds) > 0:
                     for med in meds:
                         if med._experience > 75:
@@ -3262,20 +3384,19 @@ class Cat:
                         else:
                             exp_bonus -= 3
                 else:
-                    exp_bonus -=5
-                misdiagnosis_chance = randint(0,10) + exp_bonus
+                    exp_bonus -= 5
+                misdiagnosis_chance = randint(0, 10) + exp_bonus
                 if misdiagnosis_chance < 5:
-                    #print("Misdiagnosis alert!")
+                    # print("Misdiagnosis alert!")
                     if name in misdiagnoses:
                         misdiagnosis = choice(misdiagnoses[name])
                         print(name + " misdiagnosed as: " + misdiagnosis)
                         if misdiagnosis in self.permanent_condition:
                             misdiagnosis = False
-                            #print ("False alarm.")
-                    #else:
-                        #print ("no possible misdiagnoses...it's your med cat's lucky break!")
+                            # print ("False alarm.")
+                    # else:
+                        # print ("no possible misdiagnoses...it's your med cat's lucky break!")
 
-        
         condition = PERMANENT[name]
         new_condition = False
         mortality = condition["mortality"][self.age.value]
@@ -3335,7 +3456,7 @@ class Cat:
             
         if condition["risks"] is not None:
             for risk in condition["risks"]:
-                risk["chance"] = randint(int(risk["chance"]/2),int(risk["chance"]*2))
+                risk["chance"] = randint(int(risk["chance"] / 2), int(risk["chance"] * 2))
 
         new_perm_condition = PermanentCondition(
             name=name,
@@ -3402,16 +3523,7 @@ class Cat:
 
         # There are some special tasks we need to do for apprentice
         # Note that although you can un-retire cats, they will be a full warrior/med_cat/mediator
-        if self.moons > 6 and self.status in [
-            "apprentice",
-            "medicine cat apprentice",
-            "mediator apprentice",
-            "messenger apprentice",
-            "caretaker apprentice",
-            "denkeeper apprentice",
-            "gardener apprentice",
-            "storyteller apprentice"
-        ]:
+        if self.moons > 6 and self.status.rank.is_any_apprentice_rank():
             _ment = Cat.fetch_cat(self.mentor) if self.mentor else None
             self.rank_change(
                 CatRank.WARRIOR
@@ -3444,11 +3556,8 @@ class Cat:
 
     def contact_with_ill_cat(self, cat: Cat):
         """handles if one cat had contact with an ill cat"""
-        
-        current_denkeepers = []
-        for cat in Cat.all_cats_list:
-            if cat.status in ["denkeeper", "denkeeper apprentice"]:
-                current_denkeepers.append(cat)
+
+        current_denkeepers = find_alive_cats_with_rank(Cat, [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE])
 
         infectious_illnesses = []
         if self.is_ill() or cat is None or not cat.is_ill():
@@ -3485,7 +3594,7 @@ class Cat:
             
             if len(current_denkeepers) > 0:
                 for keeper in current_denkeepers:
-                    rate = int(rate* 1.5)
+                    rate = int(rate * 1.5)
 
             if not random() * rate:
                 text = f"{self.name} had contact with {cat.name} and now has {illness_name}."
@@ -3531,14 +3640,13 @@ class Cat:
 
         if self.is_disabled():
             conditions["permanent conditions"] = self.permanent_condition
-        
+
         if self.is_plural():
             self.update_alters()
             conditions["alters"] = self.alters
             
         if self.is_awakened():
             conditions["awakened"] = self.awakened
-        
 
         safe_save(condition_file_path, conditions)
 
@@ -3575,7 +3683,7 @@ class Cat:
                 self.pelt.blep = True
             else:
                 self.pelt.blep = False
-                
+
             if "starwalker" in self.permanent_condition:
                 del self.permanent_condition["starwalker"]
                 self.get_permanent_condition("prismatic mind", born_with=True)
@@ -3842,17 +3950,15 @@ class Cat:
         if self.dead != other_cat.dead:
             return False
         
-        #can't be friends and enemies
+        # can't be friends and enemies
         if other_cat.ID in self.bestie or self.ID in other_cat.bestie:
             return False
         
-        #cant be mates and enemies
+        # cant be mates and enemies
         if other_cat.ID in self.mate or self.ID in other_cat.mate:
             return False
-        
-        
+
         return True
-        
 
     def unset_mate(self, other_cat: Cat, breakup: bool = False, fight: bool = False):
         """Unset the mate from both self and other_cat"""
@@ -3967,7 +4073,6 @@ class Cat:
         if self.ID not in other_cat.previous_besties:
             other_cat.previous_besties.append(self.ID)
 
-            
     def unset_enemy(self, other_cat: Cat, breakup: bool = False, fight: bool = False):
         """Unset the mate from both self and other_cat"""
         if not other_cat:
@@ -5001,9 +5106,9 @@ class Cat:
         dadm_text = ""
         if len(self.pronouns) == 1:
             if self.pronouns[0].get("subject") == self.pronouns[0].get("object"):
-                    dadm_text += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("poss")
+                dadm_text += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("poss")
             else:
-                    dadm_text += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("object")
+                dadm_text += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("object")
         else:
             for pronoun in self.pronouns:
                     dadm_text += pronoun.get("subject") + "/"
@@ -5027,18 +5132,17 @@ class Cat:
                 elif class1 == "A" and class2 in ["S"]:
                     total_class = class2
                 awakened_text = total_class + "-class " + self.awakened["type"] + "\n"
-                awakened_text += "powers: " + self.awakened["ability"][0] + " and " +  self.awakened["ability"][1] + "\n"
-
+                awakened_text += "powers: " + self.awakened["ability"][0] + " and " + self.awakened["ability"][1] + "\n"
 
         if self.permanent_condition:
-                dadm_text += "\n\ncondition"
-                if len(self.permanent_condition) > 1:
-                    dadm_text += "s:\n"
-                else:
-                    dadm_text += ":\n"
-                for condition in self.permanent_condition:
-                    dadm_text += self.change_condition_name(str(condition)) + "\n"
-                dadm_text = dadm_text[:-1]
+            dadm_text += "\n\ncondition"
+            if len(self.permanent_condition) > 1:
+                dadm_text += "s:\n"
+            else:
+                dadm_text += ":\n"
+            for condition in self.permanent_condition:
+                dadm_text += self.change_condition_name(str(condition)) + "\n"
+            dadm_text = dadm_text[:-1]
                 
         trait_text = i18n.t(f"cat.personality.{self.personality.trait}")
         if self.personality.trait != self.personality.trait2:
@@ -5090,6 +5194,7 @@ class Cat:
                 i18n.t(f"general.{self.status.rank.lower()}", count=1),
                 self.genderalign,
                 trait_text,
+                self.skills.skill_string(short=True),
             ]
         )
 
