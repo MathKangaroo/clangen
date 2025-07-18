@@ -123,8 +123,14 @@ class CustomizeStatsScreen(Screens):
             "constantly dizzy",
             "recurring shock",
             "lasting grief",
-            "wobbly cat syndrome", "cleft palate",
-            "persistent headaches", "testosterone deficiency", "excess testosterone", "aneuploidy", "mosaicism", "chimerism",
+            "wobbly cat syndrome",
+            "cleft palate",
+            "persistent headaches",
+            "testosterone deficiency",
+            "excess testosterone",
+            "aneuploidy",
+            "mosaicism",
+            "chimerism",
             "comet spirit",
             "weighted heart",
             "prismatic mind",
@@ -168,18 +174,22 @@ class CustomizeStatsScreen(Screens):
             "seizure prone",
             "allergies"
         ]
-        self.permanent_conditions = copy(scarless_conditions) + ["lost a leg", "lost their tail", "twisted leg", "declawed", "constant rash"]
+        self.permanent_conditions = copy(scarless_conditions) + ["lost a leg", "lost their tail", "twisted leg",
+                                                                 "declawed", "constant rash"]
         self.permanent_conditions.sort()
         self.permanent_conditions.insert(0, "none")
         self.permanent_conditions_label = None
         
-        self.skills = ["TEACHER", "FIGHTER","CLIMBER", "SPEAKER","CLEVER", "SENSE","STORY", "CAMP", "STAR", "OMEN", "CLAIRVOYANT", "GHOST", "UNKNOWN",
-                       "DELIVERER", "LEADERSHIP", "STEALTHY", "MESSENGER", "HISTORIAN", "PATIENT", "HERBALIST", "PRODIGY", "TRACKER", "GUARDIAN", "NAVIGATOR",
-                       "GRACE", "INNOVATOR", "MATCHMAKER", "COOPERATIVE", "TIME", "FISHER", "SLEEPER", "PYRO", "WEATHER", "VIBES", "IMMUNE", "MUSICVIBES",
-                       "ANIMALTAKER", "ANIMALMAGNET", "VET", "AURAVIBES", "HIDER", "STARGAZER", "GIFTGIVER", "HYDRO", "DISGUISE", "LANGUAGE", "TREASURE",
-                       "SCHOLAR", "THINKER", "COMFORTER", "CLEAN", "SONG", "TUNNELER", "ARTISAN", "EXPLORER", "CHEF", "DETECTIVE", "BOOKMAKER", "ASSIST",
-                       "MEMORY", "AGILE", "DECORATOR", "WAKEFUL", "GARDENER", "PROPHET", "DREAM", "DARK", "HEALER", "LORE", "KIT", "INSIGHTFUL", "MEDIATOR",
-                       "SWIMMER", "RUNNER", "HUNTER", "DAY", "NIGHT", "LUCK", "STRONG", "BUG", "BONES"]
+        self.skills = ["TEACHER", "FIGHTER","CLIMBER", "SPEAKER","CLEVER", "SENSE","STORY", "CAMP", "STAR", "OMEN",
+                       "CLAIRVOYANT", "GHOST", "UNKNOWN", "DELIVERER", "LEADERSHIP", "STEALTHY", "MESSENGER",
+                       "HISTORIAN", "PATIENT", "HERBALIST", "PRODIGY", "TRACKER", "GUARDIAN", "NAVIGATOR", "GRACE",
+                       "INNOVATOR", "MATCHMAKER", "COOPERATIVE", "TIME", "FISHER", "SLEEPER", "PYRO", "WEATHER",
+                       "VIBES", "IMMUNE", "MUSICVIBES", "ANIMALTAKER", "ANIMALMAGNET", "VET", "AURAVIBES", "HIDER",
+                       "STARGAZER", "GIFTGIVER", "HYDRO", "DISGUISE", "LANGUAGE", "TREASURE", "SCHOLAR", "THINKER",
+                       "COMFORTER", "CLEAN", "SONG", "TUNNELER", "ARTISAN", "EXPLORER", "CHEF", "DETECTIVE",
+                       "BOOKMAKER", "ASSIST", "MEMORY", "AGILE", "DECORATOR", "WAKEFUL", "GARDENER", "PROPHET", "DREAM",
+                       "DARK", "HEALER", "LORE", "KIT", "INSIGHTFUL", "MEDIATOR", "SWIMMER", "RUNNER", "HUNTER", "DAY",
+                       "NIGHT", "LUCK", "STRONG", "BUG", "BONES"]
         self.skill_strings_dict = {
                 "TEACHER": SkillPath.TEACHER,
                 "FIGHTER": SkillPath.FIGHTER,
@@ -268,32 +278,49 @@ class CustomizeStatsScreen(Screens):
         self.skills_label1 = None
         self.skills_label2 = None
         self.skills_label3 = None
-        
-        self.adult_traits = ["troublesome", "lonesome", "fierce", "bloodthirsty", "cold", "childish", "playful", "charismatic", "bold", "daring", "nervous", "righteous",
-                       "insecure", "strict", "compassionate", "thoughtful", "ambitious", "confident", "adventurous", "calm", "careful", "faithful", "loving", "loyal",
-                       "responsible", "shameless", "sneaky", "strange", "vengeful", "wise", "arrogant", "competitive", "grumpy", "cunning", "oblivious", "gloomy",
-                       "sincere", "flamboyant", "alert", "angry", "appreciative", "bubbly", "absent-minded", "carefree", "cryptic", "dedicated", "distracted", "dramatic",
-                       "dynamic", "easy-going", "elegant", "escapist", "fair", "forceful", "forgiving", "casual", "dry", "chummy", "complex", "emotional", "folksy",
-                       "hypnotic", "intense", "nurturing", "old-fashioned", "neutral", "moralistic", "soft", "unaggressive", "gentle", "unreligious", "reserved", "generous",
-                       "gracious", "hearty", "heroic", "idealistic", "innocent", "logical", "benevolent", "farsighted", "fun-loving", "open", "optimistic", "gallant",
-                       "free-thinking", "passive-aggressive", "pessimistic", "passionate", "hardworking", "genuine", "peaceful", "polished", "protective", "relaxed",
-                       "sarcastic", "high-minded", "incisive", "sassy", "sensitive", "serious", "incorruptible", "leaderly", "stoic", "tidy", "warm", "organized", "patient",
-                       "persuasive", "principled", "practical", "goofy", "romantic", "scholarly", "destructive", "grim", "forgetful", "greedy", "judgemental", "thoughtless",
-                       "nerdy", "philosophical", "overthinker", "cheeky", "snobbish", "reliable", "punctual", "supportive", "spiteful", "remorseless", "weak-willed",
-                       "hyper", "superficial", "fearful", "clumsy", "unpredictable", "cool", "cooperative", "energetic", "talkative", "amoral", "tranquil", "antagonistic",
-                       "wrongful", "fatalistic", "rebellious", "silly", "confused", "sleepy", "chaotic", "scary", "cheerful", "coward", "manipulative", "delicate",
-                       "hypocrite", "flirty", "honest", "mysterious", "polite", "enthusiastic", "vulnerable", "creative", "perfectionist", "sappy", "sentient", "annoying",
-                       "lazy", "faithless", "moody", "aloof", "whimsical", "fancy", "methodical", "malicious", "frustrated", "self-reliant", "sentimental", "spontainious",
-                       "stable", "strong", "fox-hearted", "sympathetic", "macabre", "civil", "teacherly", "tolerant", "unfoolable", "witty", "youthful", "enigmatic",
-                       "ordinary", "private", "loud", "questioning", "predictable", "airy", "anxious", "argumentative", "bizarre", "blunt", "calculating", "crude", "deceitful",
-                       "cruel", "devious", "messy", "opinionated", "overimaginative", "power-hungry", "quirky", "reactive", "resentful", "regretful", "ritualistic", "selfish",
-                       "sadistic", "scheming", "sloppy", "suspicious", "thievish", "transparent", "vague", "venomous", "envious", "humorous"]
+
+        self.adult_traits = ["troublesome", "lonesome", "fierce", "bloodthirsty", "cold", "childish", "playful",
+                             "charismatic", "bold", "daring", "nervous", "righteous", "insecure", "strict",
+                             "compassionate", "thoughtful", "ambitious", "confident", "adventurous", "calm", "careful",
+                             "faithful", "loving", "loyal", "responsible", "shameless", "sneaky", "strange", "vengeful",
+                             "wise", "arrogant", "competitive", "grumpy", "cunning", "oblivious", "gloomy", "sincere",
+                             "flamboyant", "alert", "angry", "appreciative", "bubbly", "absent-minded", "carefree",
+                             "cryptic", "dedicated", "distracted", "dramatic", "dynamic", "easy-going", "elegant",
+                             "escapist", "fair", "forceful", "forgiving", "casual", "dry", "chummy", "complex",
+                             "emotional", "folksy", "hypnotic", "intense", "nurturing", "old-fashioned", "neutral",
+                             "moralistic", "soft", "unaggressive", "gentle", "unreligious", "reserved", "generous",
+                             "gracious", "hearty", "heroic", "idealistic", "innocent", "logical", "benevolent",
+                             "farsighted", "fun-loving", "open", "optimistic", "gallant", "free-thinking",
+                             "passive-aggressive", "pessimistic", "passionate", "hardworking", "genuine", "peaceful",
+                             "polished", "protective", "relaxed", "sarcastic", "high-minded", "incisive", "sassy",
+                             "sensitive", "serious", "incorruptible", "leaderly", "stoic", "tidy", "warm", "organized",
+                             "patient", "persuasive", "principled", "practical", "goofy", "romantic", "scholarly",
+                             "destructive", "grim", "forgetful", "greedy", "judgemental", "thoughtless", "nerdy",
+                             "philosophical", "overthinker", "cheeky", "snobbish", "reliable", "punctual", "supportive",
+                             "spiteful", "remorseless", "weak-willed", "hyper", "superficial", "fearful", "clumsy",
+                             "unpredictable", "cool", "cooperative", "energetic", "talkative", "amoral", "tranquil",
+                             "antagonistic", "wrongful", "fatalistic", "rebellious", "silly", "confused", "sleepy",
+                             "chaotic", "scary", "cheerful", "coward", "manipulative", "delicate", "hypocrite",
+                             "flirty", "honest", "mysterious", "polite", "enthusiastic", "vulnerable", "creative",
+                             "perfectionist", "sappy", "sentient", "annoying", "lazy", "faithless", "moody", "aloof",
+                             "whimsical", "fancy", "methodical", "malicious", "frustrated", "self-reliant",
+                             "sentimental", "spontainious", "stable", "strong", "fox-hearted", "sympathetic", "macabre",
+                             "civil", "teacherly", "tolerant", "unfoolable", "witty", "youthful", "enigmatic",
+                             "ordinary", "private", "loud", "questioning", "predictable", "airy", "anxious",
+                             "argumentative", "bizarre", "blunt", "calculating", "crude", "deceitful", "cruel",
+                             "devious", "messy", "opinionated", "overimaginative", "power-hungry", "quirky", "reactive",
+                             "resentful", "regretful", "ritualistic", "selfish", "sadistic", "scheming", "sloppy",
+                             "suspicious", "thievish", "transparent", "vague", "venomous", "envious", "humorous"]
         self.adult_traits.sort()
-        self.kit_traits = ["troublesome", "lonesome", "impulsive", "bullying", "attention-seeker", "daydreamer", "dreary", "abrupt", "solemn", "wishful", "indecisive",
-                           "entitled", "distrusting", "charming", "nervous", "quiet", "insecure", "sweet", "goody-no-claws", "chaotic", "nosy", "moody", "nasty", "silly",
-                           "know-it-all", "spoiled", "sly", "mature", "apologetic", "salty", "whiny", "spicy", "bubbly", "picky", "cheeky", "shy", "fearless", "skittish",
-                           "self-conscious", "impressionable", "high-spirited", "crybaby", "tiny", "morbid", "obedient", "colorful", "zoomy", "clingy", "curious", "slug",
-                           "defiant", "sinister", "prim", "tender", "jokester", "wild", "bright", "earnest", "rowdy", "sloppy", "complex", "emotional", "protective", "bossy"]
+        self.kit_traits = ["troublesome", "lonesome", "impulsive", "bullying", "attention-seeker", "daydreamer",
+                           "dreary", "abrupt", "solemn", "wishful", "indecisive", "entitled", "distrusting", "charming",
+                           "nervous", "quiet", "insecure", "sweet", "goody-no-claws", "chaotic", "nosy", "moody",
+                           "nasty", "silly", "know-it-all", "spoiled", "sly", "mature", "apologetic", "salty", "whiny",
+                           "spicy", "bubbly", "picky", "cheeky", "shy", "fearless", "skittish", "self-conscious",
+                           "impressionable", "high-spirited", "crybaby", "tiny", "morbid", "obedient", "colorful",
+                           "zoomy", "clingy", "curious", "slug", "defiant", "sinister", "prim", "tender", "jokester",
+                           "wild", "bright", "earnest", "rowdy", "sloppy", "complex", "emotional", "protective",
+                           "bossy"]
         self.kit_traits.sort()
         self.traits = copy(self.adult_traits)
         self.traits_label1 = None
@@ -381,7 +408,9 @@ class CustomizeStatsScreen(Screens):
         self.fur_textures.sort()
         self.fur_textures_label = None
         
-        self.builds = ["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate", "hunched", "hefty", "burly", "bulky", "plump", "brawny", "stout", "broad", "chubby", "fat", "stocky", "chunky", "big-boned"]
+        self.builds = ["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate", "hunched", "hefty",
+                       "burly", "bulky", "plump", "brawny", "stout", "broad", "chubby", "fat", "stocky", "chunky",
+                       "big-boned"]
         self.builds.sort()
         self.builds_label = None
         
@@ -391,23 +420,190 @@ class CustomizeStatsScreen(Screens):
         
         self.genders = ["male", "female", "intersex"]
         self.genders_label = None
-        
-        self.physical_traits = Pelt.physical_trait_teeth + Pelt.physical_trait_ear_type + Pelt.physical_trait_ear_fold + Pelt.physical_trait_headfur + Pelt.physical_trait_cheekfur + Pelt.physical_trait_mane + Pelt.physical_trait_fur_type + Pelt.physical_trait_muzzle_type + Pelt.physical_trait_tail + Pelt.physical_trait_bodyfur + Pelt.physical_trait_misc
-        self.physical_traits.insert(0, "NONE")
+
+        self.physical_dict_teeth = {
+            "long upper fangs": "TEETHUPPER",
+            "sabre teeth": "TEETHSABRE",
+            "underbite": "TEETHUNDERBITE",
+            "overbite": "TEETHOVERBITE",
+            "a hanging fang": "TEETHHANG",
+            "uneven teeth": "TEETHJAGGED",
+            "tusked fangs": "TEETHTUSK",
+            "missing a tooth": "TEETHGONE",
+            "a chipped tooth": "TEETHCHIPPED"
+        }
+        physical_list_teeth = []
+        for thingy in self.physical_dict_teeth:
+            physical_list_teeth.append(thingy.capitalize())
+        physical_list_teeth.sort()
+
+        self.physical_dict_ears = {
+            "small ears": "EARSMALL",
+            "big ears": "EARBIG",
+            "tall ears": "EARTALL",
+            "rounded ears": "EARPANTHER",
+            "wide-set ears": "EARWIDE",
+            "fluffy ears": "EARFLUFFY",
+            "rabbit-like ears": "EARRABBIT",
+            "droopy ears": "EARDROOPY",
+            "folded ears": "FOLDBOTH",
+            "one folded ear": "FOLDONE",
+            "curled ears": "EARCURL",
+            "ear tufts": "EARTUFTS",
+            "long inner ear fur": "LONGINNEREARFUR"
+        }
+        physical_list_ears = []
+        for thingy in self.physical_dict_ears:
+            physical_list_ears.append(thingy.capitalize())
+        physical_list_ears.sort()
+
+        self.physical_dict_hair = {
+            "forelock": "HEADFORELOCK",
+            "cowlick": "HEADCOWLICK",
+            "mohawk": "HEADMOHAWK",
+            "tufted head fur": "HEADTUFT",
+            "emo-style head fur": "HEADEMO",
+            "mullet": "HEADMULLET"
+        }
+        physical_list_hair = []
+        for thingy in self.physical_dict_hair:
+            physical_list_hair.append(thingy.capitalize())
+        physical_list_hair.sort()
+
+        self.physical_dict_cheek = {
+            "long cheek fur": "CHEEKLONG",
+            "pointed cheek fur": "CHEEKPOINTED",
+            "fluffy cheeks": "CHEEKFLUFF",
+            "curled cheek fur": "CHEEKCURL",
+            "prominent jowls": "HEADJOWLS"
+        }
+        physical_list_cheek = []
+        for thingy in self.physical_dict_cheek:
+            physical_list_cheek.append(thingy.capitalize())
+        physical_list_cheek.sort()
+
+        self.physical_dict_mane = {
+            "silky mane": "MANESILKY",
+            "fluffy mane": "MANEFLUFFY",
+            "ruff": "MANERUFF",
+            "horse-like mane": "MANEHORSE",
+            "lion-like mane": "MANELION",
+            "braided mane": "MANEBRAIDED",
+            "cobra-like mane": "MANECOBRA",
+            "fluffy back": "BACKFLUFF",
+            "fur ridge on back": "BACKRIDGE",
+        }
+        physical_list_mane = []
+        for thingy in self.physical_dict_mane:
+            physical_list_mane.append(thingy.capitalize())
+        physical_list_mane.sort()
+
+        self.physical_dict_fur = {
+            "wavy fur": "FURWAVY",
+            "curly fur": "FURCURLY",
+            "patchy fur": "FURPATCHY",
+            "kinked fur": "FURKINK",
+            "shaggy fur": "FURSHAGGY"
+        }
+        physical_list_fur = []
+        for thingy in self.physical_dict_fur:
+            physical_list_fur.append(thingy.capitalize())
+        physical_list_fur.sort()
+
+        self.physical_dict_muzzle = {
+            "short muzzle": "MUZZLESHORT",
+            "broad muzzle": "MUZZLEBROAD",
+            "long muzzle": "MUZZLELONG",
+            "long chin fur": "LONGCHINFUR",
+            "short chin fur": "SHORTCHINFUR",
+            "long muzzle fur": "LONGMUZZLEFUR",
+            "overgrown tongue": "OVERGROWNTONGUE",
+            "undersized jaw": "UNDERSIZEDJAW",
+            "oversized jaw": "OVERSIZEDJAW",
+            "fur barbels": "FURBARBELS"
+        }
+        physical_list_muzzle = []
+        for thingy in self.physical_dict_muzzle:
+            physical_list_muzzle.append(thingy.capitalize())
+        physical_list_muzzle.sort()
+
+        self.physical_dict_tail = {
+            "crooked tail": "TAILCROOKED",
+            "long tail": "TAILLONG",
+            "feathered tail": "TAILFEATHER",
+            "curled tail": "TAILCURL",
+            "tufted tail": "TAILTUFT",
+            "forked tail": "TAILFORKED",
+            "fox-like tail": "TAILFOX"
+        }
+        physical_list_tail = []
+        for thingy in self.physical_dict_tail:
+            physical_list_tail.append(thingy.capitalize())
+        physical_list_tail.sort()
+
+        self.physical_dict_paws = {
+            "polydactyl": "POLYDACTYL",
+            "unusually long claws": "CLAWSLONG",
+            "large paws": "LARGEPAWS",
+            "small paws": "SMALLPAWS",
+            "clawless": "CLAWLESS",
+            "unusually short claws": "CLAWSSHORT",
+            "tufted paws": "PAWTUFT",
+            "webbed paws": "WEBBEDPAWS",
+            "missing a toe": "MISSINGTOE"
+        }
+        physical_list_paws = []
+        for thingy in self.physical_dict_paws:
+            physical_list_paws.append(thingy.capitalize())
+        physical_list_paws.sort()
+
+        self.physical_dict_face = {
+            "upper lashes": "LASHESUPPER",
+            "lower lashes": "LASHESLOWER",
+            "big eyes": "BIGEYES",
+            "small eyes": "SMALLEYES",
+            "cross-eyed": "CROSSEYED",
+            "lazy eye": "LAZYEYE",
+            "big nose": "BIGNOSE",
+            "heart-shaped nose": "HEARTSHAPEDNOSE",
+            "long whiskers": "WHISKERSLONG"
+        }
+        physical_list_face = []
+        for thingy in self.physical_dict_face:
+            physical_list_face.append(thingy.capitalize())
+        physical_list_face.sort()
+
+        self.physical_dict_legs = {
+            "tufted legs": "LEGTUFT",
+            "long-legged": "LONGLEGS",
+            "short-legged": "SHORTLEGS",
+            "tufted shoulders": "SHOULDERTUFT"
+        }
+        physical_list_legs = []
+        for thingy in self.physical_dict_legs:
+            physical_list_legs.append(thingy.capitalize())
+        physical_list_legs.sort()
+
+        self.physical_traits = (physical_list_ears + physical_list_hair + physical_list_face + physical_list_cheek +
+                                physical_list_muzzle + physical_list_teeth + physical_list_mane + physical_list_fur +
+                                physical_list_tail + physical_list_legs + physical_list_paws)
+        self.physical_traits.insert(0, "None")
         self.physical_traits_label = None
         
         self.powers = ["none", "esper", "guide", "enhanced esper"]
         self.powers_label = None
         self.powers_dropdown = None
 
-        self.abilities = ["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
-                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
-                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
-                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"]
+        self.abilities = ["pyrokinesis", "hydrokinesis", "cyrokinesis", "geokinesis", "aerokinesis", "illusions",
+                          "shapeshifting", "super strength", "enhanced senses", "telekinesis", "chimera",
+                          "invisibility", "incorporeal", "mind control", "flight", "teleportation",
+                          "electromagnetic control", "light manipulation", "beast speak", "dendrokinesis",
+                          "electrokinesis", "telempathy", "astral projection", "flesh manipulation",
+                          "spatial manipulation"]
         self.abilities.sort()
         self.abilities.insert(0, "None")
 
-        self.classes = ["C","B", "A", "S"]
+        self.classes = ["C", "B", "A", "S"]
         self.class_level = None
         self.class_dropdown = None
 
@@ -558,17 +754,202 @@ class CustomizeStatsScreen(Screens):
                                                                                "lower"))
         self.gender_dropdown = create_dropdown((480, 360), (135, 40), create_options_list(self.genders, "lower"),
                                              get_selected_option(self.the_cat.gender, "lower"))
-        
-        
+
+        trait1 = None
+        trait2 = None
+        trait3 = None
+        trait4 = None
+
+        # trait 1
+        for phys_trait in self.physical_dict_teeth:
+            if self.physical_dict_teeth.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_ears:
+                if self.physical_dict_ears.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_hair:
+                if self.physical_dict_hair.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_cheek:
+                if self.physical_dict_cheek.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_mane:
+                if self.physical_dict_mane.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_fur:
+                if self.physical_dict_fur.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_muzzle:
+                if self.physical_dict_muzzle.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_tail:
+                if self.physical_dict_tail.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_paws:
+                if self.physical_dict_paws.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_face:
+                if self.physical_dict_face.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+        if trait1 is None:
+            for phys_trait in self.physical_dict_legs:
+                if self.physical_dict_legs.get(phys_trait) == self.the_cat.pelt.physical_trait_1:
+                    trait1 = phys_trait
+
+        # trait 2
+        for phys_trait in self.physical_dict_teeth:
+            if self.physical_dict_teeth.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_ears:
+                if self.physical_dict_ears.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_hair:
+                if self.physical_dict_hair.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_cheek:
+                if self.physical_dict_cheek.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_mane:
+                if self.physical_dict_mane.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_fur:
+                if self.physical_dict_fur.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_muzzle:
+                if self.physical_dict_muzzle.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_tail:
+                if self.physical_dict_tail.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_paws:
+                if self.physical_dict_paws.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_face:
+                if self.physical_dict_face.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+        if trait2 is None:
+            for phys_trait in self.physical_dict_legs:
+                if self.physical_dict_legs.get(phys_trait) == self.the_cat.pelt.physical_trait_2:
+                    trait2 = phys_trait
+
+        # trait 3
+        for phys_trait in self.physical_dict_teeth:
+            if self.physical_dict_teeth.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_ears:
+                if self.physical_dict_ears.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_hair:
+                if self.physical_dict_hair.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_cheek:
+                if self.physical_dict_cheek.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_mane:
+                if self.physical_dict_mane.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_fur:
+                if self.physical_dict_fur.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_muzzle:
+                if self.physical_dict_muzzle.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_tail:
+                if self.physical_dict_tail.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_paws:
+                if self.physical_dict_paws.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_face:
+                if self.physical_dict_face.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+        if trait3 is None:
+            for phys_trait in self.physical_dict_legs:
+                if self.physical_dict_legs.get(phys_trait) == self.the_cat.pelt.physical_trait_3:
+                    trait3 = phys_trait
+
+        # trait 4
+        for phys_trait in self.physical_dict_teeth:
+            if self.physical_dict_teeth.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_ears:
+                if self.physical_dict_ears.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_hair:
+                if self.physical_dict_hair.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_cheek:
+                if self.physical_dict_cheek.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_mane:
+                if self.physical_dict_mane.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_fur:
+                if self.physical_dict_fur.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_muzzle:
+                if self.physical_dict_muzzle.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_tail:
+                if self.physical_dict_tail.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_paws:
+                if self.physical_dict_paws.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_face:
+                if self.physical_dict_face.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+        if trait4 is None:
+            for phys_trait in self.physical_dict_legs:
+                if self.physical_dict_legs.get(phys_trait) == self.the_cat.pelt.physical_trait_4:
+                    trait4 = phys_trait
+
+        # anddd, the dropdowns
         self.physical_trait1_dropdown = create_dropdown((640, 360), (135, 40), create_options_list(self.physical_traits, "upper"),
-                                             get_selected_option(self.the_cat.pelt.physical_trait_1, "upper"))
+                                             get_selected_option(trait1, "upper"))
         self.physical_trait2_dropdown = create_dropdown((320, 445), (135, 40), create_options_list(self.physical_traits, "upper"),
-                                             get_selected_option(self.the_cat.pelt.physical_trait_2, "upper"))
+                                             get_selected_option(trait2, "upper"))
         self.physical_trait3_dropdown = create_dropdown((480, 445), (135, 40), create_options_list(self.physical_traits, "upper"),
-                                             get_selected_option(self.the_cat.pelt.physical_trait_3, "upper"))
+                                             get_selected_option(trait3, "upper"))
         self.physical_trait4_dropdown = create_dropdown((640, 445), (135, 40), create_options_list(self.physical_traits, "upper"),
-                                             get_selected_option(self.the_cat.pelt.physical_trait_4, "upper"))
-        
+                                             get_selected_option(trait4, "upper"))
+
         powers = "none"
         powerclass = "none"
         if self.the_cat.awakened:
@@ -861,8 +1242,7 @@ class CustomizeStatsScreen(Screens):
 
     def handle_dropdown_change(self, dropdown):
         selected_option = dropdown.selected_option[1].lower()
-        
-        
+
         if dropdown == self.trait1_dropdown:
             self.the_cat.personality.trait = selected_option
         if dropdown == self.trait2_dropdown:
@@ -885,7 +1265,31 @@ class CustomizeStatsScreen(Screens):
             if selected_option == "none":
                 selected_option = None
             else:
-                selected_option = selected_option.upper()
+                if selected_option in self.physical_dict_teeth:
+                    selected_option = self.physical_dict_teeth.get(selected_option)
+                elif selected_option in self.physical_dict_ears:
+                    selected_option = self.physical_dict_ears.get(selected_option)
+                elif selected_option in self.physical_dict_hair:
+                    selected_option = self.physical_dict_hair.get(selected_option)
+                elif selected_option in self.physical_dict_cheek:
+                    selected_option = self.physical_dict_cheek.get(selected_option)
+                elif selected_option in self.physical_dict_mane:
+                    selected_option = self.physical_dict_mane.get(selected_option)
+                elif selected_option in self.physical_dict_fur:
+                    selected_option = self.physical_dict_fur.get(selected_option)
+                elif selected_option in self.physical_dict_muzzle:
+                    selected_option = self.physical_dict_muzzle.get(selected_option)
+                elif selected_option in self.physical_dict_tail:
+                    selected_option = self.physical_dict_tail.get(selected_option)
+                elif selected_option in self.physical_dict_paws:
+                    selected_option = self.physical_dict_paws.get(selected_option)
+                elif selected_option in self.physical_dict_face:
+                    selected_option = self.physical_dict_face.get(selected_option)
+                elif selected_option in self.physical_dict_legs:
+                    selected_option = self.physical_dict_legs.get(selected_option)
+                else:
+                    selected_option = None
+
         if dropdown == self.physical_trait1_dropdown:
             self.the_cat.pelt.physical_trait_1 = selected_option
         if dropdown == self.physical_trait2_dropdown:
