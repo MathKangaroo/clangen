@@ -1064,7 +1064,7 @@ class CustomizeCatScreen(Screens):
                 dropdown.disable()
 
     def check_white_patches_tint(self):
-        if game.settings["vit tint"]:
+        if game_setting_get("vit tint"):
             if self.the_cat.pelt.vitiligo is None and self.the_cat.pelt.points is None and self.the_cat.pelt.white_patches is None:
                 self.the_cat.pelt.white_patches_tint = ["none"]
                 self.white_patches_tint_dropdown.kill()
