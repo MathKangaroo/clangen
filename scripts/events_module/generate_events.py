@@ -15,6 +15,7 @@ from scripts.events_module.event_filters import (
     event_for_freshkill_supply,
     event_for_herb_supply,
     event_for_clan_relations,
+    cat_for_event,
 )
 from scripts.events_module.ongoing.ongoing_event import OngoingEvent
 from scripts.events_module.short.short_event import ShortEvent
@@ -232,6 +233,9 @@ class GenerateEvents:
                 if game.clan.tertiary_biome != game.clan.biome:
                     if random.randint(1, game.clan.tertiary_biome_weight) == 1:
                         chosen_biome = game.clan.tertiary_biome
+
+        if game.clan.override_biome:
+            chosen_biome = game.clan.override_biome
 
         # skip the rest of the loading if there is an unrecognised biome
         if chosen_biome not in constants.BIOME_TYPES:
@@ -519,7 +523,7 @@ class GenerateEvents:
                     if random.randint(1, game.clan.tertiary_biome_weight) == 1:
                         chosen_biome = game.clan.tertiary_biome
 
-        if chosen_biome not in game.clan.BIOME_TYPES:
+        if chosen_biome not in constants.BIOME_TYPES:
             print(
                 f"WARNING: unrecognised biome {chosen_biome} in generate_events. Have you added it to BIOME_TYPES in clan.py?"
             )
