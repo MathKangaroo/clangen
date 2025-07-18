@@ -504,7 +504,9 @@ class Status:
             return
 
         # if we have an outsider who has never been a clancat, they go to the unknown residence
-        if self.is_outsider and not self.is_former_clancat:
+        if self.is_outsider and (
+            self.is_exiled(CatGroup.PLAYER_CLAN) or not self.is_former_clancat
+        ):
             self.add_to_group(new_group=CatGroup.UNKNOWN_RESIDENCE)
             return
 
@@ -547,15 +549,14 @@ class Status:
                     entry["near"] = not entry["near"]
 
     # RETRIEVE INFO
-    def get_standing_with_group(self, group: CatGroup) -> list[CatStanding]:
+    def get_standing_with_group(self, group: CatGroup) -> Optional[list[CatStanding]]:
         """
         Returns the list of standings a cat has for the given group.
         """
-        return [
-            entry["standing"]
-            for entry in self.standing_history
-            if entry["group"] == group
-        ]
+        for entry in self.standing_history:
+            if entry["group"] == group:
+                return entry["standing"]
+        return []
 
     def find_prior_clan_rank(self, clan: CatGroup = None):
         """
@@ -582,7 +583,7 @@ class Status:
         """
         Returns the last group this cat belonged to before death. If the cat had no group before dying, this will return None.
         """
-        history = self.group_history
+        history = self.group_history.copy()
         history.reverse()
 
         for entry in history:
