@@ -372,7 +372,7 @@ class RoleScreen(Screens):
         if self.the_cat.personality.trait != self.the_cat.personality.trait2:
             trait_text += " & " + i18n.t(f"cat.personality.{self.the_cat.personality.trait2}")
         text = [
-            "<b>" + i18n.t(f"general.{self.the_cat.status}", count=1) + "</b>",
+            "<b>" + i18n.t(f"general.{self.the_cat.status.rank}", count=1) + "</b>",
             trait_text,
             i18n.t("general.moons_age", count=self.the_cat.moons)
             + "  |  "
