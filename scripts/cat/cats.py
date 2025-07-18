@@ -2664,7 +2664,7 @@ class Cat:
                     can_front.append(alter["name"])
             self.front = choice(can_front)
             if self.moons > 12 and self.status.rank.is_any_apprentice_rank():
-                if game.clan.clan_settings["plural names"]:
+                if get_clan_setting("plural names"):
                     # chance of cat choosing a plural name: 1 in 100 default
                     if constants.CONFIG["condition_related"]["plural_names"] > 1:
                         chance = randint(1, constants.CONFIG["condition_related"]["plural_names"])
