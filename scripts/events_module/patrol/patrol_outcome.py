@@ -605,7 +605,7 @@ class PatrolOutcome:
             else:
                 return " ".join(results)
             
-        condition_lists = INJURY_GROUPS
+        condition_lists = constants.INJURY_GROUPS
 
         for block in self.injury:
             cats = gather_cat_objects(Cat, block.get("cats", ()), patrol, self.stat_cat)
