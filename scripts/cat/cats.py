@@ -2629,10 +2629,10 @@ class Cat:
                         else:
                             exp_bonus -= 3
                 else:
-                    exp_bonus -=5
-                correct_chance = randint(0,20) + exp_bonus
+                    exp_bonus -= 5
+                correct_chance = randint(0, 20) + exp_bonus
                 if correct_chance > 18:
-                    text1 =  str(self.name) + " has come to realize that " +self.pronouns[0]["poss"] + " " + self.permanent_condition[condition]["misdiagnosis"] + " is actually " + condition + "."
+                    text1 = str(self.name) + " has come to realize that " +self.pronouns[0]["poss"] + " " + self.permanent_condition[condition]["misdiagnosis"] + " is actually " + condition + "."
                     text2 = str(self.name) + " always felt that " + self.permanent_condition[condition]["misdiagnosis"] + " didn't fit " + self.pronouns[0]["poss"] + " experience, but " + condition + " fits perfectly!"
                     text3 = str(self.name) + " was optimistic for a new diagnosis, but now fears that " + condition + " is wrong too."
                     text = choice([text1, text2, text3])
@@ -2663,7 +2663,7 @@ class Cat:
                 if ("recovering from birth" not in self.injuries and "faux pregnant" not in self.injuries and "pregnant" not in self.injuries and "turmoiled litter" not in self.illnesses) or (("recovering from birth" in self.injuries or "faux pregnant" in self.injuries or "pregnant" in self.injuries or "turmoiled litter" in self.illnesses) and alter["role"] != "little"):
                     can_front.append(alter["name"])
             self.front = choice(can_front)
-            if self.moons > 12 and self.status not in ["apprentice", "medicine cat apprentice", "mediator apprentice", "denkeeper apprentice", "messenger apprentice", "caretaker apprentice", "gardener apprentice", "caretaker apprentice"]:
+            if self.moons > 12 and self.status.rank.is_any_apprentice_rank():
                 if game.clan.clan_settings["plural names"]:
                     # chance of cat choosing a plural name: 1 in 100 default
                     if constants.CONFIG["condition_related"]["plural_names"] > 1:
@@ -2683,7 +2683,6 @@ class Cat:
                                         self.name.suffix = plural
                                         text = self.name.prefix + old_suffix + "'s headmates have discussed things, and they've decided that a collective name will suit them better, like " + self.name.prefix + self.name.suffix + "!"
                                         game.cur_events_list.append(Single_Event(text, ["misc"], [self.ID]))
-
 
         # handling the countdown till a congenital condition is revealed
         if moons_until is not None and moons_until >= 0 and born_with is True:
