@@ -61,15 +61,16 @@
         "meltdown": "meltdown",
         "shutdown": "shutdown",
         "amnesia": "amnesia",
-        "derealization":"derealization",
+        "derealization": "derealization",
         "depersonalization": "depersonalization",
         "harmful stims": "harmful stims",
         "psychotic episode": "psychotic episode",
         "delusions": "delusions",
         "hostile hallucinations": "hostile hallucinations",
-        "ongoing psychosis":"ongoing psychosis",
+        "ongoing psychosis": "ongoing psychosis",
         "rampaging": "rampaging",
         "tremors": "tremors",
-        "deer tick fever": "deer tick fever"
+        "deer tick fever": "deer tick fever",
+        "silvercough": "silvercough"
     }
 }
