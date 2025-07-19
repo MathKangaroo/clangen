@@ -156,9 +156,9 @@ class PredictOffspringScreen(Screens):
             i
             for i in Cat.all_cats_list
             if i.is_potential_mate(self.selected_cat, for_love_interest=False, age_restriction=False, ignore_no_mates=True)
-            and not (i.dead or i.outside)
+            and i.status.alive_in_player_clan
         ]
-        
+
         self.possible_mates_names = ["None", "Reincarnation"]
         for cat in self.possible_mates:
             self.possible_mates_names.append(str(cat.name).lower())
