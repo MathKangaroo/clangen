@@ -579,7 +579,7 @@ class GardenerScreen(Screens):
             i
             for i in Cat.all_cats_list
             if (i.ID != self.gardeners[self.selected_gardener].ID)
-            and not (i.dead or i.outside)
+            and i.status.alive_in_player_clan
         ]
         self.all_cats = self.chunks(self.all_cats_list, 24)
         self.current_listed_cats = self.all_cats_list
@@ -743,7 +743,7 @@ class GardenerScreen(Screens):
                         former_indicate = "general.mate_dead"
 
                     mate_names.append(f"{str(mate_ob.name)} {i18n.t(former_indicate)}")
-                elif mate_ob.outside != cat.outside:
+                elif mate_ob.status.is_outsider != cat.status.is_outsider:
                     mate_names.append(
                         f"{str(mate_ob.name)} {i18n.t('general.mate_away')}"
                     )
@@ -782,7 +782,7 @@ class GardenerScreen(Screens):
                         former_indicate = "general.bestie_dead"
 
                     bestie_names.append(f"{str(bestie_ob.name)} {i18n.t(former_indicate)}")
-                elif bestie_ob.outside != cat.outside:
+                elif bestie_ob.status.is_outsider != cat.status.is_outsider:
                     bestie_names.append(
                         f"{str(bestie_ob.name)} {i18n.t('general.bestie_away')}"
                     )
@@ -822,7 +822,7 @@ class GardenerScreen(Screens):
                         former_indicate = "general.enemy_dead"
 
                     enemy_names.append(f"{str(enemy_ob.name)} {i18n.t(former_indicate)}")
-                elif enemy_ob.outside != cat.outside:
+                elif enemy_ob.status.is_outsider != cat.status.is_outsider:
                     enemy_names.append(
                         f"{str(enemy_ob.name)} {i18n.t('general.enemy_away')}"
                     )
