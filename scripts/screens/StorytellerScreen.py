@@ -479,19 +479,19 @@ class StorytellerScreen(Screens):
             else:
                 bonus = 1
         
-        #now we do the bonuses!
+        # now we do the bonuses!
         if self.selected_cat.dead and success:
-            #reset fading! the cats no longer forgor
+            # reset fading! the cats no longer forgor
             if self.selected_cat.pelt.opacity < 50:
-                self.selected_cat.pelt.opacity = int(self.selected_cat.pelt.opacity*2)
+                self.selected_cat.pelt.opacity = int(self.selected_cat.pelt.opacity * 2)
             else:
                 self.selected_cat.pelt.opacity = 100
             results += "\n" + "Fading reduced!"
         
         if success:
-            results +=  "\n" + "The Clan's opinion of " + str(self.selected_cat.name) + " has shifted."
+            results += "\n" + "The Clan's opinion of " + str(self.selected_cat.name) + " has shifted."
             for kitty in self.all_cats_list:
-                if not (kitty.dead or kitty.outside):
+                if kitty.status.alive_in_player_clan:
                     if self.selected_cat.ID in kitty.relationships:
                         rel = kitty.relationships[self.selected_cat.ID]
                     else:
