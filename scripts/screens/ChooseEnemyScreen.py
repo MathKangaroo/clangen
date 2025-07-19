@@ -1161,7 +1161,7 @@ class ChooseEnemyScreen(Screens):
             and self.the_cat.is_potential_enemy(
                 i
             )
-            and i.outside == self.the_cat.outside
+            and i.status.is_outsider == self.the_cat.status.is_outsider
             and i.ID not in self.the_cat.enemy
             and i.ID not in self.the_cat.mate
             and i.ID not in self.the_cat.bestie
