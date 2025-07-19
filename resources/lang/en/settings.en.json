@@ -131,6 +131,10 @@
         "plural names": "Allow plural cats to choose collective names",
         "plural names_tooltip": "Adult plural cats will have a chance to choose a collective name upon moonskip.",
         "vit tint": "Tinted vitiligo",
-        "vit tint_tooltip": "Tints a cat's vitiligo with their white patch tint."
+        "vit tint_tooltip": "If enabled, cats' vitiligo will be tinted with their white patch tint(s).",
+        "multiple tints": "Stacking tints",
+        "multiple tints_tooltip": "If enabled, cats can spawn with multiple tints that visually stack.",
+        "double torties": "\"Double\" torties",
+        "double torties_tooltip": "If enabled, cats can spawn with secondary tortie patches."
     }
 }
