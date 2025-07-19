@@ -202,6 +202,7 @@
 		"comorbidity_chance": 5,
 		"base_male_tortie": 13,
 		"base_female_tortie": 4,
+		"double_tortie": 45,
 		"base_heterochromia": 60,
 		"direct_inheritance": 15,
 		"wildcard_tortie": 9,
@@ -216,6 +217,7 @@
 		"multiple_pronouns_chance": 20,
 		"neopronoun_chance": 30,
 		"comment": [
+			"double_tortie (45 by default)",
 			"multiple_permanent_conditions (20 by default) - 1/chance for a cat to be born with one extra permanent condition,",
 			"runs until it's tried to give a cat [max_conditions_born_with - 1] extra conditions.",
 			"max_conditions_born_with (3 by default) - the maximum amount of permanent conditions a cat can be born with.",
@@ -224,7 +226,6 @@
 			"max_white_amount is the max amount of white patches one cat can generate with - 2 by default",
 			"max_tortie_amount is the max amount of tortie patches one cat can generate with - 2 by default",
 			"Note that extra patch chances decrease with each extra patch - chances base_extra_white 5 by default, base_extra_tortie 3 by default",
-			
 			"neopronoun_chance refers to the chance that a cats FIRST set of pronouns will be neopronouns"
 		]
 	},
