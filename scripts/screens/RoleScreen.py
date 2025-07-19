@@ -7,10 +7,8 @@ import pygame
 import pygame_gui
 
 from scripts.cat.cats import Cat
-from scripts.cat.enums import CatAge, CatRank
 from scripts.game_structure import image_cache
 from scripts.game_structure.game_essentials import game
-from scripts.game_structure.game.switches import switch_set_value, switch_get_value, Switch
 from scripts.game_structure.ui_elements import (
     UITextBoxTweaked,
     UISurfaceImageButton,
@@ -23,11 +21,12 @@ from scripts.utility import (
     adjust_list_text,
 )
 from .Screens import Screens
+from ..game_structure.game.settings import game_setting_get
+from ..game_structure.game.switches import switch_set_value, switch_get_value, Switch
+from ..cat.enums import CatRank
 from ..game_structure.screen_settings import MANAGER
 from ..ui.generate_box import BoxStyles, get_box
 from ..ui.generate_button import get_button_dict, ButtonStyles
-
-from ..game_structure.game.settings import game_setting_get
 
 
 class RoleScreen(Screens):
@@ -61,6 +60,7 @@ class RoleScreen(Screens):
                 game.clan.new_leader(self.the_cat)
                 if switch_get_value(Switch.sort_type) == "rank":
                     Cat.sort_cats()
+                self.update_selected_cat()
             elif event.ui_element == self.promote_deputy:
                 game.clan.deputy = self.the_cat
                 self.the_cat.rank_change(CatRank.DEPUTY, resort=True)
@@ -348,7 +348,7 @@ class RoleScreen(Screens):
             self.selected_cat_elements[ele].kill()
         self.selected_cat_elements = {}
 
-        self.the_cat = Cat.all_cats.get(switch_get_value(Switch.cat))
+        self.the_cat = Cat.fetch_cat(switch_get_value(Switch.cat))
         if not self.the_cat:
             return
 
@@ -367,7 +367,7 @@ class RoleScreen(Screens):
             short_name,
             object_id=get_text_box_theme("#text_box_30"),
         )
-        
+
         trait_text = i18n.t(f"cat.personality.{self.the_cat.personality.trait}")
         if self.the_cat.personality.trait != self.the_cat.personality.trait2:
             trait_text += " & " + i18n.t(f"cat.personality.{self.the_cat.personality.trait2}")
@@ -464,23 +464,22 @@ class RoleScreen(Screens):
         self.update_disabled_buttons()
 
     def update_disabled_buttons(self):
-
         self.update_previous_next_cat_buttons()
 
         if game.clan.leader:
-            leader_invalid = game.clan.leader.dead or game.clan.leader.outside
+            leader_invalid = not game.clan.leader.status.alive_in_player_clan
         else:
             leader_invalid = True
 
         if game.clan.deputy:
-            deputy_invalid = game.clan.deputy.dead or game.clan.deputy.outside
+            deputy_invalid = not game.clan.deputy.status.alive_in_player_clan
         else:
             deputy_invalid = True
-            
-        #start by disabling all
+
+        # start by disabling all
         self.promote_leader.disable()
         self.promote_deputy.disable()
-        
+
         self.switch_warrior.disable()
         self.switch_med_cat.disable()
         self.switch_mediator.disable()
@@ -491,7 +490,7 @@ class RoleScreen(Screens):
         self.switch_storyteller.disable()
         self.retire.disable()
         self.rekit.disable()
-        
+
         self.switch_med_app.disable()
         self.switch_warrior_app.disable()
         self.switch_mediator_app.disable()
@@ -501,10 +500,9 @@ class RoleScreen(Screens):
         self.switch_gardener_app.disable()
         self.switch_storyteller_app.disable()
 
-        #first check for training
+        # first check for training
         if self.the_cat.status.rank.is_any_apprentice_rank():
-            
-            #ENABLE ALL TRAININGS
+            # ENABLE ALL TRAININGS
             self.switch_med_app.enable()
             self.switch_warrior_app.enable()
             self.switch_mediator_app.enable()
@@ -514,26 +512,35 @@ class RoleScreen(Screens):
             self.switch_gardener_app.enable()
             self.switch_storyteller_app.enable()
             self.rekit.enable()
-            
+
             if self.the_cat.status.rank == CatRank.APPRENTICE:
-                self.switch_warrior_app.disable(),self.switch_warrior.enable()
+                self.switch_warrior_app.disable()
+                self.switch_warrior.enable()
             elif self.the_cat.status.rank == CatRank.MEDICINE_APPRENTICE:
-                self.switch_med_app.disable(),self.switch_med_cat.enable()
+                self.switch_med_app.disable()
+                self.switch_med_cat.enable()
             elif self.the_cat.status.rank == CatRank.MEDIATOR_APPRENTICE:
-                self.switch_mediator_app.disable(),self.switch_mediator.enable()
+                self.switch_mediator_app.disable()
+                self.switch_mediator.enable()
             elif self.the_cat.status.rank == CatRank.CARETAKER_APPRENTICE:
-                self.switch_caretaker_app.disable(),self.switch_caretaker.enable()
+                self.switch_caretaker_app.disable()
+                self.switch_caretaker.enable()
             elif self.the_cat.status.rank == CatRank.MESSENGER_APPRENTICE:
-                self.switch_messenger_app.disable(),self.switch_messenger.enable()
+                self.switch_messenger_app.disable()
+                self.switch_messenger.enable()
             elif self.the_cat.status.rank == CatRank.DENKEEPER_APPRENTICE:
-                self.switch_denkeeper_app.disable(),self.switch_denkeeper.enable()
+                self.switch_denkeeper_app.disable()
+                self.switch_denkeeper.enable()
             elif self.the_cat.status.rank == CatRank.GARDENER_APPRENTICE:
-                self.switch_gardener_app.disable(),self.switch_gardener.enable()
+                self.switch_gardener_app.disable()
+                self.switch_gardener.enable()
             elif self.the_cat.status.rank == CatRank.STORYTELLER_APPRENTICE:
-                self.switch_storyteller_app.disable(),self.switch_storyteller.enable()
-        #next we check if they're a kit
+                self.switch_storyteller_app.disable()
+                self.switch_storyteller.enable()
+
+        # next we check if they're a kit
         elif self.the_cat.status.rank == CatRank.KITTEN:
-            #ENABLE ALL TRAININGS
+            # ENABLE ALL TRAININGS
             self.switch_med_app.enable()
             self.switch_warrior_app.enable()
             self.switch_mediator_app.enable()
@@ -543,15 +550,15 @@ class RoleScreen(Screens):
             self.switch_gardener_app.enable()
             self.switch_storyteller_app.enable()
             self.rekit.disable()
-    
-        #now we check for leader/deputy eligible roles
+
+        # now we check for leader/deputy eligible roles
         else:
             if leader_invalid:
                 self.promote_leader.enable()
 
             if deputy_invalid:
                 self.promote_deputy.enable()
-            
+
             self.switch_warrior.enable()
             self.switch_med_cat.enable()
             self.switch_mediator.enable()
@@ -562,7 +569,7 @@ class RoleScreen(Screens):
             self.switch_storyteller.enable()
             self.retire.enable()
             self.rekit.disable()
-            
+
             if self.the_cat.status.rank == CatRank.ELDER:
                 self.retire.disable()
             elif self.the_cat.status.rank == CatRank.WARRIOR:
@@ -586,10 +593,9 @@ class RoleScreen(Screens):
             elif self.the_cat.status.rank == CatRank.GARDENER:
                 self.switch_gardener.disable()
                 self.switch_gardener_app.enable()
-            
 
     def get_role_blurb(self):
-        #rip old status code you made this so much easier
+        # rip old status code you made this so much easier
         if self.the_cat.status.rank == CatRank.WARRIOR:
             output = "screens.role.blurb_warrior"
         elif self.the_cat.status.is_leader:
