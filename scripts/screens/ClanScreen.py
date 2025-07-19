@@ -247,7 +247,7 @@ class ClanScreen(Screens):
         )
         nursery_enable = False
         for cat in Cat.all_cats_list:
-            if cat.status.rank in [CatRank.CARETAKER, CatRank.CARETAKER_APPRENTICE] and not (cat.dead or cat.outside):
+            if cat.status.rank in [CatRank.CARETAKER, CatRank.CARETAKER_APPRENTICE] and cat.status.alive_in_player_clan:
                 nursery_enable = True
                 break
         if not nursery_enable:
