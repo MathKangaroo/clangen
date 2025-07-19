@@ -2352,7 +2352,7 @@ class Pelt:
 
                 self.pattern = list(chosen_pattern)
 
-            self.displays_2nd_tortie = True if randint(1, 40) == 1 else False
+            self.displays_2nd_tortie = True if randint(1, constants.CONFIG["cat_generation"]["double_tortie"]) == 1 else False
             if not self.pattern2:
                 chosen_pattern = set()
                 chosen_pattern.add(choice(Pelt.tortiepatterns))
