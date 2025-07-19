@@ -2931,8 +2931,8 @@ def generate_sprite(
             for tint in cat.pelt.tint:
                 if tint == "none":
                     base_none = True
-            something = False
-            if something:
+
+            if not game_setting_get("multiple tints"):
                 base_tints = [cat.pelt.tint[0]]
             else:
                 base_tints = cat.pelt.tint
@@ -2970,18 +2970,14 @@ def generate_sprite(
             for tint in cat.pelt.tortie_tint:
                 if tint == "none":
                     tortie_2_none = True
-            something = False
-            if something:
+
+            if not game_setting_get("multiple tints"):
                 base_tints = [cat.pelt.tint[0]]
-            else:
-                base_tints = cat.pelt.tint
-            if something:
                 tortie_1_tints = [cat.pelt.tortie_tint[0]]
-            else:
-                tortie_1_tints = cat.pelt.tortie_tint
-            if something:
                 tortie_2_tints = [cat.pelt.tortie_tint2[0]]
             else:
+                base_tints = cat.pelt.tint
+                tortie_1_tints = cat.pelt.tortie_tint
                 tortie_2_tints = cat.pelt.tortie_tint2
 
             if not base_none:
@@ -3034,7 +3030,7 @@ def generate_sprite(
             else:
                 tortie_pattern = cat.pelt.tortiepattern2
 
-            if cat.pelt.displays_2nd_tortie and something:
+            if cat.pelt.displays_2nd_tortie and game_setting_get("double torties"):
                 for pattern in cat.pelt.pattern2:
                     if not tortie_2_none:
                         patches = sprites.sprites[tortie_pattern + cat.pelt.tortiecolour2 + cat_sprite].copy()
@@ -3064,7 +3060,8 @@ def generate_sprite(
         for tint in cat.pelt.white_patches_tint:
             if tint == "none":
                 white_none = True
-        if something:
+
+        if not game_setting_get("multiple tints"):
             white_tints = [cat.pelt.white_patches_tint[0]]
         else:
             white_tints = cat.pelt.white_patches_tint
