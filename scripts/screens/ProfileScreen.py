@@ -781,7 +781,7 @@ class ProfileScreen(Screens):
                 object_id="#care_button",
                 manager=MANAGER,
             )
-            if self.the_cat.dead or self.the_cat.outside:
+            if not self.the_cat.status.alive_in_player_clan:
                 self.profile_elements["care"].disable()
                 
         elif self.the_cat.status.rank in [CatRank.GARDENER, CatRank.GARDENER_APPRENTICE]:
@@ -791,7 +791,7 @@ class ProfileScreen(Screens):
                 object_id="#garden_button",
                 manager=MANAGER,
             )
-            if self.the_cat.dead or self.the_cat.outside:
+            if not self.the_cat.status.alive_in_player_clan:
                 self.profile_elements["garden"].disable()
         
         elif self.the_cat.status.rank in [CatRank.STORYTELLER, CatRank.STORYTELLER_APPRENTICE]:
@@ -801,7 +801,7 @@ class ProfileScreen(Screens):
                 object_id="#story_button",
                 manager=MANAGER,
             )
-            if self.the_cat.dead or self.the_cat.outside:
+            if not self.the_cat.status.alive_in_player_clan:
                 self.profile_elements["story"].disable()
 
     def generate_column1(self, the_cat):
@@ -1100,7 +1100,7 @@ class ProfileScreen(Screens):
                         former_indicate = "general.bestie_dead"
 
                     bestie_names.append(f"{str(bestie_ob.name)} {i18n.t(former_indicate)}")
-                elif bestie_ob.outside != self.the_cat.outside:
+                elif bestie_ob.status.is_outsider != self.the_cat.status.is_outsider:
                     bestie_names.append(
                         f"{str(bestie_ob.name)} {i18n.t('general.bestie_away')}"
                     )
@@ -1138,7 +1138,7 @@ class ProfileScreen(Screens):
                         former_indicate = "general.enemy_dead"
 
                     enemy_names.append(f"{str(enemy_ob.name)} {i18n.t(former_indicate)}")
-                elif enemy_ob.outside != self.the_cat.outside:
+                elif enemy_ob.status.is_outsider != self.the_cat.status.is_outsider:
                     enemy_names.append(
                         f"{str(enemy_ob.name)} {i18n.t('general.enemy_away')}"
                     )
