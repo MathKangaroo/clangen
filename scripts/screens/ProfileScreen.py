@@ -499,7 +499,7 @@ class ProfileScreen(Screens):
             object_id="@buttonstyles_squoval",
             manager=MANAGER,
         )
-        if self.the_cat.status== "newborn":
+        if the_cat.age == CatAge.NEWBORN:
             self.customize_stats_button.disable()
         else:
             self.customize_stats_button.enable()
@@ -1907,31 +1907,15 @@ class ProfileScreen(Screens):
                     main_cat=self.the_cat,
                     random_cat=Cat.fetch_cat(death["involved"]),
                 )
-                if "is_victim" in murder_history:
-                    for event in murder_history["is_victim"]:
-                        # check if we match moon counts
-                        if event["moon"] == death["moon"]:
-                            # get reveal status text
-                            status_text = self.the_cat.history.get_murder_status_text(
-                                murder=event, Cat=Cat
-                            )
-                            status_text = event_text_adjust(
-                                Cat,
-                                status_text,
-                                main_cat=self.the_cat,
-                                random_cat=Cat.fetch_cat(death["involved"]),
-                            )
-                            text += f" ({status_text}) "
-                            break
 
                 if self.the_cat.status.is_leader:
                     if text == "multi_lives":
                         multi_life_count += 1
                         continue
                     if index == death_number - 1 and self.the_cat.dead:
-                        if death_number == 9:
+                        if death_number == 9 and not multi_life_count:
                             life_text = "lost {PRONOUN/m_c/poss} final life"
-                        elif death_number == 1:
+                        elif multi_life_count == 8:
                             life_text = "lost all of {PRONOUN/m_c/poss} lives"
                         else:
                             life_text = "lost the rest of {PRONOUN/m_c/poss} lives"
@@ -1976,6 +1960,27 @@ class ProfileScreen(Screens):
                 else:
                     life_text = ""
 
+                # we're adding the leader's period here so that it doesn't conflict weirdly with a murder status addition.
+                if life_text:
+                    text += "."
+
+                if "is_victim" in murder_history:
+                    for event in murder_history["is_victim"]:
+                        # check if we match moon counts
+                        if event["moon"] == death["moon"]:
+                            # get reveal status text
+                            status_text = self.the_cat.history.get_murder_status_text(
+                                murder=event, Cat=Cat
+                            )
+                            status_text = event_text_adjust(
+                                Cat,
+                                status_text,
+                                main_cat=self.the_cat,
+                                random_cat=Cat.fetch_cat(death["involved"]),
+                            )
+                            text += f" ({status_text}) "
+                            break
+
                 if text:
                     if life_text:
                         text = i18n.t(
@@ -1994,7 +1999,7 @@ class ProfileScreen(Screens):
                 else:
                     deaths = all_deaths[0]
 
-                if not deaths.endswith("."):
+                if not deaths.endswith(".") and not deaths.endswith(") "):
                     deaths += "."
 
                 text = str(self.the_cat.name) + " " + deaths
@@ -2640,10 +2645,8 @@ class ProfileScreen(Screens):
                 anchors={"top_target": self.specify_gender_button},
             )
             if (
-                    self.the_cat.age
-                    not in ["young adult", "adult", "senior adult", "senior"]
-                    or self.the_cat.exiled
-                    or self.the_cat.outside
+                    self.the_cat.age not in [CatAge.YOUNG_ADULT, CatAge.ADULT, CatAge.SENIOR_ADULT, CatAge.SENIOR]
+                    or not self.the_cat.status.alive_in_player_clan
             ):
                 self.predict_offspring_button.disable()
             else:
@@ -2742,12 +2745,12 @@ class ProfileScreen(Screens):
             else:
                 self.choose_mate_button.enable()
             
-            if (self.the_cat.exiled or self.the_cat.outside):
+            if not self.the_cat.status.alive_in_player_clan:
                 self.choose_bestie_button.disable()
             else:
                 self.choose_bestie_button.enable()
             
-            if (self.the_cat.exiled or self.the_cat.outside):
+            if not self.the_cat.status.alive_in_player_clan:
                 self.choose_enemy_button.disable()
             else:
                 self.choose_enemy_button.enable()
@@ -2800,10 +2803,8 @@ class ProfileScreen(Screens):
                 self.cis_trans_button.set_text("screens.profile.change_gender_cis")
                 self.cis_trans_button.disable()
             if (
-                    self.the_cat.age
-                    not in ["young adult", "adult", "senior adult", "senior"]
-                    or self.the_cat.exiled
-                    or self.the_cat.outside
+                    self.the_cat.age not in [CatAge.YOUNG_ADULT, CatAge.ADULT, CatAge.SENIOR_ADULT, CatAge.SENIOR]
+                    or not self.the_cat.status.alive_in_player_clan
             ):
                 self.predict_offspring_button.disable()
             else:
