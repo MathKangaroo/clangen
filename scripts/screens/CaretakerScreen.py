@@ -171,9 +171,7 @@ class CaretakerScreen(Screens):
         # Gather the caretakers:
         self.caretakers = []
         for cat in Cat.all_cats_list:
-            if cat.status.rank in [CatRank.CARETAKER, CatRank.CARETAKER_APPRENTICE] and not (
-                cat.dead or cat.outside
-            ):
+            if cat.status.rank in [CatRank.CARETAKER, CatRank.CARETAKER_APPRENTICE] and cat.status.alive_in_player_clan:
                 self.caretakers.append(cat)
 
         self.page = 1
@@ -407,7 +405,7 @@ class CaretakerScreen(Screens):
             i
             for i in Cat.all_cats_list
             if (i.ID != self.caretakers[self.selected_caretaker].ID)
-            and not (i.dead or i.outside)
+            and i.status.alive_in_player_clan
             and i.status.rank == CatRank.KITTEN
         ]
         self.all_cats = self.chunks(self.all_cats_list, 24)
