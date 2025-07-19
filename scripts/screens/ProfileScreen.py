@@ -499,7 +499,7 @@ class ProfileScreen(Screens):
             object_id="@buttonstyles_squoval",
             manager=MANAGER,
         )
-        if the_cat.age == CatAge.NEWBORN:
+        if self.the_cat.age == CatAge.NEWBORN:
             self.customize_stats_button.disable()
         else:
             self.customize_stats_button.enable()
@@ -835,7 +835,7 @@ class ProfileScreen(Screens):
         if the_cat.age == CatAge.NEWBORN:
             output += "???"
         else:
-            #avoiding translation bc there are 500 eye colors and i dont hate myself
+            # avoiding translation bc there are 500 eye colors and i dont hate myself
             output += "eyes: " + str(the_cat.describe_eyes())
         # NEWLINE ----------
         output += "\n"
@@ -1184,21 +1184,24 @@ class ProfileScreen(Screens):
 
         # NEWLINE ----------
         output += "\n"
-        
+
+        # PRONOUNS
         dadm_text = ""
         if len(the_cat.pronouns) == 1:
             if the_cat.pronouns[0].get("subject") == the_cat.pronouns[0].get("object"):
-                    dadm_text += the_cat.pronouns[0].get("subject") + "/" + the_cat.pronouns[0].get("poss")
+                dadm_text += the_cat.pronouns[0].get("subject") + "/" + the_cat.pronouns[0].get("poss")
             else:
-                    dadm_text += the_cat.pronouns[0].get("subject") + "/" + the_cat.pronouns[0].get("object")
+                dadm_text += the_cat.pronouns[0].get("subject") + "/" + the_cat.pronouns[0].get("object")
         else:
             for pronoun in the_cat.pronouns:
-                    dadm_text += pronoun.get("subject") + "/"
+                dadm_text += pronoun.get("subject") + "/"
             if dadm_text[-1] == "/":
-                    dadm_text = dadm_text[:-1]
+                dadm_text = dadm_text[:-1]
+
+        # NEWLINE ----------
         output += dadm_text + "\n"
         
-        #AWAKENED
+        # AWAKENED
         if the_cat.awakened:
             if the_cat.awakened["type"] in ["esper", "guide"]:
                 output += the_cat.awakened["class"] + "-class " + the_cat.awakened["type"] +  "\n" 
@@ -1206,9 +1209,9 @@ class ProfileScreen(Screens):
                 class1 = the_cat.awakened["class"][0]
                 class2 = the_cat.awakened["class"][1]
                 total_class = class1
-                if class1 == "C" and class2 in ["B","A","S"]:
+                if class1 == "C" and class2 in ["B", "A", "S"]:
                     total_class = class2
-                elif class1 == "B" and class2 in ["A","S"]:
+                elif class1 == "B" and class2 in ["A", "S"]:
                     total_class = class2
                 elif class1 == "A" and class2 in ["S"]:
                     total_class = class2
