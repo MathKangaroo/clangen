@@ -20,6 +20,7 @@ from pygame_gui.windows import UIMessageWindow
 from scripts.cat.cats import Cat
 from scripts.cat.history import History
 from scripts.cat.names import Name
+from scripts.cat.enums import CatRank
 from scripts.cat.save_load import save_cats
 from scripts.game_structure import image_cache
 from scripts.game_structure.game.switches import (
@@ -156,10 +157,10 @@ class GuideEsper(UIWindow):
             for i in Cat.all_cats_list
             if not i.faded
             and not i.dead
-            and i.status not in ["kitten", "newborn"]
+            and i.status.rank not in [CatRank.NEWBORN, CatRank.KITTEN]
             and i.is_awakened()
             and i.awakened["type"] == "guide"
-            and not i.outside
+            and i.status.alive_in_player_clan
         ]
         return valid_guides
     
