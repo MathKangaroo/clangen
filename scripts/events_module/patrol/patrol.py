@@ -622,13 +622,140 @@ class Patrol:
                     )
                 continue
 
+            # until any specialized patrols are made, turn custom roles into "normal" ones
+            modified_statuses = self.patrol_statuses.copy()
+
+            # "HEALER" TYPES
+            if CatRank.CARETAKER_APPRENTICE in modified_statuses:
+                if CatRank.GARDENER_APPRENTICE in modified_statuses:
+                    if CatRank.MEDICINE_APPRENTICE in modified_statuses:
+                        # healer app, caretaker app, and gardener app patrolling together
+                        modified_statuses["medicine cat apprentice"] += modified_statuses["caretaker apprentice"] + modified_statuses["gardener apprentice"]
+                        del modified_statuses["caretaker apprentice"]
+                        del modified_statuses["gardener apprentice"]
+                    else:
+                        # caretaker app and gardener app patrolling together
+                        modified_statuses["medicine cat apprentice"] = modified_statuses["caretaker apprentice"] + modified_statuses["gardener apprentice"]
+                        del modified_statuses["caretaker apprentice"]
+                        del modified_statuses["gardener apprentice"]
+                else:
+                    if CatRank.MEDICINE_APPRENTICE in modified_statuses:
+                        # healer app and caretaker app patrolling together
+                        modified_statuses["medicine cat apprentice"] += modified_statuses["caretaker apprentice"]
+                        del modified_statuses["caretaker apprentice"]
+                    else:
+                        # caretaker app patrolling
+                        modified_statuses["medicine cat apprentice"] = modified_statuses["caretaker apprentice"]
+                        del modified_statuses["caretaker apprentice"]
+            elif CatRank.GARDENER_APPRENTICE in modified_statuses:
+                if CatRank.MEDICINE_APPRENTICE in modified_statuses:
+                    # healer app and gardener app patrolling together
+                    modified_statuses["medicine cat apprentice"] += modified_statuses["gardener apprentice"]
+                    del modified_statuses["gardener apprentice"]
+                else:
+                    # gardener app patrolling
+                    modified_statuses["medicine cat apprentice"] = modified_statuses["gardener apprentice"]
+                    del modified_statuses["gardener apprentice"]
+            if CatRank.CARETAKER in modified_statuses:
+                if CatRank.GARDENER in modified_statuses:
+                    if CatRank.MEDICINE_CAT in modified_statuses:
+                        # healer, caretaker, and gardener patrolling together
+                        modified_statuses["medicine cat"] += modified_statuses["caretaker"] + modified_statuses["gardener"]
+                        del modified_statuses["caretaker"]
+                        del modified_statuses["gardener"]
+                    else:
+                        # caretaker and gardener patrolling together
+                        modified_statuses["medicine cat"] = modified_statuses["caretaker"] + modified_statuses["gardener"]
+                        del modified_statuses["caretaker"]
+                        del modified_statuses["gardener"]
+                else:
+                    if CatRank.MEDICINE_CAT in modified_statuses:
+                        # healer and caretaker patrolling together
+                        modified_statuses["medicine cat"] += modified_statuses["caretaker"]
+                        del modified_statuses["caretaker"]
+                    else:
+                        # caretaker patrolling
+                        modified_statuses["medicine cat"] = modified_statuses["caretaker"]
+                        del modified_statuses["caretaker"]
+            elif CatRank.GARDENER in modified_statuses:
+                if CatRank.MEDICINE_CAT in modified_statuses:
+                    # healer and gardener patrolling together
+                    modified_statuses["medicine cat"] += modified_statuses["gardener"]
+                    del modified_statuses["gardener"]
+                else:
+                    # gardener patrolling
+                    modified_statuses["medicine cat"] = modified_statuses["gardener"]
+                    del modified_statuses["gardener"]
+
+            # "WARRIOR" TYPES
+            if CatRank.DENKEEPER_APPRENTICE in modified_statuses:
+                if CatRank.MESSENGER_APPRENTICE in modified_statuses:
+                    if CatRank.APPRENTICE in modified_statuses:
+                        # warrior app, denkeeper app, and messenger app patrolling together
+                        modified_statuses["apprentice"] += modified_statuses["denkeeper apprentice"] + modified_statuses["messenger apprentice"]
+                        del modified_statuses["denkeeper apprentice"]
+                        del modified_statuses["messenger apprentice"]
+                    else:
+                        # denkeeper app and messenger app patrolling together
+                        modified_statuses["apprentice"] = modified_statuses["denkeeper apprentice"] + modified_statuses["messenger apprentice"]
+                        del modified_statuses["denkeeper apprentice"]
+                        del modified_statuses["messenger apprentice"]
+                else:
+                    if CatRank.APPRENTICE in modified_statuses:
+                        # warrior app and denkeeper app patrolling together
+                        modified_statuses["apprentice"] += modified_statuses["denkeeper apprentice"]
+                        del modified_statuses["denkeeper apprentice"]
+                    else:
+                        # denkeeper app patrolling
+                        modified_statuses["apprentice"] = modified_statuses["denkeeper apprentice"]
+                        del modified_statuses["denkeeper apprentice"]
+            elif CatRank.MESSENGER_APPRENTICE in modified_statuses:
+                if CatRank.APPRENTICE in modified_statuses:
+                    # warrior app and messenger app patrolling together
+                    modified_statuses["apprentice"] += modified_statuses["messenger apprentice"]
+                    del modified_statuses["messenger apprentice"]
+                else:
+                    # messenger app patrolling
+                    modified_statuses["apprentice"] = modified_statuses["messenger apprentice"]
+                    del modified_statuses["messenger apprentice"]
+            if CatRank.DENKEEPER in modified_statuses:
+                if CatRank.MESSENGER in modified_statuses:
+                    if CatRank.WARRIOR in modified_statuses:
+                        # healer, denkeeper, and messenger patrolling together
+                        modified_statuses["warrior"] += modified_statuses["denkeeper"] + modified_statuses["messenger"]
+                        del modified_statuses["denkeeper"]
+                        del modified_statuses["messenger"]
+                    else:
+                        # denkeeper and messenger patrolling together
+                        modified_statuses["warrior"] = modified_statuses["denkeeper"] + modified_statuses["messenger"]
+                        del modified_statuses["denkeeper"]
+                        del modified_statuses["messenger"]
+                else:
+                    if CatRank.WARRIOR in modified_statuses:
+                        # healer and denkeeper patrolling together
+                        modified_statuses["warrior"] += modified_statuses["denkeeper"]
+                        del modified_statuses["denkeeper"]
+                    else:
+                        # denkeeper patrolling
+                        modified_statuses["warrior"] = modified_statuses["denkeeper"]
+                        del modified_statuses["denkeeper"]
+            elif CatRank.MESSENGER in modified_statuses:
+                if CatRank.WARRIOR in modified_statuses:
+                    # healer and messenger patrolling together
+                    modified_statuses["warrior"] += modified_statuses["messenger"]
+                    del modified_statuses["messenger"]
+                else:
+                    # messenger patrolling
+                    modified_statuses["warrior"] = modified_statuses["messenger"]
+                    del modified_statuses["messenger"]
+
             flag = False
             for sta, num in patrol.min_max_status.items():
                 if len(num) != 2:
                     print(f"Issue with status limits: {patrol.patrol_id}")
                     continue
 
-                if not (num[0] <= self.patrol_statuses.get(sta, -1) <= num[1]):
+                if not (num[0] <= modified_statuses.get(sta, -1) <= num[1]):
                     flag = True
                     break
             if flag:
