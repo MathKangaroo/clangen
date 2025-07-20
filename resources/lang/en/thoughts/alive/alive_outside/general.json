@@ -16,7 +16,6 @@
             "Feels conflicted about hunting in another cat's territory",
             "Listens for the alarm calls of birds",
             "Quickly veers away from a fox scent",
-            "Feels conflicted about hunting in another cat's territory",
             "Heard the yowls of a battle in the distance",
             "Breathes a sigh of relief when {PRONOUN/m_c/subject} {VERB/m_c/escape/escapes} some dogs",
             "Heard a rumor of rogues in the area",
@@ -29,7 +28,8 @@
             "Bristles at the alert call of a bird",
             "Is sneezing",
             "Is hopelessly lost...",
-            "Heard a rumor of Clan cats in the area"
+            "Heard a rumor of Clan cats in the area",
+            "Heard a rumor of Twolegs in the area snatching up cats"
         ]
     },
     {
