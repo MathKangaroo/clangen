@@ -142,6 +142,11 @@
             "Allow content with intrusive thoughts.",
             "This toggle enables to experience intrusive thoughts such as depressive hopelessness and homidical ideation.",
             false
+        ],
+        "intrusive_thoughts_TWO_woaw": [
+            "Allow content with night dirtmaking and nest wetting",
+            "This toggle enables cats to experience night dirtmaking (having to get up in the night to use the dirtplace) and nest wetting.",
+            false
         ]
     },
     "..": "these are special. they do not have a display name or a tooltip",
