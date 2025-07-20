@@ -122,12 +122,12 @@
         "psychosis_tooltip": "This toggle enables cats to experience psychotic symptoms such as paranoia, delusions, and intense hallucinations.",
         "dissociation": "Allow content with dissociation from trauma",
         "dissociation_tooltip": "This toggle enables cats to experience dissociation from trauma. This does not include mild dissociative symptoms from attention and memory disorders.",
-        "intrusive_thoughts":"Allow content with intrusive thoughts",
-        "intrusive_thoughts_tooltip": "This toggle enables to experience intrusive thoughts such as depressive hopelessness and homicidal ideation.",
+        "intrusive_thoughts": "Allow content with intrusive thoughts",
+        "intrusive_thoughts_tooltip": "This toggle enables cats to experience intrusive thoughts such as depressive hopelessness and homicidal ideation.",
         "pregnancy turmoil": "Allow negative pregnancy events",
         "pregnancy turmoil_tooltip": "Allows cats to have events like postpartum and false pregnancies.",
-        "higher_disabled_med_rates": "Higher med/mediator odds for cats with permanent conditions",
-        "higher_disabled_med_rates_tooltip": "Cats with permanent conditions will be 2 times more likely to become a medicine cat or mediator apprentice when they hit 6 moons old. This does not affect the chance to become a mediator later in life, if the setting is on.",
+        "higher_disabled_med_rates": "Higher non-warrior apprentice odds for cats with permanent conditions",
+        "higher_disabled_med_rates_tooltip": "Cats with permanent conditions will be 2 times more likely to become a medicine cat, mediator, caretaker, denkeeper, gardener, messenger, or storyteller apprentice when they hit 6 moons old. This does not affect the chance to change roles later in life, if any of the settings are on.",
         "plural names": "Allow plural cats to choose collective names",
         "plural names_tooltip": "Adult plural cats will have a chance to choose a collective name upon moonskip.",
         "vit tint": "Tinted vitiligo",
@@ -135,6 +135,8 @@
         "multiple tints": "Stacking tints",
         "multiple tints_tooltip": "If enabled, cats can spawn with multiple tints that visually stack.",
         "double torties": "\"Double\" torties",
-        "double torties_tooltip": "If enabled, cats can spawn with secondary tortie patches."
+        "double torties_tooltip": "If enabled, cats can spawn with secondary tortie patches.",
+        "intrusive_thoughts_TWO_woaw": "Allow content with night dirtmaking and nest wetting",
+        "intrusive_thoughts_TWO_woaw_tooltip": "This toggle enables cats to experience night dirtmaking (having to get up in the night to use the dirtplace) and nest wetting."
     }
 }
