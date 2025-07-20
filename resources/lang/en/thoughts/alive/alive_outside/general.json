@@ -1,5 +1,22 @@
 [
     {
+        "id": "general_outside_thoughts",
+        "thoughts": [
+            "Ran into another cat while sheltering from the rain",
+            "Caught a massive mouse!",
+            "Was chased away from the shelter {PRONOUN/m_c/subject} had been staying in",
+            "Hopes {PRONOUN/m_c/poss} mild cough won't get worse",
+            "Got invited to spend the night with a group of friendly loners",
+            "Saw a helpless cat get taken in a metal box by Twolegs",
+            "Was running carelessly across the Thunderpath and was nearly hit by a monster",
+            "Chows down on some food a Twoleg left out for {PRONOUN/m_c/object}",
+            "Is trapped in a Twoleg den",
+            "Found a nice, dry den",
+            "Heard a rumor of hostile rogues in the area",
+            "Sniffs for prey"
+        ]
+    },
+    {
         "id": "general_lost_thoughts",
         "thoughts": [
             "Desperately tries to find {PRONOUN/m_c/poss} way back",
@@ -45,7 +62,12 @@
             "Stops to sniff a patch of grass",
             "Watches the clouds roll by",
             "Bristles at the alert call of a bird",
-            "Is sneezing"
+            "Is sneezing",
+            "Wonders whether {PRONOUN/m_c/poss} Clanmates wonder what happened to {PRONOUN/m_c/object}",
+            "Wonders if {PRONOUN/m_c/poss} Clanmates have given up searching for {PRONOUN/m_c/object}",
+            "Trusts that Starclan is guiding {PRONOUN/m_c/poss} each and every step home",
+            "Wishes {PRONOUN/m_c/subject}'d just stayed in {PRONOUN/m_c/poss} nest instead of going out that day...",
+            "Panics at the idea Starclan may not be watching over {PRONOUN/m_cobject} out here"
         ],
         "main_status_constraint": [
             "apprentice",
