@@ -376,7 +376,6 @@ class Clan:
         else:
             save_clanlist(clan)
         switch_set_value(Switch.switch_clan, True)
-        # quit(savesettings=False, clearevents=True)
 
     def save_clan(self):
         """
