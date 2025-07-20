@@ -2840,7 +2840,8 @@ class Cat:
         self_harm = ["harmful stims"]
         dissociation = ["derealization", "depersonalization", "amnesia"]
         psychosis = ["delusions", "psychotic episode", "hostile hallucinations", "paranoia", "ongoing psychosis"]
-        all_triggers = eating_disorders + self_harm + dissociation + psychosis
+        night_dirtmaking_n_nest_wetting = ["night dirtmaking", "nest wetting"]
+        all_triggers = eating_disorders + self_harm + dissociation + psychosis + night_dirtmaking_n_nest_wetting
         if not game_setting_get("allow_triggers") and name in all_triggers:
             return
         else:
@@ -2851,6 +2852,8 @@ class Cat:
             if not game_setting_get("dissociation") and name in dissociation:
                 return
             if not game_setting_get("psychosis") and name in psychosis:
+                return
+            if not game_setting_get("intrusive_thoughts_TWO_woaw") and name in night_dirtmaking_n_nest_wetting:
                 return
             if name in all_triggers:
                 print("triggering condition: " + name)
