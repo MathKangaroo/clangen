@@ -5529,11 +5529,11 @@
             "Is seen trembling and looking around nervously",
             "Can't stop panicking",
             "Woke up thinking the Clan was in danger but it was just a storm",
-            "Woke up in the middle of the night shouting about an emergency {PRONOUN/m_c/subject} dreamed of",
+            "Woke up in the middle of the night shouting about an emergency {PRONOUN/m_c/subject} only dreamed of",
             "Is exhausted from being on edge all the time",
             "Is the only cat awake at moonhigh",
             "Attempted to face the source of {PRONOUN/m_c/poss} shock, but couldn't do it",
-            "Has been extra parinoid lately",
+            "Has been extra paranoid lately",
             "Has been extra jumpy lately",
             "Has been extra on edge as of late",
             "Feels like a failure for not being able to move on",
@@ -5547,11 +5547,6 @@
             "m_c": [
                 "shock",
                 "lingering shock"
-            ]
-        },
-            "perm_conditions": {
-            "m_c": [
-                "recurring shock"
             ]
         }
     },
@@ -5843,32 +5838,9 @@
             "Has been too shaky to even walk",
             "Has been trying to ignore the flashbacks",
             "Keeps trying to push past the incident to no avail",
-            "Trembles at the idea of leaving Camp ever again",
+            "Trembles at the idea of leaving camp ever again",
             "Keeps glancing around fearfully",
-            "Is too scared to sleep",
-            "Keeps reliving what happened",
-            "Sleeps only in fits and starts",
-            "Can't catch {PRONOUN/m_c/poss} breath",
-            "Panicked at something that reminded {PRONOUN/m_c/object} of what happened to {PRONOUN/m_c/object}",
-            "Has been trying {PRONOUN/m_c/poss} best to avoid reminders of the event",
-            "Feels {PRONOUN/m_c/poss} heart racing",
-            "Didn't sleep at all last night",
-            "Is seen trembling and looking around nervously",
-            "Can't stop panicking",
-            "Woke up thinking the Clan was in danger but it was just a storm",
-            "Woke up in the middle of the night shouting about an emergency {PRONOUN/m_c/subject} dreamed of",
-            "Is exhausted from being on edge all the time",
-            "Is the only cat awake at moonhigh",
-            "Attempted to face the source of {PRONOUN/m_c/poss} shock, but couldn't do it",
-            "Has been extra parinoid lately",
-            "Has been extra jumpy lately",
-            "Has been extra on edge as of late",
-            "Feels like a failure for not being able to move on",
-            "Wants to run away from the memories",
-            "Feels worn down from the shock",
-            "Keeps asking {PRONOUN/m_c/self} why {PRONOUN/m_c/subject} didn't do things differently",
-            "Feels like {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} drowning in {PRONOUN/m_c/poss} memories",
-            "Keeps thinking of what {PRONOUN/m_c/subject} could have done differently..."
+            "Is too scared to sleep"
         ],
         "has_injuries": {
             "m_c": [
@@ -5883,7 +5855,7 @@
             "Didn't notice a nearby noise",
             "Is feeling confused",
             "Is feeling stiff",
-            "Wonders why {PRONOUN/m_c/subject} there's a gap in {PRONOUN/m_c/poss} memory"
+            "Wonders why there's a gap in {PRONOUN/m_c/poss} memory"
         ],
         "has_injuries": {
             "m_c": [
