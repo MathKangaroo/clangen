@@ -335,9 +335,9 @@ class HerbSupply:
         """
         returns int total supply of given herb
         """
-        return sum(
+        return int(sum(
             [stock for stock in self.storage.get(herb, [0])]
-        ) + self.collected.get(herb, 0)
+        ) + self.collected.get(herb, 0))
 
     def get_highest_herb_in_group(self, group) -> str:
         """
