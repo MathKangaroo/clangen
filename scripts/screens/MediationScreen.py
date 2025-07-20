@@ -556,6 +556,7 @@ class MediationScreen(Screens):
             object_id="#text_box_22_horizleft_spacing_95",
             manager=MANAGER,
         )
+        self.selected_cat_elements["col1" + tag].disable()
 
         mates = False
         if len(cat.mate) > 0:
@@ -573,6 +574,7 @@ class MediationScreen(Screens):
             object_id="#text_box_22_horizleft_spacing_95",
             manager=MANAGER,
         )
+        self.selected_cat_elements["col2" + tag].disable()
 
         # Relation info:
         if related and other_cat and not mates:
@@ -654,6 +656,8 @@ class MediationScreen(Screens):
             self.selected_cat_elements["col2_relation" + tag].set_tooltip(
                 text=i18n.t(relation)
             )
+            self.selected_cat_elements["col2_relation" + tag].tool_tip_delay = 0
+            self.selected_cat_elements["col2_relation" + tag].disable()
 
         # ------------------------------------------------------------------------------------------------------------ #
         # RELATION BARS
