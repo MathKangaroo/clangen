@@ -721,7 +721,7 @@ class Patrol:
             if CatRank.DENKEEPER in modified_statuses:
                 if CatRank.MESSENGER in modified_statuses:
                     if CatRank.WARRIOR in modified_statuses:
-                        # healer, denkeeper, and messenger patrolling together
+                        # warrior, denkeeper, and messenger patrolling together
                         modified_statuses["warrior"] += modified_statuses["denkeeper"] + modified_statuses["messenger"]
                         del modified_statuses["denkeeper"]
                         del modified_statuses["messenger"]
@@ -732,7 +732,7 @@ class Patrol:
                         del modified_statuses["messenger"]
                 else:
                     if CatRank.WARRIOR in modified_statuses:
-                        # healer and denkeeper patrolling together
+                        # warrior and denkeeper patrolling together
                         modified_statuses["warrior"] += modified_statuses["denkeeper"]
                         del modified_statuses["denkeeper"]
                     else:
@@ -741,7 +741,7 @@ class Patrol:
                         del modified_statuses["denkeeper"]
             elif CatRank.MESSENGER in modified_statuses:
                 if CatRank.WARRIOR in modified_statuses:
-                    # healer and messenger patrolling together
+                    # warrior and messenger patrolling together
                     modified_statuses["warrior"] += modified_statuses["messenger"]
                     del modified_statuses["messenger"]
                 else:
