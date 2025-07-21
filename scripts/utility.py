@@ -14,7 +14,7 @@ from itertools import combinations
 from math import floor
 from random import choice, choices, randint, random, sample, randrange, getrandbits
 from sys import exit as sys_exit
-from typing import List, Tuple, TYPE_CHECKING, Type, Union
+from typing import List, Tuple, TYPE_CHECKING, Type, Union, Optional
 
 import i18n
 import pygame
@@ -318,7 +318,12 @@ def change_clan_relations(other_clan, difference):
 
 
 def create_new_cat_block(
-    Cat, Relationship, event, in_event_cats: dict, i: int, attribute_list: List[str]
+    Cat,
+    Relationship,
+    event,
+    in_event_cats: dict,
+    i: int,
+    attribute_list: List[str],
 ) -> list:
     """
     Creates a single new_cat block and then generates and returns the cats within the block
@@ -618,7 +623,7 @@ def create_new_cat_block(
             elif not outside:
                 chosen_cat.add_to_clan()
                 if chosen_cat.status.rank != rank:
-                    chosen_cat.rank_change(resort=True)
+                    chosen_cat.rank_change(new_rank=CatRank(rank), resort=True)
             elif outside:
                 # updates so that the clan is marked as knowing of this cat
                 current_standing = chosen_cat.status.get_standing_with_group(
