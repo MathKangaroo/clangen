@@ -16,6 +16,7 @@ import i18n
 import ujson  # type: ignore
 
 import scripts.game_structure.localization as pronouns
+from scripts.cat import save_load
 from scripts.cat.enums import CatAge, CatRank, CatSocial, CatGroup
 from scripts.cat.history import History
 from scripts.cat.names import Name
@@ -319,7 +320,7 @@ class Cat:
             potential_id = str(next(Cat.id_iter))
 
             if game.clan:
-                faded_cats = game.clan.faded_ids
+                faded_cats = save_load.get_faded_ids()
             else:
                 faded_cats = []
 
@@ -380,11 +381,12 @@ class Cat:
 
         # sex!?!??!?!?!??!?!?!?!??
         if self.gender is None:
-            intersexchance = randint(1,25)
-            #probability that the cat will be intersex.. base chance around 8%
+            intersexchance = randint(1, 25)
+            # probability that the cat will be intersex... base chance around 8%
             if intersexchance < 3 and example is False:
                 self.gender = "intersex"
-                intersex_condition = choice (["excess testosterone", "testosterone deficiency", "aneuploidy", "mosaicism", "chimerism"])
+                intersex_condition = choice(["excess testosterone", "testosterone deficiency", "aneuploidy",
+                                             "mosaicism", "chimerism"])
                 self.get_permanent_condition(intersex_condition, born_with=True)
             else:
                 self.gender = choice(["female", "male"])
@@ -512,13 +514,13 @@ class Cat:
             neon_eyes_chance = 4
         if self.awakened and randint(1,neon_eyes_chance) == 1:
             self.pelt.eye_colour = choice(neos_eyes)
-        elif self.awakened and randint(1,25) == 1:
+        elif self.awakened and randint(1, 25) == 1:
             self.pelt.eye_colour = choice(angel_eyes)
-        elif self.awakened and randint(1,25) == 1:
+        elif self.awakened and randint(1, 25) == 1:
             self.pelt.eye_colour = choice(flutter_eyes)
-        elif self.awakened and randint(1,25) == 1:
+        elif self.awakened and randint(1, 25) == 1:
             self.pelt.eye_colour = choice(lamp_eyes)
-        elif self.awakened and randint(1,25) == 1:
+        elif self.awakened and randint(1, 25) == 1:
             self.pelt.eye_colour = choice(snail_eyes)
                 
         # Private Sprite
@@ -593,7 +595,7 @@ class Cat:
             "ability": "none",
             "desc": "none"
             }
-        strength = randint(1,10)
+        strength = randint(1, 10)
         if strength == 10:
             template["class"] = "S"
         elif strength > 7:
@@ -601,7 +603,7 @@ class Cat:
         elif strength > 4:
             template["class"] = "B"
             
-        guide_or_esp = randint(1,2)
+        guide_or_esp = randint(1, 2)
         if guide_or_esp == 1 and not self.awakened:
             template["type"] = "guide"
         else:
@@ -628,13 +630,12 @@ class Cat:
             while template["desc"] == self.awakened["desc"]:
                template["desc"] = choice(powers_dict[power2][template["class"]])
             powers = [self.awakened["desc"], template["desc"]]
-            
+
             template["class"] = classes
             template["ability"] = abilities
             template["desc"] = powers
-            
+
         self.awakened = template
-            
 
     def init_generate_cat(self, skill_dict):
         """
@@ -647,74 +648,71 @@ class Cat:
                          "genderqueer", "agender", "???", "deminonbinary", "trigender", "genderflux", "polygender"]
         enby_masc = ["trans male", "demiboy", "genderfaun", "trans masc"]
         enby_fem = ["trans female", "demigirl", "genderfae", "trans femme"]
-        theythemdefault = game_setting_get("they them default")
+
         self.genderalign = self.gender
-        trans_chance = randint(0, 30)
-        nb_chance = randint(0, 40)
-        
+        trans_chance = randint(1, 30)
+        nb_chance = randint(1, 40)
+        if trans_chance == 1 and nb_chance == 1:
+            if randint(1, 2) == 1:
+                trans_chance = 0
+            else:
+                nb_chance = 0
+
         prob_awake = constants.CONFIG["cat_generation"]["esper_chance"]
-        
+
         if self.parent1 is not None:
             par1 = Cat.fetch_cat(self.parent1)
             if par1.awakened:
                 prob_awake = int(prob_awake / 2)
-            
+
         if self.parent2 is not None:
             par2 = Cat.fetch_cat(self.parent2)
             if par2.awakened:
                 prob_awake = int(prob_awake / 2)
-        
+
         if prob_awake < 1:
             prob_awake = 1
-        
-        awakened_chance = randint(1,prob_awake)
+
+        awakened_chance = randint(1, prob_awake)
         if awakened_chance == 1:
             self.generate_ability()
             # self.generate_ability()
-            double_powers = randint(1,prob_awake*3)
+            double_powers = randint(1, (prob_awake * 3))
             if double_powers == 1 and self.awakened["type"] == "esper":
                 self.generate_ability()
 
         # GENDER IDENTITY
-        if self.gender == "female" and not self.status in ['newborn', 'kitten']:
+        if self.gender == "female" and not self.age.is_baby():
             if trans_chance == 1:
-                binary_chance = randint(1,10)
+                binary_chance = randint(1, 10)
                 if binary_chance > 2:
                     self.genderalign = "trans male"
                 else:
                     self.genderalign = choice(enby_masc)
             elif nb_chance == 1:
                 self.genderalign = choice(nonbiney_list)
-            else:
-                self.genderalign = self.gender
-        elif self.gender == "male" and not self.status in ['newborn', 'kitten']:
+        elif self.gender == "male" and not self.age.is_baby():
             if trans_chance == 1:
-                binary_chance = randint(1,10)
+                binary_chance = randint(1, 10)
                 if binary_chance > 2:
                     self.genderalign = "trans female"
                 else:
                     self.genderalign = choice(enby_fem)
             elif nb_chance == 1:
                 self.genderalign = choice(nonbiney_list)
-            else:
-                self.genderalign = self.gender
-        elif self.gender == "intersex" and not self.status in ['newborn', 'kitten']:
+        elif self.gender == "intersex" and not self.age.is_baby():
             if trans_chance == 1:
-                binary_chance = randint(1,10)
+                binary_chance = randint(1, 10)
                 if binary_chance > 2:
                     self.genderalign = choice(["trans female", "trans male"])
                 else:
                     self.genderalign = choice(enby_fem + enby_masc)
             elif nb_chance == 1:
-                intergenderchance = randint(1,2)
+                intergenderchance = randint(1, 2)
                 if intergenderchance == 1:
                     self.genderalign = "intergender"
                 else:
                     self.genderalign = choice(nonbiney_list)
-            else:
-                self.genderalign = self.gender
-        else:
-            self.genderalign = self.gender
 
         # APPEARANCE
         self.pelt = Pelt.generate_new_pelt(
@@ -819,6 +817,10 @@ class Cat:
         Loads the correct pronouns for the loaded language.
         :return: List of dicts for the cat's pronouns
         """
+        if self.faded:
+            value = pronouns.get_new_pronouns("nonbinary")
+            return [value]
+
         queer_list = ["intersex", "intergender", "trans male", "trans female", "nonbinary", "genderfluid", "demigirl",
                       "demiboy", "genderfae", "genderfaun", "bigender", "genderqueer", "agender", "???",
                       "deminonbinary", "trigender", "genderflux", "polygender"]
@@ -831,33 +833,36 @@ class Cat:
         if self.genderalign in queer_list:
             neo_chance = int(neo_chance / 2)
             second_set = int(second_set / 4)
-        neos = randint(1,neo_chance)
-        seconds = randint(1,second_set)
+        neos = randint(1, neo_chance)
+        seconds = randint(1, second_set)
         
         locale = i18n.config.get("locale")
         value = self._pronouns.get(locale)
         if value is None:
             self._pronouns[locale] = pronouns.get_new_pronouns(self.genderalign)
+
             if self.genderalign in enby_masc and she_him < 4:
                 self._pronouns[locale] += pronouns.get_new_pronouns("male")
             elif self.genderalign in enby_fem and she_him < 4:
                 self._pronouns[locale] += pronouns.get_new_pronouns("female")
             elif neos == 1:
                 self._pronouns[locale] += pronouns.get_new_pronouns("neos")
+
             if seconds == 1:
                 pronoun_gender = randint(1,10)
                 if pronoun_gender < 6:
                     # add he, she, or they
-                    self._pronouns[locale] += pronouns.get_new_pronouns(choice(["male","female","nonbinary"]))
+                    self._pronouns[locale] += pronouns.get_new_pronouns(choice(["male", "female", "nonbinary"]))
                 else:
                     # add neos
                     self._pronouns[locale] += pronouns.get_new_pronouns("neos")
-                
+
             if len(self._pronouns[locale]) > 1:
                 if self._pronouns[locale][0]["subject"] == self._pronouns[locale][1]["subject"]:
                     self._pronouns[locale] = [self._pronouns[locale][0]]
-                    print(self._pronouns[locale])
+                    # print(self._pronouns[locale])
             value = self._pronouns[locale]
+
         return value
 
     @pronouns.setter
@@ -991,6 +996,7 @@ class Cat:
         # since we just yeeted them to their afterlife, we gotta check their previous group affiliation, not current
         if game.clan and self.status.get_last_living_group() == CatGroup.PLAYER_CLAN:
             self.grief(body)
+            Cat.dead_cats.append(self)
 
         # mark the sprite as outdated
         self.pelt.rebuild_sprite = True
@@ -998,9 +1004,6 @@ class Cat:
         # exiled cats are special, cus they get kicked out a heaven
         if isoutside and self.status.is_exiled():
             self.status.add_to_group(CatGroup.UNKNOWN_RESIDENCE)
-
-        if not self.status.is_outsider or self.status.is_former_clancat:
-            Cat.dead_cats.append(self)
 
         return
 
@@ -2632,7 +2635,7 @@ class Cat:
                     exp_bonus -= 5
                 correct_chance = randint(0, 20) + exp_bonus
                 if correct_chance > 18:
-                    text1 = str(self.name) + " has come to realize that " +self.pronouns[0]["poss"] + " " + self.permanent_condition[condition]["misdiagnosis"] + " is actually " + condition + "."
+                    text1 = str(self.name) + " has come to realize that " + self.pronouns[0]["poss"] + " " + self.permanent_condition[condition]["misdiagnosis"] + " is actually " + condition + "."
                     text2 = str(self.name) + " always felt that " + self.permanent_condition[condition]["misdiagnosis"] + " didn't fit " + self.pronouns[0]["poss"] + " experience, but " + condition + " fits perfectly!"
                     text3 = str(self.name) + " was optimistic for a new diagnosis, but now fears that " + condition + " is wrong too."
                     text = choice([text1, text2, text3])
@@ -2826,6 +2829,9 @@ class Cat:
         :param lethal: Allow lethality, default `True` (bool)
         :param severity: Override severity, default `'default'` (str, accepted values `'minor'`, `'major'`, `'severe'`)
         """
+        if self.dead:
+            return
+
         if name not in ILLNESSES:
             print(f"WARNING: {name} is not in the illnesses collection.")
             return
@@ -2926,6 +2932,9 @@ class Cat:
         :param severity: _description_, defaults to 'default'
         :type severity: str, optional
         """
+        if self.dead:
+            return
+
         if name not in INJURIES:
             print(f"WARNING: {name} is not in the injuries collection.")
             return
@@ -3292,6 +3301,9 @@ class Cat:
                                                    "grumpy", "cunning", "oblivious", "gloomy", "sincere", "flamboyant"])
 
     def get_permanent_condition(self, name, born_with=False, event_triggered=False, starting_moon=0):
+        if self.dead:
+            return
+
         if name not in PERMANENT:
             print(
                 self.name,
@@ -3329,6 +3341,10 @@ class Cat:
                     "OLD GOLD WATCH",
                     "BAUBLES",
                     "SEAWEED",
+                    "WISTERIA2",
+                    "ROSE MALLOW",
+                    "PICKLEWEED",
+                    "GOLDEN CREEPING JENNY",
                 )
             ]
 
@@ -5113,9 +5129,9 @@ class Cat:
                 dadm_text += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("object")
         else:
             for pronoun in self.pronouns:
-                    dadm_text += pronoun.get("subject") + "/"
+                dadm_text += pronoun.get("subject") + "/"
             if dadm_text[-1] == "/":
-                    dadm_text = dadm_text[:-1]
+                dadm_text = dadm_text[:-1]
                     
         awakened_text = ""        
         if self.awakened:
