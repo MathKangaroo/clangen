@@ -269,7 +269,7 @@ class Name:
             # Pelt name only gets used if there's an associated suffix.
             if named_after_pelt:
                 if (
-                    pelt in ["Tortie", "Calico"]
+                    pelt in ("Tortie", "Calico")
                     and tortiepattern in self.names_dict["tortie_pelt_suffixes"]
                 ):
                     self.suffix = random.choice(
@@ -298,8 +298,8 @@ class Name:
             old_rank = self.cat.status.find_prior_clan_rank()
 
             if (
-                    old_rank in self.names_dict["special_suffixes"]
-                    and not self.specsuffix_hidden
+                old_rank in self.names_dict["special_suffixes"]
+                and not self.specsuffix_hidden
             ):
                 return self.prefix + self.names_dict["special_suffixes"][old_rank]
 
