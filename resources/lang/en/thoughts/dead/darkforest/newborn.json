@@ -17,6 +17,9 @@
             "Hisses and spits at the scent of another cat approaching",
             "Is being carried",
             "Mewls as someone bats {PRONOUN/m_c/object} around"
+        ],
+        "main_age_constraint": [
+            "newborn"
         ]
     },
     {
@@ -28,6 +31,9 @@
         ],
         "relationship_constraint": [
             "child/parent"
+        ],
+        "main_age_constraint": [
+            "newborn"
         ],
         "random_living_status": [
             "living"
