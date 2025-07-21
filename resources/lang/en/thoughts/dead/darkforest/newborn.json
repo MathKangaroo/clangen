@@ -32,9 +32,6 @@
         "relationship_constraint": [
             "child/parent"
         ],
-        "main_age_constraint": [
-            "newborn"
-        ],
         "random_living_status": [
             "living"
         ],
