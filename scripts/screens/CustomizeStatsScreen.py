@@ -26,7 +26,10 @@ from scripts.ui.generate_button import get_button_dict, ButtonStyles
 from scripts.ui.get_arrow import get_arrow
 from scripts.utility import ui_scale, generate_sprite, ui_scale_dimensions, get_text_box_theme
 
+from scripts.game_structure.game.settings import game_setting_get
+
 """ Cat customization UI """
+
 
 # generate UI elements
 def create_text_box(text, pos, size, theme, anchors=None):
@@ -60,6 +63,7 @@ def create_dropdown(pos, size, options, selected_option, style=None):
         manager=MANAGER
     )
 
+
 # creates a list with display names and values of cat pelt attributes
 def create_options_list(attribute, case):
     if case == "upper":
@@ -68,6 +72,7 @@ def create_options_list(attribute, case):
         return [(option.capitalize(), option.lower()) for option in attribute]
     else:
         return [(option.capitalize(), option) for option in attribute]
+
 
 # returns the name and value; returns none if dropdown is disabled
 def get_selected_option(attribute, case):
@@ -90,6 +95,7 @@ def get_selected_option(attribute, case):
             return "None", "none"
         else:
             return "None", "None"
+
 
 # screen rendering
 class CustomizeStatsScreen(Screens):
@@ -177,8 +183,11 @@ class CustomizeStatsScreen(Screens):
         temp_permanent_conditions = copy(scarless_conditions) + ["lost a leg", "lost their tail", "twisted leg",
                                                                  "declawed", "constant rash"]
         self.permanent_conditions = []
-        for condition in temp_permanent_conditions:
-            self.permanent_conditions.append(Cat.change_condition_name(condition))
+        if not game_setting_get("warriorified names"):
+            for condition in temp_permanent_conditions:
+                self.permanent_conditions.append(Cat.change_condition_name(condition))
+        else:
+            self.permanent_conditions = temp_permanent_conditions.copy()
 
         self.permanent_conditions.sort()
         self.permanent_conditions.insert(0, "none")
@@ -195,136 +204,97 @@ class CustomizeStatsScreen(Screens):
                        "DARK", "HEALER", "LORE", "KIT", "INSIGHTFUL", "MEDIATOR", "SWIMMER", "RUNNER", "HUNTER", "DAY",
                        "NIGHT", "LUCK", "STRONG", "BUG", "BONES"]
         self.skill_strings_dict = {
-                "TEACHER": SkillPath.TEACHER,
-                "FIGHTER": SkillPath.FIGHTER,
-                "CLIMBER": SkillPath.CLIMBER,
-                "SPEAKER": SkillPath.SPEAKER,
-                "CLEVER": SkillPath.CLEVER,
-                "SENSE": SkillPath.SENSE,
-                "STORY": SkillPath.STORY,
-                "CAMP": SkillPath.CAMP,
-                "STAR": SkillPath.STAR,
-                "OMEN": SkillPath.OMEN,
-                "CLAIRVOYANT": SkillPath.CLAIRVOYANT,
-                "GHOST": SkillPath.GHOST,
-                "UNKNOWN": SkillPath.UNKNOWN,
-                "DELIVERER": SkillPath.DELIVERER,
-                "LEADERSHIP": SkillPath.LEADERSHIP,
-                "STEALTHY": SkillPath.STEALTHY,
-                "MESSENGER": SkillPath.MESSENGER,
-                "HISTORIAN": SkillPath.HISTORIAN,
-                "PATIENT": SkillPath.PATIENT,
-                "HERBALIST": SkillPath.HERBALIST,
-                "PRODIGY": SkillPath.PRODIGY,
-                "TRACKER": SkillPath.TRACKER,
-                "GUARDIAN": SkillPath.GUARDIAN,
-                "NAVIGATOR": SkillPath.NAVIGATOR,
-                "GRACE": SkillPath.GRACE,
-                "INNOVATOR": SkillPath.INNOVATOR,
-                "MATCHMAKER": SkillPath.MATCHMAKER,
-                "COOPERATIVE": SkillPath.COOPERATIVE,
-                "TIME": SkillPath.TIME,
-                "FISHER": SkillPath.FISHER,
-                "SLEEPER": SkillPath.SLEEPER,
-                "PYRO": SkillPath.PYRO,
-                "WEATHER": SkillPath.WEATHER,
-                "VIBES": SkillPath.VIBES,
-                "IMMUNE": SkillPath.IMMUNE,
-                "MUSICVIBES": SkillPath.MUSICVIBES,
-                "ANIMALTAKER": SkillPath.ANIMALTAKER,
-                "ANIMALMAGNET": SkillPath.ANIMALMAGNET,
-                "VET": SkillPath.VET,
-                "AURAVIBES": SkillPath.AURAVIBES,
-                "HIDER": SkillPath.HIDER,
-                "STARGAZER": SkillPath.STARGAZER,
-                "GIFTGIVER": SkillPath.GIFTGIVER,
-                "HYDRO": SkillPath.HYDRO,
-                "DISGUISE": SkillPath.DISGUISE,
-                "LANGUAGE": SkillPath.LANGUAGE,
-                "TREASURE": SkillPath.TREASURE,
-                "SCHOLAR": SkillPath.SCHOLAR,
-                "THINKER": SkillPath.THINKER,
-                "COMFORTER": SkillPath.COMFORTER,
-                "CLEAN": SkillPath.CLEAN,
-                "SONG": SkillPath.SONG,
-                "TUNNELER": SkillPath.TUNNELER,
-                "ARTISAN": SkillPath.ARTISAN,
-                "EXPLORER": SkillPath.EXPLORER,
-                "CHEF": SkillPath.CHEF,
-                "DETECTIVE": SkillPath.DETECTIVE,
-                "BOOKMAKER": SkillPath.BOOKMAKER,
-                "ASSIST": SkillPath.ASSIST,
-                "MEMORY": SkillPath.MEMORY,
-                "AGILE": SkillPath.AGILE,
-                "DECORATOR": SkillPath.DECORATOR,
-                "WAKEFUL": SkillPath.WAKEFUL,
-                "GARDENER": SkillPath.GARDENER,
-                "PROPHET": SkillPath.PROPHET,
-                "DREAM": SkillPath.DREAM,
-                "DARK": SkillPath.DARK,
-                "HEALER": SkillPath.HEALER,
-                "LORE": SkillPath.LORE,
-                "KIT": SkillPath.KIT,
-                "INSIGHTFUL": SkillPath.INSIGHTFUL,
-                "MEDIATOR": SkillPath.MEDIATOR,
-                "SWIMMER": SkillPath.SWIMMER,
-                "RUNNER": SkillPath.RUNNER,
-                "HUNTER": SkillPath.HUNTER,
-                "DAY": SkillPath.DAY,
-                "NIGHT": SkillPath.NIGHT,
-                "LUCK": SkillPath.LUCK,
-                "STRONG": SkillPath.STRONG,
-                "BUG": SkillPath.BUG,
-                "BONES": SkillPath.BONES
-            }
+            "TEACHER": SkillPath.TEACHER,
+            "FIGHTER": SkillPath.FIGHTER,
+            "CLIMBER": SkillPath.CLIMBER,
+            "SPEAKER": SkillPath.SPEAKER,
+            "CLEVER": SkillPath.CLEVER,
+            "SENSE": SkillPath.SENSE,
+            "STORY": SkillPath.STORY,
+            "CAMP": SkillPath.CAMP,
+            "STAR": SkillPath.STAR,
+            "OMEN": SkillPath.OMEN,
+            "CLAIRVOYANT": SkillPath.CLAIRVOYANT,
+            "GHOST": SkillPath.GHOST,
+            "UNKNOWN": SkillPath.UNKNOWN,
+            "DELIVERER": SkillPath.DELIVERER,
+            "LEADERSHIP": SkillPath.LEADERSHIP,
+            "STEALTHY": SkillPath.STEALTHY,
+            "MESSENGER": SkillPath.MESSENGER,
+            "HISTORIAN": SkillPath.HISTORIAN,
+            "PATIENT": SkillPath.PATIENT,
+            "HERBALIST": SkillPath.HERBALIST,
+            "PRODIGY": SkillPath.PRODIGY,
+            "TRACKER": SkillPath.TRACKER,
+            "GUARDIAN": SkillPath.GUARDIAN,
+            "NAVIGATOR": SkillPath.NAVIGATOR,
+            "GRACE": SkillPath.GRACE,
+            "INNOVATOR": SkillPath.INNOVATOR,
+            "MATCHMAKER": SkillPath.MATCHMAKER,
+            "COOPERATIVE": SkillPath.COOPERATIVE,
+            "TIME": SkillPath.TIME,
+            "FISHER": SkillPath.FISHER,
+            "SLEEPER": SkillPath.SLEEPER,
+            "PYRO": SkillPath.PYRO,
+            "WEATHER": SkillPath.WEATHER,
+            "VIBES": SkillPath.VIBES,
+            "IMMUNE": SkillPath.IMMUNE,
+            "MUSICVIBES": SkillPath.MUSICVIBES,
+            "ANIMALTAKER": SkillPath.ANIMALTAKER,
+            "ANIMALMAGNET": SkillPath.ANIMALMAGNET,
+            "VET": SkillPath.VET,
+            "AURAVIBES": SkillPath.AURAVIBES,
+            "HIDER": SkillPath.HIDER,
+            "STARGAZER": SkillPath.STARGAZER,
+            "GIFTGIVER": SkillPath.GIFTGIVER,
+            "HYDRO": SkillPath.HYDRO,
+            "DISGUISE": SkillPath.DISGUISE,
+            "LANGUAGE": SkillPath.LANGUAGE,
+            "TREASURE": SkillPath.TREASURE,
+            "SCHOLAR": SkillPath.SCHOLAR,
+            "THINKER": SkillPath.THINKER,
+            "COMFORTER": SkillPath.COMFORTER,
+            "CLEAN": SkillPath.CLEAN,
+            "SONG": SkillPath.SONG,
+            "TUNNELER": SkillPath.TUNNELER,
+            "ARTISAN": SkillPath.ARTISAN,
+            "EXPLORER": SkillPath.EXPLORER,
+            "CHEF": SkillPath.CHEF,
+            "DETECTIVE": SkillPath.DETECTIVE,
+            "BOOKMAKER": SkillPath.BOOKMAKER,
+            "ASSIST": SkillPath.ASSIST,
+            "MEMORY": SkillPath.MEMORY,
+            "AGILE": SkillPath.AGILE,
+            "DECORATOR": SkillPath.DECORATOR,
+            "WAKEFUL": SkillPath.WAKEFUL,
+            "GARDENER": SkillPath.GARDENER,
+            "PROPHET": SkillPath.PROPHET,
+            "DREAM": SkillPath.DREAM,
+            "DARK": SkillPath.DARK,
+            "HEALER": SkillPath.HEALER,
+            "LORE": SkillPath.LORE,
+            "KIT": SkillPath.KIT,
+            "INSIGHTFUL": SkillPath.INSIGHTFUL,
+            "MEDIATOR": SkillPath.MEDIATOR,
+            "SWIMMER": SkillPath.SWIMMER,
+            "RUNNER": SkillPath.RUNNER,
+            "HUNTER": SkillPath.HUNTER,
+            "DAY": SkillPath.DAY,
+            "NIGHT": SkillPath.NIGHT,
+            "LUCK": SkillPath.LUCK,
+            "STRONG": SkillPath.STRONG,
+            "BUG": SkillPath.BUG,
+            "BONES": SkillPath.BONES
+        }
         self.skills.sort()
         self.skills.insert(0, "None")
         self.skills_label1 = None
         self.skills_label2 = None
         self.skills_label3 = None
 
-        self.adult_traits = ["troublesome", "lonesome", "fierce", "bloodthirsty", "cold", "childish", "playful",
-                             "charismatic", "bold", "daring", "nervous", "righteous", "insecure", "strict",
-                             "compassionate", "thoughtful", "ambitious", "confident", "adventurous", "calm", "careful",
-                             "faithful", "loving", "loyal", "responsible", "shameless", "sneaky", "strange", "vengeful",
-                             "wise", "arrogant", "competitive", "grumpy", "cunning", "oblivious", "gloomy", "sincere",
-                             "flamboyant", "alert", "angry", "appreciative", "bubbly", "absent-minded", "carefree",
-                             "cryptic", "dedicated", "distracted", "dramatic", "dynamic", "easy-going", "elegant",
-                             "escapist", "fair", "forceful", "forgiving", "casual", "dry", "chummy", "complex",
-                             "emotional", "folksy", "hypnotic", "intense", "nurturing", "old-fashioned", "neutral",
-                             "moralistic", "soft", "unaggressive", "gentle", "unreligious", "reserved", "generous",
-                             "gracious", "hearty", "heroic", "idealistic", "innocent", "logical", "benevolent",
-                             "farsighted", "fun-loving", "open", "optimistic", "gallant", "free-thinking",
-                             "passive-aggressive", "pessimistic", "passionate", "hardworking", "genuine", "peaceful",
-                             "polished", "protective", "relaxed", "sarcastic", "high-minded", "incisive", "sassy",
-                             "sensitive", "serious", "incorruptible", "leaderly", "stoic", "tidy", "warm", "organized",
-                             "patient", "persuasive", "principled", "practical", "goofy", "romantic", "scholarly",
-                             "destructive", "grim", "forgetful", "greedy", "judgemental", "thoughtless", "nerdy",
-                             "philosophical", "overthinker", "cheeky", "snobbish", "reliable", "punctual", "supportive",
-                             "spiteful", "remorseless", "weak-willed", "hyper", "superficial", "fearful", "clumsy",
-                             "unpredictable", "cool", "cooperative", "energetic", "talkative", "amoral", "tranquil",
-                             "antagonistic", "wrongful", "fatalistic", "rebellious", "silly", "confused", "sleepy",
-                             "chaotic", "scary", "cheerful", "coward", "manipulative", "delicate", "hypocrite",
-                             "flirty", "honest", "mysterious", "polite", "enthusiastic", "vulnerable", "creative",
-                             "perfectionist", "sappy", "sentient", "annoying", "lazy", "faithless", "moody", "aloof",
-                             "whimsical", "fancy", "methodical", "malicious", "frustrated", "self-reliant",
-                             "sentimental", "spontainious", "stable", "strong", "fox-hearted", "sympathetic", "macabre",
-                             "civil", "teacherly", "tolerant", "unfoolable", "witty", "youthful", "enigmatic",
-                             "ordinary", "private", "loud", "questioning", "predictable", "airy", "anxious",
-                             "argumentative", "bizarre", "blunt", "calculating", "crude", "deceitful", "cruel",
-                             "devious", "messy", "opinionated", "overimaginative", "power-hungry", "quirky", "reactive",
-                             "resentful", "regretful", "ritualistic", "selfish", "sadistic", "scheming", "sloppy",
-                             "suspicious", "thievish", "transparent", "vague", "venomous", "envious", "humorous"]
+        self.adult_traits = Cat.all_adult_personalities
         self.adult_traits.sort()
-        self.kit_traits = ["troublesome", "lonesome", "impulsive", "bullying", "attention-seeker", "daydreamer",
-                           "dreary", "abrupt", "solemn", "wishful", "indecisive", "entitled", "distrusting", "charming",
-                           "nervous", "quiet", "insecure", "sweet", "goody-no-claws", "chaotic", "nosy", "moody",
-                           "nasty", "silly", "know-it-all", "spoiled", "sly", "mature", "apologetic", "salty", "whiny",
-                           "spicy", "bubbly", "picky", "cheeky", "shy", "fearless", "skittish", "self-conscious",
-                           "impressionable", "high-spirited", "crybaby", "tiny", "morbid", "obedient", "colorful",
-                           "zoomy", "clingy", "curious", "slug", "defiant", "sinister", "prim", "tender", "jokester",
-                           "wild", "bright", "earnest", "rowdy", "sloppy", "complex", "emotional", "protective",
-                           "bossy"]
+        self.kit_traits = Cat.all_kit_personalities
         self.kit_traits.sort()
         self.traits = copy(self.adult_traits)
         self.traits_label1 = None
@@ -645,7 +615,7 @@ class CustomizeStatsScreen(Screens):
         # ------------------------------------------------------------------------------------------------------------"""
         self.permanent_condition_label = create_text_box("permanent conditions", (320, 100), (135, 40), "#text_box_22_horizleft")
         self.trait1_label = create_text_box("trait 1", (480, 100), (135, 40), "#text_box_22_horizleft")
-        #self.pelt_length_label = create_text_box("trait 2", (224, 500), (135, 40), "#text_box_22_horizleft")
+        # self.pelt_length_label = create_text_box("trait 2", (224, 500), (135, 40), "#text_box_22_horizleft")
         self.trait2_label = create_text_box("trait 2", (640, 100), (135, 40), "#text_box_22_horizleft")
         self.skill1_label = create_text_box("skill 1", (320, 175), (135, 40), "#text_box_22_horizleft")
         self.skill2_label = create_text_box("skill 2", (480, 175), (135, 40), "#text_box_22_horizleft")
@@ -687,12 +657,12 @@ class CustomizeStatsScreen(Screens):
         self.back_button = create_button((25, 60), (105, 30), get_arrow(2) + " Back", ButtonStyles.SQUOVAL)
         self.next_cat_button = create_button((622, 25), (153, 30), "Next Cat " + get_arrow(3, arrow_left=False),
                                              ButtonStyles.SQUOVAL, sound_id="page_flip")
-        #self.pelt_length_left_button = create_button((224, 530), (30, 30), get_arrow(1), ButtonStyles.ROUNDED_RECT)
-        #self.pelt_length_right_button = create_button((324, 530), (30, 30), get_arrow(1, False),
-                                                      #ButtonStyles.ROUNDED_RECT)
-        #self.pose_left_button = create_button((406, 530), (30, 30), get_arrow(1), ButtonStyles.ROUNDED_RECT)
-        #self.pose_right_button = create_button((486, 530), (30, 30), get_arrow(1, False), ButtonStyles.ROUNDED_RECT)
-        #self.reverse_button = create_button((105, 530), (70, 30), "Reverse", ButtonStyles.ROUNDED_RECT)
+        # self.pelt_length_left_button = create_button((224, 530), (30, 30), get_arrow(1), ButtonStyles.ROUNDED_RECT)
+        # self.pelt_length_right_button = create_button((324, 530), (30, 30), get_arrow(1, False),
+                                                      # ButtonStyles.ROUNDED_RECT)
+        # self.pose_left_button = create_button((406, 530), (30, 30), get_arrow(1), ButtonStyles.ROUNDED_RECT)
+        # self.pose_right_button = create_button((486, 530), (30, 30), get_arrow(1, False), ButtonStyles.ROUNDED_RECT)
+        # self.reverse_button = create_button((105, 530), (70, 30), "Reverse", ButtonStyles.ROUNDED_RECT)
         self.reset_button = create_button((110, 450), (105, 30), "Reset", ButtonStyles.SQUOVAL)
         self.heal_button = create_button((110, 640), (105, 30), "Heal", ButtonStyles.SQUOVAL)
         self.reset_facets_button = create_button((110, 545), (105, 30), "Reset Facets", ButtonStyles.SQUOVAL)
@@ -704,7 +674,10 @@ class CustomizeStatsScreen(Screens):
         disabilities_list = []
         for con in self.permanent_conditions:
             if con in self.the_cat.permanent_condition:
-                disabilities_list.append(Cat.change_condition_name(con))
+                if not game_setting_get("warriorified names"):
+                    disabilities_list.append(Cat.change_condition_name(con))
+                else:
+                    disabilities_list.append(con)
 
         disability = "none"
         if len(disabilities_list) > 1:
@@ -1043,10 +1016,10 @@ class CustomizeStatsScreen(Screens):
         # ------------------------------------------------------------------------------------------------------------"""
 
         # stores current scar state
-        #self.initial_scar_selection[self.scar1_dropdown] = self.scar1_dropdown.selected_option[1]
-        #self.initial_scar_selection[self.scar2_dropdown] = self.scar2_dropdown.selected_option[1]
-        #self.initial_scar_selection[self.scar3_dropdown] = self.scar3_dropdown.selected_option[1]
-        #self.initial_scar_selection[self.scar4_dropdown] = self.scar4_dropdown.selected_option[1]
+        # self.initial_scar_selection[self.scar1_dropdown] = self.scar1_dropdown.selected_option[1]
+        # self.initial_scar_selection[self.scar2_dropdown] = self.scar2_dropdown.selected_option[1]
+        # self.initial_scar_selection[self.scar3_dropdown] = self.scar3_dropdown.selected_option[1]
+        # self.initial_scar_selection[self.scar4_dropdown] = self.scar4_dropdown.selected_option[1]
 
     def setup_cat(self):
         self.get_cat_age()
@@ -1073,10 +1046,10 @@ class CustomizeStatsScreen(Screens):
         if self.the_cat.awakened:
             previous_selection = self.the_cat.awakened["type"]
             
-        if previous_selection != "none" and previous_selection in ["guide","esper","enhanced esper"]:
+        if previous_selection != "none" and previous_selection in ["guide", "esper", "enhanced esper"]:
             self.the_cat.awakened = None
         if selected_option != "none":
-            self.generate_ability(power_type = selected_option)
+            self.generate_ability(power_type=selected_option)
         self.update_ui_elements()
 
     # store state for reset
@@ -1101,7 +1074,6 @@ class CustomizeStatsScreen(Screens):
             "physical_trait3": self.the_cat.pelt.physical_trait_3,
             "physical_trait4": self.the_cat.pelt.physical_trait_4,
         }
-
 
     def update_ui_elements(self):
         self.kill_cat_elements()
@@ -1202,7 +1174,6 @@ class CustomizeStatsScreen(Screens):
                     self.the_cat.favourite_star = True
                     self.the_cat.favourite_moon = False
 
-    
     def reset_attributes(self):
         self.the_cat.personality.trait = self.initial_state["trait"]
         self.the_cat.personality.trait2 = self.initial_state["trait2"]
@@ -1309,7 +1280,7 @@ class CustomizeStatsScreen(Screens):
                 with open("resources/dicts/conditions/permanent_conditions.json", "r", encoding="utf-8") as read_file:
                     permanent = ujson.loads(read_file.read())
 
-                if selected_option not in Cat.dad_names:
+                if not game_setting_get("warriorified names"):
                     for condition in Cat.dad_names:
                         if selected_option == Cat.dad_names[condition].lower():
                             selected_option = condition
@@ -1362,7 +1333,7 @@ class CustomizeStatsScreen(Screens):
             "ability": "none",
             "desc": "none"
             }
-        strength = randint(1,10)
+        strength = randint(1, 10)
         if strength == 10:
             template["class"] = "S"
         elif strength > 7:
@@ -1371,10 +1342,12 @@ class CustomizeStatsScreen(Screens):
             template["class"] = "B"
         
         if power_type in ["esper", "enhanced esper"]:
-            power = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
-                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
-                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
-                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"])
+            power = choice(["pyrokinesis", "hydrokinesis", "cyrokinesis", "geokinesis", "aerokinesis", "illusions",
+                            "shapeshifting", "super strength", "enhanced senses", "telekinesis", "chimera",
+                            "invisibility", "incorporeal", "mind control", "flight", "teleportation",
+                            "electromagnetic control", "light manipulation", "beast speak", "dendrokinesis",
+                            "electrokinesis", "telempathy", "astral projection", "flesh manipulation",
+                            "spatial manipulation"])
             template["desc"] = choice(powers_dict[power][template["class"]])
             template["ability"] = power
             if power_type == "enhanced esper":
@@ -1386,10 +1359,12 @@ class CustomizeStatsScreen(Screens):
                     class2 = "A"
                 elif strength > 4:
                     class2 = "B"
-                power2 = choice(["pyrokinesis","hydrokinesis","cyrokinesis", "geokinesis", "aerokinesis", "illusions", "shapeshifting",
-                                "super strength", "enhanced senses", "telekinesis", "chimera", "invisibility", "incorporeal", "mind control",
-                                "flight","teleportation", "electromagnetic control", "light manipulation", "beast speak",
-                                "dendrokinesis", "electrokinesis", "telempathy", "astral projection", "flesh manipulation", "spatial manipulation"])
+                power2 = choice(["pyrokinesis", "hydrokinesis", "cyrokinesis", "geokinesis", "aerokinesis", "illusions",
+                                 "shapeshifting", "super strength", "enhanced senses", "telekinesis", "chimera",
+                                 "invisibility", "incorporeal", "mind control", "flight", "teleportation",
+                                 "electromagnetic control", "light manipulation", "beast speak", "dendrokinesis",
+                                 "electrokinesis", "telempathy", "astral projection", "flesh manipulation",
+                                 "spatial manipulation"])
                 desc2 = choice(powers_dict[power2][class2])
                 
                 classes = [template["class"], class2]
