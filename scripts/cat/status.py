@@ -351,8 +351,8 @@ class Status:
                 ]
             )
         elif age in (CatAge.YOUNG_ADULT, CatAge.ADULT, CatAge.SENIOR_ADULT):
-            rank = choice([CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR,
-                           CatRank.CARETAKER,CatRank.DENKEEPER,CatRank.GARDENER,CatRank.MESSENGER,CatRank.STORYTELLER])
+            rank = choice([CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR, CatRank.CARETAKER,
+                           CatRank.DENKEEPER, CatRank.GARDENER, CatRank.MESSENGER, CatRank.STORYTELLER])
         else:
             rank = CatRank.ELDER
 
