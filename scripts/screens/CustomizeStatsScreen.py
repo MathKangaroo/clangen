@@ -174,13 +174,17 @@ class CustomizeStatsScreen(Screens):
             "seizure prone",
             "allergies"
         ]
-        self.permanent_conditions = copy(scarless_conditions) + ["lost a leg", "lost their tail", "twisted leg",
+        temp_permanent_conditions = copy(scarless_conditions) + ["lost a leg", "lost their tail", "twisted leg",
                                                                  "declawed", "constant rash"]
+        self.permanent_conditions = []
+        for condition in temp_permanent_conditions:
+            self.permanent_conditions.append(Cat.change_condition_name(condition))
+
         self.permanent_conditions.sort()
         self.permanent_conditions.insert(0, "none")
         self.permanent_conditions_label = None
         
-        self.skills = ["TEACHER", "FIGHTER","CLIMBER", "SPEAKER","CLEVER", "SENSE","STORY", "CAMP", "STAR", "OMEN",
+        self.skills = ["TEACHER", "FIGHTER", "CLIMBER", "SPEAKER", "CLEVER", "SENSE","STORY", "CAMP", "STAR", "OMEN",
                        "CLAIRVOYANT", "GHOST", "UNKNOWN", "DELIVERER", "LEADERSHIP", "STEALTHY", "MESSENGER",
                        "HISTORIAN", "PATIENT", "HERBALIST", "PRODIGY", "TRACKER", "GUARDIAN", "NAVIGATOR", "GRACE",
                        "INNOVATOR", "MATCHMAKER", "COOPERATIVE", "TIME", "FISHER", "SLEEPER", "PYRO", "WEATHER",
@@ -700,8 +704,8 @@ class CustomizeStatsScreen(Screens):
         disabilities_list = []
         for con in self.permanent_conditions:
             if con in self.the_cat.permanent_condition:
-                disabilities_list.append(con)
-        
+                disabilities_list.append(Cat.change_condition_name(con))
+
         disability = "none"
         if len(disabilities_list) > 1:
             disability = choice(disabilities_list)
@@ -1153,9 +1157,8 @@ class CustomizeStatsScreen(Screens):
                 self.the_cat.illnesses.clear()
                 if "pregnant" not in self.the_cat.injuries:
                     self.the_cat.injuries.clear()
-            
-                
-            #self.print_pelt_attributes()  # for testing purposes
+
+            # self.print_pelt_attributes() # for testing purposes
         elif event.type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
             if os.path.exists('resources/dicts/esper.json'):
                     with open('resources/dicts/esper.json') as read_file:
@@ -1302,8 +1305,22 @@ class CustomizeStatsScreen(Screens):
         if dropdown == self.permanent_condition_dropdown:
             if selected_option == "none":
                 self.the_cat.permanent_condition.clear()
-            elif selected_option not in self.the_cat.permanent_condition:
-                self.the_cat.get_permanent_condition(selected_option, born_with=True)
+            else:
+                with open("resources/dicts/conditions/permanent_conditions.json", "r", encoding="utf-8") as read_file:
+                    permanent = ujson.loads(read_file.read())
+
+                if selected_option not in Cat.dad_names:
+                    for condition in Cat.dad_names:
+                        if selected_option == Cat.dad_names[condition].lower():
+                            selected_option = condition
+                            break
+                if permanent[selected_option]["congenital"] != "never":
+                    born_with = True
+                else:
+                    born_with = False
+
+                if selected_option not in self.the_cat.permanent_condition:
+                    self.the_cat.get_permanent_condition(selected_option, born_with=born_with)
                 
         if dropdown in [self.skill1_dropdown, self.skill2_dropdown, self.skill3_dropdown]:
             selected_option = selected_option.upper()
