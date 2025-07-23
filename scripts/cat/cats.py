@@ -200,6 +200,19 @@ class Cat:
         "earnest", "rowdy", "sloppy", "complex", "emotional", "protective", "bossy"
     ]
 
+    fem_attraction = [
+        "female", "trans female", "demigirl", "genderfae"
+    ]
+
+    masc_attraction = [
+        "male", "trans male", "demiboy", "genderfaun"
+    ]
+
+    neu_other_attraction = [
+        "intersex", "intergender", "nonbinary", "genderfluid", "bigender", "genderqueer", "agender", "???", "deminonbinary", "trigender",
+        "genderflux", "polygender"
+    ]
+
     gender_tags = {"female": "F", "male": "M", "intersex": "I"}
 
     # EX levels and ranges.
@@ -319,6 +332,10 @@ class Cat:
         self.dead_for = 0  # moons
         self.thought = ""
         self.genderalign = None
+        # I know this is an unnecessary dict, but I wanted to make my life easier when comparing to my own game :(
+        self.sexuality = {
+            "gender": []
+        }
         self.birth_cooldown = 0
         self.illnesses = {}
         self.injuries = {}
@@ -697,6 +714,8 @@ class Cat:
             else:
                 nb_chance = 0
 
+        self.sexuality["gender"] = ["masc", "fem", "neu/other"]
+
         prob_awake = constants.CONFIG["cat_generation"]["esper_chance"]
 
         if self.parent1 is not None:
@@ -936,21 +955,38 @@ class Cat:
     def history(self, val: History):
         self._history = val
 
-    def get_genderalign_string(self):
+    @staticmethod
+    def get_genderalign_string(gender):
         # translate it if it's default
-        if self.genderalign in (
+        if gender in (
             "female",
-            "male",
             "trans female",
+            "male",
             "trans male",
+            "intersex",
+            "intergender",
+            "demigirl",
+            "genderfae",
+            "demiboy",
+            "genderfaun",
             "nonbinary",
+            "genderfluid",
+            "bigender",
+            "genderqueer",
+            "agender",
+            "???",
+            "deminonbinary",
+            "trigender",
+            "genderflux",
+            "polygender",
         ):
-            return i18n.t(f"general.{self.genderalign}")
+            return i18n.t(f"general.{gender}")
         # otherwise, it's custom - just return it directly
-        return self.genderalign
+        return gender
 
-    def get_gender_string(self):
-        return i18n.t(f"general.{self.gender}")
+    @staticmethod
+    def get_gender_string(gender):
+        return i18n.t(f"general.{gender}")
 
     def is_alive(self):
         """Check if this cat is alive
@@ -3820,6 +3856,7 @@ class Cat:
         age_restriction: bool = True,
         first_cousin_mates: bool = False,
         ignore_no_mates: bool = False,
+        ignore_sexuality: bool = False,
     ):
         """
         Checks if this cat is potential mate for the other cat.
@@ -3865,7 +3902,7 @@ class Cat:
                 or self.age != other_cat.age
             ) and (
                 abs(self.moons - other_cat.moons)
-                > constants.CONFIG["mates"]["age_range"] + 1
+                > constants.CONFIG["mates"]["age_range"]
             ):
                 return False
 
@@ -3874,7 +3911,35 @@ class Cat:
         ) and self.age != other_cat.age:
             return False
 
-        # check for mentor
+        # sexuality
+        if not ignore_sexuality:
+            possible_kitties = []
+            if "fem" in self.sexuality["gender"]:
+                for gender in self.fem_attraction:
+                    possible_kitties.append(gender)
+            if "masc" in self.sexuality["gender"]:
+                for gender in self.masc_attraction:
+                    possible_kitties.append(gender)
+            if "neu/other" in self.sexuality["gender"]:
+                for gender in self.neu_other_attraction:
+                    possible_kitties.append(gender)
+
+            if other_cat.genderalign not in possible_kitties:
+                return False
+
+            possible_kitties = []
+            if "fem" in other_cat.sexuality["gender"]:
+                for gender in self.fem_attraction:
+                    possible_kitties.append(gender)
+            if "masc" in other_cat.sexuality["gender"]:
+                for gender in self.masc_attraction:
+                    possible_kitties.append(gender)
+            if "neu/other" in other_cat.sexuality["gender"]:
+                for gender in self.neu_other_attraction:
+                    possible_kitties.append(gender)
+
+            if self.genderalign not in possible_kitties:
+                return False
 
         # Current mentor
         if other_cat.ID in self.apprentice or self.ID in other_cat.apprentice:
@@ -4421,7 +4486,8 @@ class Cat:
             if not os.path.exists(relation_cat_directory):
                 self.init_all_relationships()
                 for cat in Cat.all_cats.values():
-                    cat.create_one_relationship(self)
+                    if cat.ID != self.ID:
+                        cat.create_one_relationship(self)
                 return
             try:
                 with open(relation_cat_directory, "r", encoding="utf-8") as read_file:
@@ -5088,17 +5154,17 @@ class Cat:
         return condition
     
     def get_info_block(self, *, make_clan=False, patrol=False, relationship=False):
-        dadm_text = ""
+        dadm_text_1 = ""
         if len(self.pronouns) == 1:
             if self.pronouns[0].get("subject") == self.pronouns[0].get("object"):
-                dadm_text += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("poss")
+                dadm_text_1 += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("poss")
             else:
-                dadm_text += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("object")
+                dadm_text_1 += self.pronouns[0].get("subject") + "/" + self.pronouns[0].get("object")
         else:
             for pronoun in self.pronouns:
-                dadm_text += pronoun.get("subject") + "/"
-            if dadm_text[-1] == "/":
-                dadm_text = dadm_text[:-1]
+                dadm_text_1 += pronoun.get("subject") + "/"
+            if dadm_text_1[-1] == "/":
+                dadm_text_1 = dadm_text_1[:-1]
                     
         awakened_text = ""        
         if self.awakened:
@@ -5110,7 +5176,7 @@ class Cat:
                 class1 = self.awakened["class"][0]
                 class2 = self.awakened["class"][1]
                 total_class = class1
-                if class1 == "C" and class2 in ["B","A","S"]:
+                if class1 == "C" and class2 in ["B", "A", "S"]:
                     total_class = class2
                 elif class1 == "B" and class2 in ["A","S"]:
                     total_class = class2
@@ -5119,15 +5185,16 @@ class Cat:
                 awakened_text = total_class + "-class " + self.awakened["type"] + "\n"
                 awakened_text += "powers: " + self.awakened["ability"][0] + " and " + self.awakened["ability"][1] + "\n"
 
+        dadm_text_2 = ""
         if self.permanent_condition:
-            dadm_text += "\n\ncondition"
+            dadm_text_2 += "\n\ncondition"
             if len(self.permanent_condition) > 1:
-                dadm_text += "s:\n"
+                dadm_text_2 += "s:\n"
             else:
-                dadm_text += ":\n"
+                dadm_text_2 += ":\n"
             for condition in self.permanent_condition:
-                dadm_text += self.change_condition_name(str(condition)) + "\n"
-            dadm_text = dadm_text[:-1]
+                dadm_text_2 += self.change_condition_name(str(condition)) + "\n"
+            dadm_text_2 = dadm_text_2[:-1]
                 
         trait_text = i18n.t(f"cat.personality.{self.personality.trait}")
         if self.personality.trait != self.personality.trait2:
@@ -5135,18 +5202,12 @@ class Cat:
         if make_clan:
             return "\n".join(
                 [
-                    self.genderalign,
-                    i18n.t(
-                        (
-                            f"general.{self.age}"
-                            if self.age != "kitten"
-                            else "general.kitten_profile"
-                        ),
-                        count=1,
-                    ),
+                    self.get_genderalign_string(self.genderalign),
+                    dadm_text_1,
+                    f"{i18n.t((f'general.{self.age}' if self.age != 'kitten' else f'general.kitten_profile'), count=1)} ({self.moons} moon{'' if self.moons == 1 else 's'})",
                     trait_text,
                     self.skills.skill_string(),
-                    dadm_text,
+                    dadm_text_2,
                     awakened_text,
                 ]
             )
@@ -5168,7 +5229,7 @@ class Cat:
             return " - ".join(
                 [
                     i18n.t("general.moons_age", count=self.moons),
-                    self.genderalign,
+                    self.get_genderalign_string(self.genderalign),
                     trait_text,
                 ]
             )
@@ -5177,7 +5238,7 @@ class Cat:
             [
                 i18n.t("general.moons_age", count=self.moons),
                 i18n.t(f"general.{self.status.rank.lower()}", count=1),
-                self.genderalign,
+                self.get_genderalign_string(self.genderalign),
                 trait_text,
                 self.skills.skill_string(short=True),
             ]
@@ -5207,6 +5268,9 @@ class Cat:
                 "specsuffix_hidden": self.name.specsuffix_hidden,
                 "gender": self.gender,
                 "gender_align": self.genderalign,
+                "sexuality": {
+                    "gender": self.sexuality["gender"] if self.sexuality and self.sexuality["gender"] else ["masc", "fem", "neu/other"]
+                },
                 "pronouns": (
                     self._pronouns
                     if self._pronouns is not None
