@@ -50,6 +50,22 @@ class Welcoming_Events:
         if rank == CatRank.MEDIATOR_APPRENTICE:
             rank = CatRank.MEDIATOR
 
+        # custom ranks
+        if rank == CatRank.CARETAKER_APPRENTICE:
+            rank = CatRank.CARETAKER
+
+        if rank == CatRank.DENKEEPER_APPRENTICE:
+            rank = CatRank.DENKEEPER
+
+        if rank == CatRank.GARDENER_APPRENTICE:
+            rank = CatRank.GARDENER
+
+        if rank == CatRank.MESSENGER_APPRENTICE:
+            rank = CatRank.MESSENGER
+
+        if rank == CatRank.STORYTELLER_APPRENTICE:
+            rank = CatRank.STORYTELLER
+
         # collect all events
         possible_events = deepcopy(GENERAL_WELCOMING)
         if rank not in WELCOMING_MASTER_DICT:
