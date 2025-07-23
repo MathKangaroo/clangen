@@ -814,10 +814,10 @@ class ProfileScreen(Screens):
         output += "\n"
 
         # SEX/GENDER
-        if the_cat.genderalign is None or the_cat.genderalign == the_cat.gender:
-            output += the_cat.get_gender_string()
+        if the_cat.genderalign is None:
+            output += Cat.get_gender_string(the_cat.gender)
         else:
-            output += the_cat.get_genderalign_string()
+            output += Cat.get_genderalign_string(the_cat.genderalign)
         # NEWLINE ----------
         output += "\n"
 
@@ -2493,7 +2493,7 @@ class ProfileScreen(Screens):
     
     def get_alter_details(self, alter):
         text_list = []
-        text_list.append(f"{alter['gender']}")
+        text_list.append(Cat.get_genderalign_string(alter['gender']))
         if "personality" in alter:
             text_list.append(f"<b>{alter['personality']}</b><br>")
         text_list.append(f"{alter['role']}")
