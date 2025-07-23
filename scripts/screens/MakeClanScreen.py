@@ -1337,7 +1337,7 @@ class MakeClanScreen(Screens):
                     total_class = class2
                 text += "\n" + total_class + "-class " + "enhanced esper!"
 
-        return f"<b>{cat.name}</b><br>{cat.get_genderalign_string()}<br>{i18n.t('general.' + cat.age, count=1)}<br>{i18n.t('cat.personality.' + cat.personality.trait)}<br>{cat.skills.skill_string(short=True)}" + text
+        return f"<b>{cat.name}</b><br>{Cat.get_genderalign_string(cat.genderalign)}<br>{i18n.t('general.' + cat.age, count=1)}<br>{i18n.t('cat.personality.' + cat.personality.trait)}<br>{cat.skills.skill_string(short=True)}" + text
 
     def open_game_mode(self):
         # Clear previous screen
