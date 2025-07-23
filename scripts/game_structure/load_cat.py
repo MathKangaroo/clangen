@@ -161,13 +161,11 @@ def json_load():
                 cat["trait"] = "fun-loving"
             if "accessories" in cat:
                 cat["accessory"] = cat.pop("accessories")
-                
-            
+
             if cat["white_patches"]:
                 if "HALF" in cat["white_patches"]:
                      cat["white_patches"].remove("HALF")
                      cat["white_patches"].append("ERAHALF")
-                     
 
             new_cat.pelt = Pelt(
                 name=cat["pelt_name"],
@@ -232,7 +230,7 @@ def json_load():
                 accessory=cat["accessory"],
                 opacity=cat["opacity"] if "opacity" in cat else 100,
                 fur_texture=cat["fur_texture"] if "fur_texture" in cat else choice(["soft", "curly", "rough", "silky", "sleek", "wavy", "sparse", "tangled", "fuzzy", "spiky"]),
-                build = cat['build'] if "build" in cat else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate", "hunched","hefty", "burly", "bulky", "plump", "brawny", "stout", "broad", "chubby", "fat", "stocky", "chunky", "big-boned"]),
+                build=cat['build'] if "build" in cat else choice(["stocky", "slender", "lithe", "wiry", "muscular", "lanky", "delicate", "hunched","hefty", "burly", "bulky", "plump", "brawny", "stout", "broad", "chubby", "fat", "stocky", "chunky", "big-boned"]),
                 height=cat["height"] if "height" in cat else choice(["petite", "short", "average", "average", "tall", "towering"]),
                 
             )
@@ -266,7 +264,7 @@ def json_load():
             new_cat.moons = cat["moons"]
 
             if "facets" in cat:
-                if "trait2"in cat:
+                if "trait2" in cat:
                     facets = [int(i) for i in cat["facets"].split(",")]
                     new_cat.personality = Personality(
                         trait=cat["trait"],
@@ -288,12 +286,12 @@ def json_load():
                         stable=facets[3],
                         )
             else:
-                if "trait2"in cat:
+                if "trait2" in cat:
                     new_cat.personality = Personality(
                         trait=cat["trait"],trait2=cat["trait2"], kit_trait=new_cat.age in ["newborn", "kitten"]
                     )
                 else:
-                        new_cat.personality = Personality(
+                    new_cat.personality = Personality(
                         trait=cat["trait"], kit_trait=new_cat.age in ["newborn", "kitten"]
                     )
 
@@ -331,6 +329,7 @@ def json_load():
             new_cat.previous_mates = (
                 cat["previous_mates"] if "previous_mates" in cat else []
             )
+
             if "bestie" in cat:
                 new_cat.bestie = cat["bestie"] if type(cat["bestie"]) is list else [cat["bestie"]]
                 if None in new_cat.bestie:
@@ -341,6 +340,14 @@ def json_load():
             else:
                 new_cat.bestie = []
                 new_cat.previous_besties = []
+
+            if "sexuality" in cat:
+                new_cat.sexuality["gender"] = cat["sexuality"]["gender"] if "gender" in cat["sexuality"] else ["masc", "fem", "neu/other"]
+            else:
+                cat["sexuality"] = {
+                    "gender": ["masc", "fem", "neu/other"],
+                }
+
             if "enemy" in cat:
                 new_cat.enemy = cat["enemy"] if type(cat["enemy"]) is list else [cat["enemy"]]
                 if None in new_cat.enemy:
