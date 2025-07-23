@@ -213,6 +213,16 @@ class Cat:
         "genderflux", "polygender"
     ]
 
+    with open("resources/dicts/custom_genders.json", "r", encoding="utf-8") as read_file:
+        custom_genders = ujson.loads(read_file.read())
+    for gender in custom_genders["custom genders"]:
+        if gender["category"] == "fem":
+            fem_attraction.append(gender["name"])
+        elif gender["category"] == "masc":
+            masc_attraction.append(gender["name"])
+        elif gender["category"] == "neu/other":
+            neu_other_attraction.append(gender["name"])
+
     gender_tags = {"female": "F", "male": "M", "intersex": "I"}
 
     # EX levels and ranges.
