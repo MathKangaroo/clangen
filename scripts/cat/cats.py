@@ -2824,7 +2824,9 @@ class Cat:
         psychosis = ["delusions", "psychotic episode", "hostile hallucinations", "paranoia", "ongoing psychosis"]
         night_dirtmaking_n_nest_wetting = ["night dirtmaking", "nest wetting"]
         all_triggers = eating_disorders + self_harm + dissociation + psychosis + night_dirtmaking_n_nest_wetting
+        
         if not game_setting_get("allow_triggers") and name in all_triggers:
+            print(name)
             return
         else:
             if not game_setting_get("eating_disorders") and name in eating_disorders:

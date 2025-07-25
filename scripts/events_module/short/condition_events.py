@@ -316,27 +316,51 @@ class Condition_Events:
                 # if a non-kitten got kittencough, switch it to whitecough instead
                 if chosen_illness == "kittencough" and not cat.status.rank.is_baby():
                     chosen_illness = "whitecough"
+                    
+                eating_disorders = ["anorexia", "ARFID", "bulimia", "binge-eating disorder", "food hoarding", "pica"]
+                self_harm = ["harmful stims"]
+                dissociation = ["derealization", "depersonalization", "amnesia"]
+                psychosis = ["delusions", "psychotic episode", "hostile hallucinations", "paranoia", "ongoing psychosis"]
+                night_dirtmaking_n_nest_wetting = ["night dirtmaking", "nest wetting"]
+                all_triggers = eating_disorders + self_harm + dissociation + psychosis + night_dirtmaking_n_nest_wetting
+                
+                get_sick = True
+                
+                if not game_setting_get("allow_triggers") and chosen_illness in all_triggers:
+                    get_sick = False
+                else:
+                    if not game_setting_get("eating_disorders") and chosen_illness in eating_disorders:
+                        get_sick = False
+                    if not game_setting_get("self_harm") and chosen_illness in self_harm:
+                        get_sick = False
+                    if not game_setting_get("dissociation") and chosen_illness in dissociation:
+                        get_sick = False
+                    if not game_setting_get("psychosis") and chosen_illness in psychosis:
+                        get_sick = False
+                    if not game_setting_get("intrusive_thoughts_TWO_woaw") and chosen_illness in night_dirtmaking_n_nest_wetting:
+                        get_sick = False
                 # make em sick
-                cat.get_ill(chosen_illness)
+                if get_sick:
+                    cat.get_ill(chosen_illness)
 
-                # create event text
-                if i18n.config.get("locale") == "en" and chosen_illness in (
-                    "running nose",
-                    "stomachache",
-                ):
-                    illness = f"a {chosen_illness}"
+                    # create event text
+                    if i18n.config.get("locale") == "en" and chosen_illness in (
+                        "running nose",
+                        "stomachache",
+                    ):
+                        illness = f"a {chosen_illness}"
 
-                # try to translate the illness
-                illness = i18n.t(f"conditions.illnesses.{chosen_illness}")
+                    # try to translate the illness
+                    illness = i18n.t(f"conditions.illnesses.{chosen_illness}")
 
-                illness.replace("conditions.illnesses.", "")
+                    illness.replace("conditions.illnesses.", "")
 
-                event_string = i18n.t(
-                    "defaults.illness_get_event",
-                    illness=illness,
-                )
+                    event_string = i18n.t(
+                        "defaults.illness_get_event",
+                        illness=illness,
+                    )
 
-                event_string = event_text_adjust(Cat, text=event_string, main_cat=cat)
+                    event_string = event_text_adjust(Cat, text=event_string, main_cat=cat)
 
         # if an event happened, then add event to cur_event_list and save death if it happened.
         if event_string:
@@ -1334,21 +1358,44 @@ class Condition_Events:
                     cat.get_injured(new_condition_name, event_triggered=event_triggered)
                     break
                 elif new_condition_name in Condition_Events.ILLNESSES:
-                    cat.get_ill(new_condition_name, event_triggered=event_triggered)
-                    if dictionary == cat.illnesses or removed_condition:
+                    eating_disorders = ["anorexia", "ARFID", "bulimia", "binge-eating disorder", "food hoarding", "pica"]
+                    self_harm = ["harmful stims"]
+                    dissociation = ["derealization", "depersonalization", "amnesia"]
+                    psychosis = ["delusions", "psychotic episode", "hostile hallucinations", "paranoia", "ongoing psychosis"]
+                    night_dirtmaking_n_nest_wetting = ["night dirtmaking", "nest wetting"]
+                    all_triggers = eating_disorders + self_harm + dissociation + psychosis + night_dirtmaking_n_nest_wetting
+                    
+                    get_sick = True
+                    
+                    if not game_setting_get("allow_triggers") and new_condition_name in all_triggers:
+                        get_sick = False
+                    else:
+                        if not game_setting_get("eating_disorders") and new_condition_name in eating_disorders:
+                            get_sick = False
+                        if not game_setting_get("self_harm") and new_condition_name in self_harm:
+                            get_sick = False
+                        if not game_setting_get("dissociation") and new_condition_name in dissociation:
+                            get_sick = False
+                        if not game_setting_get("psychosis") and new_condition_name in psychosis:
+                            get_sick = False
+                        if not game_setting_get("intrusive_thoughts_TWO_woaw") and new_condition_name in night_dirtmaking_n_nest_wetting:
+                            get_sick = False
+                    if get_sick:
+                        cat.get_ill(new_condition_name, event_triggered=event_triggered)
+                        if dictionary == cat.illnesses or removed_condition:
+                            break
+                        keys = dictionary[condition].keys()
+                        complication = None
+                        if new_condition_name == "an infected wound":
+                            complication = "infected"
+                        elif new_condition_name == "a festering wound":
+                            complication = "festering"
+                        if complication is not None:
+                            if "complication" in keys:
+                                dictionary[condition]["complication"] = complication
+                            else:
+                                dictionary[condition].update({"complication": complication})
                         break
-                    keys = dictionary[condition].keys()
-                    complication = None
-                    if new_condition_name == "an infected wound":
-                        complication = "infected"
-                    elif new_condition_name == "a festering wound":
-                        complication = "festering"
-                    if complication is not None:
-                        if "complication" in keys:
-                            dictionary[condition]["complication"] = complication
-                        else:
-                            dictionary[condition].update({"complication": complication})
-                    break
                 elif new_condition_name in Condition_Events.PERMANENT:
                     cat.get_permanent_condition(
                         new_condition_name, event_triggered=event_triggered
