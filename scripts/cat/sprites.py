@@ -184,7 +184,10 @@ class Sprites:
             'anjuagouticolours', 'anjubengalcolours', 'anjuclassiccolours', 'anjumackerelcolours', 'anjumarbledcolours', 'anjurosettecolours',
             'anjusinglecolours', 'anjusmokecolours', 'anjusokokecolours', 'anjuspeckledcolours', 'anjutabbycolours', 'anjutickedcolours'
         ]:
-            if "lineart" in x and (game.config["fun"]["april_fools"] or is_today(SpecialDate.APRIL_FOOLS)):
+            if "lineart" in x and (
+                constants.CONFIG["fun"]["april_fools"]
+                or is_today(SpecialDate.APRIL_FOOLS)
+            ):
                 self.spritesheet(f"sprites/aprilfools{x}.png", x)
             else:
                 self.spritesheet(f"sprites/{x}.png", x)
@@ -825,7 +828,7 @@ class Sprites:
             ["LEFTEAR", "RIGHTEAR", "NOTAIL", "NOLEFTEAR", "NORIGHTEAR", "NOEAR", "HALFTAIL", "NOPAW"]
         ]
 
-        # scars 
+        # scars
         for row, scars in enumerate(scars_data):
             for col, scar in enumerate(scars):
                 self.make_group('scars', (col, row), f'scars{scar}')
@@ -836,18 +839,19 @@ class Sprites:
                 self.make_group('missingscars', (col, row), f'scars{missing_part}')
 
         # accessories
-        #to my beloved modders, im very sorry for reordering everything <333 -clay
+        # to my beloved modders, im very sorry for reordering everything <333 -clay
         medcatherbs_data = [
-            ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "CATTAIL", "POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY",],
-            ["BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "HERBS", "PETALS", "NETTLE", "HEATHER", "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER",],
-            ["OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "CLOVERTAIL", "DAISYTAIL",],
-            ["WISTERIA2", "ROSE MALLOW", "PICKLEWEED", "GOLDEN CREEPING JENNY",],
+            ["MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "CATTAIL", "POPPY", "ORANGE POPPY", "CYAN POPPY", "WHITE POPPY", "PINK POPPY"],
+            ["BLUEBELLS", "LILY OF THE VALLEY", "SNAPDRAGON", "HERBS", "PETALS", "NETTLE", "HEATHER", "GORSE", "JUNIPER", "RASPBERRY", "LAVENDER"],
+            ["OAK LEAVES", "CATMINT", "MAPLE SEED", "LAUREL", "BULB WHITE", "BULB YELLOW", "BULB ORANGE", "BULB PINK", "BULB BLUE", "CLOVERTAIL", "DAISYTAIL"],
+            ["WISTERIA2", "ROSE MALLOW", "PICKLEWEED", "GOLDEN CREEPING JENNY", "DESERT WILLOW", "CACTUS FLOWER", "PRAIRIE FIRE", "VERBENA EAR", "VERBENA PELT"],
         ]
         dryherbs_data = [
             ["DRY HERBS", "DRY CATMINT", "DRY NETTLES", "DRY LAURELS"]
         ]
         wild_data = [
-            ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY1", "CICADA WINGS", "BLACK CICADA"]
+            ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS", "GULL FEATHERS", "SPARROW FEATHERS", "MOTH WINGS", "ROSY MOTH WINGS", "MORPHO BUTTERFLY", "MONARCH BUTTERFLY1", "CICADA WINGS", "BLACK CICADA"],
+            ["ROAD RUNNER FEATHER"],
         ]
 
         ster_data = [
