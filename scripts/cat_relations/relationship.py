@@ -132,8 +132,11 @@ class Relationship:
                     if random.randint(1, game.clan.tertiary_biome_weight) == 1:
                         biome = game.clan.tertiary_biome
 
-        biome = str(biome).casefold()
-
+        biome = str(
+            biome
+            if not game.clan.override_biome
+            else game.clan.override_biome
+        ).casefold()
         game_mode = game.clan.game_mode
 
         all_interactions = interactions.NEUTRAL_INTERACTIONS.copy()
