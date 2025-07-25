@@ -213,22 +213,52 @@ class Scar_Events:
             specialty = random.choice(scar_pool)
             if specialty in ["NOTAIL", "HALFTAIL"]:
                 cat.pelt.accessory = [
-                    acc for acc in cat.pelt.accessory
-                    if acc not in (
+                    acc
+                    for acc in cat.pelt.accessory
+                    if acc
+                    not in (
                         "RED FEATHERS",
-                    "BLUE FEATHERS",
-                    "JAY FEATHERS",
-                    "GULL FEATHERS",
-                    "SPARROW FEATHERS",
-                    "CLOVERTAIL",
-                    "DAISYTAIL",
-                    'SEAWEED',
-                    'DAISY CORSAGE',
-                    "SNAKE",
-                    "OLD SILVER WATCH",
-                    "OLD GOLD WATCH",
-                    "BAUBLES",
-                    "SEAWEED",
+                        "BLUE FEATHERS",
+                        "JAY FEATHERS",
+                        "GULL FEATHERS",
+                        "SPARROW FEATHERS",
+                        "CLOVERTAIL",
+                        "DAISYTAIL",
+                        "DAISY CORSAGE",
+                        "CLOVERTAIL",
+                        "OLD SILVER WATCH",
+                        "OLD GOLD WATCH",
+                        "BAUBLES",
+                        "DOGWOOD",
+                        "TREESTAR",
+                        "SEAWEED",
+                        "CRIMSONBOWS",
+                        "BLUEBOWS",
+                        "YELLOWBOWS",
+                        "CYANBOWS",
+                        "REDBOWS",
+                        "LIMEBOWS",
+                        "GREENBOWS",
+                        "RAINBOWBOWS",
+                        "BLACKBOWS",
+                        "SPIKESBOWS",
+                        "WHITEBOWS",
+                        "PINKBOWS",
+                        "PURPLEBOWS",
+                        "MULTIBOWS",
+                        "INDIGOBOWS",
+                        "THRUSH FEATHERS",
+                        "GOLDFINCH FEATHERS",
+                        "DOVE FEATHERS",
+                        "PEACOCK FEATHERS",
+                        "HAWK FEATHERS",
+                        "BLUE JAY FEATHERS",
+                        "ROBIN FEATHERS",
+                        "FIERY FEATHERS",
+                        "SUNSET FEATHERS",
+                        "SILVER FEATHERS",
+                        "WISTERIA2",
+                        "GOLDEN CREEPING JENNY",
                     )
                 ]
 
