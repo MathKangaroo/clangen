@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: ascii -*-
 import random
-from random import randint
 from os.path import exists as path_exists
 from random import choice, choices
 from typing import List, Dict, Union, TYPE_CHECKING, Optional, Tuple
@@ -336,13 +335,19 @@ class PatrolOutcome:
                 return False
             return True
 
-        # Code to allow anyone but p_l to be selected as stat cat
-        if not allowed_specific or "not_pl" in allowed_specific:
+        # allow anyone but p_l to be selected as stat cat
+        if "not_pl" in allowed_specific:
             if kitty is patrol.patrol_leader:
                 return False
             return True
 
-        # Otherwise, check to see if the cat matched any of the specfic cats
+        # allow anyone but r_c to be selected
+        if "not_rc" in allowed_specific:
+            if kitty is patrol.random_cat:
+                return False
+            return True
+
+        # Otherwise, check to see if the cat matched any of the specific cats
         if "p_l" in allowed_specific and kitty == patrol.patrol_leader:
             return True
         if "r_c" in allowed_specific and kitty == patrol.random_cat:
@@ -371,11 +376,12 @@ class PatrolOutcome:
         )
         print(f"Can Have Stat: {self.can_have_stat}")
 
-        # Grab any specfic stat cat requirements:
+        # Grab any specific stat cat requirements:
         allowed_specific = [
             x
             for x in self.can_have_stat
-            if x in ("r_c", "p_l", "app1", "app2", "any", "not_pl_rc", "not_pl")
+            if x
+            in ("r_c", "p_l", "app1", "app2", "any", "not_pl_rc", "not_pl", "not_rc")
         ]
 
         # Special default behavior for patrols less than two cats.
@@ -585,13 +591,13 @@ class PatrolOutcome:
         """Handle injuring cats, or giving scars"""
         
         results = []
-        #rampaging risk
+        # rampaging risk
         num_rampage = 0
         if not self.success:
             for kitty in patrol.patrol_cats:
                 if kitty.is_awakened():
                     if kitty.awakened["type"] in ["esper", "enhanced esper"]:
-                        rampage_chance = randint(1,6)
+                        rampage_chance = random.randint(1, 6)
                         if rampage_chance == 1:
                             if kitty not in self.dead_cats:
                                 kitty.get_ill("rampaging")
@@ -604,7 +610,7 @@ class PatrolOutcome:
                 return ""
             else:
                 return " ".join(results)
-            
+
         condition_lists = constants.INJURY_GROUPS
 
         for block in self.injury:
@@ -871,7 +877,13 @@ class PatrolOutcome:
         for i, attribute_list in enumerate(self.new_cat):
             patrol.new_cats.append(
                 create_new_cat_block(
-                    Cat, Relationship, patrol, in_event_cats, i, attribute_list
+                    Cat,
+                    Relationship,
+                    patrol,
+                    in_event_cats,
+                    i,
+                    attribute_list,
+                    other_clan=patrol.other_clan,
                 )
             )
             dead = []
