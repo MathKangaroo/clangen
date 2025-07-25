@@ -526,6 +526,11 @@ class Pelt:
         "ROSE MALLOW",
         "PICKLEWEED",
         "GOLDEN CREEPING JENNY",
+        "DESERT WILLOW",
+        "CACTUS FLOWER",
+        "PRAIRIE FIRE",
+        "VERBENA EAR",
+        "VERBENA PELT",
     ]
 
     wild_accessories = [
@@ -540,6 +545,7 @@ class Pelt:
         "MONARCH BUTTERFLY1",
         "CICADA WINGS",
         "BLACK CICADA",
+        "ROAD RUNNER FEATHER",
     ]
     
     bows_accessories = ["CRIMSONBOWS", "BLUEBOWS", "YELLOWBOWS", "CYANBOWS", "REDBOWS", "LIMEBOWS", "GREENBOWS",
@@ -810,7 +816,7 @@ class Pelt:
         "JAY FEATHERS",
         "GULL FEATHERS",
         "SPARROW FEATHERS",
-        "CLOVER",
+        "CLOVERTAIL",
         "DAISYTAIL",
         "DAISY CORSAGE",
         "CLOVERTAIL",
@@ -846,8 +852,6 @@ class Pelt:
         "SUNSET FEATHERS",
         "SILVER FEATHERS",
         "WISTERIA2",
-        "ROSE MALLOW",
-        "PICKLEWEED",
         "GOLDEN CREEPING JENNY",
     ]
 
@@ -900,6 +904,12 @@ class Pelt:
         "DRY CATMINT",
         "DRY NETTLES",
         "DRY LAURELS",
+        "ROSE MALLOW",
+        "PICKLEWEED",
+        "DESERT WILLOW",
+        "CACTUS FLOWER",
+        "PRAIRIE FIRE",
+        "VERBENA EAR",
         "RAT SKULL",
         "FISH BONES",
         "PEACOCK BUTTERFLY",
@@ -1014,6 +1024,8 @@ class Pelt:
         "HERBS",
         "PETALS",
         "DRY HERBS",
+        "VERBENA PELT",
+        "ROAD RUNNER FEATHER",
         "RED ROSE",
         "WHITE ROSE",
         "PEBBLE COLLECTION",
@@ -1446,9 +1458,10 @@ class Pelt:
                           'STAINLIGHTPINK', 'STAINYELLOW', 'STAINPINK', 'STAINGOLD', 'STAINHOTPINK', 'STRAINDIRT',
                           'STAINCYAN', 'STAINLIME', 'STAINTURQUOISE', 'STAINGREEN', 'STAINBLUEGREEN', 'STAINPEACOCK']
 
-    """Holds all appearance information for a cat."""
+    """Holds all appearance information for a cat. """
 
-    def __init__(self,
+    def __init__(
+        self,
         name: str = "SingleColour",
         length: str = "short",
         colour: str = "WHITE",
@@ -1467,14 +1480,14 @@ class Pelt:
         tortie_tint2: list = None,
         vitiligo: str = None,
         points: str = None,
-        physical_trait_1:str=None,
-        physical_trait_2:str=None,
-        physical_trait_3:str=None,
-        physical_trait_4:str=None,
-        physical_trait_hidden:str=None,
-        physical_trait_hidden_2:str=None,
-        physical_trait_hidden_3:str=None,
-        physical_trait_hidden_4:str=None,
+        physical_trait_1: str = None,
+        physical_trait_2: str = None,
+        physical_trait_3: str = None,
+        physical_trait_4: str = None,
+        physical_trait_hidden: str = None,
+        physical_trait_hidden_2: str = None,
+        physical_trait_hidden_3: str = None,
+        physical_trait_hidden_4: str = None,
         accessory: list = None,
         paralyzed: bool = False,
         opacity: int = 100,
@@ -1488,9 +1501,9 @@ class Pelt:
         senior_sprite: int = None,
         para_adult_sprite: int = None,
         reverse: bool = False,
-        fur_texture:str=None,
-        build:str=None,
-        height:str=None,
+        fur_texture: str = None,
+        build: str = None,
+        height: str = None,
     ) -> None:
         self.name = name
         self.colour = colour
