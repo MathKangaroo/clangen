@@ -305,7 +305,6 @@ def json_load():
             new_cat.no_kits = cat["no_kits"]
             new_cat.no_mates = cat["no_mates"] if "no_mates" in cat else False
             new_cat.no_retire = cat["no_retire"] if "no_retire" in cat else False
-            new_cat.driven_out = cat["driven_out"] if "driven_out" in cat else False
 
             if "skill_dict" in cat:
                 new_cat.skills = CatSkills(cat["skill_dict"])
@@ -320,7 +319,7 @@ def json_load():
                     else:
                         new_cat.backstory = "clanborn"
                 new_cat.skills = CatSkills.get_skills_from_old(
-                    cat["skill"], new_cat.status.rank, new_cat.moons
+                    cat["skill"], new_cat.status.rank, new_cat.age
                 )
 
             new_cat.mate = cat["mate"] if type(cat["mate"]) is list else [cat["mate"]]
@@ -360,8 +359,16 @@ def json_load():
                 new_cat.previous_enemies = []
 
             # checking for old dead
-            if cat.get("dead") or cat.get("df"):
-                if not new_cat.status.group or not new_cat.status.group.is_afterlife():
+            if (
+                cat.get("dead")
+                or cat.get("df")
+                or cat.get("driven_out")
+                or cat.get("exiled")
+                or cat.get("outside")
+            ):
+                if cat.get("dead") and (
+                    not new_cat.status.group or not new_cat.status.group.is_afterlife()
+                ):
                     if cat.get("df"):
                         new_cat.status.send_to_afterlife(target=CatGroup.DARK_FOREST)
                     elif cat.get("outside"):
@@ -371,15 +378,15 @@ def json_load():
                     else:
                         new_cat.status.send_to_afterlife(target=CatGroup.STARCLAN)
 
-                # these should properly change the cat's status to align with old bool info
-                if not new_cat.dead and cat.get("exiled"):
-                    new_cat.status.exile_from_group()
-                if (
-                    not new_cat.dead
-                    and cat.get("outside")
-                    and not new_cat.status.is_outsider
-                ):
-                    new_cat.status.become_lost()
+                else:
+                    # these should properly change the cat's status to align with old bool info
+                    if cat.get("exiled"):
+                        new_cat.status.exile_from_group()
+                    elif cat.get("outside") and not new_cat.status.is_outsider:
+                        new_cat.status.become_lost()
+
+                    if cat.get("driven_out"):
+                        new_cat.status.change_group_nearness(CatGroup.PLAYER_CLAN)
 
             new_cat.dead_for = cat["dead_moons"]
             new_cat.experience = cat["experience"]
@@ -398,7 +405,7 @@ def json_load():
             new_cat.favourite = cat["favourite"] if "favourite" in cat else False
             new_cat.favourite_moon = cat["favourite_moon"] if "favourite_moon" in cat else False
             new_cat.favourite_star = cat["favourite_star"] if "favourite_star" in cat else False
-            
+
             if "died_by" in cat or "scar_event" in cat or "mentor_influence" in cat:
                 new_cat.convert_history(
                     cat["died_by"] if "died_by" in cat else [],
@@ -419,6 +426,7 @@ def json_load():
             raise
 
     # replace cat ids with cat objects and add other needed variables
+    other_clan_cats = [c for c in Cat.all_cats_list if c.status.is_other_clancat]
     for cat in all_cats:
         cat.load_conditions()
 
@@ -451,7 +459,7 @@ def json_load():
 
         try:
             # initialization of thoughts
-            cat.thoughts()
+            cat.thoughts(other_clan_cats=other_clan_cats)
         except Exception as e:
             logger.exception(
                 f"There was an error when thoughts for cat #{cat} are created."
@@ -683,10 +691,11 @@ def csv_load(all_cats):
                     the_cat.pelt.physical_trait_hidden_4 = bool(attr[43])
                 if len(attr
                        ) > 49 and attr[49] is not None:  # KEEP THIS AT THE END
-                    the_cat.former_apprentices = attr[49].split(';')
-        game.switches[
-            "error_message"
-        ] = "There was an error loading this clan's mentors, apprentices, relationships, or sprite info."
+                    the_cat.former_apprentices = attr[49].split(";")
+        switch_set_value(
+            Switch.error_message,
+            "There was an error loading this clan's mentors, apprentices, relationships, or sprite info.",
+        )
         for inter_cat in all_cats.values():
             # Load the mentors and apprentices after all cats have been loaded
             switch_set_value(
