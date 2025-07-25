@@ -111,7 +111,11 @@ class Patrol:
 
         final_patrols, final_romance_patrols = self.get_possible_patrols(
             str(game.clan.current_season).casefold(),
-            str(chosen_biome).casefold(),
+            str(
+                chosen_biome
+                if not game.clan.override_biome
+                else game.clan.override_biome
+            ).casefold(),
             str(game.clan.camp_bg).casefold(),
             patrol_type,
             get_clan_setting("disasters"),
@@ -515,7 +519,7 @@ class Patrol:
         if (
             patrol.pl_trait_constraints
             and (self.patrol_leader.personality.trait not in patrol.pl_trait_constraints
-            or self.patrol_leader.personality.trait2 not in patrol.pl_trait_constraints)
+                 or self.patrol_leader.personality.trait2 not in patrol.pl_trait_constraints)
         ):
             if self.debug_patrol and self.debug_patrol == patrol.patrol_id:
                 print("DEBUG: requested patrol does not meet constraints (pl_trait)")
@@ -608,9 +612,7 @@ class Patrol:
 
             # Don't check for repeat patrols if ensure_patrol_id is being used.
             if (
-                not isinstance(
-                    constants.CONFIG["patrol_generation"]["debug_ensure_patrol_id"], str
-                )
+                constants.CONFIG["patrol_generation"]["debug_ensure_patrol_id"] == ""
                 and patrol.patrol_id in self.used_patrols
             ):
                 continue
@@ -1010,13 +1012,13 @@ class Patrol:
                 success_chance += constants.CONFIG["patrol_generation"][
                     "fail_stat_cat_modifier"
                 ]
-            
-            if kitty.status in ["messenger", "messenger apprentice"]:
+
+            if kitty.status.rank in [CatRank.MESSENGER, CatRank.MESSENGER_APPRENTICE]:
                 success_chance += constants.CONFIG["patrol_generation"][
                     "win_stat_cat_modifier"
                 ]
-            
-            if kitty.status in ["denkeeper", "denkeeper apprentice"]:
+
+            if kitty.status.rank in [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE]:
                 success_chance += constants.CONFIG["patrol_generation"][
                     "win_stat_cat_modifier"
                 ]
@@ -1196,6 +1198,15 @@ class Patrol:
             ),
         }
 
+        text, senses, list_type, cat_tag = find_special_list_types(text)
+        if list_type:
+            sign_list = get_special_snippet_list(
+                list_type, amount=randint(1, 3), sense_groups=senses
+            )
+            text = text.replace(list_type, str(sign_list))
+            if cat_tag:
+                text = text.replace("cat_tag", cat_tag)
+
         other_cats = [
             i
             for i in self.patrol_cats
@@ -1313,13 +1324,6 @@ class Patrol:
                         break
 
         text = text.replace("c_n", str(game.clan.name) + "Clan")
-
-        text, senses, list_type, _ = find_special_list_types(text)
-        if list_type:
-            sign_list = get_special_snippet_list(
-                list_type, amount=randint(1, 3), sense_groups=senses
-            )
-            text = text.replace(list_type, str(sign_list))
 
         # TODO: check if this can be handled in event_text_adjust
         return text
