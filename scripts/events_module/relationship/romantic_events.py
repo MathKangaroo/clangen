@@ -194,7 +194,15 @@ class RomanticEvents:
                     if random.randint(1, game.clan.tertiary_biome_weight) == 1:
                         chosen_biome = game.clan.tertiary_biome
 
-        _biome = [str(chosen_biome).casefold(), "Any", "any"]
+        _biome = [
+            str(
+                chosen_biome
+                if not game.clan.override_biome
+                else game.clan.override_biome
+            ).casefold(),
+            "Any",
+            "any",
+        ]
         for interaction in possible_interactions:
             in_tags = [i for i in interaction.biome if i not in _biome]
             if len(in_tags) > 0:
@@ -1032,6 +1040,9 @@ class RomanticEvents:
                 poly_key = "m_c_mates"
             elif len(alive_inclan_from_mates) <= 0 and len(alive_inclan_to_mates) > 0:
                 poly_key = "r_c_mates"
+            if not poly_key:
+                # none of the other involved mates are alive
+                return None
             return choice(RomanticEvents.POLY_MATE_DICTS[key][poly_key])
 
     # ---------------------------------------------------------------------------- #
