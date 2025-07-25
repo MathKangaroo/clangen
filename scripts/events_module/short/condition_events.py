@@ -71,13 +71,6 @@ class Condition_Events:
     ) as read_file:
         ILLNESSES_SEASON_LIST = ujson.loads(read_file.read())
 
-    with open(
-        "resources/dicts/conditions/event_injuries_distribution.json",
-        "r",
-        encoding="utf-8",
-    ) as read_file:
-        INJURY_DISTRIBUTION = ujson.loads(read_file.read())
-
     # ---------------------------------------------------------------------------- #
     #                                   STRINGS                                    #
     # ---------------------------------------------------------------------------- #
@@ -316,16 +309,16 @@ class Condition_Events:
                 # if a non-kitten got kittencough, switch it to whitecough instead
                 if chosen_illness == "kittencough" and not cat.status.rank.is_baby():
                     chosen_illness = "whitecough"
-                    
+
                 eating_disorders = ["anorexia", "ARFID", "bulimia", "binge-eating disorder", "food hoarding", "pica"]
                 self_harm = ["harmful stims"]
                 dissociation = ["derealization", "depersonalization", "amnesia"]
                 psychosis = ["delusions", "psychotic episode", "hostile hallucinations", "paranoia", "ongoing psychosis"]
                 night_dirtmaking_n_nest_wetting = ["night dirtmaking", "nest wetting"]
                 all_triggers = eating_disorders + self_harm + dissociation + psychosis + night_dirtmaking_n_nest_wetting
-                
+
                 get_sick = True
-                
+
                 if not game_setting_get("allow_triggers") and chosen_illness in all_triggers:
                     get_sick = False
                 else:
@@ -502,7 +495,7 @@ class Condition_Events:
             "HINDLEG": ["weak leg"],
         }
 
-        scarless_conditions = [
+        scarless_conditions = (
             "weak leg",
             "paralyzed",
             "raspy lungs",
@@ -516,8 +509,14 @@ class Condition_Events:
             "constantly dizzy",
             "recurring shock",
             "lasting grief",
-            "wobbly cat syndrome", "cleft palate",
-            "persistent headaches", "testosterone deficiency", "excess testosterone", "aneuploidy", "mosaicism", "chimerism",
+            "persistent headaches",
+            "wobbly cat syndrome",
+            "cleft palate",
+            "testosterone deficiency",
+            "excess testosterone",
+            "aneuploidy",
+            "mosaicism",
+            "chimerism",
             "comet spirit",
             "weighted heart",
             "starwalker",
@@ -557,8 +556,8 @@ class Condition_Events:
             "bipolar i",
             "bipolar ii",
             "foggy mind",
-            "deer tick disease"
-        ]
+            "deer tick disease",
+        )
 
         got_condition = False
         perm_condition = None
@@ -1260,7 +1259,7 @@ class Condition_Events:
                 # check if the new risk is a previous stage of a current illness
                 skip = False
                 if risk["name"] in progression:
-                    if isinstance(progression[risk["name"]],list):
+                    if isinstance(progression[risk["name"]], list):
                         for risky in progression[risk["name"]]:
                             if risky in dictionary:
                                 skip = True
@@ -1364,9 +1363,9 @@ class Condition_Events:
                     psychosis = ["delusions", "psychotic episode", "hostile hallucinations", "paranoia", "ongoing psychosis"]
                     night_dirtmaking_n_nest_wetting = ["night dirtmaking", "nest wetting"]
                     all_triggers = eating_disorders + self_harm + dissociation + psychosis + night_dirtmaking_n_nest_wetting
-                    
+
                     get_sick = True
-                    
+
                     if not game_setting_get("allow_triggers") and new_condition_name in all_triggers:
                         get_sick = False
                     else:
