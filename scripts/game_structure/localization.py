@@ -24,13 +24,13 @@ def get_new_pronouns(genderalign: str) -> List[Dict[str, Union[str, int]]]:
     """
     config = get_lang_config()["pronouns"]
     neo_chance = 20
-    queer_list = ["intersex", "intergender", "trans male", "trans female","nonbinary", "genderfluid", "demigirl", "demiboy", "genderfae", "genderfaun", "bigender", "genderqueer", "agender", "???", "deminonbinary", "trigender", "genderflux", "polygender"]
+    queer_list = ["intersex", "intergender", "trans male", "trans female", "nonbinary", "genderfluid", "demigirl", "demiboy", "genderfae", "genderfaun", "bigender", "genderqueer", "agender", "???", "deminonbinary", "trigender", "genderflux", "polygender"]
     if genderalign in queer_list:
         neo_chance = 5
     if game_setting_get("they them default"):
         pronouns = config["sets"].get("default")
     else:
-        neos = randint(1,neo_chance)
+        neos = randint(1, neo_chance)
         if neos == 1:
             pronouns = choice(config["sets"].get("neopronouns", config["sets"].get("default")))
         elif genderalign == "neos":
