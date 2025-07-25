@@ -333,10 +333,12 @@ class Pregnancy_Events:
             return
 
         thinking_amount = random.choices(
-            ["correct", "incorrect", "unsure"], [4, 1, 1], k=1
+            ["correct", "incorrect", "generic"], [5, 1, 3], k=1
         )
-        if amount <= 3:
+        if amount <= 2:
             correct_guess = "small"
+        elif amount in [3, 4]:
+            correct_guess = "generic"
         else:
             correct_guess = "large"
 
@@ -344,16 +346,20 @@ class Pregnancy_Events:
 
         if thinking_amount[0] == "correct":
             if correct_guess == "small":
-                text = Pregnancy_Events.PREGNANT_STRINGS["litter_guess"][0]
+                text = choice(Pregnancy_Events.PREGNANT_STRINGS["litter_guess_small"])
+            elif correct_guess == "large":
+                text = choice(Pregnancy_Events.PREGNANT_STRINGS["litter_guess_large"])
             else:
-                text = Pregnancy_Events.PREGNANT_STRINGS["litter_guess"][1]
+                text = choice(Pregnancy_Events.PREGNANT_STRINGS["litter_guess_generic"])
         elif thinking_amount[0] == "incorrect":
             if correct_guess == "small":
-                text = Pregnancy_Events.PREGNANT_STRINGS["litter_guess"][1]
+                text = choice(Pregnancy_Events.PREGNANT_STRINGS["litter_guess_large"])
+            elif correct_guess == "large":
+                text = choice(Pregnancy_Events.PREGNANT_STRINGS["litter_guess_small"])
             else:
-                text = Pregnancy_Events.PREGNANT_STRINGS["litter_guess"][0]
+                text = choice(Pregnancy_Events.PREGNANT_STRINGS["litter_guess_generic"])
         else:
-            text = Pregnancy_Events.PREGNANT_STRINGS["litter_guess"][2]
+            text = choice(Pregnancy_Events.PREGNANT_STRINGS["litter_guess_generic"])
 
         try:
             if cat.injuries["pregnant"]["severity"] == "minor":
@@ -439,9 +445,12 @@ class Pregnancy_Events:
             involved_cats.append(other_cat.ID)
             cat_dict["r_c"] = other_cat
             event_list.append(choice(events["birth"]["two_parents"]))
-        elif other_cat.ID in cat.mate and other_cat.dead:
+        elif (
+            other_cat.ID in cat.mate and other_cat.dead
+        ):
             involved_cats.append(other_cat.ID)
             cat_dict["r_c"] = other_cat
+            # TODO: this seems odd, outsider mates are also treated as dead?
             event_list.append(choice(events["birth"]["dead_mate"]))
         elif len(cat.mate) < 1 and len(other_cat.mate) < 1 and not other_cat.dead:
             involved_cats.append(other_cat.ID)
@@ -966,43 +975,43 @@ class Pregnancy_Events:
     @staticmethod
     def get_amount_of_kits(cat):
         """Get the amount of kits which will be born."""
-        min_kits = game.config["pregnancy"]["min_kits"]
-        min_kit = [min_kits] * game.config["pregnancy"]["one_kit_possibility"][
+        min_kits = constants.CONFIG["pregnancy"]["min_kits"]
+        min_kit = [min_kits] * constants.CONFIG["pregnancy"]["one_kit_possibility"][
             cat.age.value
         ]
-        two_kits = [min_kits + 1] * game.config["pregnancy"]["two_kit_possibility"][
-            cat.age.value
-        ]
-        three_kits = [min_kits + 2] * game.config["pregnancy"]["three_kit_possibility"][
-            cat.age.value
-        ]
-        four_kits = [min_kits + 3] * game.config["pregnancy"]["four_kit_possibility"][
-            cat.age.value
-        ]
-        five_kits = [min_kits + 4] * game.config["pregnancy"]["five_kit_possibility"][
-            cat.age.value
-        ]
-        six_kits = [min_kits + 5] * game.config["pregnancy"]["six_kit_possibility"][
-            cat.age.value
-        ]
-        seven_kits = [min_kits + 6] * game.config["pregnancy"]["seven_kit_possibility"][
-            cat.age.value
-        ]
-        eight_kits = [min_kits + 7] * game.config["pregnancy"]["eight_kit_possibility"][
-            cat.age.value
-        ]
-        nine_kits = [min_kits + 8] * game.config["pregnancy"]["nine_kit_possibility"][
-            cat.age.value
-        ]
-        ten_kits = [min_kits + 9] * game.config["pregnancy"]["ten_kit_possibility"][
-            cat.age.value
-        ]
-        eleven_kits = [min_kits + 10] * game.config["pregnancy"]["eleven_kit_possibility"][
-            cat.age.value
-        ]
-        max_kits = [game.config["pregnancy"]["max_kits"]] * game.config["pregnancy"][
-            "max_kit_possibility"
+        two_kits = [min_kits + 1] * constants.CONFIG["pregnancy"][
+            "two_kit_possibility"
         ][cat.age.value]
+        three_kits = [min_kits + 2] * constants.CONFIG["pregnancy"][
+            "three_kit_possibility"
+        ][cat.age.value]
+        four_kits = [min_kits + 3] * constants.CONFIG["pregnancy"][
+            "four_kit_possibility"
+        ][cat.age.value]
+        five_kits = [min_kits + 4] * constants.CONFIG["pregnancy"][
+            "five_kit_possibility"
+        ][cat.age.value]
+        six_kits = [min_kits + 5] * constants.CONFIG["pregnancy"][
+            "six_kit_possibility"
+        ][cat.age.value]
+        seven_kits = [min_kits + 6] * constants.CONFIG["pregnancy"][
+            "seven_kit_possibility"
+        ][cat.age.value]
+        eight_kits = [min_kits + 7] * constants.CONFIG["pregnancy"][
+            "eight_kit_possibility"
+        ][cat.age.value]
+        nine_kits = [min_kits + 8] * constants.CONFIG["pregnancy"][
+            "nine_kit_possibility"
+        ][cat.age.value]
+        ten_kits = [min_kits + 9] * constants.CONFIG["pregnancy"][
+            "ten_kit_possibility"
+        ][cat.age.value]
+        eleven_kits = [min_kits + 10] * constants.CONFIG["pregnancy"][
+            "eleven_kit_possibility"
+        ][cat.age.value]
+        max_kits = [constants.CONFIG["pregnancy"]["max_kits"]] * constants.CONFIG[
+            "pregnancy"
+        ]["max_kit_possibility"][cat.age.value]
         amount = choice(
             min_kit + two_kits + three_kits + four_kits + five_kits + six_kits + seven_kits + eight_kits + nine_kits + ten_kits + eleven_kits + max_kits
         )
