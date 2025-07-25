@@ -653,8 +653,8 @@ class Skill:
         print("Can't set tier directly")
 
     def set_points_to_tier(self, tier: int):
-        """This is seperate from the tier setter, since it will booonly allow you
-        to set points to tier 1, 2, or 3, and never 0. Tier 0 is retricted to interest_only
+        """This is separate from the tier setter, since it will only allow you
+        to set points to tier 1, 2, or 3, and never 0. Tier 0 is restricted to interest_only
         skills"""
 
         # Make sure it in the right range. If not, return.
@@ -825,21 +825,19 @@ class CatSkills:
                 self.tertiary = temp
 
     @staticmethod
-    def generate_new_catskills(rank, moons, hidden_skill: HiddenSkillEnum = None):
+    def generate_new_catskills(
+        rank: CatRank, age: CatAge, hidden_skill: HiddenSkillEnum = None
+    ):
         """Generates a new skill"""
         new_skill = CatSkills()
 
         new_skill.hidden = hidden_skill
 
-        if rank == CatRank.NEWBORN or moons <= 0:
+        if rank == CatRank.NEWBORN or age == CatAge.NEWBORN:
             pass
-        elif rank == CatRank.KITTEN or moons < 6:
+        elif rank == CatRank.KITTEN or age == CatAge.KITTEN:
             new_skill.primary = Skill.get_random_skill(points=0, interest_only=True)
-        elif rank in [
-            CatRank.APPRENTICE,
-            CatRank.MEDICINE_APPRENTICE,
-            CatRank.MEDIATOR_APPRENTICE,
-        ]:
+        elif rank.is_any_apprentice_rank() or age == CatAge.ADOLESCENT:
             new_skill.primary = Skill.get_random_skill(point_tier=1, interest_only=True)
             if random.randint(1, 3) == 1:
                 tempexclude = new_skill.primary.path
@@ -855,31 +853,36 @@ class CatSkills:
                 elif new_skill.secondary.path in [SkillPath.NIGHT, SkillPath.DAY]:
                     tempexclude = [SkillPath.NIGHT, SkillPath.DAY, new_skill.primary.path]
                 new_skill.secondary = Skill.get_random_skill(
-                    point_tier=random.randint(1, 2), exclude=tempexclude
+                    point_tier=random.randint(1, 2), interest_only=True, exclude=tempexclude
                 )
         else:
             primary_tier = 1
             secondary_tier = 1
             tertiary_tier = 1
-            if moons < 50:
+            if age == CatAge.YOUNG_ADULT:
                 primary_tier += random.randint(0, 1)
                 secondary_tier += random.randint(0, 1)
                 tertiary_tier += random.randint(0, 1)
-            elif moons < 100:
+            elif age == CatAge.ADULT:
                 primary_tier += random.randint(0, 2)
                 secondary_tier += random.randint(0, 1)
                 tertiary_tier += random.randint(0, 1)
-            elif moons < 150:
+            elif age == CatAge.SENIOR_ADULT:
                 primary_tier += random.randint(1, 2)
-                secondary_tier += random.randint(0, 1)
+                secondary_tier += random.randint(0, 2)
                 tertiary_tier += random.randint(0, 1)
+            elif age == CatAge.SENIOR:
+                primary_tier += 2
+                secondary_tier += random.randint(1, 2)
+                tertiary_tier += random.randint(0, 2)
+
             new_skill.primary = Skill.get_random_skill(point_tier=primary_tier)
             if random.randint(1, 2) == 1:
                 tempexclude = new_skill.primary.path
                 if new_skill.primary.path in [SkillPath.NIGHT, SkillPath.DAY]:
                     tempexclude = [SkillPath.NIGHT, SkillPath.DAY]
                 new_skill.secondary = Skill.get_random_skill(
-                    point_tier=1, interest_only=True, exclude=tempexclude
+                    point_tier=1, exclude=tempexclude
                 )
             if new_skill.secondary and random.randint(1, 4) == 1:
                 tempexclude = [new_skill.primary.path,new_skill.secondary.path]
@@ -962,11 +965,47 @@ class CatSkills:
         amount_effect = random.randint(1, 4)
 
         if can_primary:
-                self.primary.points += amount_effect
-                path = self.primary.path
+            if can_secondary:
+                if can_tertiary:
+                    num = random.randint(1, 3)
+                    if num == 1:
+                        self.primary.points += amount_effect
+                        path = self.primary.path
+                    elif num == 2:
+                        self.secondary.points += amount_effect
+                        path = self.secondary.path
+                    else:
+                        self.tertiary.points += amount_effect
+                        path = self.tertiary.path
+                else:
+                    if random.randint(1, 2) == 1:
+                        self.primary.points += amount_effect
+                        path = self.primary.path
+                    else:
+                        self.secondary.points += amount_effect
+                        path = self.secondary.path
+            else:
+                if can_tertiary:
+                    if random.randint(1, 2) == 1:
+                        self.primary.points += amount_effect
+                        path = self.primary.path
+                    else:
+                        self.tertiary.points += amount_effect
+                        path = self.tertiary.path
+                else:
+                    self.primary.points += amount_effect
+                    path = self.primary.path
         elif can_secondary:
-            self.primary.points += amount_effect
-            path = self.primary.path
+            if can_tertiary:
+                if random.randint(1, 2) == 1:
+                    self.secondary.points += amount_effect
+                    path = self.secondary.path
+                else:
+                    self.tertiary.points += amount_effect
+                    path = self.tertiary.path
+            else:
+                self.secondary.points += amount_effect
+                path = self.secondary.path
         else:
             self.tertiary.points += amount_effect
             path = self.tertiary.path
@@ -997,14 +1036,14 @@ class CatSkills:
                 self.primary = Skill(
                     random.choice(parental_paths),
                     points=0,
-                    interest_only=the_cat.status.rank
-                    in (CatRank.APPRENTICE, CatRank.KITTEN),
+                    interest_only=the_cat.status.rank.is_any_apprentice_rank()
+                    or the_cat.status.rank == CatRank.KITTEN,
                 )
             else:
                 self.primary = Skill.get_random_skill(
                     points=0,
-                    interest_only=the_cat.status.rank
-                    in (CatRank.APPRENTICE, CatRank.KITTEN),
+                    interest_only=the_cat.status.rank.is_any_apprentice_rank()
+                    or the_cat.status.rank == CatRank.KITTEN,
                 )
 
         if the_cat.status.is_clancat:
@@ -1016,7 +1055,7 @@ class CatSkills:
                     if self.primary.path in [SkillPath.NIGHT, SkillPath.DAY]:
                         tempexclude = [SkillPath.NIGHT, SkillPath.DAY]
                     self.secondary = Skill.get_random_skill(
-                        point_tier=random.randint(1, 2), exclude=tempexclude
+                        point_tier=random.randint(1, 2), interest_only=True, exclude=tempexclude
                     )
                 
                 if not self.secondary and not int(random.random() * 22):
@@ -1025,12 +1064,12 @@ class CatSkills:
                     if self.primary.path in [SkillPath.NIGHT, SkillPath.DAY]:
                         tempexclude = [SkillPath.NIGHT, SkillPath.DAY]
                     self.secondary = Skill.get_random_skill(
-                        point_tier=random.randint(1, 2), exclude=tempexclude
+                        point_tier=random.randint(1, 2), interest_only=True, exclude=tempexclude
                     )
                 
                 if self.secondary and not self.tertiary and not int(random.random() * 22):
                     # if there's no secondary skill, try to give tertiary one!
-                    tempexclude = [self.primary.path,self.secondary.path]
+                    tempexclude = [self.primary.path, self.secondary.path]
                     if self.primary.path in [SkillPath.NIGHT, SkillPath.DAY]:
                         tempexclude = [SkillPath.NIGHT, SkillPath.DAY, self.secondary.path]
                     elif self.secondary.path in [SkillPath.NIGHT, SkillPath.DAY]:
@@ -1066,7 +1105,7 @@ class CatSkills:
                     if self.primary.path in [SkillPath.NIGHT, SkillPath.DAY]:
                         tempexclude = [SkillPath.NIGHT, SkillPath.DAY]
                     self.secondary = Skill.get_random_skill(
-                        point_tier=random.randint(1, 2), exclude=tempexclude
+                        point_tier=random.randint(1, 2), interest_only=True, exclude=tempexclude
                     )
                 
                 # Check to see if the cat gains a tertiary
@@ -1078,7 +1117,7 @@ class CatSkills:
                     elif self.secondary.path in [SkillPath.NIGHT, SkillPath.DAY]:
                         tempexclude = [SkillPath.NIGHT, SkillPath.DAY, self.primary.path]
                     self.secondary = Skill.get_random_skill(
-                        point_tier=random.randint(1, 2), exclude=tempexclude
+                        point_tier=random.randint(1, 2), interest_only=True, exclude=tempexclude
                     )
 
                 # Check if they get any points this moon
@@ -1100,14 +1139,6 @@ class CatSkills:
                     self.secondary.interest_only = False
                 if self.tertiary:
                     self.tertiary.interest_only = False
-
-                chance = max(1, 160 - the_cat.moons)
-                if not int(
-                    random.random() * chance
-                ):  # chance increases as the_cat ages
-                    self.primary.points -= 1
-                    if self.secondary:
-                        self.secondary.points -= 1
             else:
                 # If they are still in "interest" stage, there is a change to swap primary and secondary
                 # If they are still in "interest" but reached this part, they just graduated.
@@ -1215,7 +1246,7 @@ class CatSkills:
         return skills_meet
 
     @staticmethod
-    def get_skills_from_old(old_skill, rank, moons):
+    def get_skills_from_old(old_skill, rank: CatRank, age: CatAge):
         """Generates a CatSkill object"""
         new_skill = CatSkills()
         conversion = {
@@ -1265,6 +1296,6 @@ class CatSkills:
             new_skill.primary = Skill(conversion[old_skill][0])
             new_skill.primary.set_points_to_tier(conversion[old_skill][1])
         else:
-            new_skill = CatSkills.generate_new_catskills(rank, moons)
+            new_skill = CatSkills.generate_new_catskills(rank, age)
 
         return new_skill
