@@ -41,10 +41,9 @@ from scripts.game_structure.ui_elements import (
     UIImageButton,
     UITextBoxTweaked,
     UISurfaceImageButton,
+    UIDropDown,
     UIModifiedScrollingContainer,
-    UIDropDownContainer,
     UISpriteButton,
-    UIDropDown
 )
 from scripts.housekeeping.datadir import (
     get_save_dir,
@@ -76,8 +75,9 @@ from scripts.utility import (
 if TYPE_CHECKING:
     from scripts.screens.Screens import Screens
 
+
 class GuideEsper(UIWindow):
-    def __init__(self,cat):
+    def __init__(self, cat):
         super().__init__(
             ui_scale(pygame.Rect((25, 340), (750, 350))),
             window_display_title="Select a Guide",
@@ -121,7 +121,7 @@ class GuideEsper(UIWindow):
             container=self,
         )
         self.guide_button.disable()
-        text = "Select an available guide to stop "+ str(self.the_cat.name) + "'s rampage!"
+        text = "Select an available guide to stop " + str(self.the_cat.name) + "'s rampage!"
         self.info = pygame_gui.elements.UITextBox(
             text,
             ui_scale(pygame.Rect((125, 5), (900, 60))),
@@ -149,8 +149,7 @@ class GuideEsper(UIWindow):
         )
         
         self.update_potential_guides_container_page()
-        
-        
+
     def get_valid_guides(self):
         valid_guides = [
             i
@@ -163,12 +162,11 @@ class GuideEsper(UIWindow):
             and i.status.alive_in_player_clan
         ]
         return valid_guides
-    
+
     def update_potential_guides_container_page(self):
         """Updates just the current page for the mates container, does
         not refresh the list. It will also update the disable status of the
         next and last page buttons"""
-        
 
         for ele in self.potential_guides_buttons:
             self.potential_guides_buttons[ele].kill()
@@ -227,10 +225,10 @@ class GuideEsper(UIWindow):
                 pos_x = 20
                 pos_y += 100
             i += 1
-        
+
     def chunks(self, L, n):
         return [L[x : x + n] for x in range(0, len(L), n)]
-    
+
     def update_selected_cat(self):
         if not self.the_cat.guided: 
             self.guide_button.enable()
@@ -266,20 +264,20 @@ class GuideEsper(UIWindow):
             manager=MANAGER,
             container=self,
         )
-    
+
     def calculate_resonance(self,cat):
         buff = 0
-        if cat.status in ["medicine cat", "mediator", "medicine cat apprentice", "mediator apprentice", "caretaker", "caretaker apprentice"]:
+        if cat.status.rank in [CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE, CatRank.MEDIATOR, CatRank.MEDIATOR_APPRENTICE, CatRank.CARETAKER, CatRank.CARETAKER_APPRENTICE]:
             buff += 1
         buff += self.calculate_rank_difference(self.the_cat, cat)
-        #print(cat.ID)
+        # print(cat.ID)
         if self.the_cat.relationships[cat.ID]:
             if self.the_cat.relationships[cat.ID].platonic_like > 20 or self.the_cat.relationships[cat.ID].trust > 20:
                 buff += 1
             elif self.the_cat.relationships[cat.ID].dislike > 20:
                 buff -= 1
         return buff
-            
+
     def calculate_rank_difference(self, esper, guide):
         if esper.awakened["class"] == "C":
             if guide.awakened["class"] == "C":
@@ -309,16 +307,16 @@ class GuideEsper(UIWindow):
                 return 0
             else:
                 return -1
-    
+
     def attempt_guiding(self):
-        guide = randint(1,10) + self.calculate_resonance(self.selected_cat)
+        guide = randint(1, 10) + self.calculate_resonance(self.selected_cat)
         text = ""
         if guide > 5:
             text = "Success!"
             self.the_cat.guided = True
         else:
             text = "Fail..."
-            guide_injured = randint(1,10)
+            guide_injured = randint(1, 10)
             if guide_injured == 1:
                 text += str(self.selected_cat.name) + " was hurt!"
                 injury = choice(["sore", "bruises"])
@@ -334,7 +332,7 @@ class GuideEsper(UIWindow):
         self.guide_button.disable()
         for button in self.potential_guides_buttons:
             self.potential_guides_buttons[button].disable()
-        
+
     def process_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
             if event.ui_element == self.back_button:
@@ -358,7 +356,7 @@ class GuideEsper(UIWindow):
 class SymbolFilterWindow(UIWindow):
     def __init__(self):
         super().__init__(
-            ui_scale(pygame.Rect((250, 175), (300, 450))),
+            ui_scale(pygame.Rect((250, 125), (300, 450))),
             window_display_title="windows.symbol_filters",
             object_id="#filter_window",
         )
@@ -386,12 +384,12 @@ class SymbolFilterWindow(UIWindow):
             object_id="#text_box_40",
             container=self,
         )
-        self.filter_container = pygame_gui.elements.UIScrollingContainer(
-            ui_scale(pygame.Rect((5, 45), (285, 310))),
+        self.filter_container = UIModifiedScrollingContainer(
+            ui_scale(pygame.Rect((5, 45), (285, 400))),
             manager=MANAGER,
             starting_height=1,
-            object_id="#filter_container",
             allow_scroll_x=False,
+            allow_scroll_y=True,
             container=self,
         )
         self.checkbox = {}
@@ -557,9 +555,11 @@ class SaveCheck(UIWindow):
             container=self,
         )
         save_buttons = get_button_dict(ButtonStyles.SQUOVAL, (114, 30))
-        save_buttons["normal"] = image_cache.load_image(
-            "resources/images/buttons/save_clan.png"
+        save_buttons["normal"] = pygame.transform.scale(
+            image_cache.load_image("resources/images/buttons/save_clan.png"),
+            ui_scale_dimensions((114, 30)),
         )
+
         self.save_button = UISurfaceImageButton(
             ui_scale(pygame.Rect((0, 115), (114, 30))),
             "buttons.save_clan",
@@ -698,7 +698,7 @@ class EditorSaveCheck(UIWindow):
     def modify_file(self, event_list, path):
         event_json = ujson.dumps(event_list, indent=4)
         event_json = event_json.replace(
-            "\/", "/"
+            "\\/", "/"
         )  # ujson tries to escape "/", but doesn't end up doing a good job.
 
         try:
@@ -2271,6 +2271,13 @@ class ChangeCatToggles(UIWindow):
             container=self,
         )
 
+        self.text_5 = pygame_gui.elements.UITextBox(
+            "windows.immortality",
+            ui_scale(pygame.Rect(55, 125, -1, 32)),
+            object_id="#text_box_30_horizleft_pad_0_8",
+            container=self,
+        )
+
         # Text
 
     def refresh_checkboxes(self):
@@ -2540,7 +2547,7 @@ class ConfirmDisplayChanges(UIMessageWindow):
             ui_scale_offset((0, 22)),
             (
                 self.get_container().get_size()[0],
-                self.get_container().get_size()[1] - button_vertical_space,
+                -1,
             ),
         )
         self.text_block = pygame_gui.elements.UITextBox(
@@ -2557,6 +2564,7 @@ class ConfirmDisplayChanges(UIMessageWindow):
             },
             text_kwargs={"count": 10},
         )
+        self.text_block.disable()
         self.text_block.rebuild_from_changed_theme_data()
 
         # make a timeout that will call in 10 seconds - if this window isn't closed,
