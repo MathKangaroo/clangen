@@ -46,7 +46,6 @@ from scripts.utility import (
     change_clan_reputation,
     find_alive_cats_with_rank,
     get_living_clan_cat_count,
-    get_random_moon_cat,
     ceremony_text_adjust,
     get_current_season,
     adjust_list_text,
@@ -130,9 +129,10 @@ class Events:
         self.handle_future_events()
 
         # Calling of "one_moon" functions.
-        for cat in Cat.all_cats.copy().values():
-            if not cat.status.group:
-                self.one_moon_outside_cat(cat)
+        other_clan_cats = [c for c in Cat.all_cats_list if c.status.is_other_clancat]
+        for cat in Cat.all_cats_list.copy():
+            if not cat.status.group or cat.status.is_other_clancat:
+                self.one_moon_outside_cat(cat, other_clan_cats)
             elif cat.status.alive_in_player_clan or cat.status.group.is_afterlife():
                 self.one_moon_cat(cat)
 
@@ -543,7 +543,7 @@ class Events:
                     )
                 )
                 cat.rank_change(CatRank.MEDIATOR)
-                
+
     def denkeeper_events(self, cat):
         """Check for denkeeper events"""
 
@@ -562,6 +562,7 @@ class Events:
                     )
                 )
                 cat.rank_change(CatRank.DENKEEPER)
+
     def gardener_events(self, cat):
         """Check for gardener events"""
 
@@ -991,12 +992,12 @@ class Events:
                 add_cat_to_fade_id(cat.ID)
                 cat.set_faded()
 
-    def one_moon_outside_cat(self, cat):
+    def one_moon_outside_cat(self, cat, other_clan_cats: list = None):
         """
         exiled cat events
         """
         # aging the cat
-        cat.one_moon()
+        cat.one_moon(other_clan_cats)
         cat.manage_outside_trait()
 
         self.handle_outside_EX(cat)
@@ -1415,7 +1416,7 @@ class Events:
                         chance = int(chance * 1.5)
                     if cat.is_disabled() and get_clan_setting("higher_disabled_med_rates"):
                         chance = int(chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
-                        
+
                     skills_string = str(cat.skills)
                     med_skills = ["TEACHER", "CLEVER", "STAR", "DELIVERER", "HERBALIST", "HISTORIAN", "PRODIGY", "VET",
                                   "SCHOLAR", "THINKER", "MEMORY", "GARDENER", "HEALER", "LORE"]
@@ -1440,7 +1441,7 @@ class Events:
                                 Cat.all_cats_list,
                             )
                         )
-                        
+
                         caretaker_list = list(
                             filter(
                                 lambda x: x.status.rank == CatRank.CARETAKER
@@ -1448,7 +1449,7 @@ class Events:
                                 Cat.all_cats_list,
                             )
                         )
-                        
+
                         denkeeper_list = list(
                             filter(
                                 lambda x: x.status.rank == CatRank.DENKEEPER
@@ -1456,7 +1457,7 @@ class Events:
                                 Cat.all_cats_list,
                             )
                         )
-                        
+
                         gardener_list = list(
                             filter(
                                 lambda x: x.status.rank == CatRank.GARDENER
@@ -1464,7 +1465,7 @@ class Events:
                                 Cat.all_cats_list,
                             )
                         )
-                        
+
                         messenger_list = list(
                             filter(
                                 lambda x: x.status.rank == CatRank.MESSENGER
@@ -1472,7 +1473,7 @@ class Events:
                                 Cat.all_cats_list,
                             )
                         )
-                        
+
                         storyteller_list = list(
                             filter(
                                 lambda x: x.status.rank == CatRank.STORYTELLER
@@ -1487,7 +1488,7 @@ class Events:
                             if c.apprentice:
                                 has_mediator_apprentice = True
                                 break
-                            
+
                         has_caretaker_apprentice = False
                         for c in caretaker_list:
                             if c.apprentice:
@@ -1499,19 +1500,19 @@ class Events:
                             if c.apprentice:
                                 has_denkeeper_apprentice = True
                                 break
-                            
+
                         has_gardener_apprentice = False
                         for c in gardener_list:
                             if c.apprentice:
                                 has_gardener_apprentice = True
                                 break
-                        
+
                         has_messenger_apprentice = False
                         for c in messenger_list:
                             if c.apprentice:
                                 has_messenger_apprentice = True
                                 break
-                            
+
                         has_storyteller_apprentice = False
                         for c in storyteller_list:
                             if c.apprentice:
@@ -1585,7 +1586,7 @@ class Events:
                             denkeeper_chance = int(denkeeper_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
                             gardener_chance = int(gardener_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
                             storyteller_chance = int(storyteller_chance / constants.CONFIG["roles"]["disabled_cat_med_chance_increase"])
-                        
+
                         if mediator_chance == 0:
                             mediator_chance = 1
                         if caretaker_chance == 0:
@@ -1699,27 +1700,27 @@ class Events:
                         self.ceremony(cat, CatRank.MEDIATOR, preparedness)
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
-                    
+
                     elif cat.status.rank == CatRank.CARETAKER_APPRENTICE:
                         self.ceremony(cat, CatRank.CARETAKER, preparedness)
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
-                    
+
                     elif cat.status.rank == CatRank.DENKEEPER_APPRENTICE:
                         self.ceremony(cat, CatRank.DENKEEPER, preparedness)
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
-                    
+
                     elif cat.status.rank == CatRank.MESSENGER_APPRENTICE:
                         self.ceremony(cat, CatRank.MESSENGER, preparedness)
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
-                        
+
                     elif cat.status.rank == CatRank.GARDENER_APPRENTICE:
                         self.ceremony(cat, CatRank.GARDENER, preparedness)
                         self.ceremony_accessory = True
                         self.gain_accessories(cat)
-                        
+
                     elif cat.status.rank == CatRank.STORYTELLER_APPRENTICE:
                         self.ceremony(cat, CatRank.STORYTELLER, preparedness)
                         self.ceremony_accessory = True
@@ -2028,9 +2029,6 @@ class Events:
             self.ceremony_accessory = False
             return
 
-        # find random_cat
-        random_cat = get_random_moon_cat(Cat, main_cat=cat)
-
         # chance to gain acc
         acc_chances = constants.CONFIG["accessory_generation"]
         chance = acc_chances["base_acc_chance"]
@@ -2098,7 +2096,6 @@ class Events:
             handle_short_events.handle_event(
                 event_type="misc",
                 main_cat=cat,
-                random_cat=random_cat,
                 sub_type=sub_type,
                 freshkill_pile=game.clan.freshkill_pile,
             )
@@ -2110,7 +2107,7 @@ class Events:
     # This gives outsiders exp. There may be a better spot for it to go,
     # but I put it here to keep the exp functions together
     def handle_outside_EX(self, cat):
-        if cat.status.is_outsider:
+        if cat.status.is_outsider or cat.status.is_other_clancat:
             if cat.not_working() and int(random.random() * 3):
                 return
 
@@ -2218,16 +2215,10 @@ class Events:
 
         chance = max(chance, 1)
 
-        # choose other cat
-        random_cat = get_random_moon_cat(
-            Cat, main_cat=cat, parent_child_modifier=True, mentor_app_modifier=True
-        )
-
         if constants.CONFIG["event_generation"]["debug_type_override"] == "new_cat":
             handle_short_events.handle_event(
                 event_type="new_cat",
                 main_cat=cat,
-                random_cat=random_cat,
                 freshkill_pile=game.clan.freshkill_pile,
             )
             return
@@ -2242,7 +2233,6 @@ class Events:
             handle_short_events.handle_event(
                 event_type="new_cat",
                 main_cat=cat,
-                random_cat=random_cat,
                 freshkill_pile=game.clan.freshkill_pile,
             )
 
@@ -2251,11 +2241,9 @@ class Events:
         TODO: DOCS
         """
         if constants.CONFIG["event_generation"]["debug_type_override"] == "misc":
-            random_cat = get_random_moon_cat(Cat, main_cat=cat)
             handle_short_events.handle_event(
                 event_type="misc",
                 main_cat=cat,
-                random_cat=random_cat,
                 freshkill_pile=game.clan.freshkill_pile,
             )
             return
@@ -2264,12 +2252,9 @@ class Events:
         if hit:
             return
 
-        random_cat = get_random_moon_cat(Cat, main_cat=cat)
-
         handle_short_events.handle_event(
             event_type="misc",
             main_cat=cat,
-            random_cat=random_cat,
             freshkill_pile=game.clan.freshkill_pile,
         )
 
@@ -2278,21 +2263,15 @@ class Events:
         decide if cat dies
         """
 
-        # try to get the random_cat
-        random_cat = get_random_moon_cat(
-            Cat, cat, parent_child_modifier=True, mentor_app_modifier=True
-        )
-
         if constants.CONFIG["event_generation"]["debug_type_override"] == "death":
             handle_short_events.handle_event(
                 event_type="birth_death",
                 main_cat=cat,
-                random_cat=random_cat,
                 freshkill_pile=game.clan.freshkill_pile,
             )
             return
         elif constants.CONFIG["event_generation"]["debug_type_override"] == "injury":
-            Condition_Events.handle_injuries(cat, random_cat)
+            Condition_Events.handle_injuries(cat)
             return
 
         # chance to kill leader: 1/50 by default
@@ -2307,7 +2286,6 @@ class Events:
             handle_short_events.handle_event(
                 event_type="birth_death",
                 main_cat=cat,
-                random_cat=random_cat,
                 freshkill_pile=game.clan.freshkill_pile,
             )
 
@@ -2323,7 +2301,6 @@ class Events:
             handle_short_events.handle_event(
                 event_type="birth_death",
                 main_cat=cat,
-                random_cat=random_cat,
                 sub_type=["old_age"],
                 freshkill_pile=game.clan.freshkill_pile,
             )
@@ -2333,7 +2310,6 @@ class Events:
             handle_short_events.handle_event(
                 event_type="birth_death",
                 main_cat=cat,
-                random_cat=random_cat,
                 sub_type=["old_age"],
                 freshkill_pile=game.clan.freshkill_pile,
             )
@@ -2345,7 +2321,6 @@ class Events:
                 handle_short_events.handle_event(
                     event_type="birth_death",
                     main_cat=cat,
-                    random_cat=random_cat,
                     sub_type=["mass_death"],
                     freshkill_pile=game.clan.freshkill_pile,
                 )
@@ -2364,12 +2339,11 @@ class Events:
             handle_short_events.handle_event(
                 event_type="birth_death",
                 main_cat=cat,
-                random_cat=random_cat,
                 freshkill_pile=game.clan.freshkill_pile,
             )
             return True
         else:
-            triggered_death = Condition_Events.handle_injuries(cat, random_cat)
+            triggered_death = Condition_Events.handle_injuries(cat)
 
             return triggered_death
 
@@ -2648,8 +2622,6 @@ class Events:
         if cat.age.is_baby() or cat.gender != cat.genderalign:
             return
 
-        random_cat = get_random_moon_cat(Cat, main_cat=cat)
-
         transing_chance = constants.CONFIG["transition_related"]
         chance = transing_chance["base_trans_chance"]
         if cat.age in [CatAge.ADOLESCENT]:
@@ -2662,7 +2634,6 @@ class Events:
             handle_short_events.handle_event(
                 event_type="misc",
                 main_cat=cat,
-                random_cat=random_cat,
                 sub_type=sub_type,
                 freshkill_pile=game.clan.freshkill_pile,
             )
