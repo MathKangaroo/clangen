@@ -64,6 +64,51 @@
             "many": "petals",
             "one": "bunch of petals"
         },
+        "WISTERIA2": {
+            "zero": "wisteria vines",
+            "many": "wisteria vines",
+            "one": "bunch of wisteria vines"
+        },
+        "ROSE MALLOW": {
+            "zero": "rose mallow flower",
+            "many": "rose mallow flowers",
+            "one": "rose mallow flower"
+        },
+        "PICKLEWEED": {
+            "zero": "pickleweed strand",
+            "many": "pickleweed strands",
+            "one": "pickleweed strand"
+        },
+        "GOLDEN CREEPING JENNY": {
+            "zero": "golden-flowered creeping jenny strands",
+            "many": "golden-flowered creeping jenny strands",
+            "one": "bunch of golden-flowered creeping jenny strands"
+        },
+        "DESERT WILLOW": {
+            "zero": "desert willow flower",
+            "many": "desert willow flowers",
+            "one": "desert willow"
+        },
+        "CACTUS FLOWER": {
+            "zero": "cactus flower",
+            "many": "cactus flowers",
+            "one": "cactus flower"
+        },
+        "PRAIRIE FIRE": {
+            "zero": "prairie-fire bloom",
+            "many": "prairie-fire blooms",
+            "one": "prairie-fire bloom"
+        },
+        "VERBENA EAR": {
+            "zero": "verbena flowers",
+            "many": "verbena flowers",
+            "one": "bunch of verbena flowers"
+        },
+        "VERBENA PELT": {
+            "zero": "verbena-flower-covered pelt",
+            "many": "verbena flowers",
+            "one": "bunch of verbena flowers"
+        },
         "DRY HERBS": {
             "zero": "herb-covered pelt",
             "many": "dry herbs",
@@ -253,6 +298,11 @@
             "zero": "black cicada wings",
             "many": "black cicada wings",
             "one": "black cicada"
+        },
+        "ROAD RUNNER FEATHER": {
+            "zero": "roadrunner feathers",
+            "many": "roadrunner feathers",
+            "one": "roadrunner feather"
         },
         "CRIMSON": {
             "zero": "crimson leather collar",
@@ -2479,26 +2529,6 @@
             "many": "silver feathers",
             "one": "silver feathers"
         },
-        "WISTERIA2": {
-            "zero": "wisteria",
-            "many": "wisterias",
-            "one": "wisteria stem"
-        },
-        "ROSE MALLOW": {
-            "zero": "rose mallow",
-            "many": "rose mallows",
-            "one": "rose mallow"
-        },
-        "PICKLEWEED": {
-            "zero": "pickleweed",
-            "many": "pickleweeds",
-            "one": "pickleweed stem"
-        },
-        "GOLDEN CREEPING JENNY": {
-            "zero": "golden creeping jenny",
-            "many": "golden creeping jennies",
-            "one": "golden creeping jenny"
-        },
         "WHITE NECKERCHIEF": {
             "zero": "white neckerchief",
             "many": "white neckerchiefs",
@@ -2648,31 +2678,6 @@
             "zero": "green witch hat",
             "many": "green witch hats",
             "one": "green witch hat"
-        },
-        "DESERT WILLOW": {
-            "zero": "desert willow",
-            "many": "desert willows",
-            "one": "desert willow"
-        },
-        "CACTUS FLOWER": {
-            "zero": "cactus flower",
-            "many": "cactus flowers",
-            "one": "cactus flower"
-        },
-        "PRAIRIE FIRE": {
-            "zero": "prairie-fire",
-            "many": "prairie-fires",
-            "one": "prairie-fire"
-        },
-        "VERBENA EAR": {
-            "zero": "verbena",
-            "many": "verbenas",
-            "one": "verbena"
-        },
-        "VERBENA PELT": {
-            "zero": "verbena-covered pelt",
-            "many": "bunches of verbenas",
-            "one": "bunch of verbenas"
         }
     }
 }
