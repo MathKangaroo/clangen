@@ -246,18 +246,20 @@ class PermanentCondition:
     TODO: DOCS
     """
 
-    def __init__(self,
-                 name,
-                 severity,
-                 moons_until,
-                 moon_start,
-                 congenital='never',
-                 mortality=0,
-                 risks=None,
-                 illness_infectiousness=None,
-                 herbs=None,
-                 event_triggered=False,
-                 misdiagnosis=False):
+    def __init__(
+        self,
+        name,
+        severity,
+        moons_until,
+        moon_start,
+        congenital="never",
+        mortality=0,
+        risks=None,
+        illness_infectiousness=None,
+        herbs=None,
+        event_triggered=False,
+        misdiagnosis=False,
+    ):
         self.name = name
         self.severity = severity
         self.congenital = congenital
