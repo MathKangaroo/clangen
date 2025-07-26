@@ -335,17 +335,6 @@ def create_new_cat_block(
 
                 give_mates.append(in_event_cats[index])
 
-            try:
-                index = int(index)
-            except ValueError:
-                print(f"mate-index not correct: {index}")
-                continue
-
-            if index >= i:
-                continue
-
-            give_mates.extend(event.new_cats[index])
-
     # determine gender
     if "male" in attribute_list:
         gender = "male"
@@ -509,22 +498,26 @@ def create_new_cat_block(
             break
     if bs_override:
         chosen_backstory = choice(stor)
-
-        if (
-            chosen_backstory
-            in BACKSTORIES["backstory_categories"]["baby_clancat_backstories"]
+        if chosen_backstory in (
+            BACKSTORIES["backstory_categories"]["baby_clancat_backstories"]
+            + BACKSTORIES["backstory_categories"]["former_clancat_backstories"]
         ):
             cat_social = CatSocial.CLANCAT
-        elif (
-            chosen_backstory
-            in BACKSTORIES["backstory_categories"]["baby_loner_backstories"]
+        elif chosen_backstory in (
+            BACKSTORIES["backstory_categories"]["baby_loner_backstories"]
+            + BACKSTORIES["backstory_categories"]["loner_backstories"]
         ):
             cat_social = CatSocial.LONER
-        elif (
-            chosen_backstory
-            in BACKSTORIES["backstory_categories"]["baby_kittypet_backstories"]
+        elif chosen_backstory in (
+            BACKSTORIES["backstory_categories"]["baby_kittypet_backstories"]
+            + BACKSTORIES["backstory_categories"]["kittypet_backstories"]
         ):
             cat_social = CatSocial.KITTYPET
+        elif (
+            chosen_backstory in BACKSTORIES["backstory_categories"]["rogue_backstories"]
+        ):
+            # cat_social = CatSocial.KITTYPET <- this is what dev has. But shouldn't it be rogue??
+            cat_social = CatSocial.ROGUE
 
     # KITTEN THOUGHT
     if rank in (CatRank.KITTEN, CatRank.NEWBORN):
@@ -743,7 +736,7 @@ def create_new_cat(
     kit: bool = False,
     litter: bool = False,
     backstory: bool = None,
-    rank: CatRank = None,
+    rank: Optional[CatRank] = None,
     original_social: CatSocial = CatSocial.CLANCAT,
     original_group: CatGroup = None,
     moons: int = None,
@@ -787,10 +780,10 @@ def create_new_cat(
         backstory
         in (
             BACKSTORIES["backstory_categories"]["former_clancat_backstories"]
-            or BACKSTORIES["backstory_categories"]["otherclan_categories"]
+            + BACKSTORIES["backstory_categories"]["baby_clancat_backstories"]
         )
-        and not original_group
-    ):
+        or original_social == "former Clancat"
+    ) and not original_group:
         original_group = choice(game.clan.other_clans)
 
     created_cats = []
