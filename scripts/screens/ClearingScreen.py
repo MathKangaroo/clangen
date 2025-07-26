@@ -4,8 +4,6 @@ import i18n
 import pygame
 import pygame_gui
 import ujson
-import random
-from random import randint
 
 from scripts.cat.cats import Cat
 from scripts.game_structure.game_essentials import game
@@ -15,6 +13,7 @@ from scripts.game_structure.ui_elements import (
     UITextBoxTweaked,
     UISurfaceImageButton,
     UIModifiedImage,
+    UIModifiedScrollingContainer,
 )
 from scripts.utility import (
     get_text_box_theme,
@@ -73,7 +72,7 @@ class ClearingScreen(Screens):
         self.tactic_boxes = {}
         self.additional_text = {}
         self.checkboxes = {}
-        self.denkeeper= None
+        self.denkeeper = None
 
         self.cat_tab_open = self.hungry_tab
         self.tab_list = self.hungry_cats
@@ -624,8 +623,8 @@ class ClearingScreen(Screens):
         information_display = []
 
         current_denkeepers = find_alive_cats_with_rank(
-                Cat, [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE], sort=True
-            )
+            Cat, [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE], sort=True
+        )
         current_prey_amount = game.clan.freshkill_pile.total_amount
         needed_amount = game.clan.freshkill_pile.amount_food_needed()
         warrior_need = game.prey_config["prey_requirement"][CatRank.WARRIOR]
@@ -633,7 +632,7 @@ class ClearingScreen(Screens):
         general_text = i18n.t(
             "screens.clearing.prey_amount_info", warrior_amount=warrior_amount
         )
-        
+
         denkeeper_text = "There are no denkeepers in the clan."
         concern_text = "This should not appear."
         if current_prey_amount == 0:
@@ -654,8 +653,7 @@ class ClearingScreen(Screens):
         elif needed_amount * 2.5 < current_prey_amount:
             concern_text = i18n.t("screens.clearing.prey_amount_very_high")
             self.pile_size = "#freshkill_pile_full"
-        
-        
+
         if len(current_denkeepers) > 0:
             keepers = find_alive_cats_with_rank(
                 Cat, [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE], sort=True
@@ -663,7 +661,7 @@ class ClearingScreen(Screens):
             if len(keepers) == 1:
                 denkeeper_text = str(keepers[0].name) + " is managing the prey pile."
             elif len(keepers) == 2:
-                denkeeper_text = str(keepers[0].name) + " and " + str(keepers[1].name) +" are managing the prey pile."
+                denkeeper_text = str(keepers[0].name) + " and " + str(keepers[1].name) + " are managing the prey pile."
             else:
                 denkeeper_text = str(keepers[0].name) + " and the other denkeepers are managing the prey pile."
             
@@ -749,11 +747,10 @@ class ClearingScreen(Screens):
     def create_checkboxes(self):
         self.delete_checkboxes()
 
-        self.tactic_text[
-            "container_general"
-        ] = pygame_gui.elements.UIScrollingContainer(
+        self.tactic_text["container_general"] = UIModifiedScrollingContainer(
             ui_scale(pygame.Rect((140, 450), (230, 175))),
             allow_scroll_x=False,
+            allow_scroll_y=True,
             manager=MANAGER,
         )
 
@@ -774,15 +771,10 @@ class ClearingScreen(Screens):
             )
             n += 1
 
-        self.tactic_text["container_general"].set_scrollable_area_dimensions(
-            ui_scale_dimensions((200, (n * 30 + x_val + 20)))
-        )
-
-        self.additional_text[
-            "container_general"
-        ] = pygame_gui.elements.UIScrollingContainer(
+        self.additional_text["container_general"] = UIModifiedScrollingContainer(
             ui_scale(pygame.Rect((360, 450), (327, 175))),
             allow_scroll_x=False,
+            allow_scroll_y=True,
             manager=MANAGER,
         )
 
@@ -841,10 +833,6 @@ class ClearingScreen(Screens):
                 },
             )
             n += 1
-
-        self.additional_text["container_general"].set_scrollable_area_dimensions(
-            ui_scale_dimensions((305, (n * 30)))
-        )
 
         self.refresh_checkboxes("general")
 
