@@ -30,6 +30,7 @@ from scripts.game_structure.ui_elements import (
 from scripts.housekeeping.datadir import open_data_dir
 from scripts.utility import get_text_box_theme, ui_scale, ui_scale_dimensions
 from .Screens import Screens
+from ..game_structure import constants
 from ..game_structure.audio import music_manager, sound_manager
 from ..game_structure.screen_settings import (
     MANAGER,
@@ -173,7 +174,7 @@ class SettingsScreen(Screens):
                 return
             elif event.ui_element == self.language_button:
                 self.open_lang_settings()
-            if self.sub_menu in ["general", "relation", "language", "triggers"]:
+            if self.sub_menu in ("general", "relation", "language", "triggers"):
                 self.handle_checkbox_events(event)
 
         elif event.type == pygame.KEYDOWN and game_setting_get("keybinds"):
@@ -261,8 +262,7 @@ class SettingsScreen(Screens):
             object_id="@buttonstyles_menu_left",
             manager=MANAGER,
         )
-        
-        
+
         self.trigger_settings_button = UISurfaceImageButton(
             ui_scale(pygame.Rect((0, 100), (120, 30))),
             "screens.settings.triggers",
@@ -271,7 +271,7 @@ class SettingsScreen(Screens):
             manager=MANAGER,
             anchors={"left_target": self.general_settings_button}
         )
-        
+
         self.audio_settings_button = UISurfaceImageButton(
             ui_scale(pygame.Rect((0, 100), (150, 30))),
             "screens.settings.audio",
@@ -393,6 +393,11 @@ class SettingsScreen(Screens):
     def save_settings(self):
         """Saves the settings, ensuring that they will be retained when the screen changes."""
         self.settings_at_open = all_settings.settings.copy()
+        MANAGER.set_active_cursor(
+            constants.CUSTOM_CURSOR
+            if game_setting_get("custom cursor")
+            else constants.DEFAULT_CURSOR
+        )
 
     def open_general_settings(self):
         """Opens and draws general_settings"""
@@ -440,7 +445,7 @@ class SettingsScreen(Screens):
         #   It has to separated because the checkboxes must be updated when settings are changed.
         #   Fix if you want. - keyraven
         self.refresh_checkboxes()
-    
+
     def open_trigger_settings(self):
         """Opens and draws general_settings"""
         self.enable_all_menu_buttons()
