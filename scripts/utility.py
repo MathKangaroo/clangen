@@ -24,7 +24,6 @@ from pygame_gui.core import ObjectID
 from scripts.clan_package.settings import get_clan_setting
 from scripts.game_structure.game.settings import game_settings_save, game_setting_get
 from scripts.game_structure.game.switches import switch_get_value, Switch
-from scripts.cat.status import StatusDict
 from scripts.game_structure.localization import (
     load_lang_resource,
     determine_plural_pronouns,
@@ -193,60 +192,6 @@ def get_free_possible_mates(cat):
     return cats
 
 
-def get_random_moon_cat(
-    Cat, main_cat, parent_child_modifier=True, mentor_app_modifier=True
-):
-    """
-    returns a random cat for use in moon events
-    :param Cat: Cat class
-    :param main_cat: cat object of main cat in event
-    :param parent_child_modifier: increase the chance of the random cat being a
-    parent of the main cat. Default True
-    :param mentor_app_modifier: increase the chance of the random cat being a mentor or
-    app of the main cat. Default True
-    """
-    random_cat = None
-
-    # grab list of possible random cats
-    possible_r_c = list(
-        filter(
-            lambda c: c.status.alive_in_player_clan and (c.ID != main_cat.ID),
-            Cat.all_cats.values(),
-        )
-    )
-
-    if possible_r_c:
-        random_cat = choice(possible_r_c)
-        if parent_child_modifier and not int(random() * 3):
-            possible_parents = []
-            if main_cat.parent1:
-                if Cat.fetch_cat(main_cat.parent1) in possible_r_c:
-                    possible_parents.append(main_cat.parent1)
-            if main_cat.parent2:
-                if Cat.fetch_cat(main_cat.parent2) in possible_r_c:
-                    possible_parents.append(main_cat.parent2)
-            if main_cat.adoptive_parents:
-                for parent in main_cat.adoptive_parents:
-                    if Cat.fetch_cat(parent) in possible_r_c:
-                        possible_parents.append(parent)
-            if possible_parents:
-                random_cat = Cat.fetch_cat(choice(possible_parents))
-        if mentor_app_modifier:
-            if (
-                main_cat.status.rank.is_any_apprentice_rank()
-                and main_cat.mentor
-                and not int(random() * 3)
-            ):
-                random_cat = Cat.fetch_cat(main_cat.mentor)
-            elif main_cat.apprentice and not int(random() * 3):
-                random_cat = Cat.fetch_cat(choice(main_cat.apprentice))
-
-    if isinstance(random_cat, str):
-        print(f"WARNING: random cat was {random_cat} instead of cat object")
-        random_cat = Cat.fetch_cat(random_cat)
-    return random_cat
-
-
 def get_warring_clan():
     """
     returns enemy clan if a war is currently ongoing
@@ -318,12 +263,13 @@ def change_clan_relations(other_clan, difference):
 
 
 def create_new_cat_block(
-    Cat,
+    Cat: Optional["Cat"],
     Relationship,
     event,
     in_event_cats: dict,
     i: int,
     attribute_list: List[str],
+    other_clan=None,
 ) -> list:
     """
     Creates a single new_cat block and then generates and returns the cats within the block
@@ -451,9 +397,6 @@ def create_new_cat_block(
             rank = match.group(1)
             break
 
-    # GROUP - # for now, this just gets set to None. event formats don't yet pass group info
-    cat_group = None
-
     # SET AGE
     age = None
     for _tag in attribute_list:
@@ -499,6 +442,8 @@ def create_new_cat_block(
         elif rank == CatRank.ELDER:
             age = randint(Cat.age_moons["senior"][0], Cat.age_moons["senior"][1])
 
+    cat_group = None
+
     if "kittypet" in attribute_list:
         cat_social = CatSocial.KITTYPET
     elif "rogue" in attribute_list:
@@ -507,7 +452,10 @@ def create_new_cat_block(
         cat_social = CatSocial.LONER
     elif "clancat" in attribute_list or "former Clancat" in attribute_list:
         cat_social = CatSocial.CLANCAT
-        cat_group = choice(game.clan.other_clans)
+        if other_clan:
+            cat_group = other_clan.enum
+        else:
+            cat_group = choice(game.clan.other_clans)
     else:
         cat_social = choice([CatSocial.KITTYPET, CatSocial.LONER, "former Clancat"])
 
@@ -599,7 +547,7 @@ def create_new_cat_block(
         thought = i18n.t("hardcoded.thought_new_dead")
 
     # check if we can use an existing cat here
-    chosen_cat = None
+    chosen_cat: Optional["Cat"] = None
     if "exists" in attribute_list:
         existing_outsiders = [
             i for i in Cat.all_cats.values() if i.status.is_outsider and not i.dead
@@ -621,6 +569,8 @@ def create_new_cat_block(
             if not alive:
                 chosen_cat.die()
             elif not outside:
+                if not rank:
+                    rank = chosen_cat.status.get_rank_from_age(chosen_cat.age)
                 chosen_cat.add_to_clan()
                 if chosen_cat.status.rank != rank:
                     chosen_cat.rank_change(new_rank=CatRank(rank), resort=True)
@@ -938,6 +888,12 @@ def create_new_cat(
                 CatRank.STORYTELLER_APPRENTICE,
             ):
                 new_cat.update_mentor()
+                # ensuring that any cats joining as an apprentice will display the correct skills
+                new_cat.skills.primary.interest_only = True
+                if new_cat.skills.secondary:
+                    new_cat.skills.secondary.interest_only = True
+                if new_cat.skills.tertiary:
+                    new_cat.skills.tertiary.interest_only = True
 
         # NAMES and accs
         # clancat adults should have already generated with a clan-ish name, thus they skip all of this re-naming
@@ -947,7 +903,7 @@ def create_new_cat(
         ):
             # babies change name, in case their initial name isn't clan-ish
             new_cat.change_name()
-        else:
+        elif not original_group or not original_group.is_other_clan_group():
             # give kittypets a kittypet name
             if original_social == CatSocial.KITTYPET:
                 name = choice(names.names_dict["loner_names"])
@@ -2052,11 +2008,11 @@ def get_special_snippet_list(
 
     chosen_biome = game.clan.biome
     if game.clan.secondary_biome != game.clan.biome:
-        if random.randint(1, game.clan.secondary_biome_weight) == 1:
+        if randint(1, game.clan.secondary_biome_weight) == 1:
             chosen_biome = game.clan.secondary_biome
         else:
             if game.clan.tertiary_biome != game.clan.biome:
-                if random.randint(1, game.clan.tertiary_biome_weight) == 1:
+                if randint(1, game.clan.tertiary_biome_weight) == 1:
                     chosen_biome = game.clan.tertiary_biome
 
     biome = (chosen_biome if not game.clan.override_biome else game.clan.override_biome).casefold()
@@ -2117,7 +2073,6 @@ def find_special_list_types(text):
     """
     senses = []
     list_text = None
-    list_type = None
     words = text.split(" ")
     for bit in words:
         if "_list" in bit:
@@ -3441,15 +3396,6 @@ def generate_sprite(
         ).convert_alpha()
 
     return new_sprite
-
-
-def apply_opacity(surface, opacity):
-    for x in range(surface.get_width()):
-        for y in range(surface.get_height()):
-            pixel = list(surface.get_at((x, y)))
-            pixel[3] = int(pixel[3] * opacity / 100)
-            surface.set_at((x, y), tuple(pixel))
-    return surface
 
 
 # ---------------------------------------------------------------------------- #
