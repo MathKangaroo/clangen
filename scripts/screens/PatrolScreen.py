@@ -95,23 +95,23 @@ class PatrolScreen(Screens):
             # self.change_screen('list screen')
 
     def handle_choose_cats_events(self, event):
-        #do we have denkeepers or messengers
+        # do we have denkeepers or messengers
         yay_messengers = False
         yay_denkeepers = False
         if any(
-                    (
+                (
                         cat.status.rank in [CatRank.MESSENGER, CatRank.MESSENGER_APPRENTICE]
                         for cat in self.current_patrol
-                    )
-                ):
-                    yay_messengers = True
+                )
+        ):
+            yay_messengers = True
         elif any(
-                    (
+                (
                         cat.status.rank in [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE]
                         for cat in self.current_patrol
-                    )
-                ):
-                    yay_denkeepers = True
+                )
+        ):
+            yay_denkeepers = True
         if event.ui_element == self.elements["random"]:
             if self.able_cats:
                 self.selected_cat = choice(self.able_cats)
@@ -139,11 +139,11 @@ class PatrolScreen(Screens):
             if self.selected_cat in self.current_patrol:
                 self.current_patrol.remove(self.selected_cat)
             else:
-                #messengers cannot patrol with denkeepers
+                # messengers cannot patrol with denkeepers
                 if self.selected_cat.status.rank in [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE] and yay_messengers:
-                        print("denkeepers cannot patrol borders!")
+                    print("denkeepers cannot patrol borders!")
                 elif self.selected_cat.status.rank in [CatRank.MESSENGER, CatRank.MESSENGER_APPRENTICE] and yay_denkeepers:
-                        print("messengers cannot hunt!")
+                    print("messengers cannot hunt!")
                 else:
                     self.current_patrol.append(self.selected_cat)
             self.update_cat_images_buttons()
@@ -468,8 +468,8 @@ class PatrolScreen(Screens):
                     manager=MANAGER,
                     anchors={"centerx": "centerx"},
                 )
-            
-            if self.selected_cat != None:
+
+            if self.selected_cat is not None:
                 if self.selected_cat.status.rank in [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE] and any(
                     (
                         cat.status.rank in [CatRank.MESSENGER, CatRank.MESSENGER_APPRENTICE]
@@ -503,20 +503,20 @@ class PatrolScreen(Screens):
                 (cat.status.rank.is_any_herb_gatherer_rank() for cat in self.current_patrol)
             ):
                 self.patrol_type = "med"
-            # making sure messengers don't get the option for other patrols UNLESS theres a med
+            # making sure messengers don't get the option for other patrols UNLESS there's a med
             elif any(
-                (
-                    cat.status.rank in [CatRank.MESSENGER, CatRank.MESSENGER_APPRENTICE]
-                    for cat in self.current_patrol
-                )
+                    (
+                            cat.status.rank in [CatRank.MESSENGER, CatRank.MESSENGER_APPRENTICE]
+                            for cat in self.current_patrol
+                    )
             ):
                 self.patrol_type = "border"
-            # making sure denkeepers don't get the option for other patrols UNLESS theres a med
+            # making sure denkeepers don't get the option for other patrols UNLESS there's a med
             elif any(
-                (
-                    cat.status.rank in [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE]
-                    for cat in self.current_patrol
-                )
+                    (
+                            cat.status.rank in [CatRank.DENKEEPER, CatRank.DENKEEPER_APPRENTICE]
+                            for cat in self.current_patrol
+                    )
             ):
                 self.patrol_type = "hunting"
             else:
