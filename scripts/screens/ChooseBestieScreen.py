@@ -983,7 +983,7 @@ class ChooseBestieScreen(Screens):
     def get_valid_besties(self):
         """Get a list of valid besties for the current cat"""
 
-        # Behold! The uglest list comprehension ever created!
+        # Behold! The ugliest list comprehension ever created!
         valid_besties = [
             i
             for i in Cat.all_cats_list
@@ -992,6 +992,7 @@ class ChooseBestieScreen(Screens):
                 i
             )
             and i.status.is_outsider == self.the_cat.status.is_outsider
+            and i.status.group == self.the_cat.status.group
             and i.ID not in self.the_cat.enemy
             and i.ID not in self.the_cat.mate
             and i.ID not in self.the_cat.bestie
