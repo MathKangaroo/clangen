@@ -1153,7 +1153,7 @@ class ChooseEnemyScreen(Screens):
     def get_valid_enemies(self):
         """Get a list of valid enemies for the current cat"""
 
-        # Behold! The uglest list comprehension ever created!
+        # Behold! The ugliest list comprehension ever created!
         valid_enemies = [
             i
             for i in Cat.all_cats_list
@@ -1162,6 +1162,7 @@ class ChooseEnemyScreen(Screens):
                 i
             )
             and i.status.is_outsider == self.the_cat.status.is_outsider
+            and i.status.group == self.the_cat.status.group
             and i.ID not in self.the_cat.enemy
             and i.ID not in self.the_cat.mate
             and i.ID not in self.the_cat.bestie
