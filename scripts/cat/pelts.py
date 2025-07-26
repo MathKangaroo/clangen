@@ -10,7 +10,6 @@ from scripts.game_structure import constants
 from scripts.game_structure.game_essentials import game
 from scripts.game_structure.localization import get_lang_config
 from scripts.utility import adjust_list_text
-from scripts.game_structure.game.settings import game_setting_get
 
 
 class Pelt:
@@ -818,6 +817,8 @@ class Pelt:
         "SPARROW FEATHERS",
         "CLOVERTAIL",
         "DAISYTAIL",
+        "WISTERIA2",
+        "GOLDEN CREEPING JENNY",
         "DAISY CORSAGE",
         "CLOVERTAIL",
         "OLD SILVER WATCH",
@@ -851,8 +852,6 @@ class Pelt:
         "FIERY FEATHERS",
         "SUNSET FEATHERS",
         "SILVER FEATHERS",
-        "WISTERIA2",
-        "GOLDEN CREEPING JENNY",
     ]
 
     head_accessories = [
@@ -876,16 +875,6 @@ class Pelt:
         "BLUEBELLS",
         "LILY OF THE VALLEY",
         "SNAPDRAGON",
-        "BUNNY HAT",
-        "SMILEY HAT",
-        "PARTY HAT",
-        "SANTA HAT",
-        "STICK FRIEND",
-        "PINK SCARF",
-        "BLUETAILED SKINK",
-        "BLACKHEADED ORIOLE",
-        "MILKSNAKE",
-        "WORM FRIEND",
         "NETTLE",
         "HEATHER",
         "GORSE",
@@ -910,6 +899,16 @@ class Pelt:
         "CACTUS FLOWER",
         "PRAIRIE FIRE",
         "VERBENA EAR",
+        "BUNNY HAT",
+        "SMILEY HAT",
+        "PARTY HAT",
+        "SANTA HAT",
+        "STICK FRIEND",
+        "PINK SCARF",
+        "BLUETAILED SKINK",
+        "BLACKHEADED ORIOLE",
+        "MILKSNAKE",
+        "WORM FRIEND",
         "RAT SKULL",
         "FISH BONES",
         "PEACOCK BUTTERFLY",
