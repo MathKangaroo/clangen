@@ -255,7 +255,7 @@ class RoleScreen(Screens):
             text_layer_object_id="@buttonstyles_ladder_multiline",
         )
 
-        #HEALER ROLES
+        # HEALER ROLES
         self.switch_med_cat = UISurfaceImageButton(
             ui_scale(pygame.Rect((402, 0), (172, 52))),
             "screens.role.switch_medicine_cat",
@@ -307,7 +307,7 @@ class RoleScreen(Screens):
             text_layer_object_id="@buttonstyles_ladder_multiline",
         )
 
-        #SOCIAL ROLES
+        # SOCIAL ROLES
         self.switch_mediator = UISurfaceImageButton(
             ui_scale(pygame.Rect((579, 0), (172, 36))),
             "screens.role.switch_mediator",
