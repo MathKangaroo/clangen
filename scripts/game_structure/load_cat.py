@@ -106,9 +106,6 @@ def json_load():
                 loading_cat=True,
             )
 
-            if type(cat["accessory"]) is not List:
-                cat["accessory"] = [cat["accessory"]]
-
             if cat["eye_colour"] == "BLUE2":
                 cat["eye_colour"] = "COBALT"
             if cat["eye_colour"] in ["BLUEYELLOW", "BLUEGREEN"]:
