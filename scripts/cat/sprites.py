@@ -1135,11 +1135,11 @@ class Sprites:
                 "BULB ORANGE",
                 "BULB PINK",
                 "BULB BLUE",
-                "CLOVERTAIL",
-                "DAISYTAIL",
+                "CLOVER",
+                "DAISY",
             ],
             [
-                "WISTERIA2",
+                "WISTERIA",
                 "ROSE MALLOW",
                 "PICKLEWEED",
                 "GOLDEN CREEPING JENNY",
@@ -1161,7 +1161,7 @@ class Sprites:
                 "MOTH WINGS",
                 "ROSY MOTH WINGS",
                 "MORPHO BUTTERFLY",
-                "MONARCH BUTTERFLY1",
+                "MONARCH BUTTERFLY",
                 "CICADA WINGS",
                 "BLACK CICADA",
             ],
@@ -1215,7 +1215,7 @@ class Sprites:
         ]
 
         plant2_data = [
-            ["CLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"]
+            ["OGCLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"]
         ]
         
         colorsplash_horn_data = [
@@ -1258,14 +1258,13 @@ class Sprites:
             ["DANDELIONS", "DANDELION PUFFS", "DICE", "GOLDEN EARRINGS"]
         ]
 
-
         crafted_data = [
-            ["WILLOWBARK BAG", "CLAY DAISY POT", "CLAY AMANITA POT", "CLAY BROWNCAP POT", "BIRD SKULL", "LEAF BOW"]
+            ["WILLOWBARK BAG", "CLAY DAISY POT", "CLAY AMANITA POT", "CLAY BROWNCAP POT", "OGBIRD SKULL", "LEAF BOW"]
         ]
 
         flower_data = [
-            ["DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY"],
-            ["YELLOW PRIMROSE", "HESPERIS", "MARIGOLD", "WISTERIA"]
+            ["OGDAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY"],
+            ["YELLOW PRIMROSE", "HESPERIS", "MARIGOLD", "OGWISTERIA"]
         ]
 
         snake_data = [
@@ -1303,7 +1302,7 @@ class Sprites:
         bones_data = [
             ["SNAKE", "BAT WINGS", "CANIDAE SKULL", "DEER ANTLERS", "RAM HORN", "GOAT HORN", "OX SKULL",
              "RAT SKULL", "TEETH COLLAR", "ROE SKULL"],
-            ["BIRD SKULL1", "RIBS", "FISH BONES"]
+            ["BIRD SKULL", "RIBS", "FISH BONES"]
         ]
         
         butterflymoth_data = [
