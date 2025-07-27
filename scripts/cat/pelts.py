@@ -468,7 +468,7 @@ class Pelt:
     # make sure to add plural and singular forms of new accs to acc_display.json so that they will display nicely
     bone_accessories = [
         "SNAKE", "BAT WINGS", "CANIDAE SKULL", "DEER ANTLERS", "RAM HORN", "GOAT HORN", "OX SKULL", "RAT SKULL",
-        "TEETH COLLAR", "ROE SKULL", "BIRD SKULL1", "RIBS", "FISH BONES"
+        "TEETH COLLAR", "ROE SKULL", "BIRD SKULL", "RIBS", "FISH BONES"
     ]
 
     butterflies_accessories = [
@@ -515,13 +515,13 @@ class Pelt:
         "BULB ORANGE",
         "BULB PINK",
         "BULB BLUE",
-        "CLOVERTAIL",
-        "DAISYTAIL",
+        "CLOVER",
+        "DAISY",
         "DRY HERBS",
         "DRY CATMINT",
         "DRY NETTLES",
         "DRY LAURELS",
-        "WISTERIA2",
+        "WISTERIA",
         "ROSE MALLOW",
         "PICKLEWEED",
         "GOLDEN CREEPING JENNY",
@@ -541,7 +541,7 @@ class Pelt:
         "MOTH WINGS",
         "ROSY MOTH WINGS",
         "MORPHO BUTTERFLY",
-        "MONARCH BUTTERFLY1",
+        "MONARCH BUTTERFLY",
         "CICADA WINGS",
         "BLACK CICADA",
         "ROAD RUNNER FEATHER",
@@ -757,11 +757,11 @@ class Pelt:
                          "FEATHERS", "RED ROSE", "WHITE ROSE", "PEBBLE", "PEBBLE COLLECTION", "GOLDEN FLOWER",
                          "DANDELIONS", "DANDELION PUFFS", "DICE", "GOLDEN EARRINGS"]
 
-    flower_accessories = ["DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER",
+    flower_accessories = ["OGDAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER",
                           "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY", "YELLOW PRIMROSE", "HESPERIS",
-                          "MARIGOLD", "WISTERIA"]
+                          "MARIGOLD", "OGWISTERIA"]
 
-    plant2_accessories = ["CLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"]
+    plant2_accessories = ["OGCLOVER", "STICK", "PUMPKIN", "MOSS", "IVY", "ACORN", "MOSS PELT", "REEDS", "BAMBOO"]
 
     snake_accessories = ["GRASS SNAKE", "BLUE RACER", "WESTERN COACHWHIP", "KINGSNAKE"]
 
@@ -785,7 +785,7 @@ class Pelt:
     sailormoon = ["MOON", "MERCURY", "MARS", "JUPITER", "VENUS", "TUXEDO MASK", "URANUS", "NEPTUNE", "PLUTO", "SATURN",
                   "MINI MOON", "CRYSTAL BALL"]
 
-    crafted_accessories = ["WILLOWBARK BAG", "CLAY DAISY POT", "CLAY AMANITA POT", "CLAY BROWNCAP POT", "BIRD SKULL",
+    crafted_accessories = ["WILLOWBARK BAG", "CLAY DAISY POT", "CLAY AMANITA POT", "CLAY BROWNCAP POT", "OGBIRD SKULL",
                            "LEAF BOW"]
 
     tail2_accessories = ["SEAWEED", "DAISY CORSAGE"]
@@ -815,12 +815,11 @@ class Pelt:
         "JAY FEATHERS",
         "GULL FEATHERS",
         "SPARROW FEATHERS",
-        "CLOVERTAIL",
-        "DAISYTAIL",
-        "WISTERIA2",
+        "CLOVER",
+        "DAISY",
+        "WISTERIA",
         "GOLDEN CREEPING JENNY",
         "DAISY CORSAGE",
-        "CLOVERTAIL",
         "OLD SILVER WATCH",
         "OLD GOLD WATCH",
         "BAUBLES",
@@ -932,13 +931,13 @@ class Pelt:
         "OLD BRUSH",
         "BANANA PEEL",
         "BROKEN VHS TAPE",
-        "CLOVER",
+        "OGCLOVER",
         "STICK",
         "MOSS",
         "IVY",
         "ACORN",
         "OGMONARCH BUTTERFLY",
-        "DAISY",
+        "OGDAISY",
         "DIANTHUS",
         "BLEEDING HEARTS",
         "FRANGIPANI",
@@ -950,7 +949,7 @@ class Pelt:
         "PURPLE GLORY",
         "YELLOW PRIMROSE",
         "MARIGOLD",
-        "WISTERIA",
+        "OGWISTERIA",
         "GRAY SQUIRREL",
         "RED SQUIRREL",
         "CRAB",
