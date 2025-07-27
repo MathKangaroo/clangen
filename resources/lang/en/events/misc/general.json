@@ -2234,7 +2234,7 @@
         "new_accessory": [
             "WILD",
             "PLANT",
-            "FLOWER2", "SNAKE", "BAT WINGS", "RAT SKULL", "RIBS", "FISH BONES", "TEETH COLLAR", "BIRD SKULL1", "BUTTERFLIES"
+            "FLOWER2", "SNAKE", "BAT WINGS", "RAT SKULL", "RIBS", "FISH BONES", "TEETH COLLAR", "BIRD SKULL", "BUTTERFLIES"
         ],
         "m_c": {
             "age": [
@@ -2286,7 +2286,7 @@
         "new_accessory": [
             "WILD",
             "PLANT",
-            "PLANT2", "HESPERIS", "DEADINSECT", "FLOWER", "FRUIT", "SNAKE", "BAT WINGS", "RAT SKULL", "RIBS", "FISH BONES", "TEETH COLLAR", "BIRD SKULL1", "BUTTERFLIES"
+            "PLANT2", "HESPERIS", "DEADINSECT", "FLOWER", "FRUIT", "SNAKE", "BAT WINGS", "RAT SKULL", "RIBS", "FISH BONES", "TEETH COLLAR", "BIRD SKULL", "BUTTERFLIES"
         ],
         "m_c": {
             "age": [
@@ -2314,7 +2314,7 @@
         "new_accessory": [
             "WILD",
             "PLANT",
-            "FLOWER", "DEADINSECT", "PLANT2", "TEETH COLLAR", "BIRD SKULL1"
+            "FLOWER", "DEADINSECT", "PLANT2", "TEETH COLLAR", "BIRD SKULL"
         ],
         "m_c": {
             "age": [
@@ -2369,7 +2369,7 @@
         "sub_type": ["ceremony", "accessory"],
         "frequency": 4,
         "event_text": "r_c tells m_c that {PRONOUN/m_c/subject} {VERB/m_c/have/has} been waiting for this day for ages... and prepared a pretty new accessory for them to wear.",
-        "new_accessory": ["FLOWER", "DEADINSECT", "PLANT2", "FRUIT", "BIRD SKULL"],
+        "new_accessory": ["FLOWER", "DEADINSECT", "PLANT2", "FRUIT", "OGBIRD SKULL"],
         "m_c":{
           "age": ["any"],
           "status": ["any"]
@@ -2421,7 +2421,7 @@
             "WHITE POPPY",
             "CYAN POPPY",
             "PINK POPPY",
-            "POPPYFLOWER", "DAISYFLOWER", "JUNIPERBERRY", "BORAGEFLOWER", "OAK", "BEECH", "LAURELLEAVES", "COLTSFOOT", "BINDWEED", "TORMENTIL", "BRIGHTEYE", "LAVENDERWREATH", "YARROW", "POPPY", "FRUIT", "FLOWER", "PLANT2", "DAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY", "YELLOW PRIMROSE", "HESPERIS", "MARIGOLD", "CLOVER", "OGRASPBERRY", "RASPBERRY", "BLACKBERRY", "CHERRY", "GOLDEN RASPBERRY"
+            "POPPYFLOWER", "DAISYFLOWER", "JUNIPERBERRY", "BORAGEFLOWER", "OAK", "BEECH", "LAURELLEAVES", "COLTSFOOT", "BINDWEED", "TORMENTIL", "BRIGHTEYE", "LAVENDERWREATH", "YARROW", "POPPY", "FRUIT", "FLOWER", "PLANT2", "OGDAISY", "DIANTHUS", "BLEEDING HEARTS", "FRANGIPANI", "BLUE GLORY", "CATNIP FLOWER", "BLANKET FLOWER", "ALLIUM", "LACELEAF", "PURPLE GLORY", "YELLOW PRIMROSE", "HESPERIS", "MARIGOLD", "OGCLOVER", "OGRASPBERRY", "RASPBERRY", "BLACKBERRY", "CHERRY", "GOLDEN RASPBERRY"
         ],
         "m_c": {
             "age": [
@@ -6251,7 +6251,7 @@
         "new_accessory": [
             "WILD",
             "PLANT",
-            "TEETH COLLAR", "BIRD SKULL"
+            "TEETH COLLAR", "OGBIRD SKULL"
         ],
         "m_c": {
             "status": [
@@ -6987,7 +6987,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c finds acc_singular! {PRONOUN/m_c/subject/CAP} {VERB/m_c/wear/wears} the blooms with a smile.",
-        "new_accessory": ["HESPERIS", "WISTERIA"],
+        "new_accessory": ["HESPERIS", "OGWISTERIA"],
         "m_c": {
           "status": ["any"],
           "age": ["any"]
@@ -7000,7 +7000,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "r_c ducks {PRONOUN/r_c/poss} head under the nursery's entrance, and offers m_c acc_singular to play with! m_c snatches it and tucks it next to {PRONOUN/m_c/poss} ear. m_c smugly flaunts it to anyone who asks about it.",
-        "new_accessory": ["HESPERIS", "WISTERIA"],
+        "new_accessory": ["HESPERIS", "OGWISTERIA"],
         "m_c": {
           "status": ["kitten"],
           "age": ["any"]
@@ -7017,7 +7017,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c begs r_c to get {PRONOUN/m_c/object} something from outside of the camp, yapping about wanting to go on patrol like r_c does! r_c caves, rolling {PRONOUN/r_c/poss} eyes, and brings m_c some acc_singular {PRONOUN/r_c/subject} managed to find.",
-        "new_accessory": ["HESPERIS", "WISTERIA"],
+        "new_accessory": ["HESPERIS", "OGWISTERIA"],
         "m_c": {
           "status": ["kitten"],
           "age": ["any"]
@@ -7131,7 +7131,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c naps on the side of r_c's belly. {PRONOUN/r_c/subject/CAP} {VERB/r_c/huff/huffs} quietly at the little snoring kitten, and {VERB/r_c/begin/begins} to gently clean {PRONOUN/m_c/poss} fur... only to find acc_singular!? What in the world has m_c been getting into?" ,
-        "new_accessory": ["WILD", "HESPERIS", "WISTERIA", "PETALS", "DRY HERBS", "HERBS", "MOSS PELT"],
+        "new_accessory": ["WILD", "HESPERIS", "OGWISTERIA", "PETALS", "DRY HERBS", "HERBS", "MOSS PELT"],
         "m_c": {
           "age": ["any"],
           "status": ["kitten"]
@@ -7287,7 +7287,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c almost steps on a pristine, white bird skull that {PRONOUN/m_c/subject} managed to miss seeing. {PRONOUN/m_c/subject/CAP} {VERB/m_c/takes/take} it with curious eyes, and {VERB/m_c/wears/wear} it proudly.",
-        "new_accessory": ["BIRD SKULL"],
+        "new_accessory": ["OGBIRD SKULL"],
         "m_c": {
           "status": ["any"],
           "age": ["any"]
@@ -7300,7 +7300,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c proudly shows off something that {PRONOUN/m_c/subject} {VERB/m_c/have/has} been working on for the past few days -- a clean, pristine white bird skull. {PRONOUN/m_c/subject/CAP} decide to wear it, and {PRONOUN/m_c/subject} do so proudly.",
-        "new_accessory": ["BIRD SKULL"],
+        "new_accessory": ["OGBIRD SKULL"],
         "m_c": {
           "status": ["any"],
           "age": ["any"],
@@ -7314,7 +7314,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "r_c proudly shows off something that {PRONOUN/r_c/subject} {VERB/r_c/have/has} been working on for the past few days -- a clean, pristine white bird skull. m_c wears it with a purr, thanking them for the cool trinket.",
-        "new_accessory": ["BIRD SKULL"],
+        "new_accessory": ["OGBIRD SKULL"],
         "m_c": {
           "age": ["any"],
           "status": ["any"]
@@ -7331,7 +7331,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c pokes around in the fresh kill pile. {PRONOUN/m_c/subject/CAP} {VERB/m_c/manages/manage} to scavenge a whole bird skull! ...Gross! r_c helps {PRONOUN/m_c/poss} wash it and properly clean it before m_c wears it around camp.",
-        "new_accessory": ["BIRD SKULL"],
+        "new_accessory": ["OGBIRD SKULL"],
         "m_c": {
           "age": ["any"],
           "status": ["any"],
@@ -7349,7 +7349,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c yaps and yowls about wanting to hunt and catch birds with r_c! Poor r_c, after a full day of m_c's yapping, gifts m_c a leftover bird skull to hold {PRONOUN/m_c/object} off until {PRONOUN/m_c/poss} apprenticeship.",
-        "new_accessory": ["BIRD SKULL"],
+        "new_accessory": ["OGBIRD SKULL"],
         "m_c": {
           "age": ["any"],
           "status": ["kitten"],
@@ -7367,7 +7367,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c, in an act of pure morbid curiosity, pokes around in the fresh kill pile. {PRONOUN/m_c/subject/CAP} {VERB/m_c/manages/manage} to scavenge a whole bird skull! Gross! r_c helps {PRONOUN/m_c/object} wash it and properly clean it before m_c wears it around camp.",
-        "new_accessory": ["BIRD SKULL"],
+        "new_accessory": ["OGBIRD SKULL"],
         "m_c": {
           "age": ["any"],
           "status": ["kitten"]
@@ -7894,7 +7894,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "m_c skips back into camp with a pep in {PRONOUN/m_c/poss} step and a new acc_singular accessory!",
-        "new_accessory": ["DAISY"],
+        "new_accessory": ["OGDAISY"],
         "m_c": {
           "age": ["any"],
           "status": ["any"]
@@ -7907,7 +7907,7 @@
         "sub_type": ["accessory"],
         "frequency": 4,
         "event_text": "r_c chirps softly at m_c as {PRONOUN/r_c/subject} {VERB/r_c/walk/walks} over, and offers {PRONOUN/m_c/object} a pretty acc_singular! m_c takes it and decorates {PRONOUN/m_c/self} with it, purring out a thank you.",
-        "new_accessory": ["DAISY"],
+        "new_accessory": ["OGDAISY"],
         "m_c": {
           "age": ["any"],
           "status": ["any"]
@@ -10042,7 +10042,7 @@
         "new_accessory": [
             "WILD",
             "PLANT",
-            "SNAKE", "BAT WINGS", "RAT SKULL", "RIBS", "FISH BONES", "TEETH COLLAR", "BIRD SKULL", "BUTTERFLIES"
+            "SNAKE", "BAT WINGS", "RAT SKULL", "RIBS", "FISH BONES", "TEETH COLLAR", "OGBIRD SKULL", "BUTTERFLIES"
         ],
         "m_c": {
             "status": [

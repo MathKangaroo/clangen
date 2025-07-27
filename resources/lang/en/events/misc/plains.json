@@ -115,8 +115,8 @@
         "frequency": 4,
         "event_text": "m_c tripped and ended up with acc_plural all over {PRONOUN/m_c/object}! Oh hey, it actually doesn't look that bad...",
         "new_accessory": [
-            "CLOVERTAIL",
-            "DAISYTAIL"
+            "CLOVER",
+            "DAISY"
         ],
         "m_c": {
             "age": [
