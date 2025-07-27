@@ -64,7 +64,7 @@
             "many": "petals",
             "one": "bunch of petals"
         },
-        "WISTERIA2": {
+        "OGWISTERIA": {
             "zero": "wisteria vines",
             "many": "wisteria vines",
             "one": "bunch of wisteria vines"
@@ -194,22 +194,22 @@
             "many": "pink poppies",
             "one": "pink poppy"
         },
-        "CLOVER": {
+        "OGCLOVER": {
             "zero": "clover",
             "many": "clovers",
             "one": "clover"
         },
-        "CLOVERTAIL": {
+        "CLOVER": {
             "zero": "clover tail",
             "many": "clovers",
             "one": "bunch of clovers"
         },
-        "DAISYTAIL": {
+        "DAISY": {
             "zero": "daisy tail",
             "many": "daisies",
             "one": "bunch of daisies"
         },
-        "DAISY": {
+        "OGDAISY": {
             "zero": "daisy",
             "many": "daisies",
             "one": "bunch of daisies"
@@ -1074,7 +1074,7 @@
             "many": "brown mice",
             "one": "brown mouse"
         },
-        "BIRD SKULL":{
+        "OGBIRD SKULL":{
             "zero": "bird skull",
             "many": "bird skulls",
             "one": "bird skull"
@@ -1119,7 +1119,7 @@
             "many": "roe skulls",
             "one": "roe skull"
         },
-        "BIRD SKULL1": {
+        "BIRD SKULL": {
             "zero": "bird skull necklace",
             "many": "bird skulls necklace",
             "one": "bird skull necklace"

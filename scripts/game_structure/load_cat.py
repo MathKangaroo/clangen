@@ -3,6 +3,8 @@ import os
 from math import floor
 from random import choice
 
+from typing import List
+
 import i18n
 import ujson
 
@@ -123,8 +125,8 @@ def json_load():
                     cat["eye_colour2"] = "COBALT"
             if cat["pelt_name"] == "Lynx2":
                 cat["pelt_name"] = "Dalmatian"
-            if cat["accessory"] == "Raspberry":
-                cat["accessory"] = "OGRaspberry"
+            if cat["accessory"] == ["Raspberry"]:
+                cat["accessory"] = ["OGRASPBERRY"]
             if cat["accessory"] == ["DAISY1"]:
                 cat["accessory"] = ["DAISYTAIL"]
             if cat["accessory"] == ["CLOVER1"]:
@@ -159,13 +161,35 @@ def json_load():
                 cat["trait"] = "principled"
             if cat["trait"] == "fun loving":
                 cat["trait"] = "fun-loving"
+
+            for acc in cat["accessory"]:
+                if acc == "WISTERIA2":
+                    cat["accessory"].remove("WISTERIA2")
+                    cat["accessory"].append("WISTERIA")
+                elif acc == "CLOVERTAIL":
+                    cat["accessory"].remove("CLOVERTAIL")
+                    cat["accessory"].append("CLOVER")
+                elif acc == "DAISYTAIL":
+                    cat["accessory"].remove("DAISYTAIL")
+                    cat["accessory"].append("DAISY")
+                elif acc == "MONARCH BUTTERFLY1":
+                    cat["accessory"].remove("MONARCH BUTTERFLY1")
+                    cat["accessory"].append("MONARCH BUTTERFLY")
+                elif acc == "BIRD SKULL1":
+                    cat["accessory"].remove("BIRD SKULL1")
+                    cat["accessory"].append("BIRD SKULL")
+
             if "accessories" in cat:
                 cat["accessory"] = cat.pop("accessories")
 
             if cat["white_patches"]:
                 if "HALF" in cat["white_patches"]:
-                     cat["white_patches"].remove("HALF")
-                     cat["white_patches"].append("ERAHALF")
+                    cat["white_patches"].remove("HALF")
+                    cat["white_patches"].append("ERAHALF")
+            if cat["white_patches"]:
+                if "MASK" in cat["white_patches"]:
+                    cat["white_patches"].remove("MASK")
+                    cat["white_patches"].append("ERAMASK")
 
             new_cat.pelt = Pelt(
                 name=cat["pelt_name"],

@@ -145,6 +145,8 @@ class Cat:
         "being emotionally numb": "having alexithymia",
         "double tongue": "chronic lying",
         "murky mind": "dysthemia",
+        "echoing shock": "C-PTSD",
+        "recurring shock": "PTSD",
 
         "sunblindness": "light sensitivity",
         "faux pregnant": "phantom pregnancy",

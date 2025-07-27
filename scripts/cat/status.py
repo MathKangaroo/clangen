@@ -91,6 +91,9 @@ class Status:
         if self.group_history and not self.standing_history:
             self._start_standing()
 
+        self.died_this_moon = False
+        """Used to track if their afterlife moons_as should increment"""
+
     # SAVE/LOAD
     def get_enums(self, group, rank=None, social=None, age=None):
         """
@@ -327,6 +330,9 @@ class Status:
 
     @property
     def is_other_clancat(self) -> bool:
+        """
+        Returns True if the cat is a clancat but isn't part of the player_clan. If the cat is a dead clancat, returns True if their last living Clan wasn't the player_clan.
+        """
         dead_player_clan = (
             self.group
             and self.group.is_afterlife()
@@ -383,7 +389,10 @@ class Status:
         """
         Use to increment their current group/rank moons_as by 1
         """
-        self.group_history[-1]["moons_as"] += 1
+        self.group_history[-1]["moons_as"] += 1 if not self.died_this_moon else 0
+
+        # now set this back to false so that we'll increment next time
+        self.died_this_moon = False
 
     def _modify_group(
         self,
@@ -508,6 +517,7 @@ class Status:
         :param target: Use this to specify a certain afterlife, if unused a clancat (or a former clancat) will match
         their guide's afterlife, while an outsider will go to the unknown residence.
         """
+        self.died_this_moon = True
         # if we have a specific afterlife to send them to
         if target:
             self.add_to_group(
@@ -599,7 +609,7 @@ class Status:
         history.reverse()
 
         for entry in history:
-            if not entry["group"] or not entry["group"].is_afterlife():
+            if entry["group"] and not entry["group"].is_afterlife():
                 return entry["group"]
 
         return None
