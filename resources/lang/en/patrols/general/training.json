@@ -12350,5 +12350,271 @@
             "art": "train_general_intro"        
                 }
 	]
+},
+{
+     "patrol_id": "gen_train_ihatethisfluffingfamily1",
+     "biome": ["any"],
+     "season": ["any"],
+     "types": ["training"],
+     "tags": [],
+     "patrol_art": "app_cat_looking_up",
+     "min_cats": 1,
+     "max_cats": 1,
+     "min_max_status": {
+         "apprentice": [1, 1]
+     },
+     "weight": 20,
+     "intro_text": "p_l storms out of camp in a huff after being scolded. Mouse-brains! They're all mouse-brains!",
+     "decline_text": "Of course, the <i>moment</i> {PRONOUN/p_l/subject} {VERB/p_l/leave/leaves}, someone chases after {PRONOUN/p_l/object} and brings {PRONOUN/p_l/object} straight back to camp. <i>Fox-dung!</i>",
+     "chance_of_success": 70,
+     "success_outcomes": [
+         {
+             "text": "p_l takes some time to {PRONOUN/p_l/self}, eventually calming down enough to return to camp.",
+             "exp": 20,
+             "weight": 20
+         },
+         {
+             "text": "Deep breaths, s_c. Go to your happy place. s_c repeats that mantra over and over until, finally, {PRONOUN/s_c/subject} {VERB/s_c/feel/feels} {PRONOUN/s_c/poss} anger begin to dissipate.",
+             "exp": 20,
+             "weight": 40,
+             "stat_trait": [
+                 "calm"
+             ],
+             "can_have_stat": ["p_l"]
+         },
+         {
+             "text": "Now wait just a stars-damned minute, since when has s_c allowed other cats' opinions to affect {PRONOUN/s_c/object} so much? {PRONOUN/s_c/subject/CAP}{VERB/s_c/'re/'s} s_c for StarClan's sake, best apprentice in all of c_n! {PRONOUN/s_c/subject/CAP}{VERB/s_c/'re/'s} not going to sit around moping! No, {PRONOUN/s_c/subject}{VERB/s_c/'re/'s} going to walk <i>straight</i> back to camp with {PRONOUN/s_c/poss} head held high!",
+             "exp": 20,
+             "weight": 40,
+             "stat_trait": [
+                 "confident",
+                 "bold",
+                 "arrogant",
+                 "shameless"
+             ],
+             "can_have_stat": ["p_l"]
+         }
+     ],
+     "fail_outcomes": [
+         {
+             "text": "p_l takes some time to {PRONOUN/p_l/self}, eventually calming down enough to go back to camp. However, upon returning, p_l is <i>immediately</i> scolded again for leaving. Sweet suffering StarClan, {PRONOUN/p_l/subject} just can't win, can {PRONOUN/p_l/subject}?",
+             "exp": 0,
+             "weight": 20,
+             "relationships": [
+                 {
+                     "cats_to": ["clan"],
+                     "cats_from": ["patrol"],
+                     "mutual": false,
+                     "values": ["dislike"],
+                     "amount": 10
+                 }
+             ]
+         },
+         {
+             "text": "Whatever. What do those gray-pelts know anyway? Stupid tail-lickers wouldn't know fun if it bit them in the face... At least, that's what s_c tells {PRONOUN/s_c/self}.",
+             "exp": 0,
+             "weight": 40,
+             "stat_trait": [
+                 "troublesome",
+                 "childish",
+                 "arrogant",
+                 "rebellious"
+             ],
+             "can_have_stat": ["p_l"],
+             "relationships": [
+                 {
+                     "cats_to": ["clan"],
+                     "cats_from": ["patrol"],
+                     "mutual": false,
+                     "values": ["dislike"],
+                     "amount": 10
+                 }
+             ]
+         },
+         {
+             "text": "p_l decides to go for a walk to clear {PRONOUN/p_l/poss} head, figuring that {PRONOUN/p_l/subject}'ll return to camp when {PRONOUN/p_l/subject}{VERB/p_l/'re/'s} ready. However, when night falls and p_l finally decides to head home, {PRONOUN/p_l/subject} quickly {VERB/p_l/discover/discovers} that {PRONOUN/p_l/subject} {VERB/p_l/have/has} no clue where {PRONOUN/p_l/subject} {VERB/p_l/are/is}.",
+             "exp": 0,
+             "weight": 5,
+             "lost_cats": ["p_l"]
+         },
+         {
+             "text": "Stupid Clanmates! Who needs them? Certainly not s_c, <i>that's</i> for sure! ...Actually, the more s_c thinks about it, the more {PRONOUN/s_c/subject} {VERB/s_c/start/starts} to believe exactly that: maybe {PRONOUN/s_c/subject} <i>{VERB/s_c/don't/doesn't}</i> need c_n...",
+             "exp": 0,
+             "weight": 10,
+             "stat_trait": [
+                 "arrogant",
+                 "rebellious",
+                 "bold",
+                 "confident",
+                 "fierce"
+             ],
+             "can_have_stat": ["p_l"],
+             "lost_cats": ["s_c"],
+             "relationships": [
+                 {
+                     "cats_to": ["clan"],
+                     "cats_from": ["patrol"],
+                     "mutual": false,
+                     "values": ["dislike"],
+                     "amount": 10
+                 }
+             ]
+         }
+     ]
+ },
+ {
+    "patrol_id": "gen_train_omen1",
+    "biome": [
+        "any"
+    ],
+    "season": [
+        "any"
+    ],
+    "types": [
+        "training"
+    ],
+    "min_cats": 1,
+    "max_cats": 1,
+    "patrol_art": "gen_cat_looking_up3",
+    "intro_text": "p_l walks through the territory on {PRONOUN/p_l/poss} own, hoping to stretch {PRONOUN/p_l/poss} legs. Before {PRONOUN/p_l/subject} can get very far at all, a strange feeling crawls over {PRONOUN/p_l/object}. Instinctively {PRONOUN/p_l/subject} {VERB/p_l/pause/pauses}, heart beating faster as {PRONOUN/p_l/subject} slowly {VERB/p_l/take/takes} in {PRONOUN/p_l/poss} surroundings.",
+    "decline_text": "It's probably nothing, p_l tells {PRONOUN/p_l/self}. Best to go back to focusing on what {PROUNOUN/p_l/subject} {PRONOUN/p_l/were/was} doing previously.",
+    "min_max_status": {
+        "medicine cat": [
+            -1,
+            -1
+        ],
+        "all apprentices": [
+            -1,
+            -1
+        ]
+    },
+    "pl_skill_constraint": [
+        "OMEN,1"
+    ],
+    "weight": 10,
+    "chance_of_success": 60,
+    "tags": [],
+    "success_outcomes": [
+        {
+            "text": "Slowing down was the right move. Once p_l is settled, {PRONOUN/p_l/subject} {VERB/p_l/are/is} able to pay more attention to the world around {PRONOUN/p_l/object}. Which is how {PRONOUN/p_l/subject} {VERB/p_l/notice/notices} omen_list_sight. Blood chilling, p_l abandons {PRONOUN/p_l/poss} walk in favor of returning home to think about this potential omen a little deeper.",
+            "exp": 20,
+            "weight": 20,
+            "art": "gen_found_scent_outsider"
+        },
+        {
+            "text": "p_l freezes in place, ears pricking as a strange sound washes over {PRONOUN/p_l/object}. Is that...omen_list_sound? Something about it feels wrong. Blood chilling, p_l abandons {PRONOUN/p_l/poss} walk in favor of returning home to think about this potential omen a little deeper.",
+            "exp": 20,
+            "weight": 20,
+            "art": "gen_found_scent_outsider"
+        },
+        {
+            "text": "p_l freezes in place, an overwhelming sensation crashing over {PRONOUN/p_l/object}. omen_list_emotional overwhelms {PRONOUN/p_l/object}, so strong that {PRONOUN/p_l/subject} can't possibly ignore it. {PRONOUN/p_l/subject/CAP} {VERB/p_l/abandon/abandons} {PRONOUN/p_l/poss} walk to return home and think about this potential omen a little deeper.",
+            "exp": 20,
+            "weight": 20,
+            "art": "gen_found_scent_outsider"
+        }
+    ],
+    "fail_outcomes": [
+        {
+            "text": "It wouldn't be the first time p_l has encountered an omen. {PRONOUN/p_l/subject/CAP} {VERB/p_l/wait/waits} for what feels like forever for something to stand out...but nothing ever does. p_l gives up, returning to {PRONOUN/p_l/poss} walk with disappointment weighing heavy in {PRONOUN/p_l/poss} paws.",
+            "exp": 0,
+            "weight": 20,
+            "art": "gen_found_scent_outsider"
+        }
+    ]
+},
+{
+    "patrol_id": "gen_train_prophet1",
+    "biome": [
+        "any"
+    ],
+    "season": [
+        "any"
+    ],
+    "types": [
+        "training"
+    ],
+    "min_cats": 1,
+    "max_cats": 1,
+    "patrol_art": "gen_cat_looking_up3",
+    "intro_text": "p_l walks through the territory on {PRONOUN/p_l/poss} own, hoping to stretch {PRONOUN/p_l/poss} legs. Before {PRONOUN/p_l/subject} can get very far at all, a strange feeling crawls over {PRONOUN/p_l/object}. Instinctively {PRONOUN/p_l/subject} {VERB/p_l/pause/pauses}, heart beating faster as {PRONOUN/p_l/subject} {VERB/p_l/try/tries} to search inward for the source of the feeling.",
+    "decline_text": "It's probably nothing, p_l tells {PRONOUN/p_l/self}. Best to go back to focusing on what {PROUNOUN/p_l/subject} {PRONOUN/p_l/were/was} doing previously.",
+    "min_max_status": {
+        "all apprentices": [
+            -1,
+            -1
+        ]
+    },
+    "pl_skill_constraint": [
+        "PROPHET,1"
+    ],
+    "weight": 10,
+    "chance_of_success": 60,
+    "tags": [],
+    "success_outcomes": [
+        {
+            "text": "p_l curls up in a shady spot, letting the feelings wash over {PRONOUN/p_l/object}. The world bleeds away as {PRONOUN/p_l/subject} {VERB/p_l/are/is} overcome with prophecy_list. Once {PRONOUN/p_l/subject} {VERB/p_l/return/returns} back to {PRONOUN/p_l/self}, {PRONOUN/p_l/subject} {VERB/p_l/rush/rushes} back to camp, unsure what to make of this new prophecy.",
+            "exp": 20,
+            "weight": 20,
+            "art": "gen_found_scent_outsider"
+        }
+    ],
+    "fail_outcomes": [
+        {
+            "text": "It wouldn't be the first time p_l has seen or heard something strange. {PRONOUN/p_l/subject/CAP} {VERB/p_l/wait/waits} for a vision to come...but it never happens. p_l gives up, returning to {PRONOUN/p_l/poss} walk with disappointment weighing heavy in {PRONOUN/p_l/poss} paws.",
+            "exp": 0,
+            "weight": 20,
+            "art": "gen_found_scent_outsider"
+        }
+    ]
+},
+{
+    "patrol_id": "gen_train_clair1",
+    "biome": [
+        "any"
+    ],
+    "season": [
+        "any"
+    ],
+    "types": [
+        "training"
+    ],
+    "min_cats": 1,
+    "max_cats": 1,
+    "patrol_art": "gen_cat_looking_up3",
+    "intro_text": "p_l walks through the territory on {PRONOUN/p_l/poss} own, hoping to stretch {PRONOUN/p_l/poss} legs. Before {PRONOUN/p_l/subject} can get very far at all, a strange feeling crawls over {PRONOUN/p_l/object}. Instinctively {PRONOUN/p_l/subject} {VERB/p_l/pause/pauses}, heart beating faster as {PRONOUN/p_l/subject} {VERB/p_l/try/tries} to search inward for the source of the feeling.",
+    "decline_text": "It's probably nothing, p_l tells {PRONOUN/p_l/self}. Best to go back to focusing on what {PROUNOUN/p_l/subject} {PRONOUN/p_l/were/was} doing previously.",
+    "min_max_status": {
+        "medicine cat": [
+            -1,
+            -1
+        ],
+        "all apprentices": [
+            -1,
+            -1
+        ]
+    },
+    "pl_skill_constraint": [
+        "CLAIRVOYANT,1"
+    ],
+    "weight": 10,
+    "chance_of_success": 60,
+    "tags": [],
+    "success_outcomes": [
+        {
+            "text": "p_l curls up in a shady spot, letting the feelings wash over {PRONOUN/p_l/object}. The world bleeds away as {PRONOUN/p_l/subject} {VERB/p_l/are/is} overcome with clair_list. Once {PRONOUN/p_l/subject} {VERB/p_l/return/returns} back to {PRONOUN/p_l/self}, {PRONOUN/p_l/subject} {VERB/p_l/rush/rushes} back to camp, unsure what to make of this strange vision.",
+            "exp": 20,
+            "weight": 20,
+            "art": "gen_found_scent_outsider"
+        }
+    ],
+    "fail_outcomes": [
+        {
+            "text": "It wouldn't be the first time p_l has seen or heard something strange. {PRONOUN/p_l/subject/CAP} {VERB/p_l/wait/waits} for a vision to come...but it never happens. p_l gives up, returning to {PRONOUN/p_l/poss} walk with disappointment weighing heavy in {PRONOUN/p_l/poss} paws.",
+            "exp": 0,
+            "weight": 20,
+            "art": "gen_found_scent_outsider"
+        }
+    ]
 }
 ]
