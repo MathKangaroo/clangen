@@ -424,7 +424,7 @@ class CustomizeCatScreen(Screens):
         self.tint_label = create_text_box("tint", (480, 335), (135, 40), "#text_box_22_horizleft")
         self.skin_label = create_text_box("skin", (640, 335), (135, 40), "#text_box_22_horizleft")
         self.reset_message = create_text_box("Changes cannot be reset after leaving this page.",
-                                             (5, 395), (315, 60), "#text_box_26_horizcenter")
+                                             (5, 395), (315, 30), "#text_box_26_horizcenter")
         self.eye_colour1_label = create_text_box("eye colour 1", (320, 420), (135, 40), "#text_box_22_horizleft")
         self.heterochromia_text = create_text_box("heterochromia", (495, 451), (135, 40), "#text_box_26_horizcenter")
         self.eye_colour2_label = create_text_box("eye colour 2", (640, 420), (135, 40), "#text_box_22_horizleft")

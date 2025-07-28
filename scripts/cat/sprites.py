@@ -184,6 +184,7 @@ class Sprites:
             "anjusinglecolours", "anjusmokecolours", "anjusokokecolours", "anjuspeckledcolours", "anjutabbycolours", "anjutickedcolours",
             "cs3_agouticolours", "cs3_bengalcolours", "cs3_classiccolours", "cs3_mackerelcolours", "cs3_marbledcolours", "cs3_maskedcolours", "cs3_rosettecolours",
             "cs3_singlecolours", "cs3_singlestripecolours", "cs3_smokecolours", "cs3_sokokecolours", "cs3_speckledcolours", "cs3_tabbycolours", "cs3_tickedcolours",
+            "cs_eyes", "cs_eyes2"
         ):
             if "lineart" in x and (
                 constants.CONFIG["fun"]["april_fools"]
@@ -286,6 +287,32 @@ class Sprites:
              'NEON GREEN', 'SEA'],
             ['DISCORD', 'AUTUMN LEAF', 'RUBY', 'PHANTOM', 'RIVER MOSS', 'WICKED']
         ]
+        
+        cseye_colors = [
+            ['BERBERIDA', 'RANUNCULA', 'CAPPARIDA', 'VIOLA', 'FUMARIA', 'PAPAVERA', 'MAGNOLIA'],
+            ['POLYGALA', 'RESEDA', 'CISTA', 'NYMPHEA', 'DIPTEROCARPA', 'DILLENIA', 'AMYGDALA'],
+            ['ANONA', 'MYRTA', 'TILIA', 'PITTOSPORA', 'MALVA', 'SARRACENIA', 'DROSERA'],
+            ['HIPPOCASTANA', 'TROPAEOLA', 'PASSIFLORA', 'OLACA', 'CRUCIA', 'LOASA', 'MALPIGHIA'],
+            ['MESEMBRYA', 'VITA', 'MARCGRAVIA', 'CLUSIA', 'BOMBA', 'SAMYDA', 'BIXA'],
+            ['GERANIA', 'COMPOSITA', 'RHAMNA', 'OXALIDA', 'ARALIA', 'TEREBINTHA', 'MELIA'],
+            ['SAXIFRAGA', 'LINA', 'CAPRIFOLIA', 'CARYOPHYLLA', 'LEGUMINOSAE', 'CAMELLIA', 'CACTACEA'],
+            ['JASMINEA', 'LYTHRA', 'ACANTHA', 'CRASSULA', 'RUBIA', 'HYPERICA', 'LORANTHA'],
+            ['AURANTIA', 'RHIZOPHORA', 'BORAGINA', 'TAMARICA', 'MELASTOMA', 'LECYTHIDA', 'VALERIANA'],
+            ['COMBRETA', 'APOCYNA', 'DIPSA', 'STYLIDIA', 'RUTA', 'SOLANA', 'PLUMBAGINA'],
+            ['LAMIA', 'BEGONIA', 'GROSSULARIA', 'GENTIANA', 'ERICA', 'CAMPANULA', 'POMA'],
+            ['BIGNONIA', 'AMARANTA', 'VACCINIA', 'ONAGRA', 'PRIMULA', 'SAPOTA', 'LOBELIA'],
+            ['MYRSINA', 'PORTULA', 'PLANTAGINA', 'ELAEAGNA', 'OLEA', 'POLEMONIA', 'ORCHIDA'],
+            ['EUPHORBIA', 'SCROPHULARIA', 'CONVOLVULA', 'MUSA', 'UTRICULARIA', 'UMBELLA', 'PROTEA'],
+            ['GOODENIA', 'THYMELA', 'URTICA', 'OROBANCHA', 'HYDROPHYLLA', 'AMARYLLIDA', 'CONIFERA'],
+            ['PHYTOLACCA', 'PAEONIA', 'IRIDA', 'DIOSCORA', 'GESNERIA', 'SANTALA', 'HYDROCHARIDA'],
+            ['ZINGIBERA', 'ALISMA', 'POLYGONA', 'NYCTAGINA', 'BROMELIA', 'SMILA', 'EBENA'],
+            ['ROSA', 'LILIA', 'JUNCA', 'VERBENA', 'HAEMODORA', 'COMMELINA', 'COLCHICA'],
+        ]
+
+        for row, colors in enumerate(cseye_colors):
+            for col, color in enumerate(colors):
+                self.make_group("cs_eyes", (col, row), f"eyes{color}")
+                self.make_group("cs_eyes2", (col, row), f"eyes2{color}")
 
         for row, colors in enumerate(eye_colors):
             for col, color in enumerate(colors):
