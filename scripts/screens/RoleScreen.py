@@ -118,9 +118,6 @@ class RoleScreen(Screens):
             elif event.ui_element == self.switch_storyteller_app:
                 self.the_cat.rank_change(CatRank.STORYTELLER_APPRENTICE, resort=True)
                 self.update_selected_cat()
-            elif event.ui_element == self.rekit:
-                self.the_cat.rank_change(CatRank.KITTEN, resort=True)
-                self.update_selected_cat()
 
         elif event.type == pygame.KEYDOWN and game_setting_get("keybinds"):
             if event.key == pygame.K_ESCAPE:
@@ -196,13 +193,6 @@ class RoleScreen(Screens):
             get_button_dict(ButtonStyles.LADDER_MIDDLE, (172, 36)),
             object_id="@buttonstyles_ladder_middle",
             anchors={"top_target": self.promote_deputy},
-        )
-        self.rekit = UISurfaceImageButton(
-            ui_scale(pygame.Rect((48, 0), (172, 36))),
-            "screens.role.rekit",
-            get_button_dict(ButtonStyles.LADDER_MIDDLE, (172, 36)),
-            object_id="@buttonstyles_ladder_middle",
-            anchors={"top_target": self.retire},
         )
 
         # WARRIOR ROLES
@@ -489,7 +479,6 @@ class RoleScreen(Screens):
         self.switch_gardener.disable()
         self.switch_storyteller.disable()
         self.retire.disable()
-        self.rekit.disable()
 
         self.switch_med_app.disable()
         self.switch_warrior_app.disable()
@@ -511,7 +500,6 @@ class RoleScreen(Screens):
             self.switch_denkeeper_app.enable()
             self.switch_gardener_app.enable()
             self.switch_storyteller_app.enable()
-            self.rekit.enable()
 
             if self.the_cat.status.rank == CatRank.APPRENTICE:
                 self.switch_warrior_app.disable()
@@ -538,19 +526,6 @@ class RoleScreen(Screens):
                 self.switch_storyteller_app.disable()
                 self.switch_storyteller.enable()
 
-        # next we check if they're a kit
-        elif self.the_cat.status.rank == CatRank.KITTEN:
-            # ENABLE ALL TRAININGS
-            self.switch_med_app.enable()
-            self.switch_warrior_app.enable()
-            self.switch_mediator_app.enable()
-            self.switch_caretaker_app.enable()
-            self.switch_messenger_app.enable()
-            self.switch_denkeeper_app.enable()
-            self.switch_gardener_app.enable()
-            self.switch_storyteller_app.enable()
-            self.rekit.disable()
-
         # now we check for leader/deputy eligible roles
         else:
             if leader_invalid:
@@ -568,7 +543,6 @@ class RoleScreen(Screens):
             self.switch_gardener.enable()
             self.switch_storyteller.enable()
             self.retire.enable()
-            self.rekit.disable()
 
             if self.the_cat.status.rank == CatRank.ELDER:
                 self.retire.disable()
@@ -690,8 +664,6 @@ class RoleScreen(Screens):
         del self.switch_caretaker_app
         self.switch_denkeeper_app.kill()
         del self.switch_denkeeper_app
-        self.rekit.kill()
-        del self.rekit
         self.blurb_background.kill()
         del self.blurb_background
 

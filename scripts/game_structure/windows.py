@@ -14,7 +14,7 @@ import i18n
 import pygame
 import pygame_gui
 import ujson
-from pygame_gui.elements import UIWindow
+from pygame_gui.elements import UIWindow, UIDropDownMenu
 from pygame_gui.windows import UIMessageWindow
 
 from scripts.cat.cats import Cat
@@ -74,6 +74,15 @@ from scripts.utility import (
 
 if TYPE_CHECKING:
     from scripts.screens.Screens import Screens
+
+def create_dropdown(pos, size, options, selected_option, style=None):
+    return UIDropDownMenu(
+        options,
+        selected_option,
+        ui_scale(Rect(pos, size)),
+        object_id=f"#{style}",
+        manager=MANAGER
+    )
 
 
 class GuideEsper(UIWindow):
@@ -2596,4 +2605,40 @@ class ConfirmDisplayChanges(UIMessageWindow):
         elif event.type == pygame.USEREVENT + 10:
             self.revert_changes()
             self.kill()
+        return super().process_event(event)
+    
+class CustomizeFilterWindow(UIWindow):
+    def __init__(self,eye_filter,pelt_filter,acc_filter,white_filter):
+        super().__init__(
+            ui_scale(pygame.Rect((250, 125), (300, 450))),
+            window_display_title="windows.symbol_filters",
+            object_id="#filter_window",
+        )
+        self.set_blocking(True)
+        self.eye_filter = eye_filter if eye_filter else "all"
+        self.pelt_filter = pelt_filter if pelt_filter else "all"
+        self.acc_filter = acc_filter if acc_filter else "all"
+        self.white_filter = white_filter if white_filter else "all"
+
+        self.possible_tags = {
+            "eyes": ["all","red", "yellow", "green", "blue", "purple", "neos", "flutter", "lamp", "angel", "snail"],
+            "pelts": ["all", "ginger", "black", "white", "brown", "red", "orange", "yellow", "green", "blue", "purple", "black2"],
+            "acc": ["all", "bones", "butterflies", "stuff", "plants", "wild", "bows", "collars", "feathers","disabilities", "animals", "chimes", "colorsplash", "pokemon"],
+            "white": ["all","little", "mid", "high", "mostly"]
+        }
+
+        self.back_button = UIImageButton(
+            ui_scale(pygame.Rect((270, 5), (22, 22))),
+            "",
+            object_id="#exit_window_button",
+            starting_height=10,
+            container=self,
+        )
+        
+
+    def process_event(self, event):
+        if event.type == pygame_gui.UI_BUTTON_START_PRESS:
+            if event.ui_element == self.back_button:
+                self.kill()
+
         return super().process_event(event)

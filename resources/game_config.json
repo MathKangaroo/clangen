@@ -588,5 +588,6 @@
 			}
 		}
 	},
-	"dev_tools": false
+	"dev_tools": false,
+	"check_and_convert": true
 }

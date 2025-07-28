@@ -18,6 +18,7 @@ from scripts.game_structure.game_essentials import game
 from scripts.game_structure.screen_settings import MANAGER
 from scripts.game_structure.ui_elements import UISurfaceImageButton, UIImageButton
 from scripts.game_structure.game.switches import switch_set_value, switch_get_value, Switch
+from ..game_structure.windows import CustomizeFilterWindow
 from scripts.screens.Screens import Screens
 from scripts.ui.generate_box import get_box, BoxStyles
 from scripts.ui.generate_button import get_button_dict, ButtonStyles
@@ -163,6 +164,28 @@ class CustomizeCatScreen(Screens):
             'PURPLEHETA', 'VIOLETHETA', 'MAGENTAHETA', 'PINKHETA', 'SCARLETPINK','DARKREDHETA'
         ]
         
+        cs3_colors = [
+            'BERBERIDA', 'RANUNCULA', 'CAPPARIDA', 'VIOLA', 'FUMARIA', 'PAPAVERA', 'MAGNOLIA', 
+            'POLYGALA', 'RESEDA', 'CISTA', 'NYMPHEA', 'DIPTEROCARPA', 'DILLENIA', 'AMYGDALA', 
+            'ANONA', 'MYRTA', 'TILIA', 'PITTOSPORA', 'MALVA', 'SARRACENIA', 'DROSERA', 
+            'HIPPOCASTANA', 'TROPAEOLA', 'PASSIFLORA', 'OLACA', 'CRUCIA', 'LOASA', 'MALPIGHIA', 
+            'MESEMBRYA', 'VITA', 'MARCGRAVIA', 'CLUSIA', 'BOMBA', 'SAMYDA', 'BIXA', 
+            'GERANIA', 'COMPOSITA', 'RHAMNA', 'OXALIDA', 'ARALIA', 'TEREBINTHA', 'MELIA', 
+            'SAXIFRAGA', 'LINA', 'CAPRIFOLIA', 'CARYOPHYLLA', 'LEGUMINOSAE', 'CAMELLIA', 'CACTACEA', 
+            'JASMINEA', 'LYTHRA', 'ACANTHA', 'CRASSULA', 'RUBIA', 'HYPERICA', 'LORANTHA', 
+            'AURANTIA', 'RHIZOPHORA', 'BORAGINA', 'TAMARICA', 'MELASTOMA', 'LECYTHIDA', 'VALERIANA', 
+            'COMBRETA', 'APOCYNA', 'DIPSA', 'STYLIDIA', 'RUTA', 'SOLANA', 'PLUMBAGINA', 
+            'LAMIA', 'BEGONIA', 'GROSSULARIA', 'GENTIANA', 'ERICA', 'CAMPANULA', 'POMA', 
+            'BIGNONIA', 'AMARANTA', 'VACCINIA', 'ONAGRA', 'PRIMULA', 'SAPOTA', 'LOBELIA', 
+            'MYRSINA', 'PORTULA', 'PLANTAGINA', 'ELAEAGNA', 'OLEA', 'POLEMONIA', 'ORCHIDA', 
+            'EUPHORBIA', 'SCROPHULARIA', 'CONVOLVULA', 'MUSA', 'UTRICULARIA', 'UMBELLA', 'PROTEA', 
+            'GOODENIA', 'THYMELA', 'URTICA', 'OROBANCHA', 'HYDROPHYLLA', 'AMARYLLIDA', 'CONIFERA', 
+            'PHYTOLACCA', 'PAEONIA', 'IRIDA', 'DIOSCORA', 'GESNERIA', 'SANTALA', 'HYDROCHARIDA', 
+            'ZINGIBERA', 'ALISMA', 'POLYGONA', 'NYCTAGINA', 'BROMELIA', 'SMILA', 'EBENA', 
+            'ROSA', 'LILIA', 'JUNCA', 'VERBENA', 'HAEMODORA', 'COMMELINA', 'COLCHICA'
+        ]
+
+        
         
         #mega colors mod
         
@@ -226,7 +249,7 @@ class CustomizeCatScreen(Screens):
             'BANANAS', 'WHITEGREENS', 'BROWNREDS', 'RAINBOW', 'GREENDARKREDS','SUNNYS'
         ]
         
-        self.special_colors_masked = mimi_colors + ster_colors + silly_colors + dance_colors + cs_colors + cs2_colors + hive_colors + kris_colors + meteor_colors + sparkle_colors
+        self.special_colors_masked = mimi_colors + ster_colors + silly_colors + dance_colors + cs_colors + cs2_colors + cs3_colors + hive_colors + kris_colors + meteor_colors + sparkle_colors
         self.special_colors_nomasked = minecraft_colors + anju_colors + heta_colors + pastel_colors + pepper_colors
 
         self.pelt_colours = copy(Pelt.pelt_colours)
@@ -349,6 +372,11 @@ class CustomizeCatScreen(Screens):
         self.scar4_label = None
         self.scar4_dropdown = None
         
+        self.eye_filter = "all"
+        self.pelt_filter = "all"
+        self.acc_filter = "all"
+        self.white_filter = "all"
+        
 
     # prints attributes for testing
     #def print_pelt_attributes(self):
@@ -395,8 +423,8 @@ class CustomizeCatScreen(Screens):
                                                         "#text_box_22_horizleft")
         self.tint_label = create_text_box("tint", (480, 335), (135, 40), "#text_box_22_horizleft")
         self.skin_label = create_text_box("skin", (640, 335), (135, 40), "#text_box_22_horizleft")
-        self.reset_message = create_text_box("Changes cannot be reset after leaving this cat's customization page.",
-                                             (25, 395), (270, 60), "#text_box_26_horizcenter")
+        self.reset_message = create_text_box("Changes cannot be reset after leaving this page.",
+                                             (5, 395), (315, 60), "#text_box_26_horizcenter")
         self.eye_colour1_label = create_text_box("eye colour 1", (320, 420), (135, 40), "#text_box_22_horizleft")
         self.heterochromia_text = create_text_box("heterochromia", (495, 451), (135, 40), "#text_box_26_horizcenter")
         self.eye_colour2_label = create_text_box("eye colour 2", (640, 420), (135, 40), "#text_box_22_horizleft")
@@ -430,12 +458,14 @@ class CustomizeCatScreen(Screens):
         self.pose_left_button = create_button((406, 530), (30, 30), get_arrow(1), ButtonStyles.ROUNDED_RECT)
         self.pose_right_button = create_button((486, 530), (30, 30), get_arrow(1, False), ButtonStyles.ROUNDED_RECT)
         self.reverse_button = create_button((105, 530), (70, 30), "Reverse", ButtonStyles.ROUNDED_RECT)
-        self.reset_button = create_button((60, 450), (105, 30), "Reset", ButtonStyles.SQUOVAL)
+        self.reset_button = create_button((60, 425), (105, 30), "Reset", ButtonStyles.SQUOVAL)
         if self.sparkle_cats:
-            self.sparkle_button = create_button((170, 450), (105, 30), "Sparkle On", ButtonStyles.SQUOVAL)
+            self.sparkle_button = create_button((170, 425), (105, 30), "Sparkle On", ButtonStyles.SQUOVAL)
         else:
-            self.sparkle_button = create_button((170, 450), (105, 30), "Sparkle Off", ButtonStyles.SQUOVAL)
+            self.sparkle_button = create_button((170, 425), (105, 30), "Sparkle Off", ButtonStyles.SQUOVAL)
 
+        self.filter_button = create_button((115, 460), (105, 30), "Filters", ButtonStyles.SQUOVAL)
+        
     def setup_dropdowns(self):
         """------------------------------------------------------------------------------------------------------------#
         #                                              DROPDOWN SETUP START                                            #
@@ -539,12 +569,12 @@ class CustomizeCatScreen(Screens):
         
         self.eye_colour1_dropdown = create_dropdown((320, 445), (135, 40),
                                                     create_options_list(self.eye_colours, "upper"),
-                                                    get_selected_option(self.the_cat.pelt.eye_colour, "upper"))
+                                                    get_selected_option(self.the_cat.pelt.eye_colour, "upper"), "dropup")
         self.eye_colour2_dropdown = create_dropdown((640, 445), (135, 40),
                                                     create_options_list(self.eye_colours, "upper"), (
                                                         get_selected_option(self.the_cat.pelt.eye_colour2,
                                                                             "upper") if self.the_cat.pelt.eye_colour2 else get_selected_option(
-                                                            self.the_cat.pelt.eye_colour, "upper")))
+                                                                            self.the_cat.pelt.eye_colour, "upper")), "dropup")
         self.accessory_dropdown = create_dropdown((568, 525), (180, 40), create_options_list(self.accessories, "upper"),
                                                   get_selected_option(self.the_cat.pelt.accessory, "upper"), "dropup")
 
@@ -739,6 +769,8 @@ class CustomizeCatScreen(Screens):
                 else:
                     self.sparkle_button = create_button((170, 450), (105, 30), "Sparkle Off", ButtonStyles.SQUOVAL)
                 self.update_ui_elements()
+            elif event.ui_element == self.filter_button:
+                CustomizeFilterWindow(self.eye_filter, self.pelt_filter, self.acc_filter, self.white_filter)
             elif event.ui_element in [self.pelt_length_left_button, self.pelt_length_right_button]:
                 self.handle_pelt_length_buttons(event.ui_element)
             elif event.ui_element == self.heterochromia_checkbox:
@@ -1185,7 +1217,7 @@ class CustomizeCatScreen(Screens):
         buttons = [
             self.previous_cat_button, self.back_button, self.next_cat_button, self.reset_button, self.sparkle_button,
             self.pelt_length_left_button, self.pelt_length_right_button, self.pose_left_button,
-            self.pose_right_button, self.reverse_button
+            self.pose_right_button, self.reverse_button, self.filter_button
         ]
         for button in buttons:
             button.kill()

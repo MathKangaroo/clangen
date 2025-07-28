@@ -120,6 +120,27 @@ class Pelt:
         'ICEWHITE', 'CRYSTAL', 'ORCHID', 'CERULEAN', 'GRAPE', 'GHOSTBLUE', 'BLACKBLUE', 'THISTLE', 'SUNYELLOW',
         'BUBBLEGUM', 'REDSTAIN', 'ROSE', 'DUSKBROWN', 'FROZENSUN', 'GREENGOLD', 'OCEAN', 'TEAL', 'REDBLUE', 'TREE'
     ]
+    
+    cs3_colors = [
+        'BERBERIDA', 'RANUNCULA', 'CAPPARIDA', 'VIOLA', 'FUMARIA', 'PAPAVERA', 'MAGNOLIA', 
+        'POLYGALA', 'RESEDA', 'CISTA', 'NYMPHEA', 'DIPTEROCARPA', 'DILLENIA', 'AMYGDALA', 
+        'ANONA', 'MYRTA', 'TILIA', 'PITTOSPORA', 'MALVA', 'SARRACENIA', 'DROSERA', 
+        'HIPPOCASTANA', 'TROPAEOLA', 'PASSIFLORA', 'OLACA', 'CRUCIA', 'LOASA', 'MALPIGHIA', 
+        'MESEMBRYA', 'VITA', 'MARCGRAVIA', 'CLUSIA', 'BOMBA', 'SAMYDA', 'BIXA', 
+        'GERANIA', 'COMPOSITA', 'RHAMNA', 'OXALIDA', 'ARALIA', 'TEREBINTHA', 'MELIA', 
+        'SAXIFRAGA', 'LINA', 'CAPRIFOLIA', 'CARYOPHYLLA', 'LEGUMINOSAE', 'CAMELLIA', 'CACTACEA', 
+        'JASMINEA', 'LYTHRA', 'ACANTHA', 'CRASSULA', 'RUBIA', 'HYPERICA', 'LORANTHA', 
+        'AURANTIA', 'RHIZOPHORA', 'BORAGINA', 'TAMARICA', 'MELASTOMA', 'LECYTHIDA', 'VALERIANA', 
+        'COMBRETA', 'APOCYNA', 'DIPSA', 'STYLIDIA', 'RUTA', 'SOLANA', 'PLUMBAGINA', 
+        'LAMIA', 'BEGONIA', 'GROSSULARIA', 'GENTIANA', 'ERICA', 'CAMPANULA', 'POMA', 
+        'BIGNONIA', 'AMARANTA', 'VACCINIA', 'ONAGRA', 'PRIMULA', 'SAPOTA', 'LOBELIA', 
+        'MYRSINA', 'PORTULA', 'PLANTAGINA', 'ELAEAGNA', 'OLEA', 'POLEMONIA', 'ORCHIDA', 
+        'EUPHORBIA', 'SCROPHULARIA', 'CONVOLVULA', 'MUSA', 'UTRICULARIA', 'UMBELLA', 'PROTEA', 
+        'GOODENIA', 'THYMELA', 'URTICA', 'OROBANCHA', 'HYDROPHYLLA', 'AMARYLLIDA', 'CONIFERA', 
+        'PHYTOLACCA', 'PAEONIA', 'IRIDA', 'DIOSCORA', 'GESNERIA', 'SANTALA', 'HYDROCHARIDA', 
+        'ZINGIBERA', 'ALISMA', 'POLYGONA', 'NYCTAGINA', 'BROMELIA', 'SMILA', 'EBENA', 
+        'ROSA', 'LILIA', 'JUNCA', 'VERBENA', 'HAEMODORA', 'COMMELINA', 'COLCHICA'
+    ]
 
     heta_colors = [
         'REDHETA', 'ORANGEHETA', 'YELLOWHETA', 'NEONYELLOW', 'NEONGREEN', 'GREENHETA', 'MINTGREEN', 'DARKMINT',
@@ -298,7 +319,26 @@ class Pelt:
         'INDIGO', 'STEEL', 'PEACH', 'DAFFODIL', 'MARIGOLD', 'BRASS', 'DARKAMBER', 'DAWN SKIES', 'MINT', 'CHARTREUSE',
         'MEADOW', 'LEAF', 'LIGHT TURQUOISE', 'SAP', 'ALBINISTIC', 'COBALT ORE', 'RAIN', 'CYAN DYE', 'PERIWINKLE PURPLE',
         'ICY CRACK', 'PINK', 'MORNING', 'DARK BROWN', 'BAY', 'NEON GREEN', 'SEA', 'DISCORD', 'AUTUMN LEAF', 'RUBY',
-        'PHANTOM', 'RIVER MOSS', 'WICKED', 'ORANGE'
+        'PHANTOM', 'RIVER MOSS', 'WICKED', 'ORANGE',
+        #CS EYES
+        'BERBERIDA', 'RANUNCULA', 'CAPPARIDA', 'VIOLA', 'FUMARIA', 'PAPAVERA', 'MAGNOLIA',
+        'POLYGALA', 'RESEDA', 'CISTA', 'NYMPHEA', 'DIPTEROCARPA', 'DILLENIA', 'AMYGDALA',
+        'ANONA', 'MYRTA', 'TILIA', 'PITTOSPORA', 'MALVA', 'SARRACENIA', 'DROSERA',
+        'HIPPOCASTANA', 'TROPAEOLA', 'PASSIFLORA', 'OLACA', 'CRUCIA', 'LOASA', 'MALPIGHIA',
+        'MESEMBRYA', 'VITA', 'MARCGRAVIA', 'CLUSIA', 'BOMBA', 'SAMYDA', 'BIXA',
+        'GERANIA', 'COMPOSITA', 'RHAMNA', 'OXALIDA', 'ARALIA', 'TEREBINTHA', 'MELIA',
+        'SAXIFRAGA', 'LINA', 'CAPRIFOLIA', 'CARYOPHYLLA', 'LEGUMINOSAE', 'CAMELLIA', 'CACTACEA',
+        'JASMINEA', 'LYTHRA', 'ACANTHA', 'CRASSULA', 'RUBIA', 'HYPERICA', 'LORANTHA',
+        'AURANTIA', 'RHIZOPHORA', 'BORAGINA', 'TAMARICA', 'MELASTOMA', 'LECYTHIDA', 'VALERIANA',
+        'COMBRETA', 'APOCYNA', 'DIPSA', 'STYLIDIA', 'RUTA', 'SOLANA', 'PLUMBAGINA',
+        'LAMIA', 'BEGONIA', 'GROSSULARIA', 'GENTIANA', 'ERICA', 'CAMPANULA', 'POMA',
+        'BIGNONIA', 'AMARANTA', 'VACCINIA', 'ONAGRA', 'PRIMULA', 'SAPOTA', 'LOBELIA',
+        'MYRSINA', 'PORTULA', 'PLANTAGINA', 'ELAEAGNA', 'OLEA', 'POLEMONIA', 'ORCHIDA',
+        'EUPHORBIA', 'SCROPHULARIA', 'CONVOLVULA', 'MUSA', 'UTRICULARIA', 'UMBELLA', 'PROTEA',
+        'GOODENIA', 'THYMELA', 'URTICA', 'OROBANCHA', 'HYDROPHYLLA', 'AMARYLLIDA', 'CONIFERA',
+        'PHYTOLACCA', 'PAEONIA', 'IRIDA', 'DIOSCORA', 'GESNERIA', 'SANTALA', 'HYDROCHARIDA',
+        'ZINGIBERA', 'ALISMA', 'POLYGONA', 'NYCTAGINA', 'BROMELIA', 'SMILA', 'EBENA',
+        'ROSA', 'LILIA', 'JUNCA', 'VERBENA', 'HAEMODORA', 'COMMELINA', 'COLCHICA'
     ]
 
     yellow_eyes = [
@@ -306,7 +346,11 @@ class Pelt:
         'GOLD ORE', 'BRONZE ORE', 'BRASS', 'FOSSILIZED AMBER', 'TIMBER', 'COPPER ORE', 'DAWN SKY', 'YELLOW', 'AMBER',
         'PALEYELLOW', 'GOLD', 'COPPER', 'GREENYELLOW', 'BRONZE', 'SILVER', 'ROSE', 'LIGHT FLAME', 'PUMPKIN', 'BROWN',
         'DARK PINE', 'FALL', 'GOLD MOON', 'OXIDIZED', 'BERRY BANANA', 'WORMY', 'THUNDERBOLT', 'PALE BROWN', 'MORNING',
-        'BLACK', 'ROSE GOLD', 'DARK BROWN', 'MUDDY', 'RUSTY', 'BAY', 'DISCORD', 'ORANGE', 'AUTUMN LEAF'
+        'BLACK', 'ROSE GOLD', 'DARK BROWN', 'MUDDY', 'RUSTY', 'BAY', 'DISCORD', 'ORANGE', 'AUTUMN LEAF',
+        'POLYGALA', 'RESEDA', 'CISTA', 'NYMPHEA', 'DIPTEROCARPA', 'DILLENIA', 'AMYGDALA',
+        'MESEMBRYA', 'VITA', 'MARCGRAVIA', 'CLUSIA', 'BOMBA', 'SAMYDA', 'BIXA',
+        'GERANIA', 'COMPOSITA', 'RHAMNA', 'OXALIDA', 'ARALIA', 'TEREBINTHA', 'MELIA',
+        'SAXIFRAGA', 'LINA', 'CAPRIFOLIA', 'CARYOPHYLLA', 'LEGUMINOSAE', 'CAMELLIA', 'CACTACEA'
     ]
 
     blue_eyes = [
@@ -314,24 +358,38 @@ class Pelt:
         'CYAN DYE', 'IRIS', 'INDIGO', 'PERIWINKLE PURPLE', 'ROBIN', 'STEEL', 'DAWN SKIES', 'ICY CRACK', 'BLUE',
         'DARKBLUE', 'CYAN', 'PALEBLUE', 'COBALT', 'SUNLITICE', 'GREY', 'SEAFOAM', 'CLOUDY', 'TURQUOISE', 'RAINY',
         'POND', 'MIDNIGHT', 'MOONSTONE', 'SNOW', 'WICKED', 'PHANTOM', 'DAWN SKY', 'BLUE HAZEL', 'CURSE', 'FIREWORK',
-        'REVERSE SUNLITICE', 'ICY', 'WINTER ROSE'
+        'REVERSE SUNLITICE', 'ICY', 'WINTER ROSE',
+        'LAMIA', 'BEGONIA', 'GROSSULARIA', 'GENTIANA', 'ERICA', 'CAMPANULA', 'POMA',
+        'BIGNONIA', 'AMARANTA', 'VACCINIA', 'ONAGRA', 'PRIMULA', 'SAPOTA', 'LOBELIA',
+        'MYRSINA', 'PORTULA', 'PLANTAGINA', 'ELAEAGNA', 'OLEA', 'POLEMONIA', 'ORCHIDA',
+        'EUPHORBIA', 'SCROPHULARIA', 'CONVOLVULA', 'MUSA', 'UTRICULARIA', 'UMBELLA', 'PROTEA'
     ]
 
     green_eyes = [
         'LICHEN', 'FERN', 'MINT', 'SPRING', 'APPLE', 'CHARTREUSE', 'LEAVES', 'MOSS', 'MEADOW', 'RIVER MOSS', 'TREE',
         'THICKET', 'LEAF', 'EMERALD ORE', 'PEACOCK', 'LIGHT TURQUOISE', 'HAZELNUT', 'OLIVE', 'SAP', 'PALEGREEN',
         'GREEN', 'EMERALD', 'SAGE', 'HAZEL', 'ALGAE', 'SWAMP', 'AQUAMARINE', 'EARTH', 'DIRT', 'FOREST FIRE', 'LIME',
-        'LUCKY', 'DARK HAZEL', 'DARK TURQUOISE', 'AVOCADO', 'NEON GREEN', 'SEA'
+        'LUCKY', 'DARK HAZEL', 'DARK TURQUOISE', 'AVOCADO', 'NEON GREEN', 'SEA',
+        'JASMINEA', 'LYTHRA', 'ACANTHA', 'CRASSULA', 'RUBIA', 'HYPERICA', 'LORANTHA',
+        'AURANTIA', 'RHIZOPHORA', 'BORAGINA', 'TAMARICA', 'MELASTOMA', 'LECYTHIDA', 'VALERIANA',
+        'COMBRETA', 'APOCYNA', 'DIPSA', 'STYLIDIA', 'RUTA', 'SOLANA', 'PLUMBAGINA'
     ]
 
     red_eyes = [
         'BLESSING', 'CEDAR', 'CHRISTMAS', 'COTTON CANDY', 'CRIMSON', 'DARK ROSE', 'DARKAMBER', 'ECLIPSE', 'PINK', 'RED',
-        'ROSE', 'RUBY', 'SUNSET', 'VALENTINE', 'VOLCANO'
+        'ROSE', 'RUBY', 'SUNSET', 'VALENTINE', 'VOLCANO',
+        'ANONA', 'MYRTA', 'TILIA', 'PITTOSPORA', 'MALVA', 'SARRACENIA', 'DROSERA',
+        'HIPPOCASTANA', 'TROPAEOLA', 'PASSIFLORA', 'OLACA', 'CRUCIA', 'LOASA', 'MALPIGHIA',
+        'ROSA', 'LILIA', 'JUNCA', 'VERBENA', 'HAEMODORA', 'COMMELINA', 'COLCHICA'
     ]
 
     purple_eyes = [
         'ALBINISTIC', 'BLACKBERRY', 'DUSKY', 'HALLOWEEN', 'HEATHERBLUE', 'LAVENDER', 'LILAC', 'LOBELIA', 'PARADOX',
-        'PASTEL', 'PASTEL LAVENDER', 'PERIWINKLE', 'SEASHELL', 'TWILIGHT SKY', 'VIOLET'
+        'PASTEL', 'PASTEL LAVENDER', 'PERIWINKLE', 'SEASHELL', 'TWILIGHT SKY', 'VIOLET',
+        'BERBERIDA', 'RANUNCULA', 'CAPPARIDA', 'VIOLA', 'FUMARIA', 'PAPAVERA', 'MAGNOLIA',
+        'GOODENIA', 'THYMELA', 'URTICA', 'OROBANCHA', 'HYDROPHYLLA', 'AMARYLLIDA', 'CONIFERA',
+        'PHYTOLACCA', 'PAEONIA', 'IRIDA', 'DIOSCORA', 'GESNERIA', 'SANTALA', 'HYDROCHARIDA',
+        'ZINGIBERA', 'ALISMA', 'POLYGONA', 'NYCTAGINA', 'BROMELIA', 'SMILA', 'EBENA'
     ]
 
     neos_eyes = [
@@ -1257,7 +1315,27 @@ class Pelt:
         # sparkle
         "REDS", "RED-ORANGES", "DARKYELLOWS", "GREENREDS", "CYANPINKG", "INDIGOREDS", "REVERSERAINBOW", "PINKREDS",
         "RUSTYS", "GREENORANGES", "REDCYANS", "MINTBLUES", "BLACKBLUES", "BANANAS", "WHITEGREENS", "BROWNREDS",
-        "RAINBOW", "GREENDARKREDS", "SUNNYS"
+        "RAINBOW", "GREENDARKREDS", "SUNNYS",
+        
+        #CS NEW UPDATE
+        'BERBERIDA', 'RANUNCULA', 'CAPPARIDA', 'VIOLA', 'FUMARIA', 'PAPAVERA', 'MAGNOLIA', 
+        'POLYGALA', 'RESEDA', 'CISTA', 'NYMPHEA', 'DIPTEROCARPA', 'DILLENIA', 'AMYGDALA', 
+        'ANONA', 'MYRTA', 'TILIA', 'PITTOSPORA', 'MALVA', 'SARRACENIA', 'DROSERA', 
+        'HIPPOCASTANA', 'TROPAEOLA', 'PASSIFLORA', 'OLACA', 'CRUCIA', 'LOASA', 'MALPIGHIA', 
+        'MESEMBRYA', 'VITA', 'MARCGRAVIA', 'CLUSIA', 'BOMBA', 'SAMYDA', 'BIXA', 
+        'GERANIA', 'COMPOSITA', 'RHAMNA', 'OXALIDA', 'ARALIA', 'TEREBINTHA', 'MELIA', 
+        'SAXIFRAGA', 'LINA', 'CAPRIFOLIA', 'CARYOPHYLLA', 'LEGUMINOSAE', 'CAMELLIA', 'CACTACEA', 
+        'JASMINEA', 'LYTHRA', 'ACANTHA', 'CRASSULA', 'RUBIA', 'HYPERICA', 'LORANTHA', 
+        'AURANTIA', 'RHIZOPHORA', 'BORAGINA', 'TAMARICA', 'MELASTOMA', 'LECYTHIDA', 'VALERIANA', 
+        'COMBRETA', 'APOCYNA', 'DIPSA', 'STYLIDIA', 'RUTA', 'SOLANA', 'PLUMBAGINA', 
+        'LAMIA', 'BEGONIA', 'GROSSULARIA', 'GENTIANA', 'ERICA', 'CAMPANULA', 'POMA', 
+        'BIGNONIA', 'AMARANTA', 'VACCINIA', 'ONAGRA', 'PRIMULA', 'SAPOTA', 'LOBELIA', 
+        'MYRSINA', 'PORTULA', 'PLANTAGINA', 'ELAEAGNA', 'OLEA', 'POLEMONIA', 'ORCHIDA', 
+        'EUPHORBIA', 'SCROPHULARIA', 'CONVOLVULA', 'MUSA', 'UTRICULARIA', 'UMBELLA', 'PROTEA', 
+        'GOODENIA', 'THYMELA', 'URTICA', 'OROBANCHA', 'HYDROPHYLLA', 'AMARYLLIDA', 'CONIFERA', 
+        'PHYTOLACCA', 'PAEONIA', 'IRIDA', 'DIOSCORA', 'GESNERIA', 'SANTALA', 'HYDROCHARIDA', 
+        'ZINGIBERA', 'ALISMA', 'POLYGONA', 'NYCTAGINA', 'BROMELIA', 'SMILA', 'EBENA', 
+        'ROSA', 'LILIA', 'JUNCA', 'VERBENA', 'HAEMODORA', 'COMMELINA', 'COLCHICA'
     ]
 
     # REALISTIC COLORS
@@ -1271,11 +1349,13 @@ class Pelt:
     black_colours = ["GREY", "DARKGREY", "GHOST", "BLACK", "ACACIALOG", "GRAYGLAZEDTERRACOTTA", "LIGHTGREY", "GREYSTER",
                      "DARKGREYSTER", "BLACKSTER", "OBSIDIANSTER", "GHOSTSTER", "LIGHTSLATE", "SLATE", "DARKSLATE",
                      "LIGHTBLUE", "BLUESTER", "DARKBLUE", "LIGHTLILAC", "LILACSILLY", "DARKLILAC", "DARKASH", "EBONY",
-                     "BLACKPURPLE", "BLACKBLUE", "GREYSTAR", "DARKGREYSTAR", "GREYMETEOR"]
+                     "BLACKPURPLE", "BLACKBLUE", "GREYSTAR", "DARKGREYSTAR", "GREYMETEOR",
+                     'VIOLA', 'FUMARIA', 'PAPAVERA', 'MAGNOLIA']
 
     white_colours = ["WHITE", "PALEGREY", "SILVER", "BIRCHLOG", "MUSHROOMSTEM", "QUARTZ", "WHITESTER", "PALEGREYSTER",
                      "PALESLATE", "PALEBLUE", "PALELILAC", "PALEASH", "PALEFAWN", "PALECREAM", "SILVERMIMI",
-                     "SILVERGREY", "SILVERBLUE", "SILVERSLATE", "SILVERFAWN", "SILVERCREAM", "SILVERMETEOR"]
+                     "SILVERGREY", "SILVERBLUE", "SILVERSLATE", "SILVERFAWN", "SILVERCREAM", "SILVERMETEOR",
+                     'BERBERIDA', 'RANUNCULA', 'CAPPARIDA', 'POLYGALA']
 
     brown_colours = ["LIGHTBROWN", "LILAC", "BROWN", "GOLDEN-BROWN", "DARKBROWN", "CHOCOLATE", "CHERRYLOG",
                      "DARKOAKLOG", "JUNGLELOG", "MANGROVELOG", "OAKLOG", "SPRUCELOG", "DARKOAKPLANKS", "JUNGLEPLANKS",
@@ -1283,7 +1363,9 @@ class Pelt:
                      "LIGHTBROWNSILLY", "BROWNSILLY", "DARKBROWNSILLY", "DARKCHOCOLATE", "CHOCOLATESILLY",
                      "LIGHTCHOCOLATE", "PALECHOCOLATE", "LIGHTCINNAMON", "CINNAMON", "PALECINNAMON", "DARKCINNAMON",
                      "COPPERMIMI", "DARKFAWN", "FAWN", "LIGHTFAWN", "SILVERCHOCOLATE", "SILVERCINNAMON", "BLUEBROWN",
-                     "GHOSTBROWN", "NAVYBROWN", "DUSKBROWN", "TANSPOTTED", "EARTHSPOTTED", "BROWN-TAN"]
+                     "GHOSTBROWN", "NAVYBROWN", "DUSKBROWN", "TANSPOTTED", "EARTHSPOTTED", "BROWN-TAN",
+                     'RESEDA', 'CISTA', 'NYMPHEA', 'DIPTEROCARPA', 'DILLENIA', 'AMYGDALA', 'SAMYDA', 'BIXA',
+                     'TEREBINTHA', 'MELIA', 'LEGUMINOSAE', 'CAMELLIA', 'CACTACEA']
 
     # FANTASY COLORS
     red_colors = ["PINK", "RED", "CRIMSONSTEM", "CHERRYPLANKS", "PINKGLAZEDTERRACOTTA", "REDMUSHROOM", "MANGROVEPLANKS",
@@ -1291,20 +1373,29 @@ class Pelt:
                   "BUBBLEGUM", "REDSTAIN", "ROSE", "REDBLUE", "REDS", "RED-ORANGES", "PINKREDS", "RUSTYS", "REDCYANS",
                   "BROWNREDS", "NEONRED", "REDBLACK", "RUSTBLUEPEPPER", "REDPEPPER", "REDBLUEBLACK", "SCARLETPEPPER",
                   "PALEGREY-PINK", "PINK-WHITE", "PINKCREAM", "PINK-BLUE", "PINKK", "PASTELPINKBLUE", "PINKSHADOW",
-                  "REDK", "PINKH", "ROSEH", "DARKPINKH", "REDH"]
+                  "REDK", "PINKH", "ROSEH", "DARKPINKH", "REDH",
+                  'ANONA', 'MYRTA', 'TILIA', 'PITTOSPORA', 'MALVA', 'SARRACENIA', 'DROSERA', 
+                  'HIPPOCASTANA', 'TROPAEOLA', 'PASSIFLORA', 'OLACA', 'CRUCIA', 'LOASA', 'MALPIGHIA','PAEONIA',
+                  'ZINGIBERA', 'ALISMA', 'POLYGONA','ROSA', 'LILIA', 'JUNCA', 'VERBENA', 'HAEMODORA', 'COMMELINA', 'COLCHICA']
 
     orange_colors = ["EXPOSEDCOPPER", "ORANGEGLAZEDTERRACOTTA", "ORANGEHETA", "PALEYELLOW-INDIGO", "PALEORANGE-BLUE",
-                     "CREAMMETEOR", "REVERSESUN", "SUNSET", "OURPLE", "SUNRISE", "ORANGEH"]
+                     "CREAMMETEOR", "REVERSESUN", "SUNSET", "OURPLE", "SUNRISE", "ORANGEH",
+                     'MESEMBRYA', 'VITA', 'MARCGRAVIA', 'CLUSIA', 'BOMBA', 'GERANIA', 'COMPOSITA', 'RHAMNA',
+                     'OXALIDA', 'ARALIA']
 
     yellow_colors = ["BAMBOOPLANKS", "YELLOWGLAZEDTERRACOTTA", "YELLOWHETA", "NEONYELLOW", "SUNYELLOW", "FROZENSUN",
                      "DARKYELLOWS", "SUNNYS", "GOLDCREAM", "GOLDPEPPER", "YELLOW-RED", "BRIGHTYELLOW-RED",
                      "PALEYELLOWGREEN", "PALEYELLOW-BLUE", "PALEPURPLE-GOLD", "PALECYAN-GOLD", "PALEBLUE-YELLOW",
-                     "BANANABERRY", "GOLDH", "YELLOWH"]
+                     "BANANABERRY", "GOLDH", "YELLOWH",
+                     'SAXIFRAGA', 'LINA', 'CAPRIFOLIA','CARYOPHYLLA']
 
     green_colors = ["LIGHTGREEN", "GREEN", "BAMBOO", "WARPEDSTEM", "GREENGLAZEDTERRACOTTA", "LIMEGLAZEDTERRACOTTA",
                     "OXIDIZEDCOPPER", "WEATHEREDCOPPER", "NEONGREEN", "GREENHETA", "MINTGREEN", "DARKMINT", "LIGHTLIME",
                     "GREENBROWN", "GREENGOLD", "TREE", "GREENREDS", "GREENORANGES", "WHITEGREENS", "GREENDARKREDS",
-                    "RUSTYGREEN", "GREEN-NAVY", "GREENH", "DARKGREENH", "DARKMOSS"]
+                    "RUSTYGREEN", "GREEN-NAVY", "GREENH", "DARKGREENH", "DARKMOSS",
+                    'JASMINEA', 'LYTHRA', 'ACANTHA', 'CRASSULA', 'RUBIA', 'HYPERICA', 'LORANTHA', 
+                    'AURANTIA', 'RHIZOPHORA', 'BORAGINA', 'TAMARICA', 'MELASTOMA', 'LECYTHIDA', 'VALERIANA', 
+                    'COMBRETA', 'APOCYNA', 'DIPSA', 'STYLIDIA', 'RUTA', 'SOLANA', 'PLUMBAGINA']
 
     blue_colors = ["CYAN", "BLUE", "WARPEDPLANKS", "CYANGLAZEDTERRACOTTA", "LIGHTBLUEGLAZED TERRACOTTA",
                    "LIGHTGRAYGLAZEDTERRACOTTA", "WHITEGLAZEDTERRACOTTA", "BROWNGLAZEDTERRACOTTA", "NEONTEAL",
@@ -1313,14 +1404,20 @@ class Pelt:
                    "CYANPEPPER", "BLUEPEPPER", "OCEANPEPPER", "DARKBLUEPEPPER", "BLUEGHOSTPEPPER", "PALEBLUE-GOLD",
                    "PALEBLUE-INDIGO", "PALECYAN-PURPLE", "PALECYAN-NAVY", "PALECYAN-BLUE", "SILVERNAVY", "BLACK-BROWN",
                    "BLUESPOTTED", "ICESPOTTED", "BLUE-EARTH", "BLUEMINT", "BLUEGHOSTK", "BLUE-YELLOW", "BLUE-PURPLE",
-                   "BRIGHTBLUEK", "TEALH", "BLUEH", "NAVYH"]
+                   "BRIGHTBLUEK", "TEALH", "BLUEH", "NAVYH",
+                   'LAMIA', 'BEGONIA', 'GROSSULARIA', 'GENTIANA', 'ERICA', 'CAMPANULA', 'POMA', 
+                   'BIGNONIA', 'AMARANTA', 'VACCINIA', 'ONAGRA', 'PRIMULA', 'SAPOTA', 'LOBELIA', 
+                   'MYRSINA', 'PORTULA', 'PLANTAGINA', 'ELAEAGNA', 'OLEA', 'POLEMONIA', 'ORCHIDA', 
+                   'EUPHORBIA', 'SCROPHULARIA', 'CONVOLVULA', 'MUSA', 'UTRICULARIA', 'UMBELLA', 'PROTEA']
 
     purple_colors = ["PURPLE", "CRIMSONPLANKS", "AMETHYST", "PURPLEGLAZEDTERRACOTTA", "PURPUR", "INDIGOHETA",
                      "PURPLEHETA", "VIOLETHETA", "MAGENTAHETA", "PURPLECREAM", "INDIGOBLUSH", "VIOLETBLUSH", "MAGENTA",
                      "MULBERRY", "GRAPE", "CRYSTAL", "ORCHID", "THISTLE", "INDIGOREDS", "INDIGOPEPPER",
                      "PALEMINT-MAGENTA", "PALEMINT-VIOLET", "PALEPINK-PURPLE", "PALEMINT-PURPLE", "PALEGREEN-INDIGO",
                      "WARM-BLUE", "INDIGO-VIOLET", "INDIGOK", "DARKSUNSET", "INDIGOH", "PURPLEH", "VIOLETH",
-                     "PASTELPURPLEH", "BROWN-PURPLE", "PURPLESWIRL"]
+                     "PASTELPURPLEH", "BROWN-PURPLE", "PURPLESWIRL",
+                     'GOODENIA', 'THYMELA', 'URTICA', 'OROBANCHA', 'HYDROPHYLLA', 'AMARYLLIDA', 'CONIFERA', 
+                     'PHYTOLACCA', 'IRIDA', 'DIOSCORA', 'GESNERIA', 'SANTALA', 'HYDROCHARIDA', 'NYCTAGINA', 'BROMELIA', 'SMILA', 'EBENA']
 
     # not to be confused with black_coloUrs. ew british
     black_colors = ["BLACKGLAZEDTERRACOTTA", "CRYING OBSIDIAN", "OBSIDIAN", "REVERSERAINBOW", "RAINBOW",
@@ -1594,552 +1691,554 @@ class Pelt:
     def check_and_convert(self, convert_dict):
         """Checks for old-type properties for the appearance-related properties
         that are stored in Pelt, and converts them. To be run when loading a cat in."""
-
-        # converting modded pelt colors from categories to colors. oh god
-        cs2_dict = {
-                'WHITE': 'LIGHTLIME',
-                'PALEGREY': 'PINKGREY',
-                'SILVER': 'YELLOWBROWN',
-                'GREY': 'REDGREY',
-                'DARKGREY': 'BLUEBROWN',
-                'GHOST': 'GHOSTBROWN',
-                'BLACK': 'BLACKPURPLE',
-                'CREAM': 'BLUECREAM',
-                'PALEGINGER': 'PALEPINKPURPLE',
-                'GOLDEN': 'ICEBLUE',
-                'GINGER': 'BLUECS2',
-                'DARKGINGER': 'GREENBROWN',
-                'SIENNA': 'NAVYBLUE',
-                'LIGHTBROWN': 'PURPLECREAM',
-                'LILAC': 'INDIGOBLUSH',
-                'BROWN': 'VIOLETBLUSH',
-                'GOLDEN-BROWN': 'MAGENTA',
-                'DARKBROWN': 'NAVYBROWN',
-                'CHOCOLATE': 'MULBERRY'
-            }
-        cs_dict = {
-                'WHITE': 'ICEWHITE',
-                'PALEGREY': 'CRYSTAL',
-                'SILVER': 'ORCHID',
-                'GREY': 'CERULEAN',
-                'DARKGREY': 'GRAPE',
-                'GHOST': 'GHOSTBLUE',
-                'BLACK': 'BLACKBLUE',
-                'CREAM': 'THISTLE',
-                'PALEGINGER': 'SUNYELLOW',
-                'GOLDEN': 'BUBBLEGUM',
-                'GINGER': 'REDSTAIN',
-                'DARKGINGER': 'ROSE',
-                'SIENNA': 'DUSKBROWN',
-                'LIGHTBROWN': 'FROZENSUN',
-                'LILAC': 'GREENGOLD',
-                'BROWN': 'OCEAN',
-                'GOLDEN-BROWN': 'TEAL',
-                'DARKBROWN': 'REDBLUE',
-                'CHOCOLATE': 'TREE'
-            }
-        heta_dict = {
-                'WHITE': 'REDHETA',
-                'PALEGREY': 'ORANGEHETA',
-                'SILVER': 'YELLOWHETA',
-                'GREY': 'NEONYELLOW',
-                'DARKGREY': 'NEONGREEN',
-                'GHOST': 'GREENHETA',
-                'BLACK': 'MINTGREEN',
-                'CREAM': 'DARKMINT',
-                'PALEGINGER': 'NEONTEAL',
-                'GOLDEN': 'CYANHETA',
-                'GINGER': 'BLUEHETA',
-                'DARKGINGER': 'NAVYHETA',
-                'SIENNA': 'INDIGOHETA',
-                'LIGHTBROWN': 'PURPLEHETA',
-                'LILAC': 'VIOLETHETA',
-                'BROWN': 'MAGENTAHETA',
-                'GOLDEN-BROWN': 'PINKHETA',
-                'DARKBROWN': 'SCARLETPINK',
-                'CHOCOLATE': 'DARKREDHETA'
-            }
-        dance_dict = {
-                'WHITE': 'LIGHTCINNAMON',
-                'PALEGREY': 'CINNAMON',
-                'SILVER': 'SILVERFAWN',
-                'GREY': 'DARKCINNAMON',
-                'DARKGREY': 'DARKFAWN',
-                'GHOST': 'FAWN',
-                'BLACK': 'LIGHTFAWN',
-                'CREAM': 'PALEFAWN',
-                'PALEGINGER': 'PALECREAM',
-                'GOLDEN': 'LIGHTCREAM',
-                'GINGER': 'DANCECREAM',
-                'DARKGINGER': 'DARKCREAM',
-                'SIENNA': 'DARKGOLD',
-                'LIGHTBROWN': 'GOLD',
-                'LILAC': 'LIGHTGOLD',
-                'BROWN': 'SILVERCREAM',
-                'GOLDEN-BROWN': 'PALEGOLD',
-                'DARKBROWN': 'SUNSHINE',
-                'CHOCOLATE': 'BRONZE'
-            }
-        silly_dict = {
-                'WHITE': 'LIGHTLILAC',
-                'PALEGREY': 'LILACSILLY',
-                'SILVER': 'DARKLILAC',
-                'GREY': 'DARKASH',
-                'DARKGREY': 'ASH',
-                'GHOST': 'LIGHTASH',
-                'BLACK': 'PALEASH',
-                'CREAM': 'SILVERCINNAMON',
-                'PALEGINGER': 'SILVERRED',
-                'GOLDEN': 'PALEBROWN',
-                'GINGER': 'LIGHTBROWNSILLY',
-                'DARKGINGER': 'BROWNSILLY',
-                'SIENNA': 'DARKBROWNSILLY',
-                'LIGHTBROWN': 'EBONY',
-                'LILAC': 'DARKCHOCOLATE',
-                'BROWN': 'CHOCOLATESILLY',
-                'GOLDEN-BROWN': 'LIGHTCHOCOLATE',
-                'DARKBROWN': 'PALECHOCOLATE',
-                'CHOCOLATE': 'PALECINNAMON'
-            }
-        ster_dict = {
-                'WHITE': 'WHITESTER',
-                'PALEGREY': 'PALEGREYSTER',
-                'SILVER': 'LIGHTGREY',
-                'GREY': 'GREYSTER',
-                'DARKGREY': 'DARKGREYSTER',
-                'GHOST': 'BLACKSTER',
-                'BLACK': 'OBSIDIANSTER',
-                'CREAM': 'GHOSTSTER',
-                'PALEGINGER': 'PALEBLUE',
-                'GOLDEN': 'LIGHTBLUE',
-                'GINGER': 'BLUESTER',
-                'DARKGINGER': 'DARKBLUE',
-                'SIENNA': 'SILVERCHOCOLATE',
-                'LIGHTBROWN': 'SILVERORANGE',
-                'LILAC': 'DARKSLATE',
-                'BROWN': 'SLATE',
-                'GOLDEN-BROWN': 'LIGHTSLATE',
-                'DARKBROWN': 'PALESLATE',
-                'CHOCOLATE': 'PALELILAC'
-            }
-        mimi_dict = {
-                'WHITE': 'COPPERMIMI',
-                'PALEGREY': 'DARKORANGE',
-                'SILVER': 'ORANGE',
-                'GREY': 'LIGHTORANGE',
-                'DARKGREY': 'PALEORANGE',
-                'GHOST': 'PALEGINGERMIMI',
-                'BLACK': 'LIGHTGINGER',
-                'CREAM': 'GINGERMIMI',
-                'PALEGINGER': 'DARKGINGERMIMI',
-                'GOLDEN': 'SILVERGOLD',
-                'GINGER': 'RUSSET',
-                'DARKGINGER': 'DARKRED',
-                'SIENNA': 'REDMIMI',
-                'LIGHTBROWN': 'LIGHTRED',
-                'LILAC': 'PALERED',
-                'BROWN': 'SILVERMIMI',
-                'GOLDEN-BROWN': 'SILVERGREY',
-                'DARKBROWN': 'SILVERBLUE',
-                'CHOCOLATE': 'SILVERSLATE'
-            }
-        hive_dict = {
-                'WHITE': 'GREENH',
-                'PALEGREY': 'TEALH',
-                'SILVER': 'BLUEH',
-                'GREY': 'NAVYH',
-                'DARKGREY': 'INDIGOH',
-                'GHOST': 'PURPLEH',
-                'BLACK': 'VIOLETH',
-                'CREAM': 'PINKH',
-                'PALEGINGER': 'ROSEH',
-                'GOLDEN': 'DARKPINKH',
-                'GINGER': 'REDH',
-                'DARKGINGER': 'ORANGEH',
-                'SIENNA': 'GOLDH',
-                'LIGHTBROWN': 'PASTELPURPLEH',
-                'LILAC': 'DARKGREENH',
-                'BROWN': 'BROWN-PURPLE',
-                'GOLDEN-BROWN': 'YELLOWH',
-                'DARKBROWN': 'DARKMOSS',
-                'CHOCOLATE': 'PURPLESWIRL'
-            }
-        kris_dict = {
-                'WHITE': 'PINKCREAM',
-                'PALEGREY': 'BLUEMINT',
-                'SILVER': 'SUNSET',
-                'GREY': 'PINK-BLUE',
-                'DARKGREY': 'INDIGOK',
-                'GHOST': 'BLUEGHOSTK',
-                'BLACK': 'PINKK',
-                'CREAM': 'PASTELPINKBLUE',
-                'PALEGINGER': 'RUSTYGREEN',
-                'GOLDEN': 'OURPLE',
-                'GINGER': 'BLUE-YELLOW',
-                'DARKGINGER': 'BLUE-PURPLE',
-                'SIENNA': 'DARKSUNSET',
-                'LIGHTBROWN': 'BANANABERRY',
-                'LILAC': 'BRIGHTBLUEK',
-                'BROWN': 'SUNRISE',
-                'GOLDEN-BROWN': 'GREEN-NAVY',
-                'DARKBROWN': 'PINKSHADOW',
-                'CHOCOLATE': 'REDK'
-            }
-        meteor_dict = {
-                'WHITE': 'SILVERMETEOR',
-                'PALEGREY': 'SILVERNAVY',
-                'SILVER': 'CREAMSILVER',
-                'GREY': 'GREYSTAR',
-                'DARKGREY': 'DARKGREYSTAR',
-                'GHOST': 'BLACK-BROWN',
-                'BLACK': 'BLUESPOTTED',
-                'CREAM': 'CREAMMETEOR',
-                'PALEGINGER': 'PINK-WHITE',
-                'GOLDEN': 'TANSPOTTED',
-                'GINGER': 'REVERSESUN',
-                'DARKGINGER': 'WARM-BLUE',
-                'SIENNA': 'INDIGO-VIOLET',
-                'LIGHTBROWN': 'GREYMETEOR',
-                'LILAC': 'ICESPOTTED',
-                'BROWN': 'SHADOW',
-                'GOLDEN-BROWN': 'BLUE-EARTH',
-                'DARKBROWN': 'EARTHSPOTTED',
-                'CHOCOLATE': 'BROWN-TAN'
-            }
-        pastel_dict = {
-                'WHITE': 'PALEPINK-PURPLE',
-                'PALEGREY': 'PALEGREY-PINK',
-                'SILVER': 'PALEBLUE-YELLOW',
-                'GREY': 'PALEMINT-PURPLE',
-                'DARKGREY': 'PALEGREEN-INDIGO',
-                'GHOST': 'PALEYELLOW-INDIGO',
-                'BLACK': 'PALEORANGE-BLUE',
-                'CREAM': 'PALEPURPLE-GOLD',
-                'PALEGINGER': 'PALECYAN-GOLD',
-                'GOLDEN': 'PALEMINT-MAGENTA',
-                'GINGER': 'PALEMINT-VIOLET',
-                'DARKGINGER': 'PALEGREEN-BLUE',
-                'SIENNA': 'PALEGREEN-NAVY',
-                'LIGHTBROWN': 'PALEBLUE-INDIGO',
-                'LILAC': 'PALECYAN-PURPLE',
-                'BROWN': 'PALECYAN-NAVY',
-                'GOLDEN-BROWN': 'PALECYAN-BLUE',
-                'DARKBROWN': 'PALEYELLOWGREEN',
-                'CHOCOLATE': 'PALEYELLOW-BLUE'
-            }
-        pepper_dict = {
-                'WHITE': 'ICEPEPPER',
-                'PALEGREY': 'CYANPEPPER',
-                'SILVER': 'BLUEPEPPER',
-                'GREY': 'OCEANPEPPER',
-                'DARKGREY': 'DARKBLUEPEPPER',
-                'GHOST': 'BLUEGHOSTPEPPER',
-                'BLACK': 'BLACKBLUEPEPPER',
-                'CREAM': 'GOLDCREAM',
-                'PALEGINGER': 'GOLDPEPPER',
-                'GOLDEN': 'YELLOW-RED',
-                'GINGER': 'BRIGHTYELLOW-RED',
-                'DARKGINGER': 'NEONRED',
-                'SIENNA': 'REDBLACK',
-                'LIGHTBROWN': 'PALEBLUE-GOLD',
-                'LILAC': 'INDIGOPEPPER',
-                'BROWN': 'RUSTBLUEPEPPER',
-                'GOLDEN-BROWN': 'REDPEPPER',
-                'DARKBROWN': 'REDBLUEBLACK',
-                'CHOCOLATE': 'SCARLETPEPPER'
-            }
-        sparkle_dict = {
-                'WHITE': 'REDS',
-                'PALEGREY': 'RED-ORANGES',
-                'SILVER': 'DARKYELLOWS',
-                'GREY': 'GREENREDS',
-                'DARKGREY': 'CYANPINKG',
-                'GHOST': 'INDIGOREDS',
-                'BLACK': 'REVERSERAINBOW',
-                'CREAM': 'PINKREDS',
-                'PALEGINGER': 'RUSTYS',
-                'GOLDEN': 'GREENORANGES',
-                'GINGER': 'REDCYANS',
-                'DARKGINGER': 'MINTBLUES',
-                'SIENNA': 'BLACKBLUES',
-                'LIGHTBROWN': 'BANANAS',
-                'LILAC': 'WHITEGREENS',
-                'BROWN': 'BROWNREDS',
-                'GOLDEN-BROWN': 'RAINBOW',
-                'DARKBROWN': 'GREENDARKREDS',
-                'CHOCOLATE': 'SUNNYS'
-            }
-
-        if "Ster" in self.name:
-            self.name = self.name[4:]
-            self.name = self.name.capitalize()
-            self.colour = ster_dict[self.colour]
-        if "Silly" in self.name:
-            self.name = self.name[5:]
-            self.name = self.name.capitalize()
-            self.colour = silly_dict[self.colour]
-        if "Dance" in self.name:
-            self.name = self.name[5:]
-            self.name = self.name.capitalize()
-            self.colour = dance_dict[self.colour]
-        if "Mimi" in self.name:
-            self.name = self.name[4:]
-            self.name = self.name.capitalize()
-            self.colour = mimi_dict[self.colour]
-        if "CS2" in self.name:
-            self.name = self.name[3:]
-            self.name = self.name.capitalize()
-            self.colour = cs2_dict[self.colour]
-        if "CS" in self.name:
-            self.name = self.name[2:]
-            self.name = self.name.capitalize()
-            self.colour = cs_dict[self.colour]
-        if "Heta" in self.name:
-            self.name = self.name[4:]
-            self.name = self.name.capitalize()
-            self.colour = heta_dict[self.colour]
-        if "Hive" in self.name:
-            self.name = self.name[4:]
-            self.name = self.name.capitalize()
-            self.colour = hive_dict[self.colour]
-        if "Kris" in self.name:
-            self.name = self.name[4:]
-            self.name = self.name.capitalize()
-            self.colour = kris_dict[self.colour]
-        if "Meteor" in self.name:
-            self.name = self.name[6:]
-            self.name = self.name.capitalize()
-            self.colour = meteor_dict[self.colour]
-        if "Pastel" in self.name:
-            self.name = self.name[6:]
-            self.name = self.name.capitalize()
-            self.colour = pastel_dict[self.colour]
-        if "Pepper" in self.name:
-            self.name = self.name[6:]
-            self.name = self.name.capitalize()
-            self.colour = pepper_dict[self.colour]
-        if "Sparkle" in self.name:
-            self.name = self.name[7:]
-            self.name = self.name.capitalize()
-            self.colour = sparkle_dict[self.colour]
-
-        if self.name == "Stripe":
-            self.name = "Singlestripe"
-        if self.name == "Single":
-            self.name = "SingleColour"
-
-        if self.name in ["Tortie", "Calico"]:
-            if "ster" in self.tortiebase:
-                self.tortiebase = self.tortiebase[4:]
-                self.colour = ster_dict[self.colour]
-            if "ster" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[4:]
-                self.tortiecolour = ster_dict[self.tortiecolour]
-
-            if "dance" in self.tortiebase:
-                self.tortiebase = self.tortiebase[5:]
-                self.colour = dance_dict[self.colour]
-            if "dance" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[5:]
-                self.tortiecolour = dance_dict[self.tortiecolour]
-
-            if "silly" in self.tortiebase:
-                self.tortiebase = self.tortiebase[5:]
-                self.colour = silly_dict[self.colour]
-            if "silly" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[5:]
-                self.tortiecolour = silly_dict[self.tortiecolour]
-
-            if "mimi" in self.tortiebase:
-                self.tortiebase = self.tortiebase[4:]
-                self.colour = mimi_dict[self.colour]
-            if "mimi" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[4:]
-                self.tortiecolour = mimi_dict[self.tortiecolour]
-
-            if "cs_" in self.tortiebase and "2" in self.tortiebase:
-                self.tortiebase = self.tortiebase[3:]
-                self.tortiebase = self.tortiebase.replace('2', '')
-                self.colour = cs2_dict[self.colour]
-            if "cs_" in self.tortiepattern and "2" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[3:]
-                self.tortiepattern = self.tortiepattern.replace('2', '')
-                self.tortiecolour = cs2_dict[self.tortiecolour]
-
-            if "cs_" in self.tortiebase:
-                self.tortiebase = self.tortiebase[3:]
-                self.colour = cs_dict[self.colour]
-            if "cs_" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[3:]
-                self.tortiecolour = cs_dict[self.tortiecolour]
-
-            if "kris" in self.tortiebase:
-                self.tortiebase = self.tortiebase[4:]
-                self.colour = kris_dict[self.colour]
-            if "kris" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[4:]
-                self.tortiecolour = kris_dict[self.tortiecolour]
-
-            if "heta" in self.tortiebase:
-                self.tortiebase = self.tortiebase[4:]
-                self.colour = heta_dict[self.colour]
-            if "heta" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[4:]
-                self.tortiecolour = heta_dict[self.tortiecolour]
-
-            if "hive" in self.tortiebase:
-                self.tortiebase = self.tortiebase[4:]
-                self.colour = hive_dict[self.colour]
-            if "hive" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[4:]
-                self.tortiecolour = hive_dict[self.tortiecolour]
-
-            if "meteor" in self.tortiebase:
-                self.tortiebase = self.tortiebase[6:]
-                self.colour = meteor_dict[self.colour]
-            if "meteor" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[6:]
-                self.tortiecolour = meteor_dict[self.tortiecolour]
-
-            if "pastel" in self.tortiebase:
-                self.tortiebase = self.tortiebase[6:]
-                self.colour = pastel_dict[self.colour]
-            if "pastel" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[6:]
-                self.tortiecolour = pastel_dict[self.tortiecolour]
-
-            if "pepper" in self.tortiebase:
-                self.tortiebase = self.tortiebase[6:]
-                self.colour = pepper_dict[self.colour]
-            if "pepper" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[6:]
-                self.tortiecolour = pepper_dict[self.tortiecolour]
-
-            if "sparkle" in self.tortiebase:
-                self.tortiebase = self.tortiebase[7:]
-                self.colour = sparkle_dict[self.colour]
-            if "sparkle" in self.tortiepattern:
-                self.tortiepattern = self.tortiepattern[7:]
-                self.tortiecolour = sparkle_dict[self.tortiecolour]
-
-            if self.tortiepattern == "stripe":
-                self.tortiepattern = "singlestripe"
-            if self.tortiebase == "stripe":
-                self.tortiebase = "singlestripe"
-
-        if type(self.tint) != list:
-            self.tint = [self.tint]
-        if type(self.tortie_tint) != list:
-            self.tortie_tint = [self.tortie_tint]
-        if type(self.tortie_tint2) != list:
-            self.tortie_tint2 = [self.tortie_tint2]
-        if type(self.white_patches_tint) != list:
-            self.white_patches_tint = [self.white_patches_tint]
-
-        if "none" in self.tint:
-            self.tint = ["none"]
-        if "none" in self.tortie_tint:
-            self.tortie_tint = ["none"]
-        if "none" in self.tortie_tint2:
-            self.tortie_tint2 = ["none"]
-        if "none" in self.white_patches_tint:
-            self.white_patches_tint = ["none"]
-
-        # First, convert from some old names that may be in white_patches. 
-        if self.white_patches == 'POINTMARK':
-            self.white_patches = "SEALPOINT"
-        elif self.white_patches == "PANTS2":
-            self.white_patches = "PANTSTWO"
-        elif self.white_patches == "ANY2":
-            self.white_patches = "ANYTWO"
-        elif self.white_patches == "VITILIGO2":
-            self.white_patches = "VITILIGOTWO"
-
-        if self.vitiligo == "VITILIGO2":
-            self.vitiligo = "VITILIGOTWO"
-
-        # Move white_patches that should be in vit or points.
-        if self.white_patches in Pelt.vit:
-            self.vitiligo = self.white_patches
-            self.white_patches = None
-        elif self.white_patches in Pelt.point_markings:
-            self.points = self.white_patches
-            self.white_patches = None
-
-        if self.tortiepattern and "tortie" in self.tortiepattern:
-            self.tortiepattern = sub("tortie", "", self.tortiepattern.lower())
-            if self.tortiepattern == "solid":
-                self.tortiepattern = "single"
-        
-        '''
-        if self.white_patches in convert_dict["old_creamy_patches"]:
-            self.white_patches = convert_dict["old_creamy_patches"][self.white_patches]
-            self.white_patches_tint = "darkcream"
-        elif self.white_patches in ("SEPIAPOINT", "MINKPOINT", "SEALPOINT"):
-            self.white_patches_tint = "none"
-        '''
-
-        # Eye Color Convert Stuff
-        if self.eye_colour == "BLUE2":
-            self.eye_colour = "COBALT"
-        if self.eye_colour2 == "BLUE2":
-            self.eye_colour2 = "COBALT"
-        if self.eye_colour2 == "VIOLET2":
-            self.eye_colour2 = "BLACKBERRY"
-        if self.eye_colour2 == "ROSE2":
-            self.eye_colour2 = "DARK ROSE"
-        if self.eye_colour2 == "TURQUOISE2":
-            self.eye_colour2 = "DARK TURQUOISE"
-
-        if self.eye_colour in ["BLUEYELLOW", "BLUEGREEN"]:
-            if self.eye_colour == "BLUEYELLOW":
-                self.eye_colour2 = "YELLOW"
-            elif self.eye_colour == "BLUEGREEN":
-                self.eye_colour2 = "GREEN"
-            self.eye_colour = "BLUE"
-        
-        if self.colour == "Lynx2":
-            self.colour = "Dalmatian"
-
-        if self.length == "long":
-            if self.cat_sprites["adult"] not in (9, 10, 11):
-                if self.cat_sprites["adult"] == 0:
-                    self.cat_sprites["adult"] = 9
-                elif self.cat_sprites["adult"] == 1:
-                    self.cat_sprites["adult"] = 10
-                elif self.cat_sprites["adult"] == 2:
-                    self.cat_sprites["adult"] = 11
-                self.cat_sprites["young adult"] = self.cat_sprites["adult"]
-                self.cat_sprites["senior adult"] = self.cat_sprites["adult"]
-                self.cat_sprites["para_adult"] = 16
+        if not constants.CONFIG["check_and_convert"]:
+            return
         else:
-            self.cat_sprites["para_adult"] = 15
-        if self.cat_sprites["senior"] not in (12, 13, 14):
-            if self.cat_sprites["senior"] == 3:
-                self.cat_sprites["senior"] = 12
-            elif self.cat_sprites["senior"] == 4:
-                self.cat_sprites["senior"] = 13
-            elif self.cat_sprites["senior"] == 5:
-                self.cat_sprites["senior"] = 14
+        # converting modded pelt colors from categories to colors. oh god
+            cs2_dict = {
+                    'WHITE': 'LIGHTLIME',
+                    'PALEGREY': 'PINKGREY',
+                    'SILVER': 'YELLOWBROWN',
+                    'GREY': 'REDGREY',
+                    'DARKGREY': 'BLUEBROWN',
+                    'GHOST': 'GHOSTBROWN',
+                    'BLACK': 'BLACKPURPLE',
+                    'CREAM': 'BLUECREAM',
+                    'PALEGINGER': 'PALEPINKPURPLE',
+                    'GOLDEN': 'ICEBLUE',
+                    'GINGER': 'BLUECS2',
+                    'DARKGINGER': 'GREENBROWN',
+                    'SIENNA': 'NAVYBLUE',
+                    'LIGHTBROWN': 'PURPLECREAM',
+                    'LILAC': 'INDIGOBLUSH',
+                    'BROWN': 'VIOLETBLUSH',
+                    'GOLDEN-BROWN': 'MAGENTA',
+                    'DARKBROWN': 'NAVYBROWN',
+                    'CHOCOLATE': 'MULBERRY'
+                }
+            cs_dict = {
+                    'WHITE': 'ICEWHITE',
+                    'PALEGREY': 'CRYSTAL',
+                    'SILVER': 'ORCHID',
+                    'GREY': 'CERULEAN',
+                    'DARKGREY': 'GRAPE',
+                    'GHOST': 'GHOSTBLUE',
+                    'BLACK': 'BLACKBLUE',
+                    'CREAM': 'THISTLE',
+                    'PALEGINGER': 'SUNYELLOW',
+                    'GOLDEN': 'BUBBLEGUM',
+                    'GINGER': 'REDSTAIN',
+                    'DARKGINGER': 'ROSE',
+                    'SIENNA': 'DUSKBROWN',
+                    'LIGHTBROWN': 'FROZENSUN',
+                    'LILAC': 'GREENGOLD',
+                    'BROWN': 'OCEAN',
+                    'GOLDEN-BROWN': 'TEAL',
+                    'DARKBROWN': 'REDBLUE',
+                    'CHOCOLATE': 'TREE'
+                }
+            heta_dict = {
+                    'WHITE': 'REDHETA',
+                    'PALEGREY': 'ORANGEHETA',
+                    'SILVER': 'YELLOWHETA',
+                    'GREY': 'NEONYELLOW',
+                    'DARKGREY': 'NEONGREEN',
+                    'GHOST': 'GREENHETA',
+                    'BLACK': 'MINTGREEN',
+                    'CREAM': 'DARKMINT',
+                    'PALEGINGER': 'NEONTEAL',
+                    'GOLDEN': 'CYANHETA',
+                    'GINGER': 'BLUEHETA',
+                    'DARKGINGER': 'NAVYHETA',
+                    'SIENNA': 'INDIGOHETA',
+                    'LIGHTBROWN': 'PURPLEHETA',
+                    'LILAC': 'VIOLETHETA',
+                    'BROWN': 'MAGENTAHETA',
+                    'GOLDEN-BROWN': 'PINKHETA',
+                    'DARKBROWN': 'SCARLETPINK',
+                    'CHOCOLATE': 'DARKREDHETA'
+                }
+            dance_dict = {
+                    'WHITE': 'LIGHTCINNAMON',
+                    'PALEGREY': 'CINNAMON',
+                    'SILVER': 'SILVERFAWN',
+                    'GREY': 'DARKCINNAMON',
+                    'DARKGREY': 'DARKFAWN',
+                    'GHOST': 'FAWN',
+                    'BLACK': 'LIGHTFAWN',
+                    'CREAM': 'PALEFAWN',
+                    'PALEGINGER': 'PALECREAM',
+                    'GOLDEN': 'LIGHTCREAM',
+                    'GINGER': 'DANCECREAM',
+                    'DARKGINGER': 'DARKCREAM',
+                    'SIENNA': 'DARKGOLD',
+                    'LIGHTBROWN': 'GOLD',
+                    'LILAC': 'LIGHTGOLD',
+                    'BROWN': 'SILVERCREAM',
+                    'GOLDEN-BROWN': 'PALEGOLD',
+                    'DARKBROWN': 'SUNSHINE',
+                    'CHOCOLATE': 'BRONZE'
+                }
+            silly_dict = {
+                    'WHITE': 'LIGHTLILAC',
+                    'PALEGREY': 'LILACSILLY',
+                    'SILVER': 'DARKLILAC',
+                    'GREY': 'DARKASH',
+                    'DARKGREY': 'ASH',
+                    'GHOST': 'LIGHTASH',
+                    'BLACK': 'PALEASH',
+                    'CREAM': 'SILVERCINNAMON',
+                    'PALEGINGER': 'SILVERRED',
+                    'GOLDEN': 'PALEBROWN',
+                    'GINGER': 'LIGHTBROWNSILLY',
+                    'DARKGINGER': 'BROWNSILLY',
+                    'SIENNA': 'DARKBROWNSILLY',
+                    'LIGHTBROWN': 'EBONY',
+                    'LILAC': 'DARKCHOCOLATE',
+                    'BROWN': 'CHOCOLATESILLY',
+                    'GOLDEN-BROWN': 'LIGHTCHOCOLATE',
+                    'DARKBROWN': 'PALECHOCOLATE',
+                    'CHOCOLATE': 'PALECINNAMON'
+                }
+            ster_dict = {
+                    'WHITE': 'WHITESTER',
+                    'PALEGREY': 'PALEGREYSTER',
+                    'SILVER': 'LIGHTGREY',
+                    'GREY': 'GREYSTER',
+                    'DARKGREY': 'DARKGREYSTER',
+                    'GHOST': 'BLACKSTER',
+                    'BLACK': 'OBSIDIANSTER',
+                    'CREAM': 'GHOSTSTER',
+                    'PALEGINGER': 'PALEBLUE',
+                    'GOLDEN': 'LIGHTBLUE',
+                    'GINGER': 'BLUESTER',
+                    'DARKGINGER': 'DARKBLUE',
+                    'SIENNA': 'SILVERCHOCOLATE',
+                    'LIGHTBROWN': 'SILVERORANGE',
+                    'LILAC': 'DARKSLATE',
+                    'BROWN': 'SLATE',
+                    'GOLDEN-BROWN': 'LIGHTSLATE',
+                    'DARKBROWN': 'PALESLATE',
+                    'CHOCOLATE': 'PALELILAC'
+                }
+            mimi_dict = {
+                    'WHITE': 'COPPERMIMI',
+                    'PALEGREY': 'DARKORANGE',
+                    'SILVER': 'ORANGE',
+                    'GREY': 'LIGHTORANGE',
+                    'DARKGREY': 'PALEORANGE',
+                    'GHOST': 'PALEGINGERMIMI',
+                    'BLACK': 'LIGHTGINGER',
+                    'CREAM': 'GINGERMIMI',
+                    'PALEGINGER': 'DARKGINGERMIMI',
+                    'GOLDEN': 'SILVERGOLD',
+                    'GINGER': 'RUSSET',
+                    'DARKGINGER': 'DARKRED',
+                    'SIENNA': 'REDMIMI',
+                    'LIGHTBROWN': 'LIGHTRED',
+                    'LILAC': 'PALERED',
+                    'BROWN': 'SILVERMIMI',
+                    'GOLDEN-BROWN': 'SILVERGREY',
+                    'DARKBROWN': 'SILVERBLUE',
+                    'CHOCOLATE': 'SILVERSLATE'
+                }
+            hive_dict = {
+                    'WHITE': 'GREENH',
+                    'PALEGREY': 'TEALH',
+                    'SILVER': 'BLUEH',
+                    'GREY': 'NAVYH',
+                    'DARKGREY': 'INDIGOH',
+                    'GHOST': 'PURPLEH',
+                    'BLACK': 'VIOLETH',
+                    'CREAM': 'PINKH',
+                    'PALEGINGER': 'ROSEH',
+                    'GOLDEN': 'DARKPINKH',
+                    'GINGER': 'REDH',
+                    'DARKGINGER': 'ORANGEH',
+                    'SIENNA': 'GOLDH',
+                    'LIGHTBROWN': 'PASTELPURPLEH',
+                    'LILAC': 'DARKGREENH',
+                    'BROWN': 'BROWN-PURPLE',
+                    'GOLDEN-BROWN': 'YELLOWH',
+                    'DARKBROWN': 'DARKMOSS',
+                    'CHOCOLATE': 'PURPLESWIRL'
+                }
+            kris_dict = {
+                    'WHITE': 'PINKCREAM',
+                    'PALEGREY': 'BLUEMINT',
+                    'SILVER': 'SUNSET',
+                    'GREY': 'PINK-BLUE',
+                    'DARKGREY': 'INDIGOK',
+                    'GHOST': 'BLUEGHOSTK',
+                    'BLACK': 'PINKK',
+                    'CREAM': 'PASTELPINKBLUE',
+                    'PALEGINGER': 'RUSTYGREEN',
+                    'GOLDEN': 'OURPLE',
+                    'GINGER': 'BLUE-YELLOW',
+                    'DARKGINGER': 'BLUE-PURPLE',
+                    'SIENNA': 'DARKSUNSET',
+                    'LIGHTBROWN': 'BANANABERRY',
+                    'LILAC': 'BRIGHTBLUEK',
+                    'BROWN': 'SUNRISE',
+                    'GOLDEN-BROWN': 'GREEN-NAVY',
+                    'DARKBROWN': 'PINKSHADOW',
+                    'CHOCOLATE': 'REDK'
+                }
+            meteor_dict = {
+                    'WHITE': 'SILVERMETEOR',
+                    'PALEGREY': 'SILVERNAVY',
+                    'SILVER': 'CREAMSILVER',
+                    'GREY': 'GREYSTAR',
+                    'DARKGREY': 'DARKGREYSTAR',
+                    'GHOST': 'BLACK-BROWN',
+                    'BLACK': 'BLUESPOTTED',
+                    'CREAM': 'CREAMMETEOR',
+                    'PALEGINGER': 'PINK-WHITE',
+                    'GOLDEN': 'TANSPOTTED',
+                    'GINGER': 'REVERSESUN',
+                    'DARKGINGER': 'WARM-BLUE',
+                    'SIENNA': 'INDIGO-VIOLET',
+                    'LIGHTBROWN': 'GREYMETEOR',
+                    'LILAC': 'ICESPOTTED',
+                    'BROWN': 'SHADOW',
+                    'GOLDEN-BROWN': 'BLUE-EARTH',
+                    'DARKBROWN': 'EARTHSPOTTED',
+                    'CHOCOLATE': 'BROWN-TAN'
+                }
+            pastel_dict = {
+                    'WHITE': 'PALEPINK-PURPLE',
+                    'PALEGREY': 'PALEGREY-PINK',
+                    'SILVER': 'PALEBLUE-YELLOW',
+                    'GREY': 'PALEMINT-PURPLE',
+                    'DARKGREY': 'PALEGREEN-INDIGO',
+                    'GHOST': 'PALEYELLOW-INDIGO',
+                    'BLACK': 'PALEORANGE-BLUE',
+                    'CREAM': 'PALEPURPLE-GOLD',
+                    'PALEGINGER': 'PALECYAN-GOLD',
+                    'GOLDEN': 'PALEMINT-MAGENTA',
+                    'GINGER': 'PALEMINT-VIOLET',
+                    'DARKGINGER': 'PALEGREEN-BLUE',
+                    'SIENNA': 'PALEGREEN-NAVY',
+                    'LIGHTBROWN': 'PALEBLUE-INDIGO',
+                    'LILAC': 'PALECYAN-PURPLE',
+                    'BROWN': 'PALECYAN-NAVY',
+                    'GOLDEN-BROWN': 'PALECYAN-BLUE',
+                    'DARKBROWN': 'PALEYELLOWGREEN',
+                    'CHOCOLATE': 'PALEYELLOW-BLUE'
+                }
+            pepper_dict = {
+                    'WHITE': 'ICEPEPPER',
+                    'PALEGREY': 'CYANPEPPER',
+                    'SILVER': 'BLUEPEPPER',
+                    'GREY': 'OCEANPEPPER',
+                    'DARKGREY': 'DARKBLUEPEPPER',
+                    'GHOST': 'BLUEGHOSTPEPPER',
+                    'BLACK': 'BLACKBLUEPEPPER',
+                    'CREAM': 'GOLDCREAM',
+                    'PALEGINGER': 'GOLDPEPPER',
+                    'GOLDEN': 'YELLOW-RED',
+                    'GINGER': 'BRIGHTYELLOW-RED',
+                    'DARKGINGER': 'NEONRED',
+                    'SIENNA': 'REDBLACK',
+                    'LIGHTBROWN': 'PALEBLUE-GOLD',
+                    'LILAC': 'INDIGOPEPPER',
+                    'BROWN': 'RUSTBLUEPEPPER',
+                    'GOLDEN-BROWN': 'REDPEPPER',
+                    'DARKBROWN': 'REDBLUEBLACK',
+                    'CHOCOLATE': 'SCARLETPEPPER'
+                }
+            sparkle_dict = {
+                    'WHITE': 'REDS',
+                    'PALEGREY': 'RED-ORANGES',
+                    'SILVER': 'DARKYELLOWS',
+                    'GREY': 'GREENREDS',
+                    'DARKGREY': 'CYANPINKG',
+                    'GHOST': 'INDIGOREDS',
+                    'BLACK': 'REVERSERAINBOW',
+                    'CREAM': 'PINKREDS',
+                    'PALEGINGER': 'RUSTYS',
+                    'GOLDEN': 'GREENORANGES',
+                    'GINGER': 'REDCYANS',
+                    'DARKGINGER': 'MINTBLUES',
+                    'SIENNA': 'BLACKBLUES',
+                    'LIGHTBROWN': 'BANANAS',
+                    'LILAC': 'WHITEGREENS',
+                    'BROWN': 'BROWNREDS',
+                    'GOLDEN-BROWN': 'RAINBOW',
+                    'DARKBROWN': 'GREENDARKREDS',
+                    'CHOCOLATE': 'SUNNYS'
+                }
 
-        if self.accessory is None:
-            self.accessory = []
-        elif isinstance(self.accessory, str):
-            self.accessory = [self.accessory]
+            if "Ster" in self.name:
+                self.name = self.name[4:]
+                self.name = self.name.capitalize()
+                self.colour = ster_dict[self.colour]
+            if "Silly" in self.name:
+                self.name = self.name[5:]
+                self.name = self.name.capitalize()
+                self.colour = silly_dict[self.colour]
+            if "Dance" in self.name:
+                self.name = self.name[5:]
+                self.name = self.name.capitalize()
+                self.colour = dance_dict[self.colour]
+            if "Mimi" in self.name:
+                self.name = self.name[4:]
+                self.name = self.name.capitalize()
+                self.colour = mimi_dict[self.colour]
+            if "CS2" in self.name:
+                self.name = self.name[3:]
+                self.name = self.name.capitalize()
+                self.colour = cs2_dict[self.colour]
+            if "CS" in self.name:
+                self.name = self.name[2:]
+                self.name = self.name.capitalize()
+                self.colour = cs_dict[self.colour]
+            if "Heta" in self.name:
+                self.name = self.name[4:]
+                self.name = self.name.capitalize()
+                self.colour = heta_dict[self.colour]
+            if "Hive" in self.name:
+                self.name = self.name[4:]
+                self.name = self.name.capitalize()
+                self.colour = hive_dict[self.colour]
+            if "Kris" in self.name:
+                self.name = self.name[4:]
+                self.name = self.name.capitalize()
+                self.colour = kris_dict[self.colour]
+            if "Meteor" in self.name:
+                self.name = self.name[6:]
+                self.name = self.name.capitalize()
+                self.colour = meteor_dict[self.colour]
+            if "Pastel" in self.name:
+                self.name = self.name[6:]
+                self.name = self.name.capitalize()
+                self.colour = pastel_dict[self.colour]
+            if "Pepper" in self.name:
+                self.name = self.name[6:]
+                self.name = self.name.capitalize()
+                self.colour = pepper_dict[self.colour]
+            if "Sparkle" in self.name:
+                self.name = self.name[7:]
+                self.name = self.name.capitalize()
+                self.colour = sparkle_dict[self.colour]
 
-        if self.pattern is not None:
-            if isinstance(self.pattern, str):
-                self.pattern = [self.pattern]
-        if self.white_patches is not None:
-            if isinstance(self.white_patches, str):
-                self.white_patches = [self.white_patches]
+            if self.name == "Stripe":
+                self.name = "Singlestripe"
+            if self.name == "Single":
+                self.name = "SingleColour"
 
-            if "HALF" in self.white_patches:
-                self.white_patches.remove("HALF")
-                self.white_patches.append("ERAHALF")
-            if "MASK" in self.white_patches:
-                self.white_patches.remove("MASK")
-                self.white_patches.append("ERAMASK")
+            if self.name in ["Tortie", "Calico"]:
+                if "ster" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[4:]
+                    self.colour = ster_dict[self.colour]
+                if "ster" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[4:]
+                    self.tortiecolour = ster_dict[self.tortiecolour]
+
+                if "dance" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[5:]
+                    self.colour = dance_dict[self.colour]
+                if "dance" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[5:]
+                    self.tortiecolour = dance_dict[self.tortiecolour]
+
+                if "silly" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[5:]
+                    self.colour = silly_dict[self.colour]
+                if "silly" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[5:]
+                    self.tortiecolour = silly_dict[self.tortiecolour]
+
+                if "mimi" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[4:]
+                    self.colour = mimi_dict[self.colour]
+                if "mimi" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[4:]
+                    self.tortiecolour = mimi_dict[self.tortiecolour]
+
+                if "cs_" in self.tortiebase and "2" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[3:]
+                    self.tortiebase = self.tortiebase.replace('2', '')
+                    self.colour = cs2_dict[self.colour]
+                if "cs_" in self.tortiepattern and "2" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[3:]
+                    self.tortiepattern = self.tortiepattern.replace('2', '')
+                    self.tortiecolour = cs2_dict[self.tortiecolour]
+
+                if "cs_" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[3:]
+                    self.colour = cs_dict[self.colour]
+                if "cs_" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[3:]
+                    self.tortiecolour = cs_dict[self.tortiecolour]
+
+                if "kris" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[4:]
+                    self.colour = kris_dict[self.colour]
+                if "kris" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[4:]
+                    self.tortiecolour = kris_dict[self.tortiecolour]
+
+                if "heta" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[4:]
+                    self.colour = heta_dict[self.colour]
+                if "heta" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[4:]
+                    self.tortiecolour = heta_dict[self.tortiecolour]
+
+                if "hive" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[4:]
+                    self.colour = hive_dict[self.colour]
+                if "hive" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[4:]
+                    self.tortiecolour = hive_dict[self.tortiecolour]
+
+                if "meteor" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[6:]
+                    self.colour = meteor_dict[self.colour]
+                if "meteor" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[6:]
+                    self.tortiecolour = meteor_dict[self.tortiecolour]
+
+                if "pastel" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[6:]
+                    self.colour = pastel_dict[self.colour]
+                if "pastel" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[6:]
+                    self.tortiecolour = pastel_dict[self.tortiecolour]
+
+                if "pepper" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[6:]
+                    self.colour = pepper_dict[self.colour]
+                if "pepper" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[6:]
+                    self.tortiecolour = pepper_dict[self.tortiecolour]
+
+                if "sparkle" in self.tortiebase:
+                    self.tortiebase = self.tortiebase[7:]
+                    self.colour = sparkle_dict[self.colour]
+                if "sparkle" in self.tortiepattern:
+                    self.tortiepattern = self.tortiepattern[7:]
+                    self.tortiecolour = sparkle_dict[self.tortiecolour]
+
+                if self.tortiepattern == "stripe":
+                    self.tortiepattern = "singlestripe"
+                if self.tortiebase == "stripe":
+                    self.tortiebase = "singlestripe"
+
+            if type(self.tint) != list:
+                self.tint = [self.tint]
+            if type(self.tortie_tint) != list:
+                self.tortie_tint = [self.tortie_tint]
+            if type(self.tortie_tint2) != list:
+                self.tortie_tint2 = [self.tortie_tint2]
+            if type(self.white_patches_tint) != list:
+                self.white_patches_tint = [self.white_patches_tint]
+
+            if "none" in self.tint:
+                self.tint = ["none"]
+            if "none" in self.tortie_tint:
+                self.tortie_tint = ["none"]
+            if "none" in self.tortie_tint2:
+                self.tortie_tint2 = ["none"]
+            if "none" in self.white_patches_tint:
+                self.white_patches_tint = ["none"]
+
+            # First, convert from some old names that may be in white_patches. 
+            if self.white_patches == 'POINTMARK':
+                self.white_patches = "SEALPOINT"
+            elif self.white_patches == "PANTS2":
+                self.white_patches = "PANTSTWO"
+            elif self.white_patches == "ANY2":
+                self.white_patches = "ANYTWO"
+            elif self.white_patches == "VITILIGO2":
+                self.white_patches = "VITILIGOTWO"
+
+            if self.vitiligo == "VITILIGO2":
+                self.vitiligo = "VITILIGOTWO"
+
+            # Move white_patches that should be in vit or points.
+            if self.white_patches in Pelt.vit:
+                self.vitiligo = self.white_patches
+                self.white_patches = None
+            elif self.white_patches in Pelt.point_markings:
+                self.points = self.white_patches
+                self.white_patches = None
+
+            if self.tortiepattern and "tortie" in self.tortiepattern:
+                self.tortiepattern = sub("tortie", "", self.tortiepattern.lower())
+                if self.tortiepattern == "solid":
+                    self.tortiepattern = "single"
+            
+            '''
+            if self.white_patches in convert_dict["old_creamy_patches"]:
+                self.white_patches = convert_dict["old_creamy_patches"][self.white_patches]
+                self.white_patches_tint = "darkcream"
+            elif self.white_patches in ("SEPIAPOINT", "MINKPOINT", "SEALPOINT"):
+                self.white_patches_tint = "none"
+            '''
+
+            # Eye Color Convert Stuff
+            if self.eye_colour == "BLUE2":
+                self.eye_colour = "COBALT"
+            if self.eye_colour2 == "BLUE2":
+                self.eye_colour2 = "COBALT"
+            if self.eye_colour2 == "VIOLET2":
+                self.eye_colour2 = "BLACKBERRY"
+            if self.eye_colour2 == "ROSE2":
+                self.eye_colour2 = "DARK ROSE"
+            if self.eye_colour2 == "TURQUOISE2":
+                self.eye_colour2 = "DARK TURQUOISE"
+
+            if self.eye_colour in ["BLUEYELLOW", "BLUEGREEN"]:
+                if self.eye_colour == "BLUEYELLOW":
+                    self.eye_colour2 = "YELLOW"
+                elif self.eye_colour == "BLUEGREEN":
+                    self.eye_colour2 = "GREEN"
+                self.eye_colour = "BLUE"
+            
+            if self.colour == "Lynx2":
+                self.colour = "Dalmatian"
+
+            if self.length == "long":
+                if self.cat_sprites["adult"] not in (9, 10, 11):
+                    if self.cat_sprites["adult"] == 0:
+                        self.cat_sprites["adult"] = 9
+                    elif self.cat_sprites["adult"] == 1:
+                        self.cat_sprites["adult"] = 10
+                    elif self.cat_sprites["adult"] == 2:
+                        self.cat_sprites["adult"] = 11
+                    self.cat_sprites["young adult"] = self.cat_sprites["adult"]
+                    self.cat_sprites["senior adult"] = self.cat_sprites["adult"]
+                    self.cat_sprites["para_adult"] = 16
+            else:
+                self.cat_sprites["para_adult"] = 15
+            if self.cat_sprites["senior"] not in (12, 13, 14):
+                if self.cat_sprites["senior"] == 3:
+                    self.cat_sprites["senior"] = 12
+                elif self.cat_sprites["senior"] == 4:
+                    self.cat_sprites["senior"] = 13
+                elif self.cat_sprites["senior"] == 5:
+                    self.cat_sprites["senior"] = 14
+
+            if self.accessory is None:
+                self.accessory = []
+            elif isinstance(self.accessory, str):
+                self.accessory = [self.accessory]
+
+            if self.pattern is not None:
+                if isinstance(self.pattern, str):
+                    self.pattern = [self.pattern]
+            if self.white_patches is not None:
+                if isinstance(self.white_patches, str):
+                    self.white_patches = [self.white_patches]
+
+                if "HALF" in self.white_patches:
+                    self.white_patches.remove("HALF")
+                    self.white_patches.append("ERAHALF")
+                if "MASK" in self.white_patches:
+                    self.white_patches.remove("MASK")
+                    self.white_patches.append("ERAMASK")
 
     def init_eyes(self, parents):
         """Sets eye color for this cat's pelt. Takes parents' eye colors into account.

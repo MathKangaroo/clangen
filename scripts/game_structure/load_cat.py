@@ -105,91 +105,92 @@ def json_load():
                 eye_colour=cat["eye_colour"],
                 loading_cat=True,
             )
+            
+            if constants.CONFIG["check_and_convert"]:
+                if cat["eye_colour"] == "BLUE2":
+                    cat["eye_colour"] = "COBALT"
+                if cat["eye_colour"] in ["BLUEYELLOW", "BLUEGREEN"]:
+                    if cat["eye_colour"] == "BLUEYELLOW":
+                        cat["eye_colour2"] = "YELLOW"
+                    elif cat["eye_colour"] == "BLUEGREEN":
+                        cat["eye_colour2"] = "GREEN"
+                    cat["eye_colour"] = "BLUE"
+                if cat["eye_colour"] == "VIOLET2":
+                    cat["eye_colour"] = "BLACKBERRY"
+                if cat["eye_colour"] == "TURQUOISE2":
+                    cat["eye_colour"] = "DARK TURQUOISE"
+                if cat["eye_colour"] == "ROSE2":
+                    cat["eye_colour"] = "DARK ROSE"
+                if "eye_colour2" in cat:
+                    if cat["eye_colour2"] == "BLUE2":
+                        cat["eye_colour2"] = "COBALT"
+                if cat["pelt_name"] == "Lynx2":
+                    cat["pelt_name"] = "Dalmatian"
+                if cat["accessory"] == ["Raspberry"]:
+                    cat["accessory"] = ["OGRASPBERRY"]
+                if cat["accessory"] == ["DAISY1"]:
+                    cat["accessory"] = ["DAISYTAIL"]
+                if cat["accessory"] == ["CLOVER1"]:
+                    cat["accessory"] = ["CLOVERTAIL"]
+                if cat["tint"] == "banana":
+                    cat["tint"] = "bananaone"
+                if cat["backstory"] == "clan_founder1":
+                    cat["backstory"] = "clan_founder"
+                if cat["backstory"] == "clan_founder2":
+                    cat["backstory"] = "clan_founder"
+                if cat["backstory"] == "clan_founder3":
+                    cat["backstory"] = "clan_founder"
+                if cat["backstory"] == "clanborn1":
+                    cat["backstory"] = "clanborn"
+                if cat["backstory"] == "clanborn2":
+                    cat["backstory"] = "clanborn"
+                if cat["backstory"] == "clanborn3":
+                    cat["backstory"] = "clanborn"
+                if cat["backstory"] == "loner5":
+                    cat["backstory"] = "loner1"
+                if cat["backstory"] == "loner6":
+                    cat["backstory"] = "loner1"
+                if cat["backstory"] == "loner7":
+                    cat["backstory"] = "loner1"
+                if cat["backstory"] == "kittypet5":
+                    cat["backstory"] = "kittypet1"
+                if cat["backstory"] == "rogue4":
+                    cat["backstory"] = "rogue1"
+                if cat["tint"] == "lightchocolate":
+                    cat["tint"] = "lightorange"
+                if cat["trait"] == "princibled":
+                    cat["trait"] = "principled"
+                if cat["trait"] == "fun loving":
+                    cat["trait"] = "fun-loving"
 
-            if cat["eye_colour"] == "BLUE2":
-                cat["eye_colour"] = "COBALT"
-            if cat["eye_colour"] in ["BLUEYELLOW", "BLUEGREEN"]:
-                if cat["eye_colour"] == "BLUEYELLOW":
-                    cat["eye_colour2"] = "YELLOW"
-                elif cat["eye_colour"] == "BLUEGREEN":
-                    cat["eye_colour2"] = "GREEN"
-                cat["eye_colour"] = "BLUE"
-            if cat["eye_colour"] == "VIOLET2":
-                cat["eye_colour"] = "BLACKBERRY"
-            if cat["eye_colour"] == "TURQUOISE2":
-                cat["eye_colour"] = "DARK TURQUOISE"
-            if cat["eye_colour"] == "ROSE2":
-                cat["eye_colour"] = "DARK ROSE"
-            if "eye_colour2" in cat:
-                if cat["eye_colour2"] == "BLUE2":
-                    cat["eye_colour2"] = "COBALT"
-            if cat["pelt_name"] == "Lynx2":
-                cat["pelt_name"] = "Dalmatian"
-            if cat["accessory"] == ["Raspberry"]:
-                cat["accessory"] = ["OGRASPBERRY"]
-            if cat["accessory"] == ["DAISY1"]:
-                cat["accessory"] = ["DAISYTAIL"]
-            if cat["accessory"] == ["CLOVER1"]:
-                cat["accessory"] = ["CLOVERTAIL"]
-            if cat["tint"] == "banana":
-                cat["tint"] = "bananaone"
-            if cat["backstory"] == "clan_founder1":
-                cat["backstory"] = "clan_founder"
-            if cat["backstory"] == "clan_founder2":
-                cat["backstory"] = "clan_founder"
-            if cat["backstory"] == "clan_founder3":
-                cat["backstory"] = "clan_founder"
-            if cat["backstory"] == "clanborn1":
-                cat["backstory"] = "clanborn"
-            if cat["backstory"] == "clanborn2":
-                cat["backstory"] = "clanborn"
-            if cat["backstory"] == "clanborn3":
-                cat["backstory"] = "clanborn"
-            if cat["backstory"] == "loner5":
-                cat["backstory"] = "loner1"
-            if cat["backstory"] == "loner6":
-                cat["backstory"] = "loner1"
-            if cat["backstory"] == "loner7":
-                cat["backstory"] = "loner1"
-            if cat["backstory"] == "kittypet5":
-                cat["backstory"] = "kittypet1"
-            if cat["backstory"] == "rogue4":
-                cat["backstory"] = "rogue1"
-            if cat["tint"] == "lightchocolate":
-                cat["tint"] = "lightorange"
-            if cat["trait"] == "princibled":
-                cat["trait"] = "principled"
-            if cat["trait"] == "fun loving":
-                cat["trait"] = "fun-loving"
+                for acc in cat["accessory"]:
+                    if acc == "WISTERIA2":
+                        cat["accessory"].remove("WISTERIA2")
+                        cat["accessory"].append("WISTERIA")
+                    elif acc == "CLOVERTAIL":
+                        cat["accessory"].remove("CLOVERTAIL")
+                        cat["accessory"].append("CLOVER")
+                    elif acc == "DAISYTAIL":
+                        cat["accessory"].remove("DAISYTAIL")
+                        cat["accessory"].append("DAISY")
+                    elif acc == "MONARCH BUTTERFLY1":
+                        cat["accessory"].remove("MONARCH BUTTERFLY1")
+                        cat["accessory"].append("MONARCH BUTTERFLY")
+                    elif acc == "BIRD SKULL1":
+                        cat["accessory"].remove("BIRD SKULL1")
+                        cat["accessory"].append("BIRD SKULL")
 
-            for acc in cat["accessory"]:
-                if acc == "WISTERIA2":
-                    cat["accessory"].remove("WISTERIA2")
-                    cat["accessory"].append("WISTERIA")
-                elif acc == "CLOVERTAIL":
-                    cat["accessory"].remove("CLOVERTAIL")
-                    cat["accessory"].append("CLOVER")
-                elif acc == "DAISYTAIL":
-                    cat["accessory"].remove("DAISYTAIL")
-                    cat["accessory"].append("DAISY")
-                elif acc == "MONARCH BUTTERFLY1":
-                    cat["accessory"].remove("MONARCH BUTTERFLY1")
-                    cat["accessory"].append("MONARCH BUTTERFLY")
-                elif acc == "BIRD SKULL1":
-                    cat["accessory"].remove("BIRD SKULL1")
-                    cat["accessory"].append("BIRD SKULL")
+                if "accessories" in cat:
+                    cat["accessory"] = cat.pop("accessories")
 
-            if "accessories" in cat:
-                cat["accessory"] = cat.pop("accessories")
-
-            if cat["white_patches"]:
-                if "HALF" in cat["white_patches"]:
-                    cat["white_patches"].remove("HALF")
-                    cat["white_patches"].append("ERAHALF")
-            if cat["white_patches"]:
-                if "MASK" in cat["white_patches"]:
-                    cat["white_patches"].remove("MASK")
-                    cat["white_patches"].append("ERAMASK")
+                if cat["white_patches"]:
+                    if "HALF" in cat["white_patches"]:
+                        cat["white_patches"].remove("HALF")
+                        cat["white_patches"].append("ERAHALF")
+                if cat["white_patches"]:
+                    if "MASK" in cat["white_patches"]:
+                        cat["white_patches"].remove("MASK")
+                        cat["white_patches"].append("ERAMASK")
 
             new_cat.pelt = Pelt(
                 name=cat["pelt_name"],

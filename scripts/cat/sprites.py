@@ -181,7 +181,9 @@ class Sprites:
             "minecraftagouticolours", "minecraftbengalcolours", "minecraftclassiccolours", "minecraftmackerelcolours", "minecraftmarbledcolours", "minecraftrosettecolours", "minecraftsinglestripecolours",
             "minecraftsinglecolours", "minecraftsmokecolours", "minecraftsokokecolours", "minecraftspeckledcolours", "minecrafttabbycolours", "minecrafttickedcolours",
             "anjuagouticolours", "anjubengalcolours", "anjuclassiccolours", "anjumackerelcolours", "anjumarbledcolours", "anjurosettecolours",
-            "anjusinglecolours", "anjusmokecolours", "anjusokokecolours", "anjuspeckledcolours", "anjutabbycolours", "anjutickedcolours"
+            "anjusinglecolours", "anjusmokecolours", "anjusokokecolours", "anjuspeckledcolours", "anjutabbycolours", "anjutickedcolours",
+            "cs3_agouticolours", "cs3_bengalcolours", "cs3_classiccolours", "cs3_mackerelcolours", "cs3_marbledcolours", "cs3_maskedcolours", "cs3_rosettecolours",
+            "cs3_singlecolours", "cs3_singlestripecolours", "cs3_smokecolours", "cs3_sokokecolours", "cs3_speckledcolours", "cs3_tabbycolours", "cs3_tickedcolours",
         ):
             if "lineart" in x and (
                 constants.CONFIG["fun"]["april_fools"]
@@ -661,6 +663,27 @@ class Sprites:
             ['PINKREDS', 'RUSTYS', 'GREENORANGES', 'REDCYANS', 'MINTBLUES', 'BLACKBLUES'],
             ['BANANAS', 'WHITEGREENS', 'BROWNREDS', 'RAINBOW', 'GREENDARKREDS', 'SUNNYS']
         ]
+        
+        cs3_color_categories = [
+            ['BERBERIDA', 'RANUNCULA', 'CAPPARIDA', 'VIOLA', 'FUMARIA', 'PAPAVERA', 'MAGNOLIA'], 
+            ['POLYGALA', 'RESEDA', 'CISTA', 'NYMPHEA', 'DIPTEROCARPA', 'DILLENIA', 'AMYGDALA'], 
+            ['ANONA', 'MYRTA', 'TILIA', 'PITTOSPORA', 'MALVA', 'SARRACENIA', 'DROSERA'], 
+            ['HIPPOCASTANA', 'TROPAEOLA', 'PASSIFLORA', 'OLACA', 'CRUCIA', 'LOASA', 'MALPIGHIA'], 
+            ['MESEMBRYA', 'VITA', 'MARCGRAVIA', 'CLUSIA', 'BOMBA', 'SAMYDA', 'BIXA'], 
+            ['GERANIA', 'COMPOSITA', 'RHAMNA', 'OXALIDA', 'ARALIA', 'TEREBINTHA', 'MELIA'], 
+            ['SAXIFRAGA', 'LINA', 'CAPRIFOLIA', 'CARYOPHYLLA', 'LEGUMINOSAE', 'CAMELLIA', 'CACTACEA'], 
+            ['JASMINEA', 'LYTHRA', 'ACANTHA', 'CRASSULA', 'RUBIA', 'HYPERICA', 'LORANTHA'], 
+            ['AURANTIA', 'RHIZOPHORA', 'BORAGINA', 'TAMARICA', 'MELASTOMA', 'LECYTHIDA', 'VALERIANA'], 
+            ['COMBRETA', 'APOCYNA', 'DIPSA', 'STYLIDIA', 'RUTA', 'SOLANA', 'PLUMBAGINA'], 
+            ['LAMIA', 'BEGONIA', 'GROSSULARIA', 'GENTIANA', 'ERICA', 'CAMPANULA', 'POMA'], 
+            ['BIGNONIA', 'AMARANTA', 'VACCINIA', 'ONAGRA', 'PRIMULA', 'SAPOTA', 'LOBELIA'], 
+            ['MYRSINA', 'PORTULA', 'PLANTAGINA', 'ELAEAGNA', 'OLEA', 'POLEMONIA', 'ORCHIDA'], 
+            ['EUPHORBIA', 'SCROPHULARIA', 'CONVOLVULA', 'MUSA', 'UTRICULARIA', 'UMBELLA', 'PROTEA'], 
+            ['GOODENIA', 'THYMELA', 'URTICA', 'OROBANCHA', 'HYDROPHYLLA', 'AMARYLLIDA', 'CONIFERA'], 
+            ['PHYTOLACCA', 'PAEONIA', 'IRIDA', 'DIOSCORA', 'GESNERIA', 'SANTALA', 'HYDROCHARIDA'], 
+            ['ZINGIBERA', 'ALISMA', 'POLYGONA', 'NYCTAGINA', 'BROMELIA', 'SMILA', 'EBENA'], 
+            ['ROSA', 'LILIA', 'JUNCA', 'VERBENA', 'HAEMODORA', 'COMMELINA', 'COLCHICA']
+        ]
 
         color_types = [
             "singlecolours",
@@ -727,7 +750,10 @@ class Sprites:
             'peppersinglecolours', 'peppersinglestripecolours', 'peppersmokecolours', 'peppersokokecolours', 'pepperspeckledcolours', 'peppertabbycolours', 'peppertickedcolours']
         sparkle_color_types = ['sparkleagouticolours', 'sparklebengalcolours', 'sparkleclassiccolours', 'sparklemackerelcolours', 'sparklemarbledcolours', 'sparklemaskedcolours', 'sparklerosettecolours',
             'sparklesinglecolours', 'sparklesinglestripecolours', 'sparklesmokecolours', 'sparklesokokecolours', 'sparklespeckledcolours', 'sparkletabbycolours', 'sparkletickedcolours']
+        cs3_color_types = ['cs3_agouticolours', 'cs3_bengalcolours', 'cs3_classiccolours', 'cs3_mackerelcolours', 'cs3_marbledcolours', 'cs3_maskedcolours', 'cs3_rosettecolours',
+            'cs3_singlecolours', 'cs3_singlestripecolours', 'cs3_smokecolours', 'cs3_sokokecolours', 'cs3_speckledcolours', 'cs3_tabbycolours', 'cs3_tickedcolours']
 
+        
         for row, colors in enumerate(minecraft_color_categories):
             for col, color in enumerate(colors):
                 for color_type in minecraft_color_types:
@@ -812,6 +838,12 @@ class Sprites:
             for col, color in enumerate(colors):
                 for color_type in sparkle_color_types:
                     category = color_type[7:]
+                    self.make_group(color_type, (col, row), f'{category[:-7]}{color}')
+                    
+        for row, colors in enumerate(cs3_color_categories):
+            for col, color in enumerate(colors):
+                for color_type in cs3_color_types:
+                    category = color_type[4:]
                     self.make_group(color_type, (col, row), f'{category[:-7]}{color}')
 
         # tortiepatchesmasks
