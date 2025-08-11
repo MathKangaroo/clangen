@@ -873,13 +873,30 @@ class ProfileScreen(Screens):
             # NEWLINE ----------
             output += "\n"
 
-        if the_cat.status.is_other_clancat:
-            output += f"{cat_clan} "
+        if the_cat == game.clan.instructor:
+            output += i18n.t(f"general.guide")
+            output += "\n"
 
-        if the_cat.status.is_outsider:
-            output += i18n.t(f"general.{the_cat.status.social}", count=1)
-        else:
+        if the_cat.dead:
+            if the_cat == game.clan.instructor or the_cat.status.is_outsider:
+                output += i18n.t(
+                    f"general.past_no_group",
+                    rank=i18n.t(f"general.{the_cat.status.rank}", count=1),
+                )
+            else:
+                output += i18n.t(
+                    "general.past_group",
+                    group=cat_clan,
+                    rank=i18n.t(f"general.{the_cat.status.rank}", count=1),
+                )
+        elif the_cat.status.is_outsider:
             output += i18n.t(f"general.{the_cat.status.rank}", count=1)
+        else:
+            output += i18n.t(
+                "general.living_group",
+                group=cat_clan,
+                rank=i18n.t(f"general.{the_cat.status.rank}", count=1),
+            )
 
         # NEWLINE ----------
         output += "\n"
