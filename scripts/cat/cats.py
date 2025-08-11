@@ -2931,6 +2931,8 @@ class Cat:
 
         if self.status.group == CatGroup.DARK_FOREST:
             file_name += "_df"
+        elif self.status.group == CatGroup.UNKNOWN_RESIDENCE:
+            file_name += "_ur"
 
         file_name += ".png"
 
