@@ -35,7 +35,7 @@ from scripts.game_structure import image_cache, localization, constants
 from scripts.cat.enums import CatAge, CatRank, CatSocial, CatGroup, CatStanding
 from scripts.cat.names import names
 from scripts.cat.sprites import sprites
-from scripts.game_structure.game_essentials import game
+from scripts.game_structure import game
 import scripts.game_structure.screen_settings  # must be done like this to get updates when we change screen size etc
 
 if TYPE_CHECKING:
